@@ -12,17 +12,17 @@ tasks:
   migrate-up:
     desc: runs migrations.
     cmds:
-      - werf run --docker-options="-v `pwd`/:/app -w /app" --dev goose -- goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" up
+      - goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" up
 
   migrate-down:
     desc: revert migrations.
     cmds:
-      - werf run --docker-options="-v `pwd`/:/app -w /app" --dev goose -- goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" down
+      - goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" down
 
   generate-ent:
     desc: generate entities.
     cmds:
-      - werf run --docker-options="-e PSQL_PASS={{ .PG_PASSWORD }} -p 5434:5434 -v `pwd`/:/app -w /app" --dev sqlboiler -- sqlboiler psql --no-tests -o ./internal/infra/repo/entity  -c ./var/config/.sqlboiler.toml
+      - sqlboiler psql --no-tests -o ./internal/infra/repo/entity  -c ./var/config/.sqlboiler.toml
     requires:
       vars: [PG_PASSWORD]
     generates:
