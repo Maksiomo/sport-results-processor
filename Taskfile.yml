@@ -1,0 +1,36 @@
+version: '3'
+
+dotenv: ['.env']
+
+vars:
+  PROJECT_DIR:
+    sh: pwd
+  MIGRATIONS_DIR: ./var/migrations
+  ENTITIES_DIR: ./internal/infra/repo/entity
+
+
+tasks:
+  migrate-up:
+    desc: runs migrations.
+    cmds:
+      - werf run --docker-options="-v `pwd`/:/app -w /app" --dev goose -- goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" up
+
+  migrate-down:
+    desc: revert migrations.
+    cmds:
+      - werf run --docker-options="-v `pwd`/:/app -w /app" --dev goose -- goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" down
+
+  generate-ent:
+    desc: generate entities.
+    cmds:
+      - werf run --docker-options="-e PSQL_PASS={{ .PG_PASSWORD }} -v `pwd`/:/app -w /app" --dev sqlboiler -- sqlboiler psql --no-tests -o ./internal/infra/repo/entity  -c ./var/config/.sqlboiler.toml
+    requires:
+      vars: [PG_PASSWORD]
+    generates:
+      - "pkg/gen/sqlboiler"
+
+  generate-server:
+    desc: generate server from OpenAPI v3.
+    cmds:
+      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/customer/server.go -package=customer -generate=std-http ./api/customer.server.yaml
+      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/customer/types.go -package=customer -generate=types ./api/customer.server.yaml

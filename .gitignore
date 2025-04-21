@@ -1,0 +1,15 @@
+/ssl/
+/ssh/
+/bin/
+/tmp/
+/.idea/
+*.env
+/ssl/
+/var/cert/
+/.werf_secret_key
+/secret-values.yaml
+/cover.html
+/.helm/Chart.lock
+/.helm/charts/
+/.helm/charts/helm-snippets-0.0.1.tgz
+/.vscode/

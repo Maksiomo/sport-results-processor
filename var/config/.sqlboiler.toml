@@ -1,0 +1,22 @@
+output   = "entity"
+pkgname  = "entity"
+wipe     = true
+no-tests = false
+add-enum-types = true
+add-soft-deletes = false
+
+[psql]
+host    = "127.0.0.1" 
+port    = 5432
+dbname  = "exapi-heritage-sports-stage"
+schema  = "public"
+user    = "stolon" # "postgres"
+pass    = "123123" # "password"
+sslmode = "disable"
+blacklist = ["goose_db_version"]
+
+#[[types]]
+#  [types.match]
+#  type = "int"
+#  [types.replace]
+#  type = "int64"
