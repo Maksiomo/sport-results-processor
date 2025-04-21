@@ -7,8 +7,8 @@ add-soft-deletes = false
 
 [psql]
 host    = "127.0.0.1" 
-port    = 5432
-dbname  = "exapi-heritage-sports-stage"
+port    = 5434
+dbname  = "sport-results-processor"
 schema  = "public"
 user    = "stolon" # "postgres"
 pass    = "123123" # "password"

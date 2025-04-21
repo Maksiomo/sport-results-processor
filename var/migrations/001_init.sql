@@ -20,7 +20,7 @@ create table country(
 create table location(
     id                  bigserial primary key,
     country_id          bigint references country(id) not null,
-    state               text
+    state               text,
     city                text,
     address             text,
     full_address        text not null,
@@ -46,7 +46,7 @@ create table person_sport(
     person_id           bigint references person(id) not null,
     sport_id            bigint references sport(id) not null,
     unique (person_id, sport_id)
-)
+);
 
 create table team(
     id                  bigserial primary key,
@@ -65,7 +65,7 @@ create table role(
 create table team_person(
     id                  bigserial primary key,
     person_id           bigint references person(id) not null,
-    role_id             bigint references role(id) not null,
+    role_id             bigint references role(id) not null
 );
 
 create table competition_level(
@@ -88,19 +88,19 @@ create table prize(
     competition_id      bigint references competition(id) not null,
     place_bracket       text not null,
     currency_code       text not null,
-    prize_amount        bigint not null,
+    prize_amount        bigint not null
 );
 
 create table competition_teams(
     id                  bigserial primary key,
     team_id             bigint references team(id) not null,
-    competition_id      bigint references competition(id) not null,
+    competition_id      bigint references competition(id) not null
 );
 
 create table team_achievements(
     id                  bigserial primary key,
     team_id             bigint references team(id) not null,
-    prize_id            bigint references prize(id) not null,
+    prize_id            bigint references prize(id) not null
 );
 
 -- +goose StatementEnd

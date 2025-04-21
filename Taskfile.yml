@@ -8,7 +8,6 @@ vars:
   MIGRATIONS_DIR: ./var/migrations
   ENTITIES_DIR: ./internal/infra/repo/entity
 
-
 tasks:
   migrate-up:
     desc: runs migrations.
@@ -23,7 +22,7 @@ tasks:
   generate-ent:
     desc: generate entities.
     cmds:
-      - werf run --docker-options="-e PSQL_PASS={{ .PG_PASSWORD }} -v `pwd`/:/app -w /app" --dev sqlboiler -- sqlboiler psql --no-tests -o ./internal/infra/repo/entity  -c ./var/config/.sqlboiler.toml
+      - werf run --docker-options="-e PSQL_PASS={{ .PG_PASSWORD }} -p 5434:5434 -v `pwd`/:/app -w /app" --dev sqlboiler -- sqlboiler psql --no-tests -o ./internal/infra/repo/entity  -c ./var/config/.sqlboiler.toml
     requires:
       vars: [PG_PASSWORD]
     generates:
