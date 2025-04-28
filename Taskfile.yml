@@ -37,5 +37,5 @@ tasks:
   generate-blockchain-client:
     desc: generate solc buids and blockchain client from sol contracts
     cmds:
-      - solc --optimize --abi --bin --overwrite -o var/builds var/contracts/*.sol
-      - var/scripts/bindings.sh
+      - solc --optimize --combined-json abi,bin --overwrite -o var/builds var/contracts/*.sol
+      - abigen --combined-json var/builds/combined.json --pkg="blockchain" --out="internal/common/service/client/blockchain/registry.go"
