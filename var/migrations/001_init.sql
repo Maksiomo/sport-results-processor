@@ -1,106 +1,206 @@
 -- +goose Up
 -- +goose StatementBegin
 
-create table sport(
-    id                  bigserial primary key,
-    name                text not null,
-    min_team_size       int not null,
-    max_team_size       text not null,
-    description         text,
-    unique(name)
-);
-create index idx_sport_name on sport(name);
+-- Основные таблицы справочников
 
-create table country(
-    id                  bigserial primary key,
-    name                text not null,
-    unique(name)
+CREATE TABLE sport (
+    id            BIGSERIAL PRIMARY KEY,
+    name          TEXT       NOT NULL UNIQUE,
+    min_team_size INT        NOT NULL,
+    max_team_size INT        NOT NULL,
+    description   TEXT,
+    created_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash   BYTEA,
+    tx_hash       TEXT
 );
+CREATE INDEX idx_sport_name ON sport(name);
 
-create table location(
-    id                  bigserial primary key,
-    country_id          bigint references country(id) not null,
-    state               text,
-    city                text,
-    address             text,
-    full_address        text not null,
-    unique(full_address)
+
+CREATE TABLE country (
+    id          BIGSERIAL PRIMARY KEY,
+    name        TEXT       NOT NULL UNIQUE,
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
 );
 
-create table language(
-    id                  bigserial primary key,
-    name                text not null,
-    unique(name)
+
+CREATE TABLE location (
+    id            BIGSERIAL PRIMARY KEY,
+    country_id    BIGINT     NOT NULL REFERENCES country(id),
+    state         TEXT,
+    city          TEXT,
+    address       TEXT,
+    full_address  TEXT       NOT NULL UNIQUE,
+    created_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
 );
 
-create table person(
-    id                  bigserial primary key,
-    name                text not null,
-    birth_date          timestamp without time zone not null,
-    country_id          bigint references country(id) not null,
-    unique(name)
+
+CREATE TABLE language (
+    id          BIGSERIAL PRIMARY KEY,
+    name        TEXT       NOT NULL UNIQUE,
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
 );
 
-create table person_sport(
-    id                  bigserial primary key,
-    person_id           bigint references person(id) not null,
-    sport_id            bigint references sport(id) not null,
-    unique (person_id, sport_id)
+
+CREATE TABLE role (
+    id          BIGSERIAL PRIMARY KEY,
+    name        TEXT       NOT NULL UNIQUE,
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
 );
 
-create table team(
-    id                  bigserial primary key,
-    name                text not null,
-    country_id          bigint references country(id) not null,
-    foundation_date     timestamp without time zone not null,
-    unique(name)
+
+CREATE TABLE competition_level (
+    id          BIGSERIAL PRIMARY KEY,
+    name        TEXT       NOT NULL UNIQUE,
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
 );
 
-create table role(
-    id                  bigserial primary key,
-    name                text not null,
-    unique(name)
+
+-- Таблица валют для призов
+CREATE TABLE currency (
+    code   TEXT PRIMARY KEY,
+    name   TEXT NOT NULL,
+    symbol TEXT UNIQUE,
 );
 
-create table team_person(
-    id                  bigserial primary key,
-    person_id           bigint references person(id) not null,
-    role_id             bigint references role(id) not null
+
+-- Основные бизнес-сущности
+
+CREATE TABLE person (
+    id          BIGSERIAL PRIMARY KEY,
+    name        TEXT       NOT NULL UNIQUE,
+    birth_date  TIMESTAMP  NOT NULL,
+    country_id  BIGINT     NOT NULL REFERENCES country(id),
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash BYTEA,
+    tx_hash     TEXT
 );
 
-create table competition_level(
-    id                  bigserial primary key,
-    name                text not null,
-    unique(name)
+CREATE TABLE person_sport (
+    id          BIGSERIAL PRIMARY KEY,
+    person_id   BIGINT     NOT NULL REFERENCES person(id),
+    sport_id    BIGINT     NOT NULL REFERENCES sport(id),
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    UNIQUE(person_id, sport_id)
 );
 
-create table competition(
-    id                  bigserial primary key,
-    name                text not null,
-    sport_id            bigint references sport(id) not null,
-    location_id         bigint references location(id) not null,
-    level_id            bigint references competition_level(id) not null,
-    unique(name)
+
+CREATE TABLE team (
+    id              BIGSERIAL PRIMARY KEY,
+    name            TEXT       NOT NULL UNIQUE,
+    country_id      BIGINT     NOT NULL REFERENCES country(id),
+    foundation_date TIMESTAMP  NOT NULL,
+    created_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash     BYTEA,
+    tx_hash         TEXT
 );
 
-create table prize(
-    id                  bigserial primary key,
-    competition_id      bigint references competition(id) not null,
-    place_bracket       text not null,
-    currency_code       text not null,
-    prize_amount        bigint not null
+
+CREATE TABLE team_person (
+    id          BIGSERIAL PRIMARY KEY,
+    team_id     BIGINT     NOT NULL REFERENCES team(id),
+    person_id   BIGINT     NOT NULL REFERENCES person(id),
+    role_id     BIGINT     NOT NULL REFERENCES role(id),
+    joined_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    left_at     TIMESTAMP,
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash BYTEA,
+    tx_hash     TEXT,
+    UNIQUE(team_id, person_id, role_id, joined_at)
 );
 
-create table competition_teams(
-    id                  bigserial primary key,
-    team_id             bigint references team(id) not null,
-    competition_id      bigint references competition(id) not null
+
+CREATE TABLE competition (
+    id           BIGSERIAL PRIMARY KEY,
+    name         TEXT       NOT NULL UNIQUE,
+    sport_id     BIGINT     NOT NULL REFERENCES sport(id),
+    location_id  BIGINT     NOT NULL REFERENCES location(id),
+    level_id     BIGINT     NOT NULL REFERENCES competition_level(id),
+    created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash  BYTEA,
+    tx_hash      TEXT
 );
 
-create table team_achievements(
-    id                  bigserial primary key,
-    team_id             bigint references team(id) not null,
-    prize_id            bigint references prize(id) not null
+CREATE TABLE stage (
+    id             BIGSERIAL PRIMARY KEY,
+    competition_id BIGINT     NOT NULL REFERENCES competition(id),
+    name           TEXT       NOT NULL,
+    start_time     TIMESTAMP  NOT NULL,
+    end_time       TIMESTAMP,
+    created_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
+    UNIQUE(competition_id, name)
+);
+
+CREATE TABLE match (
+    id           BIGSERIAL PRIMARY KEY,
+    stage_id     BIGINT     NOT NULL REFERENCES stage(id),
+    match_time   TIMESTAMP  NOT NULL,
+    location_id  BIGINT REFERENCES location(id),
+    metadata     JSONB,
+    created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash  BYTEA,
+    tx_hash      TEXT,
+    UNIQUE(stage_id, match_time, location_id)
+);
+
+CREATE TABLE match_participant (
+    id           BIGSERIAL PRIMARY KEY,
+    match_id     BIGINT     NOT NULL REFERENCES match(id),
+    team_id      BIGINT     NOT NULL REFERENCES team(id),
+    score        INT        NOT NULL,
+    is_winner    BOOLEAN    NOT NULL DEFAULT FALSE,
+    created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash  BYTEA,
+    tx_hash      TEXT,
+    UNIQUE(match_id, team_id)
+);
+
+CREATE TABLE prize (
+    id              BIGSERIAL PRIMARY KEY,
+    competition_id  BIGINT     NOT NULL REFERENCES competition(id),
+    place_bracket   TEXT       NOT NULL,
+    currency_code   TEXT       NOT NULL REFERENCES currency(code),
+    prize_amount    BIGINT     NOT NULL,
+    created_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash     BYTEA,
+    tx_hash         TEXT,
+    UNIQUE(competition_id, place_bracket)
+);
+
+CREATE TABLE competition_teams (
+    id             BIGSERIAL PRIMARY KEY,
+    team_id        BIGINT     NOT NULL REFERENCES team(id),
+    competition_id BIGINT     NOT NULL REFERENCES competition(id),
+    created_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash    BYTEA,
+    tx_hash        TEXT,
+    UNIQUE(team_id, competition_id)
+);
+
+CREATE TABLE team_achievements (
+    id           BIGSERIAL PRIMARY KEY,
+    team_id      BIGINT     NOT NULL REFERENCES team(id),
+    prize_id     BIGINT     NOT NULL REFERENCES prize(id),
+    created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
+    record_hash  BYTEA,
+    tx_hash      TEXT,
+    UNIQUE(team_id, prize_id)
 );
 
 -- +goose StatementEnd
@@ -111,6 +211,9 @@ create table team_achievements(
 drop table if exists team_achievements;
 drop table if exists competition_teams;
 drop table if exists prize;
+drop table if exists match_participant;
+drop table if exists match;
+drop table if exists stage;
 drop table if exists competition;
 drop table if exists competition_level;
 drop table if exists team_person;

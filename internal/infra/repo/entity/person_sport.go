@@ -23,44 +23,58 @@ import (
 
 // PersonSport is an object representing the database table.
 type PersonSport struct {
-	ID       int64 `boil:"id" json:"id" toml:"id" yaml:"id"`
-	PersonID int64 `boil:"person_id" json:"person_id" toml:"person_id" yaml:"person_id"`
-	SportID  int64 `boil:"sport_id" json:"sport_id" toml:"sport_id" yaml:"sport_id"`
+	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
+	PersonID  int64     `boil:"person_id" json:"person_id" toml:"person_id" yaml:"person_id"`
+	SportID   int64     `boil:"sport_id" json:"sport_id" toml:"sport_id" yaml:"sport_id"`
+	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
 
 	R *personSportR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L personSportL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var PersonSportColumns = struct {
-	ID       string
-	PersonID string
-	SportID  string
+	ID        string
+	PersonID  string
+	SportID   string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:       "id",
-	PersonID: "person_id",
-	SportID:  "sport_id",
+	ID:        "id",
+	PersonID:  "person_id",
+	SportID:   "sport_id",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
 }
 
 var PersonSportTableColumns = struct {
-	ID       string
-	PersonID string
-	SportID  string
+	ID        string
+	PersonID  string
+	SportID   string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:       "person_sport.id",
-	PersonID: "person_sport.person_id",
-	SportID:  "person_sport.sport_id",
+	ID:        "person_sport.id",
+	PersonID:  "person_sport.person_id",
+	SportID:   "person_sport.sport_id",
+	CreatedAt: "person_sport.created_at",
+	UpdatedAt: "person_sport.updated_at",
 }
 
 // Generated where
 
 var PersonSportWhere = struct {
-	ID       whereHelperint64
-	PersonID whereHelperint64
-	SportID  whereHelperint64
+	ID        whereHelperint64
+	PersonID  whereHelperint64
+	SportID   whereHelperint64
+	CreatedAt whereHelpertime_Time
+	UpdatedAt whereHelpertime_Time
 }{
-	ID:       whereHelperint64{field: "\"person_sport\".\"id\""},
-	PersonID: whereHelperint64{field: "\"person_sport\".\"person_id\""},
-	SportID:  whereHelperint64{field: "\"person_sport\".\"sport_id\""},
+	ID:        whereHelperint64{field: "\"person_sport\".\"id\""},
+	PersonID:  whereHelperint64{field: "\"person_sport\".\"person_id\""},
+	SportID:   whereHelperint64{field: "\"person_sport\".\"sport_id\""},
+	CreatedAt: whereHelpertime_Time{field: "\"person_sport\".\"created_at\""},
+	UpdatedAt: whereHelpertime_Time{field: "\"person_sport\".\"updated_at\""},
 }
 
 // PersonSportRels is where relationship names are stored.
@@ -101,9 +115,9 @@ func (r *personSportR) GetSport() *Sport {
 type personSportL struct{}
 
 var (
-	personSportAllColumns            = []string{"id", "person_id", "sport_id"}
+	personSportAllColumns            = []string{"id", "person_id", "sport_id", "created_at", "updated_at"}
 	personSportColumnsWithoutDefault = []string{"person_id", "sport_id"}
-	personSportColumnsWithDefault    = []string{"id"}
+	personSportColumnsWithDefault    = []string{"id", "created_at", "updated_at"}
 	personSportPrimaryKeyColumns     = []string{"id"}
 	personSportGeneratedColumns      = []string{}
 )
@@ -818,6 +832,16 @@ func (o *PersonSport) Insert(ctx context.Context, exec boil.ContextExecutor, col
 	}
 
 	var err error
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		if o.UpdatedAt.IsZero() {
+			o.UpdatedAt = currTime
+		}
+	}
 
 	if err := o.doBeforeInsertHooks(ctx, exec); err != nil {
 		return err
@@ -893,6 +917,12 @@ func (o *PersonSport) Insert(ctx context.Context, exec boil.ContextExecutor, col
 // See boil.Columns.UpdateColumnSet documentation to understand column list inference for updates.
 // Update does not automatically update the record in case of default values. Use .Reload() to refresh the records.
 func (o *PersonSport) Update(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) (int64, error) {
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		o.UpdatedAt = currTime
+	}
+
 	var err error
 	if err = o.doBeforeUpdateHooks(ctx, exec); err != nil {
 		return 0, err
@@ -1022,6 +1052,14 @@ func (o PersonSportSlice) UpdateAll(ctx context.Context, exec boil.ContextExecut
 func (o *PersonSport) Upsert(ctx context.Context, exec boil.ContextExecutor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns, opts ...UpsertOptionFunc) error {
 	if o == nil {
 		return errors.New("entity: no person_sport provided for upsert")
+	}
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		o.UpdatedAt = currTime
 	}
 
 	if err := o.doBeforeUpsertHooks(ctx, exec); err != nil {

@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
+	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -23,72 +24,79 @@ import (
 
 // Person is an object representing the database table.
 type Person struct {
-	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Name      string    `boil:"name" json:"name" toml:"name" yaml:"name"`
-	BirthDate time.Time `boil:"birth_date" json:"birth_date" toml:"birth_date" yaml:"birth_date"`
-	CountryID int64     `boil:"country_id" json:"country_id" toml:"country_id" yaml:"country_id"`
+	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Name       string      `boil:"name" json:"name" toml:"name" yaml:"name"`
+	BirthDate  time.Time   `boil:"birth_date" json:"birth_date" toml:"birth_date" yaml:"birth_date"`
+	CountryID  int64       `boil:"country_id" json:"country_id" toml:"country_id" yaml:"country_id"`
+	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt  time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	RecordHash null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
+	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *personR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L personL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var PersonColumns = struct {
-	ID        string
-	Name      string
-	BirthDate string
-	CountryID string
+	ID         string
+	Name       string
+	BirthDate  string
+	CountryID  string
+	CreatedAt  string
+	UpdatedAt  string
+	RecordHash string
+	TXHash     string
 }{
-	ID:        "id",
-	Name:      "name",
-	BirthDate: "birth_date",
-	CountryID: "country_id",
+	ID:         "id",
+	Name:       "name",
+	BirthDate:  "birth_date",
+	CountryID:  "country_id",
+	CreatedAt:  "created_at",
+	UpdatedAt:  "updated_at",
+	RecordHash: "record_hash",
+	TXHash:     "tx_hash",
 }
 
 var PersonTableColumns = struct {
-	ID        string
-	Name      string
-	BirthDate string
-	CountryID string
+	ID         string
+	Name       string
+	BirthDate  string
+	CountryID  string
+	CreatedAt  string
+	UpdatedAt  string
+	RecordHash string
+	TXHash     string
 }{
-	ID:        "person.id",
-	Name:      "person.name",
-	BirthDate: "person.birth_date",
-	CountryID: "person.country_id",
+	ID:         "person.id",
+	Name:       "person.name",
+	BirthDate:  "person.birth_date",
+	CountryID:  "person.country_id",
+	CreatedAt:  "person.created_at",
+	UpdatedAt:  "person.updated_at",
+	RecordHash: "person.record_hash",
+	TXHash:     "person.tx_hash",
 }
 
 // Generated where
 
-type whereHelpertime_Time struct{ field string }
-
-func (w whereHelpertime_Time) EQ(x time.Time) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.EQ, x)
-}
-func (w whereHelpertime_Time) NEQ(x time.Time) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.NEQ, x)
-}
-func (w whereHelpertime_Time) LT(x time.Time) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.LT, x)
-}
-func (w whereHelpertime_Time) LTE(x time.Time) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.LTE, x)
-}
-func (w whereHelpertime_Time) GT(x time.Time) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.GT, x)
-}
-func (w whereHelpertime_Time) GTE(x time.Time) qm.QueryMod {
-	return qmhelper.Where(w.field, qmhelper.GTE, x)
-}
-
 var PersonWhere = struct {
-	ID        whereHelperint64
-	Name      whereHelperstring
-	BirthDate whereHelpertime_Time
-	CountryID whereHelperint64
+	ID         whereHelperint64
+	Name       whereHelperstring
+	BirthDate  whereHelpertime_Time
+	CountryID  whereHelperint64
+	CreatedAt  whereHelpertime_Time
+	UpdatedAt  whereHelpertime_Time
+	RecordHash whereHelpernull_Bytes
+	TXHash     whereHelpernull_String
 }{
-	ID:        whereHelperint64{field: "\"person\".\"id\""},
-	Name:      whereHelperstring{field: "\"person\".\"name\""},
-	BirthDate: whereHelpertime_Time{field: "\"person\".\"birth_date\""},
-	CountryID: whereHelperint64{field: "\"person\".\"country_id\""},
+	ID:         whereHelperint64{field: "\"person\".\"id\""},
+	Name:       whereHelperstring{field: "\"person\".\"name\""},
+	BirthDate:  whereHelpertime_Time{field: "\"person\".\"birth_date\""},
+	CountryID:  whereHelperint64{field: "\"person\".\"country_id\""},
+	CreatedAt:  whereHelpertime_Time{field: "\"person\".\"created_at\""},
+	UpdatedAt:  whereHelpertime_Time{field: "\"person\".\"updated_at\""},
+	RecordHash: whereHelpernull_Bytes{field: "\"person\".\"record_hash\""},
+	TXHash:     whereHelpernull_String{field: "\"person\".\"tx_hash\""},
 }
 
 // PersonRels is where relationship names are stored.
@@ -139,9 +147,9 @@ func (r *personR) GetTeamPeople() TeamPersonSlice {
 type personL struct{}
 
 var (
-	personAllColumns            = []string{"id", "name", "birth_date", "country_id"}
+	personAllColumns            = []string{"id", "name", "birth_date", "country_id", "created_at", "updated_at", "record_hash", "tx_hash"}
 	personColumnsWithoutDefault = []string{"name", "birth_date", "country_id"}
-	personColumnsWithDefault    = []string{"id"}
+	personColumnsWithDefault    = []string{"id", "created_at", "updated_at", "record_hash", "tx_hash"}
 	personPrimaryKeyColumns     = []string{"id"}
 	personGeneratedColumns      = []string{}
 )
@@ -1038,6 +1046,16 @@ func (o *Person) Insert(ctx context.Context, exec boil.ContextExecutor, columns 
 	}
 
 	var err error
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		if o.UpdatedAt.IsZero() {
+			o.UpdatedAt = currTime
+		}
+	}
 
 	if err := o.doBeforeInsertHooks(ctx, exec); err != nil {
 		return err
@@ -1113,6 +1131,12 @@ func (o *Person) Insert(ctx context.Context, exec boil.ContextExecutor, columns 
 // See boil.Columns.UpdateColumnSet documentation to understand column list inference for updates.
 // Update does not automatically update the record in case of default values. Use .Reload() to refresh the records.
 func (o *Person) Update(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) (int64, error) {
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		o.UpdatedAt = currTime
+	}
+
 	var err error
 	if err = o.doBeforeUpdateHooks(ctx, exec); err != nil {
 		return 0, err
@@ -1242,6 +1266,14 @@ func (o PersonSlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor, c
 func (o *Person) Upsert(ctx context.Context, exec boil.ContextExecutor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns, opts ...UpsertOptionFunc) error {
 	if o == nil {
 		return errors.New("entity: no person provided for upsert")
+	}
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		o.UpdatedAt = currTime
 	}
 
 	if err := o.doBeforeUpsertHooks(ctx, exec); err != nil {

@@ -27,8 +27,12 @@ type Sport struct {
 	ID          int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
 	Name        string      `boil:"name" json:"name" toml:"name" yaml:"name"`
 	MinTeamSize int         `boil:"min_team_size" json:"min_team_size" toml:"min_team_size" yaml:"min_team_size"`
-	MaxTeamSize string      `boil:"max_team_size" json:"max_team_size" toml:"max_team_size" yaml:"max_team_size"`
+	MaxTeamSize int         `boil:"max_team_size" json:"max_team_size" toml:"max_team_size" yaml:"max_team_size"`
 	Description null.String `boil:"description" json:"description,omitempty" toml:"description" yaml:"description,omitempty"`
+	CreatedAt   time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt   time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	RecordHash  null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
+	TXHash      null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *sportR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L sportL  `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -40,12 +44,20 @@ var SportColumns = struct {
 	MinTeamSize string
 	MaxTeamSize string
 	Description string
+	CreatedAt   string
+	UpdatedAt   string
+	RecordHash  string
+	TXHash      string
 }{
 	ID:          "id",
 	Name:        "name",
 	MinTeamSize: "min_team_size",
 	MaxTeamSize: "max_team_size",
 	Description: "description",
+	CreatedAt:   "created_at",
+	UpdatedAt:   "updated_at",
+	RecordHash:  "record_hash",
+	TXHash:      "tx_hash",
 }
 
 var SportTableColumns = struct {
@@ -54,51 +66,44 @@ var SportTableColumns = struct {
 	MinTeamSize string
 	MaxTeamSize string
 	Description string
+	CreatedAt   string
+	UpdatedAt   string
+	RecordHash  string
+	TXHash      string
 }{
 	ID:          "sport.id",
 	Name:        "sport.name",
 	MinTeamSize: "sport.min_team_size",
 	MaxTeamSize: "sport.max_team_size",
 	Description: "sport.description",
+	CreatedAt:   "sport.created_at",
+	UpdatedAt:   "sport.updated_at",
+	RecordHash:  "sport.record_hash",
+	TXHash:      "sport.tx_hash",
 }
 
 // Generated where
-
-type whereHelperint struct{ field string }
-
-func (w whereHelperint) EQ(x int) qm.QueryMod  { return qmhelper.Where(w.field, qmhelper.EQ, x) }
-func (w whereHelperint) NEQ(x int) qm.QueryMod { return qmhelper.Where(w.field, qmhelper.NEQ, x) }
-func (w whereHelperint) LT(x int) qm.QueryMod  { return qmhelper.Where(w.field, qmhelper.LT, x) }
-func (w whereHelperint) LTE(x int) qm.QueryMod { return qmhelper.Where(w.field, qmhelper.LTE, x) }
-func (w whereHelperint) GT(x int) qm.QueryMod  { return qmhelper.Where(w.field, qmhelper.GT, x) }
-func (w whereHelperint) GTE(x int) qm.QueryMod { return qmhelper.Where(w.field, qmhelper.GTE, x) }
-func (w whereHelperint) IN(slice []int) qm.QueryMod {
-	values := make([]interface{}, 0, len(slice))
-	for _, value := range slice {
-		values = append(values, value)
-	}
-	return qm.WhereIn(fmt.Sprintf("%s IN ?", w.field), values...)
-}
-func (w whereHelperint) NIN(slice []int) qm.QueryMod {
-	values := make([]interface{}, 0, len(slice))
-	for _, value := range slice {
-		values = append(values, value)
-	}
-	return qm.WhereNotIn(fmt.Sprintf("%s NOT IN ?", w.field), values...)
-}
 
 var SportWhere = struct {
 	ID          whereHelperint64
 	Name        whereHelperstring
 	MinTeamSize whereHelperint
-	MaxTeamSize whereHelperstring
+	MaxTeamSize whereHelperint
 	Description whereHelpernull_String
+	CreatedAt   whereHelpertime_Time
+	UpdatedAt   whereHelpertime_Time
+	RecordHash  whereHelpernull_Bytes
+	TXHash      whereHelpernull_String
 }{
 	ID:          whereHelperint64{field: "\"sport\".\"id\""},
 	Name:        whereHelperstring{field: "\"sport\".\"name\""},
 	MinTeamSize: whereHelperint{field: "\"sport\".\"min_team_size\""},
-	MaxTeamSize: whereHelperstring{field: "\"sport\".\"max_team_size\""},
+	MaxTeamSize: whereHelperint{field: "\"sport\".\"max_team_size\""},
 	Description: whereHelpernull_String{field: "\"sport\".\"description\""},
+	CreatedAt:   whereHelpertime_Time{field: "\"sport\".\"created_at\""},
+	UpdatedAt:   whereHelpertime_Time{field: "\"sport\".\"updated_at\""},
+	RecordHash:  whereHelpernull_Bytes{field: "\"sport\".\"record_hash\""},
+	TXHash:      whereHelpernull_String{field: "\"sport\".\"tx_hash\""},
 }
 
 // SportRels is where relationship names are stored.
@@ -139,9 +144,9 @@ func (r *sportR) GetPersonSports() PersonSportSlice {
 type sportL struct{}
 
 var (
-	sportAllColumns            = []string{"id", "name", "min_team_size", "max_team_size", "description"}
+	sportAllColumns            = []string{"id", "name", "min_team_size", "max_team_size", "description", "created_at", "updated_at", "record_hash", "tx_hash"}
 	sportColumnsWithoutDefault = []string{"name", "min_team_size", "max_team_size"}
-	sportColumnsWithDefault    = []string{"id", "description"}
+	sportColumnsWithDefault    = []string{"id", "description", "created_at", "updated_at", "record_hash", "tx_hash"}
 	sportPrimaryKeyColumns     = []string{"id"}
 	sportGeneratedColumns      = []string{}
 )
@@ -860,6 +865,16 @@ func (o *Sport) Insert(ctx context.Context, exec boil.ContextExecutor, columns b
 	}
 
 	var err error
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		if o.UpdatedAt.IsZero() {
+			o.UpdatedAt = currTime
+		}
+	}
 
 	if err := o.doBeforeInsertHooks(ctx, exec); err != nil {
 		return err
@@ -935,6 +950,12 @@ func (o *Sport) Insert(ctx context.Context, exec boil.ContextExecutor, columns b
 // See boil.Columns.UpdateColumnSet documentation to understand column list inference for updates.
 // Update does not automatically update the record in case of default values. Use .Reload() to refresh the records.
 func (o *Sport) Update(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) (int64, error) {
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		o.UpdatedAt = currTime
+	}
+
 	var err error
 	if err = o.doBeforeUpdateHooks(ctx, exec); err != nil {
 		return 0, err
@@ -1064,6 +1085,14 @@ func (o SportSlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor, co
 func (o *Sport) Upsert(ctx context.Context, exec boil.ContextExecutor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns, opts ...UpsertOptionFunc) error {
 	if o == nil {
 		return errors.New("entity: no sport provided for upsert")
+	}
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		o.UpdatedAt = currTime
 	}
 
 	if err := o.doBeforeUpsertHooks(ctx, exec); err != nil {

@@ -8,13 +8,17 @@ var TableNames = struct {
 	CompetitionLevel string
 	CompetitionTeams string
 	Country          string
+	Currency         string
 	Language         string
 	Location         string
+	Match            string
+	MatchParticipant string
 	Person           string
 	PersonSport      string
 	Prize            string
 	Role             string
 	Sport            string
+	Stage            string
 	Team             string
 	TeamAchievements string
 	TeamPerson       string
@@ -23,13 +27,17 @@ var TableNames = struct {
 	CompetitionLevel: "competition_level",
 	CompetitionTeams: "competition_teams",
 	Country:          "country",
+	Currency:         "currency",
 	Language:         "language",
 	Location:         "location",
+	Match:            "match",
+	MatchParticipant: "match_participant",
 	Person:           "person",
 	PersonSport:      "person_sport",
 	Prize:            "prize",
 	Role:             "role",
 	Sport:            "sport",
+	Stage:            "stage",
 	Team:             "team",
 	TeamAchievements: "team_achievements",
 	TeamPerson:       "team_person",

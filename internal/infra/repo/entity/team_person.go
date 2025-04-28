@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
+	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -23,59 +24,111 @@ import (
 
 // TeamPerson is an object representing the database table.
 type TeamPerson struct {
-	ID       int64 `boil:"id" json:"id" toml:"id" yaml:"id"`
-	PersonID int64 `boil:"person_id" json:"person_id" toml:"person_id" yaml:"person_id"`
-	RoleID   int64 `boil:"role_id" json:"role_id" toml:"role_id" yaml:"role_id"`
+	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	TeamID     int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
+	PersonID   int64       `boil:"person_id" json:"person_id" toml:"person_id" yaml:"person_id"`
+	RoleID     int64       `boil:"role_id" json:"role_id" toml:"role_id" yaml:"role_id"`
+	JoinedAt   time.Time   `boil:"joined_at" json:"joined_at" toml:"joined_at" yaml:"joined_at"`
+	LeftAt     null.Time   `boil:"left_at" json:"left_at,omitempty" toml:"left_at" yaml:"left_at,omitempty"`
+	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt  time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	RecordHash null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
+	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *teamPersonR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L teamPersonL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var TeamPersonColumns = struct {
-	ID       string
-	PersonID string
-	RoleID   string
+	ID         string
+	TeamID     string
+	PersonID   string
+	RoleID     string
+	JoinedAt   string
+	LeftAt     string
+	CreatedAt  string
+	UpdatedAt  string
+	RecordHash string
+	TXHash     string
 }{
-	ID:       "id",
-	PersonID: "person_id",
-	RoleID:   "role_id",
+	ID:         "id",
+	TeamID:     "team_id",
+	PersonID:   "person_id",
+	RoleID:     "role_id",
+	JoinedAt:   "joined_at",
+	LeftAt:     "left_at",
+	CreatedAt:  "created_at",
+	UpdatedAt:  "updated_at",
+	RecordHash: "record_hash",
+	TXHash:     "tx_hash",
 }
 
 var TeamPersonTableColumns = struct {
-	ID       string
-	PersonID string
-	RoleID   string
+	ID         string
+	TeamID     string
+	PersonID   string
+	RoleID     string
+	JoinedAt   string
+	LeftAt     string
+	CreatedAt  string
+	UpdatedAt  string
+	RecordHash string
+	TXHash     string
 }{
-	ID:       "team_person.id",
-	PersonID: "team_person.person_id",
-	RoleID:   "team_person.role_id",
+	ID:         "team_person.id",
+	TeamID:     "team_person.team_id",
+	PersonID:   "team_person.person_id",
+	RoleID:     "team_person.role_id",
+	JoinedAt:   "team_person.joined_at",
+	LeftAt:     "team_person.left_at",
+	CreatedAt:  "team_person.created_at",
+	UpdatedAt:  "team_person.updated_at",
+	RecordHash: "team_person.record_hash",
+	TXHash:     "team_person.tx_hash",
 }
 
 // Generated where
 
 var TeamPersonWhere = struct {
-	ID       whereHelperint64
-	PersonID whereHelperint64
-	RoleID   whereHelperint64
+	ID         whereHelperint64
+	TeamID     whereHelperint64
+	PersonID   whereHelperint64
+	RoleID     whereHelperint64
+	JoinedAt   whereHelpertime_Time
+	LeftAt     whereHelpernull_Time
+	CreatedAt  whereHelpertime_Time
+	UpdatedAt  whereHelpertime_Time
+	RecordHash whereHelpernull_Bytes
+	TXHash     whereHelpernull_String
 }{
-	ID:       whereHelperint64{field: "\"team_person\".\"id\""},
-	PersonID: whereHelperint64{field: "\"team_person\".\"person_id\""},
-	RoleID:   whereHelperint64{field: "\"team_person\".\"role_id\""},
+	ID:         whereHelperint64{field: "\"team_person\".\"id\""},
+	TeamID:     whereHelperint64{field: "\"team_person\".\"team_id\""},
+	PersonID:   whereHelperint64{field: "\"team_person\".\"person_id\""},
+	RoleID:     whereHelperint64{field: "\"team_person\".\"role_id\""},
+	JoinedAt:   whereHelpertime_Time{field: "\"team_person\".\"joined_at\""},
+	LeftAt:     whereHelpernull_Time{field: "\"team_person\".\"left_at\""},
+	CreatedAt:  whereHelpertime_Time{field: "\"team_person\".\"created_at\""},
+	UpdatedAt:  whereHelpertime_Time{field: "\"team_person\".\"updated_at\""},
+	RecordHash: whereHelpernull_Bytes{field: "\"team_person\".\"record_hash\""},
+	TXHash:     whereHelpernull_String{field: "\"team_person\".\"tx_hash\""},
 }
 
 // TeamPersonRels is where relationship names are stored.
 var TeamPersonRels = struct {
 	Person string
 	Role   string
+	Team   string
 }{
 	Person: "Person",
 	Role:   "Role",
+	Team:   "Team",
 }
 
 // teamPersonR is where relationships are stored.
 type teamPersonR struct {
 	Person *Person `boil:"Person" json:"Person" toml:"Person" yaml:"Person"`
 	Role   *Role   `boil:"Role" json:"Role" toml:"Role" yaml:"Role"`
+	Team   *Team   `boil:"Team" json:"Team" toml:"Team" yaml:"Team"`
 }
 
 // NewStruct creates a new relationship struct
@@ -97,13 +150,20 @@ func (r *teamPersonR) GetRole() *Role {
 	return r.Role
 }
 
+func (r *teamPersonR) GetTeam() *Team {
+	if r == nil {
+		return nil
+	}
+	return r.Team
+}
+
 // teamPersonL is where Load methods for each relationship are stored.
 type teamPersonL struct{}
 
 var (
-	teamPersonAllColumns            = []string{"id", "person_id", "role_id"}
-	teamPersonColumnsWithoutDefault = []string{"person_id", "role_id"}
-	teamPersonColumnsWithDefault    = []string{"id"}
+	teamPersonAllColumns            = []string{"id", "team_id", "person_id", "role_id", "joined_at", "left_at", "created_at", "updated_at", "record_hash", "tx_hash"}
+	teamPersonColumnsWithoutDefault = []string{"team_id", "person_id", "role_id"}
+	teamPersonColumnsWithDefault    = []string{"id", "joined_at", "left_at", "created_at", "updated_at", "record_hash", "tx_hash"}
 	teamPersonPrimaryKeyColumns     = []string{"id"}
 	teamPersonGeneratedColumns      = []string{}
 )
@@ -435,6 +495,17 @@ func (o *TeamPerson) Role(mods ...qm.QueryMod) roleQuery {
 	return Roles(queryMods...)
 }
 
+// Team pointed to by the foreign key.
+func (o *TeamPerson) Team(mods ...qm.QueryMod) teamQuery {
+	queryMods := []qm.QueryMod{
+		qm.Where("\"id\" = ?", o.TeamID),
+	}
+
+	queryMods = append(queryMods, mods...)
+
+	return Teams(queryMods...)
+}
+
 // LoadPerson allows an eager lookup of values, cached into the
 // loaded structs of the objects. This is for an N-1 relationship.
 func (teamPersonL) LoadPerson(ctx context.Context, e boil.ContextExecutor, singular bool, maybeTeamPerson interface{}, mods queries.Applicator) error {
@@ -675,6 +746,126 @@ func (teamPersonL) LoadRole(ctx context.Context, e boil.ContextExecutor, singula
 	return nil
 }
 
+// LoadTeam allows an eager lookup of values, cached into the
+// loaded structs of the objects. This is for an N-1 relationship.
+func (teamPersonL) LoadTeam(ctx context.Context, e boil.ContextExecutor, singular bool, maybeTeamPerson interface{}, mods queries.Applicator) error {
+	var slice []*TeamPerson
+	var object *TeamPerson
+
+	if singular {
+		var ok bool
+		object, ok = maybeTeamPerson.(*TeamPerson)
+		if !ok {
+			object = new(TeamPerson)
+			ok = queries.SetFromEmbeddedStruct(&object, &maybeTeamPerson)
+			if !ok {
+				return errors.New(fmt.Sprintf("failed to set %T from embedded struct %T", object, maybeTeamPerson))
+			}
+		}
+	} else {
+		s, ok := maybeTeamPerson.(*[]*TeamPerson)
+		if ok {
+			slice = *s
+		} else {
+			ok = queries.SetFromEmbeddedStruct(&slice, maybeTeamPerson)
+			if !ok {
+				return errors.New(fmt.Sprintf("failed to set %T from embedded struct %T", slice, maybeTeamPerson))
+			}
+		}
+	}
+
+	args := make(map[interface{}]struct{})
+	if singular {
+		if object.R == nil {
+			object.R = &teamPersonR{}
+		}
+		args[object.TeamID] = struct{}{}
+
+	} else {
+		for _, obj := range slice {
+			if obj.R == nil {
+				obj.R = &teamPersonR{}
+			}
+
+			args[obj.TeamID] = struct{}{}
+
+		}
+	}
+
+	if len(args) == 0 {
+		return nil
+	}
+
+	argsSlice := make([]interface{}, len(args))
+	i := 0
+	for arg := range args {
+		argsSlice[i] = arg
+		i++
+	}
+
+	query := NewQuery(
+		qm.From(`team`),
+		qm.WhereIn(`team.id in ?`, argsSlice...),
+	)
+	if mods != nil {
+		mods.Apply(query)
+	}
+
+	results, err := query.QueryContext(ctx, e)
+	if err != nil {
+		return errors.Wrap(err, "failed to eager load Team")
+	}
+
+	var resultSlice []*Team
+	if err = queries.Bind(results, &resultSlice); err != nil {
+		return errors.Wrap(err, "failed to bind eager loaded slice Team")
+	}
+
+	if err = results.Close(); err != nil {
+		return errors.Wrap(err, "failed to close results of eager load for team")
+	}
+	if err = results.Err(); err != nil {
+		return errors.Wrap(err, "error occurred during iteration of eager loaded relations for team")
+	}
+
+	if len(teamAfterSelectHooks) != 0 {
+		for _, obj := range resultSlice {
+			if err := obj.doAfterSelectHooks(ctx, e); err != nil {
+				return err
+			}
+		}
+	}
+
+	if len(resultSlice) == 0 {
+		return nil
+	}
+
+	if singular {
+		foreign := resultSlice[0]
+		object.R.Team = foreign
+		if foreign.R == nil {
+			foreign.R = &teamR{}
+		}
+		foreign.R.TeamPeople = append(foreign.R.TeamPeople, object)
+		return nil
+	}
+
+	for _, local := range slice {
+		for _, foreign := range resultSlice {
+			if local.TeamID == foreign.ID {
+				local.R.Team = foreign
+				if foreign.R == nil {
+					foreign.R = &teamR{}
+				}
+				foreign.R.TeamPeople = append(foreign.R.TeamPeople, local)
+				break
+			}
+		}
+	}
+
+	return nil
+}
+
 // SetPerson of the teamPerson to the related item.
 // Sets o.R.Person to related.
 // Adds o to related.R.TeamPeople.
@@ -769,6 +960,53 @@ func (o *TeamPerson) SetRole(ctx context.Context, exec boil.ContextExecutor, ins
 	return nil
 }
 
+// SetTeam of the teamPerson to the related item.
+// Sets o.R.Team to related.
+// Adds o to related.R.TeamPeople.
+func (o *TeamPerson) SetTeam(ctx context.Context, exec boil.ContextExecutor, insert bool, related *Team) error {
+	var err error
+	if insert {
+		if err = related.Insert(ctx, exec, boil.Infer()); err != nil {
+			return errors.Wrap(err, "failed to insert into foreign table")
+		}
+	}
+
+	updateQuery := fmt.Sprintf(
+		"UPDATE \"team_person\" SET %s WHERE %s",
+		strmangle.SetParamNames("\"", "\"", 1, []string{"team_id"}),
+		strmangle.WhereClause("\"", "\"", 2, teamPersonPrimaryKeyColumns),
+	)
+	values := []interface{}{related.ID, o.ID}
+
+	if boil.IsDebug(ctx) {
+		writer := boil.DebugWriterFrom(ctx)
+		fmt.Fprintln(writer, updateQuery)
+		fmt.Fprintln(writer, values)
+	}
+	if _, err = exec.ExecContext(ctx, updateQuery, values...); err != nil {
+		return errors.Wrap(err, "failed to update local table")
+	}
+
+	o.TeamID = related.ID
+	if o.R == nil {
+		o.R = &teamPersonR{
+			Team: related,
+		}
+	} else {
+		o.R.Team = related
+	}
+
+	if related.R == nil {
+		related.R = &teamR{
+			TeamPeople: TeamPersonSlice{o},
+		}
+	} else {
+		related.R.TeamPeople = append(related.R.TeamPeople, o)
+	}
+
+	return nil
+}
+
 // TeamPeople retrieves all the records using an executor.
 func TeamPeople(mods ...qm.QueryMod) teamPersonQuery {
 	mods = append(mods, qm.From("\"team_person\""))
@@ -818,6 +1056,16 @@ func (o *TeamPerson) Insert(ctx context.Context, exec boil.ContextExecutor, colu
 	}
 
 	var err error
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		if o.UpdatedAt.IsZero() {
+			o.UpdatedAt = currTime
+		}
+	}
 
 	if err := o.doBeforeInsertHooks(ctx, exec); err != nil {
 		return err
@@ -893,6 +1141,12 @@ func (o *TeamPerson) Insert(ctx context.Context, exec boil.ContextExecutor, colu
 // See boil.Columns.UpdateColumnSet documentation to understand column list inference for updates.
 // Update does not automatically update the record in case of default values. Use .Reload() to refresh the records.
 func (o *TeamPerson) Update(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) (int64, error) {
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		o.UpdatedAt = currTime
+	}
+
 	var err error
 	if err = o.doBeforeUpdateHooks(ctx, exec); err != nil {
 		return 0, err
@@ -1022,6 +1276,14 @@ func (o TeamPersonSlice) UpdateAll(ctx context.Context, exec boil.ContextExecuto
 func (o *TeamPerson) Upsert(ctx context.Context, exec boil.ContextExecutor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns, opts ...UpsertOptionFunc) error {
 	if o == nil {
 		return errors.New("entity: no team_person provided for upsert")
+	}
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		o.UpdatedAt = currTime
 	}
 
 	if err := o.doBeforeUpsertHooks(ctx, exec); err != nil {

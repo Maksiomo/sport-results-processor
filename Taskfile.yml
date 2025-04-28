@@ -33,3 +33,9 @@ tasks:
     cmds:
       - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/customer/server.go -package=customer -generate=std-http ./api/customer.server.yaml
       - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/customer/types.go -package=customer -generate=types ./api/customer.server.yaml
+  
+  generate-blockchain-client:
+    desc: generate solc buids and blockchain client from sol contracts
+    cmds:
+      - solc --optimize --abi --bin --overwrite -o var/builds var/contracts/*.sol
+      - var/scripts/bindings.sh

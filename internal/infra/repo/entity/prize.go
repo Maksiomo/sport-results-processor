@@ -14,6 +14,7 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
+	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -23,11 +24,15 @@ import (
 
 // Prize is an object representing the database table.
 type Prize struct {
-	ID            int64  `boil:"id" json:"id" toml:"id" yaml:"id"`
-	CompetitionID int64  `boil:"competition_id" json:"competition_id" toml:"competition_id" yaml:"competition_id"`
-	PlaceBracket  string `boil:"place_bracket" json:"place_bracket" toml:"place_bracket" yaml:"place_bracket"`
-	CurrencyCode  string `boil:"currency_code" json:"currency_code" toml:"currency_code" yaml:"currency_code"`
-	PrizeAmount   int64  `boil:"prize_amount" json:"prize_amount" toml:"prize_amount" yaml:"prize_amount"`
+	ID            int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	CompetitionID int64       `boil:"competition_id" json:"competition_id" toml:"competition_id" yaml:"competition_id"`
+	PlaceBracket  string      `boil:"place_bracket" json:"place_bracket" toml:"place_bracket" yaml:"place_bracket"`
+	CurrencyCode  string      `boil:"currency_code" json:"currency_code" toml:"currency_code" yaml:"currency_code"`
+	PrizeAmount   int64       `boil:"prize_amount" json:"prize_amount" toml:"prize_amount" yaml:"prize_amount"`
+	CreatedAt     time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt     time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	RecordHash    null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
+	TXHash        null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *prizeR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L prizeL  `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -39,12 +44,20 @@ var PrizeColumns = struct {
 	PlaceBracket  string
 	CurrencyCode  string
 	PrizeAmount   string
+	CreatedAt     string
+	UpdatedAt     string
+	RecordHash    string
+	TXHash        string
 }{
 	ID:            "id",
 	CompetitionID: "competition_id",
 	PlaceBracket:  "place_bracket",
 	CurrencyCode:  "currency_code",
 	PrizeAmount:   "prize_amount",
+	CreatedAt:     "created_at",
+	UpdatedAt:     "updated_at",
+	RecordHash:    "record_hash",
+	TXHash:        "tx_hash",
 }
 
 var PrizeTableColumns = struct {
@@ -53,12 +66,20 @@ var PrizeTableColumns = struct {
 	PlaceBracket  string
 	CurrencyCode  string
 	PrizeAmount   string
+	CreatedAt     string
+	UpdatedAt     string
+	RecordHash    string
+	TXHash        string
 }{
 	ID:            "prize.id",
 	CompetitionID: "prize.competition_id",
 	PlaceBracket:  "prize.place_bracket",
 	CurrencyCode:  "prize.currency_code",
 	PrizeAmount:   "prize.prize_amount",
+	CreatedAt:     "prize.created_at",
+	UpdatedAt:     "prize.updated_at",
+	RecordHash:    "prize.record_hash",
+	TXHash:        "prize.tx_hash",
 }
 
 // Generated where
@@ -69,27 +90,38 @@ var PrizeWhere = struct {
 	PlaceBracket  whereHelperstring
 	CurrencyCode  whereHelperstring
 	PrizeAmount   whereHelperint64
+	CreatedAt     whereHelpertime_Time
+	UpdatedAt     whereHelpertime_Time
+	RecordHash    whereHelpernull_Bytes
+	TXHash        whereHelpernull_String
 }{
 	ID:            whereHelperint64{field: "\"prize\".\"id\""},
 	CompetitionID: whereHelperint64{field: "\"prize\".\"competition_id\""},
 	PlaceBracket:  whereHelperstring{field: "\"prize\".\"place_bracket\""},
 	CurrencyCode:  whereHelperstring{field: "\"prize\".\"currency_code\""},
 	PrizeAmount:   whereHelperint64{field: "\"prize\".\"prize_amount\""},
+	CreatedAt:     whereHelpertime_Time{field: "\"prize\".\"created_at\""},
+	UpdatedAt:     whereHelpertime_Time{field: "\"prize\".\"updated_at\""},
+	RecordHash:    whereHelpernull_Bytes{field: "\"prize\".\"record_hash\""},
+	TXHash:        whereHelpernull_String{field: "\"prize\".\"tx_hash\""},
 }
 
 // PrizeRels is where relationship names are stored.
 var PrizeRels = struct {
-	Competition      string
-	TeamAchievements string
+	Competition          string
+	CurrencyCodeCurrency string
+	TeamAchievements     string
 }{
-	Competition:      "Competition",
-	TeamAchievements: "TeamAchievements",
+	Competition:          "Competition",
+	CurrencyCodeCurrency: "CurrencyCodeCurrency",
+	TeamAchievements:     "TeamAchievements",
 }
 
 // prizeR is where relationships are stored.
 type prizeR struct {
-	Competition      *Competition         `boil:"Competition" json:"Competition" toml:"Competition" yaml:"Competition"`
-	TeamAchievements TeamAchievementSlice `boil:"TeamAchievements" json:"TeamAchievements" toml:"TeamAchievements" yaml:"TeamAchievements"`
+	Competition          *Competition         `boil:"Competition" json:"Competition" toml:"Competition" yaml:"Competition"`
+	CurrencyCodeCurrency *Currency            `boil:"CurrencyCodeCurrency" json:"CurrencyCodeCurrency" toml:"CurrencyCodeCurrency" yaml:"CurrencyCodeCurrency"`
+	TeamAchievements     TeamAchievementSlice `boil:"TeamAchievements" json:"TeamAchievements" toml:"TeamAchievements" yaml:"TeamAchievements"`
 }
 
 // NewStruct creates a new relationship struct
@@ -104,6 +136,13 @@ func (r *prizeR) GetCompetition() *Competition {
 	return r.Competition
 }
 
+func (r *prizeR) GetCurrencyCodeCurrency() *Currency {
+	if r == nil {
+		return nil
+	}
+	return r.CurrencyCodeCurrency
+}
+
 func (r *prizeR) GetTeamAchievements() TeamAchievementSlice {
 	if r == nil {
 		return nil
@@ -115,9 +154,9 @@ func (r *prizeR) GetTeamAchievements() TeamAchievementSlice {
 type prizeL struct{}
 
 var (
-	prizeAllColumns            = []string{"id", "competition_id", "place_bracket", "currency_code", "prize_amount"}
+	prizeAllColumns            = []string{"id", "competition_id", "place_bracket", "currency_code", "prize_amount", "created_at", "updated_at", "record_hash", "tx_hash"}
 	prizeColumnsWithoutDefault = []string{"competition_id", "place_bracket", "currency_code", "prize_amount"}
-	prizeColumnsWithDefault    = []string{"id"}
+	prizeColumnsWithDefault    = []string{"id", "created_at", "updated_at", "record_hash", "tx_hash"}
 	prizePrimaryKeyColumns     = []string{"id"}
 	prizeGeneratedColumns      = []string{}
 )
@@ -438,6 +477,17 @@ func (o *Prize) Competition(mods ...qm.QueryMod) competitionQuery {
 	return Competitions(queryMods...)
 }
 
+// CurrencyCodeCurrency pointed to by the foreign key.
+func (o *Prize) CurrencyCodeCurrency(mods ...qm.QueryMod) currencyQuery {
+	queryMods := []qm.QueryMod{
+		qm.Where("\"code\" = ?", o.CurrencyCode),
+	}
+
+	queryMods = append(queryMods, mods...)
+
+	return Currencies(queryMods...)
+}
+
 // TeamAchievements retrieves all the team_achievement's TeamAchievements with an executor.
 func (o *Prize) TeamAchievements(mods ...qm.QueryMod) teamAchievementQuery {
 	var queryMods []qm.QueryMod
@@ -564,6 +614,126 @@ func (prizeL) LoadCompetition(ctx context.Context, e boil.ContextExecutor, singu
 					foreign.R = &competitionR{}
 				}
 				foreign.R.Prizes = append(foreign.R.Prizes, local)
+				break
+			}
+		}
+	}
+
+	return nil
+}
+
+// LoadCurrencyCodeCurrency allows an eager lookup of values, cached into the
+// loaded structs of the objects. This is for an N-1 relationship.
+func (prizeL) LoadCurrencyCodeCurrency(ctx context.Context, e boil.ContextExecutor, singular bool, maybePrize interface{}, mods queries.Applicator) error {
+	var slice []*Prize
+	var object *Prize
+
+	if singular {
+		var ok bool
+		object, ok = maybePrize.(*Prize)
+		if !ok {
+			object = new(Prize)
+			ok = queries.SetFromEmbeddedStruct(&object, &maybePrize)
+			if !ok {
+				return errors.New(fmt.Sprintf("failed to set %T from embedded struct %T", object, maybePrize))
+			}
+		}
+	} else {
+		s, ok := maybePrize.(*[]*Prize)
+		if ok {
+			slice = *s
+		} else {
+			ok = queries.SetFromEmbeddedStruct(&slice, maybePrize)
+			if !ok {
+				return errors.New(fmt.Sprintf("failed to set %T from embedded struct %T", slice, maybePrize))
+			}
+		}
+	}
+
+	args := make(map[interface{}]struct{})
+	if singular {
+		if object.R == nil {
+			object.R = &prizeR{}
+		}
+		args[object.CurrencyCode] = struct{}{}
+
+	} else {
+		for _, obj := range slice {
+			if obj.R == nil {
+				obj.R = &prizeR{}
+			}
+
+			args[obj.CurrencyCode] = struct{}{}
+
+		}
+	}
+
+	if len(args) == 0 {
+		return nil
+	}
+
+	argsSlice := make([]interface{}, len(args))
+	i := 0
+	for arg := range args {
+		argsSlice[i] = arg
+		i++
+	}
+
+	query := NewQuery(
+		qm.From(`currency`),
+		qm.WhereIn(`currency.code in ?`, argsSlice...),
+	)
+	if mods != nil {
+		mods.Apply(query)
+	}
+
+	results, err := query.QueryContext(ctx, e)
+	if err != nil {
+		return errors.Wrap(err, "failed to eager load Currency")
+	}
+
+	var resultSlice []*Currency
+	if err = queries.Bind(results, &resultSlice); err != nil {
+		return errors.Wrap(err, "failed to bind eager loaded slice Currency")
+	}
+
+	if err = results.Close(); err != nil {
+		return errors.Wrap(err, "failed to close results of eager load for currency")
+	}
+	if err = results.Err(); err != nil {
+		return errors.Wrap(err, "error occurred during iteration of eager loaded relations for currency")
+	}
+
+	if len(currencyAfterSelectHooks) != 0 {
+		for _, obj := range resultSlice {
+			if err := obj.doAfterSelectHooks(ctx, e); err != nil {
+				return err
+			}
+		}
+	}
+
+	if len(resultSlice) == 0 {
+		return nil
+	}
+
+	if singular {
+		foreign := resultSlice[0]
+		object.R.CurrencyCodeCurrency = foreign
+		if foreign.R == nil {
+			foreign.R = &currencyR{}
+		}
+		foreign.R.CurrencyCodePrizes = append(foreign.R.CurrencyCodePrizes, object)
+		return nil
+	}
+
+	for _, local := range slice {
+		for _, foreign := range resultSlice {
+			if local.CurrencyCode == foreign.Code {
+				local.R.CurrencyCodeCurrency = foreign
+				if foreign.R == nil {
+					foreign.R = &currencyR{}
+				}
+				foreign.R.CurrencyCodePrizes = append(foreign.R.CurrencyCodePrizes, local)
 				break
 			}
 		}
@@ -732,6 +902,53 @@ func (o *Prize) SetCompetition(ctx context.Context, exec boil.ContextExecutor, i
 	return nil
 }
 
+// SetCurrencyCodeCurrency of the prize to the related item.
+// Sets o.R.CurrencyCodeCurrency to related.
+// Adds o to related.R.CurrencyCodePrizes.
+func (o *Prize) SetCurrencyCodeCurrency(ctx context.Context, exec boil.ContextExecutor, insert bool, related *Currency) error {
+	var err error
+	if insert {
+		if err = related.Insert(ctx, exec, boil.Infer()); err != nil {
+			return errors.Wrap(err, "failed to insert into foreign table")
+		}
+	}
+
+	updateQuery := fmt.Sprintf(
+		"UPDATE \"prize\" SET %s WHERE %s",
+		strmangle.SetParamNames("\"", "\"", 1, []string{"currency_code"}),
+		strmangle.WhereClause("\"", "\"", 2, prizePrimaryKeyColumns),
+	)
+	values := []interface{}{related.Code, o.ID}
+
+	if boil.IsDebug(ctx) {
+		writer := boil.DebugWriterFrom(ctx)
+		fmt.Fprintln(writer, updateQuery)
+		fmt.Fprintln(writer, values)
+	}
+	if _, err = exec.ExecContext(ctx, updateQuery, values...); err != nil {
+		return errors.Wrap(err, "failed to update local table")
+	}
+
+	o.CurrencyCode = related.Code
+	if o.R == nil {
+		o.R = &prizeR{
+			CurrencyCodeCurrency: related,
+		}
+	} else {
+		o.R.CurrencyCodeCurrency = related
+	}
+
+	if related.R == nil {
+		related.R = &currencyR{
+			CurrencyCodePrizes: PrizeSlice{o},
+		}
+	} else {
+		related.R.CurrencyCodePrizes = append(related.R.CurrencyCodePrizes, o)
+	}
+
+	return nil
+}
+
 // AddTeamAchievements adds the given related objects to the existing relationships
 // of the prize, optionally inserting them as new records.
 // Appends related to o.R.TeamAchievements.
@@ -834,6 +1051,16 @@ func (o *Prize) Insert(ctx context.Context, exec boil.ContextExecutor, columns b
 	}
 
 	var err error
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		if o.UpdatedAt.IsZero() {
+			o.UpdatedAt = currTime
+		}
+	}
 
 	if err := o.doBeforeInsertHooks(ctx, exec); err != nil {
 		return err
@@ -909,6 +1136,12 @@ func (o *Prize) Insert(ctx context.Context, exec boil.ContextExecutor, columns b
 // See boil.Columns.UpdateColumnSet documentation to understand column list inference for updates.
 // Update does not automatically update the record in case of default values. Use .Reload() to refresh the records.
 func (o *Prize) Update(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) (int64, error) {
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		o.UpdatedAt = currTime
+	}
+
 	var err error
 	if err = o.doBeforeUpdateHooks(ctx, exec); err != nil {
 		return 0, err
@@ -1038,6 +1271,14 @@ func (o PrizeSlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor, co
 func (o *Prize) Upsert(ctx context.Context, exec boil.ContextExecutor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns, opts ...UpsertOptionFunc) error {
 	if o == nil {
 		return errors.New("entity: no prize provided for upsert")
+	}
+	if !boil.TimestampsAreSkipped(ctx) {
+		currTime := time.Now().In(boil.GetLocation())
+
+		if o.CreatedAt.IsZero() {
+			o.CreatedAt = currTime
+		}
+		o.UpdatedAt = currTime
 	}
 
 	if err := o.doBeforeUpsertHooks(ctx, exec); err != nil {
