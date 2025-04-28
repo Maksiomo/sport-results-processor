@@ -1,4 +1,4 @@
-package log
+package logger
 
 type Config struct {
 	// Level sets the logger's level. Possible values are "debug", "info", "warn", "error".

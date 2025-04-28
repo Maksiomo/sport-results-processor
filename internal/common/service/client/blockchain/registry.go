@@ -29,10 +29,442 @@ var (
 	_ = abi.ConvertType
 )
 
+// CompetitionRegistryMetaData contains all meta data concerning the CompetitionRegistry contract.
+var CompetitionRegistryMetaData = &bind.MetaData{
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"CompetitionRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordCompetition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateCompetition\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c806301bc9c641461004e5780631a85ad3614610063578063501895ae1461008b57806360b2267b146100b8575b5f5ffd5b61006161005c3660046101c7565b6100da565b005b6100766100713660046101c7565b610197565b60405190151581526020015b60405180910390f35b6100aa6100993660046101e7565b60016020525f908152604090205481565b604051908152602001610082565b6100766100c63660046101e7565b5f6020819052908152604090205460ff1681565b5f8281526020819052604090205460ff161561013c5760405162461bcd60e51b815260206004820152601c60248201527f436f6d7065746974696f6e20616c7265616479207265636f7264656400000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a910160405180910390a25050565b5f8281526020819052604081205460ff1680156101c057505f8381526001602052604090205482145b9392505050565b5f5f604083850312156101d8575f5ffd5b50508035926020909101359150565b5f602082840312156101f7575f5ffd5b503591905056fea2646970667358221220233edc59f1a2c0ff8b5199fd361d636df001886bea96f3224f3059af8d45b53a64736f6c634300081d0033",
+}
+
+// CompetitionRegistryABI is the input ABI used to generate the binding from.
+// Deprecated: Use CompetitionRegistryMetaData.ABI instead.
+var CompetitionRegistryABI = CompetitionRegistryMetaData.ABI
+
+// CompetitionRegistryBin is the compiled bytecode used for deploying new contracts.
+// Deprecated: Use CompetitionRegistryMetaData.Bin instead.
+var CompetitionRegistryBin = CompetitionRegistryMetaData.Bin
+
+// DeployCompetitionRegistry deploys a new Ethereum contract, binding an instance of CompetitionRegistry to it.
+func DeployCompetitionRegistry(auth *bind.TransactOpts, backend bind.ContractBackend) (common.Address, *types.Transaction, *CompetitionRegistry, error) {
+	parsed, err := CompetitionRegistryMetaData.GetAbi()
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	if parsed == nil {
+		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
+	}
+
+	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(CompetitionRegistryBin), backend)
+	if err != nil {
+		return common.Address{}, nil, nil, err
+	}
+	return address, tx, &CompetitionRegistry{CompetitionRegistryCaller: CompetitionRegistryCaller{contract: contract}, CompetitionRegistryTransactor: CompetitionRegistryTransactor{contract: contract}, CompetitionRegistryFilterer: CompetitionRegistryFilterer{contract: contract}}, nil
+}
+
+// CompetitionRegistry is an auto generated Go binding around an Ethereum contract.
+type CompetitionRegistry struct {
+	CompetitionRegistryCaller     // Read-only binding to the contract
+	CompetitionRegistryTransactor // Write-only binding to the contract
+	CompetitionRegistryFilterer   // Log filterer for contract events
+}
+
+// CompetitionRegistryCaller is an auto generated read-only Go binding around an Ethereum contract.
+type CompetitionRegistryCaller struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// CompetitionRegistryTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type CompetitionRegistryTransactor struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// CompetitionRegistryFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type CompetitionRegistryFilterer struct {
+	contract *bind.BoundContract // Generic contract wrapper for the low level calls
+}
+
+// CompetitionRegistrySession is an auto generated Go binding around an Ethereum contract,
+// with pre-set call and transact options.
+type CompetitionRegistrySession struct {
+	Contract     *CompetitionRegistry // Generic contract binding to set the session for
+	CallOpts     bind.CallOpts        // Call options to use throughout this session
+	TransactOpts bind.TransactOpts    // Transaction auth options to use throughout this session
+}
+
+// CompetitionRegistryCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// with pre-set call options.
+type CompetitionRegistryCallerSession struct {
+	Contract *CompetitionRegistryCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts              // Call options to use throughout this session
+}
+
+// CompetitionRegistryTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// with pre-set transact options.
+type CompetitionRegistryTransactorSession struct {
+	Contract     *CompetitionRegistryTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts              // Transaction auth options to use throughout this session
+}
+
+// CompetitionRegistryRaw is an auto generated low-level Go binding around an Ethereum contract.
+type CompetitionRegistryRaw struct {
+	Contract *CompetitionRegistry // Generic contract binding to access the raw methods on
+}
+
+// CompetitionRegistryCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type CompetitionRegistryCallerRaw struct {
+	Contract *CompetitionRegistryCaller // Generic read-only contract binding to access the raw methods on
+}
+
+// CompetitionRegistryTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type CompetitionRegistryTransactorRaw struct {
+	Contract *CompetitionRegistryTransactor // Generic write-only contract binding to access the raw methods on
+}
+
+// NewCompetitionRegistry creates a new instance of CompetitionRegistry, bound to a specific deployed contract.
+func NewCompetitionRegistry(address common.Address, backend bind.ContractBackend) (*CompetitionRegistry, error) {
+	contract, err := bindCompetitionRegistry(address, backend, backend, backend)
+	if err != nil {
+		return nil, err
+	}
+	return &CompetitionRegistry{CompetitionRegistryCaller: CompetitionRegistryCaller{contract: contract}, CompetitionRegistryTransactor: CompetitionRegistryTransactor{contract: contract}, CompetitionRegistryFilterer: CompetitionRegistryFilterer{contract: contract}}, nil
+}
+
+// NewCompetitionRegistryCaller creates a new read-only instance of CompetitionRegistry, bound to a specific deployed contract.
+func NewCompetitionRegistryCaller(address common.Address, caller bind.ContractCaller) (*CompetitionRegistryCaller, error) {
+	contract, err := bindCompetitionRegistry(address, caller, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &CompetitionRegistryCaller{contract: contract}, nil
+}
+
+// NewCompetitionRegistryTransactor creates a new write-only instance of CompetitionRegistry, bound to a specific deployed contract.
+func NewCompetitionRegistryTransactor(address common.Address, transactor bind.ContractTransactor) (*CompetitionRegistryTransactor, error) {
+	contract, err := bindCompetitionRegistry(address, nil, transactor, nil)
+	if err != nil {
+		return nil, err
+	}
+	return &CompetitionRegistryTransactor{contract: contract}, nil
+}
+
+// NewCompetitionRegistryFilterer creates a new log filterer instance of CompetitionRegistry, bound to a specific deployed contract.
+func NewCompetitionRegistryFilterer(address common.Address, filterer bind.ContractFilterer) (*CompetitionRegistryFilterer, error) {
+	contract, err := bindCompetitionRegistry(address, nil, nil, filterer)
+	if err != nil {
+		return nil, err
+	}
+	return &CompetitionRegistryFilterer{contract: contract}, nil
+}
+
+// bindCompetitionRegistry binds a generic wrapper to an already deployed contract.
+func bindCompetitionRegistry(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := CompetitionRegistryMetaData.GetAbi()
+	if err != nil {
+		return nil, err
+	}
+	return bind.NewBoundContract(address, *parsed, caller, transactor, filterer), nil
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_CompetitionRegistry *CompetitionRegistryRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _CompetitionRegistry.Contract.CompetitionRegistryCaller.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_CompetitionRegistry *CompetitionRegistryRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _CompetitionRegistry.Contract.CompetitionRegistryTransactor.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_CompetitionRegistry *CompetitionRegistryRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _CompetitionRegistry.Contract.CompetitionRegistryTransactor.contract.Transact(opts, method, params...)
+}
+
+// Call invokes the (constant) contract method with params as input values and
+// sets the output to result. The result type might be a single field for simple
+// returns, a slice of interfaces for anonymous returns and a struct for named
+// returns.
+func (_CompetitionRegistry *CompetitionRegistryCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _CompetitionRegistry.Contract.contract.Call(opts, result, method, params...)
+}
+
+// Transfer initiates a plain transaction to move funds to the contract, calling
+// its default method if one is available.
+func (_CompetitionRegistry *CompetitionRegistryTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _CompetitionRegistry.Contract.contract.Transfer(opts)
+}
+
+// Transact invokes the (paid) contract method with params as input values.
+func (_CompetitionRegistry *CompetitionRegistryTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _CompetitionRegistry.Contract.contract.Transact(opts, method, params...)
+}
+
+// Hashes is a free data retrieval call binding the contract method 0x501895ae.
+//
+// Solidity: function hashes(uint256 ) view returns(bytes32)
+func (_CompetitionRegistry *CompetitionRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+	var out []interface{}
+	err := _CompetitionRegistry.contract.Call(opts, &out, "hashes", arg0)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// Hashes is a free data retrieval call binding the contract method 0x501895ae.
+//
+// Solidity: function hashes(uint256 ) view returns(bytes32)
+func (_CompetitionRegistry *CompetitionRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+	return _CompetitionRegistry.Contract.Hashes(&_CompetitionRegistry.CallOpts, arg0)
+}
+
+// Hashes is a free data retrieval call binding the contract method 0x501895ae.
+//
+// Solidity: function hashes(uint256 ) view returns(bytes32)
+func (_CompetitionRegistry *CompetitionRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+	return _CompetitionRegistry.Contract.Hashes(&_CompetitionRegistry.CallOpts, arg0)
+}
+
+// Recorded is a free data retrieval call binding the contract method 0x60b2267b.
+//
+// Solidity: function recorded(uint256 ) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistryCaller) Recorded(opts *bind.CallOpts, arg0 *big.Int) (bool, error) {
+	var out []interface{}
+	err := _CompetitionRegistry.contract.Call(opts, &out, "recorded", arg0)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// Recorded is a free data retrieval call binding the contract method 0x60b2267b.
+//
+// Solidity: function recorded(uint256 ) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistrySession) Recorded(arg0 *big.Int) (bool, error) {
+	return _CompetitionRegistry.Contract.Recorded(&_CompetitionRegistry.CallOpts, arg0)
+}
+
+// Recorded is a free data retrieval call binding the contract method 0x60b2267b.
+//
+// Solidity: function recorded(uint256 ) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistryCallerSession) Recorded(arg0 *big.Int) (bool, error) {
+	return _CompetitionRegistry.Contract.Recorded(&_CompetitionRegistry.CallOpts, arg0)
+}
+
+// ValidateCompetition is a free data retrieval call binding the contract method 0x1a85ad36.
+//
+// Solidity: function validateCompetition(uint256 id, bytes32 recordHash) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistryCaller) ValidateCompetition(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+	var out []interface{}
+	err := _CompetitionRegistry.contract.Call(opts, &out, "validateCompetition", id, recordHash)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// ValidateCompetition is a free data retrieval call binding the contract method 0x1a85ad36.
+//
+// Solidity: function validateCompetition(uint256 id, bytes32 recordHash) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistrySession) ValidateCompetition(id *big.Int, recordHash [32]byte) (bool, error) {
+	return _CompetitionRegistry.Contract.ValidateCompetition(&_CompetitionRegistry.CallOpts, id, recordHash)
+}
+
+// ValidateCompetition is a free data retrieval call binding the contract method 0x1a85ad36.
+//
+// Solidity: function validateCompetition(uint256 id, bytes32 recordHash) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistryCallerSession) ValidateCompetition(id *big.Int, recordHash [32]byte) (bool, error) {
+	return _CompetitionRegistry.Contract.ValidateCompetition(&_CompetitionRegistry.CallOpts, id, recordHash)
+}
+
+// RecordCompetition is a paid mutator transaction binding the contract method 0x01bc9c64.
+//
+// Solidity: function recordCompetition(uint256 id, bytes32 recordHash) returns()
+func (_CompetitionRegistry *CompetitionRegistryTransactor) RecordCompetition(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+	return _CompetitionRegistry.contract.Transact(opts, "recordCompetition", id, recordHash)
+}
+
+// RecordCompetition is a paid mutator transaction binding the contract method 0x01bc9c64.
+//
+// Solidity: function recordCompetition(uint256 id, bytes32 recordHash) returns()
+func (_CompetitionRegistry *CompetitionRegistrySession) RecordCompetition(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+	return _CompetitionRegistry.Contract.RecordCompetition(&_CompetitionRegistry.TransactOpts, id, recordHash)
+}
+
+// RecordCompetition is a paid mutator transaction binding the contract method 0x01bc9c64.
+//
+// Solidity: function recordCompetition(uint256 id, bytes32 recordHash) returns()
+func (_CompetitionRegistry *CompetitionRegistryTransactorSession) RecordCompetition(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+	return _CompetitionRegistry.Contract.RecordCompetition(&_CompetitionRegistry.TransactOpts, id, recordHash)
+}
+
+// CompetitionRegistryCompetitionRecordedIterator is returned from FilterCompetitionRecorded and is used to iterate over the raw logs and unpacked data for CompetitionRecorded events raised by the CompetitionRegistry contract.
+type CompetitionRegistryCompetitionRecordedIterator struct {
+	Event *CompetitionRegistryCompetitionRecorded // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *CompetitionRegistryCompetitionRecordedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(CompetitionRegistryCompetitionRecorded)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(CompetitionRegistryCompetitionRecorded)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *CompetitionRegistryCompetitionRecordedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *CompetitionRegistryCompetitionRecordedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// CompetitionRegistryCompetitionRecorded represents a CompetitionRecorded event raised by the CompetitionRegistry contract.
+type CompetitionRegistryCompetitionRecorded struct {
+	Id         *big.Int
+	RecordHash [32]byte
+	Raw        types.Log // Blockchain specific contextual infos
+}
+
+// FilterCompetitionRecorded is a free log retrieval operation binding the contract event 0x9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a.
+//
+// Solidity: event CompetitionRecorded(uint256 indexed id, bytes32 recordHash)
+func (_CompetitionRegistry *CompetitionRegistryFilterer) FilterCompetitionRecorded(opts *bind.FilterOpts, id []*big.Int) (*CompetitionRegistryCompetitionRecordedIterator, error) {
+
+	var idRule []interface{}
+	for _, idItem := range id {
+		idRule = append(idRule, idItem)
+	}
+
+	logs, sub, err := _CompetitionRegistry.contract.FilterLogs(opts, "CompetitionRecorded", idRule)
+	if err != nil {
+		return nil, err
+	}
+	return &CompetitionRegistryCompetitionRecordedIterator{contract: _CompetitionRegistry.contract, event: "CompetitionRecorded", logs: logs, sub: sub}, nil
+}
+
+// WatchCompetitionRecorded is a free log subscription operation binding the contract event 0x9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a.
+//
+// Solidity: event CompetitionRecorded(uint256 indexed id, bytes32 recordHash)
+func (_CompetitionRegistry *CompetitionRegistryFilterer) WatchCompetitionRecorded(opts *bind.WatchOpts, sink chan<- *CompetitionRegistryCompetitionRecorded, id []*big.Int) (event.Subscription, error) {
+
+	var idRule []interface{}
+	for _, idItem := range id {
+		idRule = append(idRule, idItem)
+	}
+
+	logs, sub, err := _CompetitionRegistry.contract.WatchLogs(opts, "CompetitionRecorded", idRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(CompetitionRegistryCompetitionRecorded)
+				if err := _CompetitionRegistry.contract.UnpackLog(event, "CompetitionRecorded", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseCompetitionRecorded is a log parse operation binding the contract event 0x9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a.
+//
+// Solidity: event CompetitionRecorded(uint256 indexed id, bytes32 recordHash)
+func (_CompetitionRegistry *CompetitionRegistryFilterer) ParseCompetitionRecorded(log types.Log) (*CompetitionRegistryCompetitionRecorded, error) {
+	event := new(CompetitionRegistryCompetitionRecorded)
+	if err := _CompetitionRegistry.contract.UnpackLog(event, "CompetitionRecorded", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
 // CompetitionTeamsRegistryMetaData contains all meta data concerning the CompetitionTeamsRegistry contract.
 var CompetitionTeamsRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"CompetitionTeamsRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordCompetitionTeams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateCompetitionTeams\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063334e90af1461004e5780634516146e14610063578063501895ae1461008b57806360b2267b146100b8575b5f5ffd5b61006161005c3660046101d1565b6100da565b005b6100766100713660046101d1565b6101a1565b60405190151581526020015b60405180910390f35b6100aa6100993660046101f1565b60016020525f908152604090205481565b604051908152602001610082565b6100766100c63660046101f1565b5f6020819052908152604090205460ff1681565b5f8281526020819052604090205460ff16156101465760405162461bcd60e51b815260206004820152602160248201527f436f6d7065746974696f6e5465616d7320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fcca48f312d5dfa82c50dfc7934b24c6f1b3bdc730987f6c36180693a526c9d78910160405180910390a25050565b5f8281526020819052604081205460ff1680156101ca57505f8381526001602052604090205482145b9392505050565b5f5f604083850312156101e2575f5ffd5b50508035926020909101359150565b5f60208284031215610201575f5ffd5b503591905056fea26469706673582212200f7485969a8dc4b42a4c48e6be5ab4105ce23a0d819f894673851cfc8cf1269964736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063334e90af1461004e5780634516146e14610063578063501895ae1461008b57806360b2267b146100b8575b5f5ffd5b61006161005c3660046101d1565b6100da565b005b6100766100713660046101d1565b6101a1565b60405190151581526020015b60405180910390f35b6100aa6100993660046101f1565b60016020525f908152604090205481565b604051908152602001610082565b6100766100c63660046101f1565b5f6020819052908152604090205460ff1681565b5f8281526020819052604090205460ff16156101465760405162461bcd60e51b815260206004820152602160248201527f436f6d7065746974696f6e5465616d7320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fcca48f312d5dfa82c50dfc7934b24c6f1b3bdc730987f6c36180693a526c9d78910160405180910390a25050565b5f8281526020819052604081205460ff1680156101ca57505f8381526001602052604090205482145b9392505050565b5f5f604083850312156101e2575f5ffd5b50508035926020909101359150565b5f60208284031215610201575f5ffd5b503591905056fea264697066735822122093a83298e8ed3071b62071261a00abb7255d7d0a8093d0451fd246531b84c64164736f6c634300081d0033",
 }
 
 // CompetitionTeamsRegistryABI is the input ABI used to generate the binding from.
@@ -464,7 +896,7 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryFilterer) ParseCompetit
 // MatchParticipantRegistryMetaData contains all meta data concerning the MatchParticipantRegistry contract.
 var MatchParticipantRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"MatchParticipantRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordMatchParticipant\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateMatchParticipant\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806370a9bd7c146100b2578063a33b5273146100c5575b5f5ffd5b61006d61005c3660046101d1565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101d1565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101e8565b6100da565b6100d86100d33660046101e8565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101765760405162461bcd60e51b815260206004820152602160248201527f4d617463685061727469636970616e7420616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f8150f40e33aac4e36316694127820faf2edce46c48e34b3ea472d2027b1e97b2910160405180910390a25050565b5f602082840312156101e1575f5ffd5b5035919050565b5f5f604083850312156101f9575f5ffd5b5050803592602090910135915056fea2646970667358221220f2de66d6d9fef9d6e2564cc48984d4cb0f3eda92af0fae8e72bd297117cc816864736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806370a9bd7c146100b2578063a33b5273146100c5575b5f5ffd5b61006d61005c3660046101d1565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101d1565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101e8565b6100da565b6100d86100d33660046101e8565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101765760405162461bcd60e51b815260206004820152602160248201527f4d617463685061727469636970616e7420616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f8150f40e33aac4e36316694127820faf2edce46c48e34b3ea472d2027b1e97b2910160405180910390a25050565b5f602082840312156101e1575f5ffd5b5035919050565b5f5f604083850312156101f9575f5ffd5b5050803592602090910135915056fea264697066735822122016be88eb6d1943c799f71d879bdfd5bf86935c099a78710822d0c9c54f7b53c564736f6c634300081d0033",
 }
 
 // MatchParticipantRegistryABI is the input ABI used to generate the binding from.
@@ -896,7 +1328,7 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryFilterer) ParseMatchPar
 // MatchRegistryMetaData contains all meta data concerning the MatchRegistry contract.
 var MatchRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"MatchRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordMatch\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateMatch\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806394e40e9a146100b2578063dc01da5b146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b815260206004820152601660248201527513585d18da08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fc8000df4b446153e43b5c2ff7a39fdcb7f2b5bec162aa92b4e17b740d604c171910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea2646970667358221220f354bc9d8fa86198e0def1eb842a62f724a8e105439e482ba4265e0f969173ee64736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806394e40e9a146100b2578063dc01da5b146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b815260206004820152601660248201527513585d18da08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fc8000df4b446153e43b5c2ff7a39fdcb7f2b5bec162aa92b4e17b740d604c171910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea26469706673582212208047fa4c5296e92cf8c1f4f3bea2e625db1568fed9ffc2d2f2ad55e141ad74d064736f6c634300081d0033",
 }
 
 // MatchRegistryABI is the input ABI used to generate the binding from.
@@ -1328,7 +1760,7 @@ func (_MatchRegistry *MatchRegistryFilterer) ParseMatchRecorded(log types.Log) (
 // PersonRegistryMetaData contains all meta data concerning the PersonRegistry contract.
 var PersonRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"PersonRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordPerson\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validatePerson\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806372013409146100b2578063e600835d146100c7575b5f5ffd5b61006d61005c3660046101c7565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c7565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100c56100c03660046101de565b6100da565b005b6100a26100d53660046101de565b610197565b5f8281526020819052604090205460ff161561013c5760405162461bcd60e51b815260206004820152601760248201527f506572736f6e20616c7265616479207265636f72646564000000000000000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fccc35dc586d377da368a5e0ae6527ddbd36d7520272350d11ddde3995c8e2ff9910160405180910390a25050565b5f8281526020819052604081205460ff1680156101c057505f8381526001602052604090205482145b9392505050565b5f602082840312156101d7575f5ffd5b5035919050565b5f5f604083850312156101ef575f5ffd5b5050803592602090910135915056fea2646970667358221220e2e7380765fd8ac737ea29d8474d9be4a116c3bf9f950a3965663dad2e39c1f164736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806372013409146100b2578063e600835d146100c7575b5f5ffd5b61006d61005c3660046101c7565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c7565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100c56100c03660046101de565b6100da565b005b6100a26100d53660046101de565b610197565b5f8281526020819052604090205460ff161561013c5760405162461bcd60e51b815260206004820152601760248201527f506572736f6e20616c7265616479207265636f72646564000000000000000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fccc35dc586d377da368a5e0ae6527ddbd36d7520272350d11ddde3995c8e2ff9910160405180910390a25050565b5f8281526020819052604081205460ff1680156101c057505f8381526001602052604090205482145b9392505050565b5f602082840312156101d7575f5ffd5b5035919050565b5f5f604083850312156101ef575f5ffd5b5050803592602090910135915056fea2646970667358221220e091981366b12065b6d7879c42609bdfc2e98bc758778fdfa948910e3def357c64736f6c634300081d0033",
 }
 
 // PersonRegistryABI is the input ABI used to generate the binding from.
@@ -1760,7 +2192,7 @@ func (_PersonRegistry *PersonRegistryFilterer) ParsePersonRecorded(log types.Log
 // PrizeRegistryMetaData contains all meta data concerning the PrizeRegistry contract.
 var PrizeRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"PrizeRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordPrize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validatePrize\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b146100805780636e7a2303146100b2578063d6b2e79c146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b8152602060048201526016602482015275141c9a5e9948185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fe10db0f42bd2a99cbdf969539fe5a713c22dd4f295a12c3eff519e78e1909d36910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea2646970667358221220ea48d0de0a117bbb53e24a54d53d39dd897296a3f0a05494230c77e92d74bbc764736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b146100805780636e7a2303146100b2578063d6b2e79c146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b8152602060048201526016602482015275141c9a5e9948185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fe10db0f42bd2a99cbdf969539fe5a713c22dd4f295a12c3eff519e78e1909d36910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea26469706673582212205d5a369675f7fbc44b7ead3bcb1db6017512aa3fdabd128a1eed6f1290d629cf64736f6c634300081d0033",
 }
 
 // PrizeRegistryABI is the input ABI used to generate the binding from.
@@ -2192,7 +2624,7 @@ func (_PrizeRegistry *PrizeRegistryFilterer) ParsePrizeRecorded(log types.Log) (
 // SportRegistryMetaData contains all meta data concerning the SportRegistry contract.
 var SportRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"SportRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordSport\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateSport\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610080578063bec12103146100b2578063d76c9386146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b815260206004820152601660248201527514dc1bdc9d08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f3a90657270ecf8ae1de2f87142a28a59f2ff9d42307e84a7e388ccab1413610b910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea2646970667358221220766dd5526676e7de22096c934e5ad557bff4573f8e5e7194b31a4becc07137db64736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610080578063bec12103146100b2578063d76c9386146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b815260206004820152601660248201527514dc1bdc9d08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f3a90657270ecf8ae1de2f87142a28a59f2ff9d42307e84a7e388ccab1413610b910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea264697066735822122094879eb3d906b65b9206a94ab4ecbb99fc978f5c427e0a5947ee58fca868393464736f6c634300081d0033",
 }
 
 // SportRegistryABI is the input ABI used to generate the binding from.
@@ -2624,7 +3056,7 @@ func (_SportRegistry *SportRegistryFilterer) ParseSportRecorded(log types.Log) (
 // TeamAchievementsRegistryMetaData contains all meta data concerning the TeamAchievementsRegistry contract.
 var TeamAchievementsRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"TeamAchievementsRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordTeamAchievements\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateTeamAchievements\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806367f7f8e9146100b257806390601114146100c5575b5f5ffd5b61006d61005c3660046101d1565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101d1565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101e8565b6100da565b6100d86100d33660046101e8565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101765760405162461bcd60e51b815260206004820152602160248201527f5465616d416368696576656d656e747320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f4ccb76ae22e046343f35e06efd22087741eef767301af42bd138cae899df4899910160405180910390a25050565b5f602082840312156101e1575f5ffd5b5035919050565b5f5f604083850312156101f9575f5ffd5b5050803592602090910135915056fea264697066735822122001f2730e409ea4cd63cd9c1a6b0c4f7998f59010eef90d5aa3a926cc4c53451b64736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806367f7f8e9146100b257806390601114146100c5575b5f5ffd5b61006d61005c3660046101d1565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101d1565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101e8565b6100da565b6100d86100d33660046101e8565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101765760405162461bcd60e51b815260206004820152602160248201527f5465616d416368696576656d656e747320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f4ccb76ae22e046343f35e06efd22087741eef767301af42bd138cae899df4899910160405180910390a25050565b5f602082840312156101e1575f5ffd5b5035919050565b5f5f604083850312156101f9575f5ffd5b5050803592602090910135915056fea2646970667358221220050001b3f121ac5be12d197c72d23a8f42ee927cb06c76433e9f0c2cacb5ce6364736f6c634300081d0033",
 }
 
 // TeamAchievementsRegistryABI is the input ABI used to generate the binding from.
@@ -3056,7 +3488,7 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryFilterer) ParseTeamAchi
 // TeamPersonRegistryMetaData contains all meta data concerning the TeamPersonRegistry contract.
 var TeamPersonRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"TeamPersonRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordTeamPerson\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateTeamPerson\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610080578063c8461d7d146100b2578063ce44aa83146100c5575b5f5ffd5b61006d61005c3660046101c7565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c7565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101de565b6100da565b6100d86100d33660046101de565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff161561016c5760405162461bcd60e51b815260206004820152601b60248201527f5465616d506572736f6e20616c7265616479207265636f726465640000000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f19b871a1e9d52c1eeecd8e47c380c8aeabac9753b1e4dbaefab31819d47e13d8910160405180910390a25050565b5f602082840312156101d7575f5ffd5b5035919050565b5f5f604083850312156101ef575f5ffd5b5050803592602090910135915056fea2646970667358221220ddbccef7e90bfb87145cac3096979cc9894a1cb47e908fa630ab1ecaa2af7f3564736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610080578063c8461d7d146100b2578063ce44aa83146100c5575b5f5ffd5b61006d61005c3660046101c7565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c7565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101de565b6100da565b6100d86100d33660046101de565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff161561016c5760405162461bcd60e51b815260206004820152601b60248201527f5465616d506572736f6e20616c7265616479207265636f726465640000000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f19b871a1e9d52c1eeecd8e47c380c8aeabac9753b1e4dbaefab31819d47e13d8910160405180910390a25050565b5f602082840312156101d7575f5ffd5b5035919050565b5f5f604083850312156101ef575f5ffd5b5050803592602090910135915056fea2646970667358221220d9b31d6e7fd410fdcedf30c78d8fe53133fba5930180cb7fe28d127dfc49938964736f6c634300081d0033",
 }
 
 // TeamPersonRegistryABI is the input ABI used to generate the binding from.
@@ -3488,7 +3920,7 @@ func (_TeamPersonRegistry *TeamPersonRegistryFilterer) ParseTeamPersonRecorded(l
 // TeamRegistryMetaData contains all meta data concerning the TeamRegistry contract.
 var TeamRegistryMetaData = &bind.MetaData{
 	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"TeamRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordTeam\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateTeam\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022c8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c806317c22dcd1461004e578063501895ae1461007657806360b2267b146100a35780637e55300b146100c5575b5f5ffd5b61006161005c3660046101bf565b6100da565b60405190151581526020015b60405180910390f35b6100956100843660046101df565b60016020525f908152604090205481565b60405190815260200161006d565b6100616100b13660046101df565b5f6020819052908152604090205460ff1681565b6100d86100d33660046101bf565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101645760405162461bcd60e51b81526020600482015260156024820152741519585b48185b1c9958591e481c9958dbdc991959605a1b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fc7c2936543b717eb7c516edee4f9e4f4055071ab079302b387ee8c28e512c0ae910160405180910390a25050565b5f5f604083850312156101d0575f5ffd5b50508035926020909101359150565b5f602082840312156101ef575f5ffd5b503591905056fea26469706673582212203a750cb892017c889818950bb824efd7023d69e1e40ca571f3d3966160f14adc64736f6c634300081d0033",
+	Bin: "0x6080604052348015600e575f5ffd5b5061022c8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c806317c22dcd1461004e578063501895ae1461007657806360b2267b146100a35780637e55300b146100c5575b5f5ffd5b61006161005c3660046101bf565b6100da565b60405190151581526020015b60405180910390f35b6100956100843660046101df565b60016020525f908152604090205481565b60405190815260200161006d565b6100616100b13660046101df565b5f6020819052908152604090205460ff1681565b6100d86100d33660046101bf565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101645760405162461bcd60e51b81526020600482015260156024820152741519585b48185b1c9958591e481c9958dbdc991959605a1b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fc7c2936543b717eb7c516edee4f9e4f4055071ab079302b387ee8c28e512c0ae910160405180910390a25050565b5f5f604083850312156101d0575f5ffd5b50508035926020909101359150565b5f602082840312156101ef575f5ffd5b503591905056fea2646970667358221220eada0298718873a5d43b86bb07c899ba035d490e9351dd564081368ff0f0df2164736f6c634300081d0033",
 }
 
 // TeamRegistryABI is the input ABI used to generate the binding from.

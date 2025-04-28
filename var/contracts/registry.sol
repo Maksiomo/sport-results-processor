@@ -19,6 +19,23 @@ contract TeamPersonRegistry {
     }
 }
 
+contract CompetitionRegistry {
+    event CompetitionRecorded(uint256 indexed id, bytes32 recordHash);
+    mapping(uint256 => bool) public recorded;
+    mapping(uint256 => bytes32) public hashes;
+
+    function recordCompetition(uint256 id, bytes32 recordHash) external {
+        require(!recorded[id], "Competition already recorded");
+        recorded[id] = true;
+        hashes[id] = recordHash;
+        emit CompetitionRecorded(id, recordHash);
+    }
+
+    function validateCompetition(uint256 id, bytes32 recordHash) external view returns (bool) {
+        return recorded[id] && hashes[id] == recordHash;
+    }
+}
+
 contract CompetitionTeamsRegistry {
     event CompetitionTeamsRecorded(uint256 indexed id, bytes32 recordHash);
     mapping(uint256 => bool) public recorded;
