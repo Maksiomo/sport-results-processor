@@ -6,29 +6,29 @@ import (
 	"sport-results-pocessor/internal/common/adapter/pgclient"
 )
 
-type SportRepoFactory struct {
+type RoleRepoFactory struct {
 	ctx context.Context
 	log logger.Logger
 }
 
-func NewSportRepoFactory(
+func NewRoleRepoFactory(
 	ctx context.Context,
 	log logger.Logger,
-) *SportRepoFactory {
-	return &SportRepoFactory{
+) *RoleRepoFactory {
+	return &RoleRepoFactory{
 		ctx: ctx,
 		log: log,
 	}
 }
 
-func (f *SportRepoFactory) Create(ctx context.Context, db pgclient.DB) *SportRepo {
-	return &SportRepo{
-		log: f.log.WithComponent(ctx, "sport-repo"),
+func (f *RoleRepoFactory) Create(ctx context.Context, db pgclient.DB) *RoleRepo {
+	return &RoleRepo{
+		log: f.log.WithComponent(ctx, "role-repo"),
 		db:  db,
 	}
 }
 
-type SportRepo struct {
+type RoleRepo struct {
 	log logger.Logger
 	db  pgclient.DB
 }
