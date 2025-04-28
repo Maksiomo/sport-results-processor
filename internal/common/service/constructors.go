@@ -10,9 +10,9 @@ import (
 )
 
 var Constructors = fx.Provide(
-	NewFxBlockchainCLient,
+	NewFxBlockchainClient,
 )
 
-func NewFxBlockchainCLient(ctx context.Context, cfg *config.Config, log logger.Logger) (*blockchain.BlockchainRegistryClient, error) {
+func NewFxBlockchainClient(ctx context.Context, cfg *config.Config, log logger.Logger) (*blockchain.BlockchainRegistryClient, error) {
 	return blockchain.NewBlockchainRegistryClient(ctx, cfg.Client.Blockchain, log)
 }
