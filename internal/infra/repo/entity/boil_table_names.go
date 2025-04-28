@@ -9,7 +9,6 @@ var TableNames = struct {
 	CompetitionTeams string
 	Country          string
 	Currency         string
-	Language         string
 	Location         string
 	Match            string
 	MatchParticipant string
@@ -28,7 +27,6 @@ var TableNames = struct {
 	CompetitionTeams: "competition_teams",
 	Country:          "country",
 	Currency:         "currency",
-	Language:         "language",
 	Location:         "location",
 	Match:            "match",
 	MatchParticipant: "match_participant",

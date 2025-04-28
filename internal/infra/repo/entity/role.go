@@ -14,7 +14,6 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
-	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -24,65 +23,51 @@ import (
 
 // Role is an object representing the database table.
 type Role struct {
-	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Name       string      `boil:"name" json:"name" toml:"name" yaml:"name"`
-	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt  time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
-	RecordHash null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Name      string    `boil:"name" json:"name" toml:"name" yaml:"name"`
+	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
 
 	R *roleR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L roleL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var RoleColumns = struct {
-	ID         string
-	Name       string
-	CreatedAt  string
-	UpdatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:         "id",
-	Name:       "name",
-	CreatedAt:  "created_at",
-	UpdatedAt:  "updated_at",
-	RecordHash: "record_hash",
-	TXHash:     "tx_hash",
+	ID:        "id",
+	Name:      "name",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
 }
 
 var RoleTableColumns = struct {
-	ID         string
-	Name       string
-	CreatedAt  string
-	UpdatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:         "role.id",
-	Name:       "role.name",
-	CreatedAt:  "role.created_at",
-	UpdatedAt:  "role.updated_at",
-	RecordHash: "role.record_hash",
-	TXHash:     "role.tx_hash",
+	ID:        "role.id",
+	Name:      "role.name",
+	CreatedAt: "role.created_at",
+	UpdatedAt: "role.updated_at",
 }
 
 // Generated where
 
 var RoleWhere = struct {
-	ID         whereHelperint64
-	Name       whereHelperstring
-	CreatedAt  whereHelpertime_Time
-	UpdatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_Bytes
-	TXHash     whereHelpernull_String
+	ID        whereHelperint64
+	Name      whereHelperstring
+	CreatedAt whereHelpertime_Time
+	UpdatedAt whereHelpertime_Time
 }{
-	ID:         whereHelperint64{field: "\"role\".\"id\""},
-	Name:       whereHelperstring{field: "\"role\".\"name\""},
-	CreatedAt:  whereHelpertime_Time{field: "\"role\".\"created_at\""},
-	UpdatedAt:  whereHelpertime_Time{field: "\"role\".\"updated_at\""},
-	RecordHash: whereHelpernull_Bytes{field: "\"role\".\"record_hash\""},
-	TXHash:     whereHelpernull_String{field: "\"role\".\"tx_hash\""},
+	ID:        whereHelperint64{field: "\"role\".\"id\""},
+	Name:      whereHelperstring{field: "\"role\".\"name\""},
+	CreatedAt: whereHelpertime_Time{field: "\"role\".\"created_at\""},
+	UpdatedAt: whereHelpertime_Time{field: "\"role\".\"updated_at\""},
 }
 
 // RoleRels is where relationship names are stored.
@@ -113,9 +98,9 @@ func (r *roleR) GetTeamPeople() TeamPersonSlice {
 type roleL struct{}
 
 var (
-	roleAllColumns            = []string{"id", "name", "created_at", "updated_at", "record_hash", "tx_hash"}
+	roleAllColumns            = []string{"id", "name", "created_at", "updated_at"}
 	roleColumnsWithoutDefault = []string{"name"}
-	roleColumnsWithDefault    = []string{"id", "created_at", "updated_at", "record_hash", "tx_hash"}
+	roleColumnsWithDefault    = []string{"id", "created_at", "updated_at"}
 	rolePrimaryKeyColumns     = []string{"id"}
 	roleGeneratedColumns      = []string{}
 )

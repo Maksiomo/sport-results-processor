@@ -24,58 +24,44 @@ import (
 
 // Currency is an object representing the database table.
 type Currency struct {
-	Code      string      `boil:"code" json:"code" toml:"code" yaml:"code"`
-	Name      string      `boil:"name" json:"name" toml:"name" yaml:"name"`
-	Symbol    null.String `boil:"symbol" json:"symbol,omitempty" toml:"symbol" yaml:"symbol,omitempty"`
-	CreatedAt time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
+	Code   string      `boil:"code" json:"code" toml:"code" yaml:"code"`
+	Name   string      `boil:"name" json:"name" toml:"name" yaml:"name"`
+	Symbol null.String `boil:"symbol" json:"symbol,omitempty" toml:"symbol" yaml:"symbol,omitempty"`
 
 	R *currencyR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L currencyL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var CurrencyColumns = struct {
-	Code      string
-	Name      string
-	Symbol    string
-	CreatedAt string
-	UpdatedAt string
+	Code   string
+	Name   string
+	Symbol string
 }{
-	Code:      "code",
-	Name:      "name",
-	Symbol:    "symbol",
-	CreatedAt: "created_at",
-	UpdatedAt: "updated_at",
+	Code:   "code",
+	Name:   "name",
+	Symbol: "symbol",
 }
 
 var CurrencyTableColumns = struct {
-	Code      string
-	Name      string
-	Symbol    string
-	CreatedAt string
-	UpdatedAt string
+	Code   string
+	Name   string
+	Symbol string
 }{
-	Code:      "currency.code",
-	Name:      "currency.name",
-	Symbol:    "currency.symbol",
-	CreatedAt: "currency.created_at",
-	UpdatedAt: "currency.updated_at",
+	Code:   "currency.code",
+	Name:   "currency.name",
+	Symbol: "currency.symbol",
 }
 
 // Generated where
 
 var CurrencyWhere = struct {
-	Code      whereHelperstring
-	Name      whereHelperstring
-	Symbol    whereHelpernull_String
-	CreatedAt whereHelpertime_Time
-	UpdatedAt whereHelpertime_Time
+	Code   whereHelperstring
+	Name   whereHelperstring
+	Symbol whereHelpernull_String
 }{
-	Code:      whereHelperstring{field: "\"currency\".\"code\""},
-	Name:      whereHelperstring{field: "\"currency\".\"name\""},
-	Symbol:    whereHelpernull_String{field: "\"currency\".\"symbol\""},
-	CreatedAt: whereHelpertime_Time{field: "\"currency\".\"created_at\""},
-	UpdatedAt: whereHelpertime_Time{field: "\"currency\".\"updated_at\""},
+	Code:   whereHelperstring{field: "\"currency\".\"code\""},
+	Name:   whereHelperstring{field: "\"currency\".\"name\""},
+	Symbol: whereHelpernull_String{field: "\"currency\".\"symbol\""},
 }
 
 // CurrencyRels is where relationship names are stored.
@@ -106,9 +92,9 @@ func (r *currencyR) GetCurrencyCodePrizes() PrizeSlice {
 type currencyL struct{}
 
 var (
-	currencyAllColumns            = []string{"code", "name", "symbol", "created_at", "updated_at"}
+	currencyAllColumns            = []string{"code", "name", "symbol"}
 	currencyColumnsWithoutDefault = []string{"code", "name"}
-	currencyColumnsWithDefault    = []string{"symbol", "created_at", "updated_at"}
+	currencyColumnsWithDefault    = []string{"symbol"}
 	currencyPrimaryKeyColumns     = []string{"code"}
 	currencyGeneratedColumns      = []string{}
 )
@@ -647,16 +633,6 @@ func (o *Currency) Insert(ctx context.Context, exec boil.ContextExecutor, column
 	}
 
 	var err error
-	if !boil.TimestampsAreSkipped(ctx) {
-		currTime := time.Now().In(boil.GetLocation())
-
-		if o.CreatedAt.IsZero() {
-			o.CreatedAt = currTime
-		}
-		if o.UpdatedAt.IsZero() {
-			o.UpdatedAt = currTime
-		}
-	}
 
 	if err := o.doBeforeInsertHooks(ctx, exec); err != nil {
 		return err
@@ -732,12 +708,6 @@ func (o *Currency) Insert(ctx context.Context, exec boil.ContextExecutor, column
 // See boil.Columns.UpdateColumnSet documentation to understand column list inference for updates.
 // Update does not automatically update the record in case of default values. Use .Reload() to refresh the records.
 func (o *Currency) Update(ctx context.Context, exec boil.ContextExecutor, columns boil.Columns) (int64, error) {
-	if !boil.TimestampsAreSkipped(ctx) {
-		currTime := time.Now().In(boil.GetLocation())
-
-		o.UpdatedAt = currTime
-	}
-
 	var err error
 	if err = o.doBeforeUpdateHooks(ctx, exec); err != nil {
 		return 0, err
@@ -867,14 +837,6 @@ func (o CurrencySlice) UpdateAll(ctx context.Context, exec boil.ContextExecutor,
 func (o *Currency) Upsert(ctx context.Context, exec boil.ContextExecutor, updateOnConflict bool, conflictColumns []string, updateColumns, insertColumns boil.Columns, opts ...UpsertOptionFunc) error {
 	if o == nil {
 		return errors.New("entity: no currency provided for upsert")
-	}
-	if !boil.TimestampsAreSkipped(ctx) {
-		currTime := time.Now().In(boil.GetLocation())
-
-		if o.CreatedAt.IsZero() {
-			o.CreatedAt = currTime
-		}
-		o.UpdatedAt = currTime
 	}
 
 	if err := o.doBeforeUpsertHooks(ctx, exec); err != nil {

@@ -24,15 +24,13 @@ import (
 
 // Stage is an object representing the database table.
 type Stage struct {
-	ID            int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	CompetitionID int64       `boil:"competition_id" json:"competition_id" toml:"competition_id" yaml:"competition_id"`
-	Name          string      `boil:"name" json:"name" toml:"name" yaml:"name"`
-	StartTime     time.Time   `boil:"start_time" json:"start_time" toml:"start_time" yaml:"start_time"`
-	EndTime       null.Time   `boil:"end_time" json:"end_time,omitempty" toml:"end_time" yaml:"end_time,omitempty"`
-	CreatedAt     time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt     time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
-	RecordHash    null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash        null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID            int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
+	CompetitionID int64     `boil:"competition_id" json:"competition_id" toml:"competition_id" yaml:"competition_id"`
+	Name          string    `boil:"name" json:"name" toml:"name" yaml:"name"`
+	StartTime     time.Time `boil:"start_time" json:"start_time" toml:"start_time" yaml:"start_time"`
+	EndTime       null.Time `boil:"end_time" json:"end_time,omitempty" toml:"end_time" yaml:"end_time,omitempty"`
+	CreatedAt     time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt     time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
 
 	R *stageR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L stageL  `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -46,8 +44,6 @@ var StageColumns = struct {
 	EndTime       string
 	CreatedAt     string
 	UpdatedAt     string
-	RecordHash    string
-	TXHash        string
 }{
 	ID:            "id",
 	CompetitionID: "competition_id",
@@ -56,8 +52,6 @@ var StageColumns = struct {
 	EndTime:       "end_time",
 	CreatedAt:     "created_at",
 	UpdatedAt:     "updated_at",
-	RecordHash:    "record_hash",
-	TXHash:        "tx_hash",
 }
 
 var StageTableColumns = struct {
@@ -68,8 +62,6 @@ var StageTableColumns = struct {
 	EndTime       string
 	CreatedAt     string
 	UpdatedAt     string
-	RecordHash    string
-	TXHash        string
 }{
 	ID:            "stage.id",
 	CompetitionID: "stage.competition_id",
@@ -78,8 +70,6 @@ var StageTableColumns = struct {
 	EndTime:       "stage.end_time",
 	CreatedAt:     "stage.created_at",
 	UpdatedAt:     "stage.updated_at",
-	RecordHash:    "stage.record_hash",
-	TXHash:        "stage.tx_hash",
 }
 
 // Generated where
@@ -116,8 +106,6 @@ var StageWhere = struct {
 	EndTime       whereHelpernull_Time
 	CreatedAt     whereHelpertime_Time
 	UpdatedAt     whereHelpertime_Time
-	RecordHash    whereHelpernull_Bytes
-	TXHash        whereHelpernull_String
 }{
 	ID:            whereHelperint64{field: "\"stage\".\"id\""},
 	CompetitionID: whereHelperint64{field: "\"stage\".\"competition_id\""},
@@ -126,8 +114,6 @@ var StageWhere = struct {
 	EndTime:       whereHelpernull_Time{field: "\"stage\".\"end_time\""},
 	CreatedAt:     whereHelpertime_Time{field: "\"stage\".\"created_at\""},
 	UpdatedAt:     whereHelpertime_Time{field: "\"stage\".\"updated_at\""},
-	RecordHash:    whereHelpernull_Bytes{field: "\"stage\".\"record_hash\""},
-	TXHash:        whereHelpernull_String{field: "\"stage\".\"tx_hash\""},
 }
 
 // StageRels is where relationship names are stored.
@@ -168,9 +154,9 @@ func (r *stageR) GetMatches() MatchSlice {
 type stageL struct{}
 
 var (
-	stageAllColumns            = []string{"id", "competition_id", "name", "start_time", "end_time", "created_at", "updated_at", "record_hash", "tx_hash"}
+	stageAllColumns            = []string{"id", "competition_id", "name", "start_time", "end_time", "created_at", "updated_at"}
 	stageColumnsWithoutDefault = []string{"competition_id", "name", "start_time"}
-	stageColumnsWithDefault    = []string{"id", "end_time", "created_at", "updated_at", "record_hash", "tx_hash"}
+	stageColumnsWithDefault    = []string{"id", "end_time", "created_at", "updated_at"}
 	stagePrimaryKeyColumns     = []string{"id"}
 	stageGeneratedColumns      = []string{}
 )

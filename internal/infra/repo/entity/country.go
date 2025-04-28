@@ -14,7 +14,6 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
-	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -24,65 +23,51 @@ import (
 
 // Country is an object representing the database table.
 type Country struct {
-	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Name       string      `boil:"name" json:"name" toml:"name" yaml:"name"`
-	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt  time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
-	RecordHash null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Name      string    `boil:"name" json:"name" toml:"name" yaml:"name"`
+	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
 
 	R *countryR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L countryL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var CountryColumns = struct {
-	ID         string
-	Name       string
-	CreatedAt  string
-	UpdatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:         "id",
-	Name:       "name",
-	CreatedAt:  "created_at",
-	UpdatedAt:  "updated_at",
-	RecordHash: "record_hash",
-	TXHash:     "tx_hash",
+	ID:        "id",
+	Name:      "name",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
 }
 
 var CountryTableColumns = struct {
-	ID         string
-	Name       string
-	CreatedAt  string
-	UpdatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:         "country.id",
-	Name:       "country.name",
-	CreatedAt:  "country.created_at",
-	UpdatedAt:  "country.updated_at",
-	RecordHash: "country.record_hash",
-	TXHash:     "country.tx_hash",
+	ID:        "country.id",
+	Name:      "country.name",
+	CreatedAt: "country.created_at",
+	UpdatedAt: "country.updated_at",
 }
 
 // Generated where
 
 var CountryWhere = struct {
-	ID         whereHelperint64
-	Name       whereHelperstring
-	CreatedAt  whereHelpertime_Time
-	UpdatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_Bytes
-	TXHash     whereHelpernull_String
+	ID        whereHelperint64
+	Name      whereHelperstring
+	CreatedAt whereHelpertime_Time
+	UpdatedAt whereHelpertime_Time
 }{
-	ID:         whereHelperint64{field: "\"country\".\"id\""},
-	Name:       whereHelperstring{field: "\"country\".\"name\""},
-	CreatedAt:  whereHelpertime_Time{field: "\"country\".\"created_at\""},
-	UpdatedAt:  whereHelpertime_Time{field: "\"country\".\"updated_at\""},
-	RecordHash: whereHelpernull_Bytes{field: "\"country\".\"record_hash\""},
-	TXHash:     whereHelpernull_String{field: "\"country\".\"tx_hash\""},
+	ID:        whereHelperint64{field: "\"country\".\"id\""},
+	Name:      whereHelperstring{field: "\"country\".\"name\""},
+	CreatedAt: whereHelpertime_Time{field: "\"country\".\"created_at\""},
+	UpdatedAt: whereHelpertime_Time{field: "\"country\".\"updated_at\""},
 }
 
 // CountryRels is where relationship names are stored.
@@ -133,9 +118,9 @@ func (r *countryR) GetTeams() TeamSlice {
 type countryL struct{}
 
 var (
-	countryAllColumns            = []string{"id", "name", "created_at", "updated_at", "record_hash", "tx_hash"}
+	countryAllColumns            = []string{"id", "name", "created_at", "updated_at"}
 	countryColumnsWithoutDefault = []string{"name"}
-	countryColumnsWithDefault    = []string{"id", "created_at", "updated_at", "record_hash", "tx_hash"}
+	countryColumnsWithDefault    = []string{"id", "created_at", "updated_at"}
 	countryPrimaryKeyColumns     = []string{"id"}
 	countryGeneratedColumns      = []string{}
 )

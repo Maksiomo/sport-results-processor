@@ -21,7 +21,7 @@ CREATE TABLE country (
     id          BIGSERIAL PRIMARY KEY,
     name        TEXT       NOT NULL UNIQUE,
     created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
@@ -33,15 +33,7 @@ CREATE TABLE location (
     address       TEXT,
     full_address  TEXT       NOT NULL UNIQUE,
     created_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
-);
-
-
-CREATE TABLE language (
-    id          BIGSERIAL PRIMARY KEY,
-    name        TEXT       NOT NULL UNIQUE,
-    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at    TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
@@ -49,7 +41,7 @@ CREATE TABLE role (
     id          BIGSERIAL PRIMARY KEY,
     name        TEXT       NOT NULL UNIQUE,
     created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
@@ -57,7 +49,7 @@ CREATE TABLE competition_level (
     id          BIGSERIAL PRIMARY KEY,
     name        TEXT       NOT NULL UNIQUE,
     created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
+    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
@@ -65,7 +57,7 @@ CREATE TABLE competition_level (
 CREATE TABLE currency (
     code   TEXT PRIMARY KEY,
     name   TEXT NOT NULL,
-    symbol TEXT UNIQUE,
+    symbol TEXT UNIQUE
 );
 
 
@@ -221,7 +213,7 @@ drop table if exists role;
 drop table if exists team;
 drop table if exists person_sport;
 drop table if exists person;
-drop table if exists language;
+drop table if exists currency;
 drop table if exists location;
 drop table if exists country;
 drop table if exists sport;

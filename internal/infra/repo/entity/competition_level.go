@@ -14,7 +14,6 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
-	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -24,65 +23,51 @@ import (
 
 // CompetitionLevel is an object representing the database table.
 type CompetitionLevel struct {
-	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Name       string      `boil:"name" json:"name" toml:"name" yaml:"name"`
-	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	UpdatedAt  time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
-	RecordHash null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID        int64     `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Name      string    `boil:"name" json:"name" toml:"name" yaml:"name"`
+	CreatedAt time.Time `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	UpdatedAt time.Time `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
 
 	R *competitionLevelR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L competitionLevelL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var CompetitionLevelColumns = struct {
-	ID         string
-	Name       string
-	CreatedAt  string
-	UpdatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:         "id",
-	Name:       "name",
-	CreatedAt:  "created_at",
-	UpdatedAt:  "updated_at",
-	RecordHash: "record_hash",
-	TXHash:     "tx_hash",
+	ID:        "id",
+	Name:      "name",
+	CreatedAt: "created_at",
+	UpdatedAt: "updated_at",
 }
 
 var CompetitionLevelTableColumns = struct {
-	ID         string
-	Name       string
-	CreatedAt  string
-	UpdatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	CreatedAt string
+	UpdatedAt string
 }{
-	ID:         "competition_level.id",
-	Name:       "competition_level.name",
-	CreatedAt:  "competition_level.created_at",
-	UpdatedAt:  "competition_level.updated_at",
-	RecordHash: "competition_level.record_hash",
-	TXHash:     "competition_level.tx_hash",
+	ID:        "competition_level.id",
+	Name:      "competition_level.name",
+	CreatedAt: "competition_level.created_at",
+	UpdatedAt: "competition_level.updated_at",
 }
 
 // Generated where
 
 var CompetitionLevelWhere = struct {
-	ID         whereHelperint64
-	Name       whereHelperstring
-	CreatedAt  whereHelpertime_Time
-	UpdatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_Bytes
-	TXHash     whereHelpernull_String
+	ID        whereHelperint64
+	Name      whereHelperstring
+	CreatedAt whereHelpertime_Time
+	UpdatedAt whereHelpertime_Time
 }{
-	ID:         whereHelperint64{field: "\"competition_level\".\"id\""},
-	Name:       whereHelperstring{field: "\"competition_level\".\"name\""},
-	CreatedAt:  whereHelpertime_Time{field: "\"competition_level\".\"created_at\""},
-	UpdatedAt:  whereHelpertime_Time{field: "\"competition_level\".\"updated_at\""},
-	RecordHash: whereHelpernull_Bytes{field: "\"competition_level\".\"record_hash\""},
-	TXHash:     whereHelpernull_String{field: "\"competition_level\".\"tx_hash\""},
+	ID:        whereHelperint64{field: "\"competition_level\".\"id\""},
+	Name:      whereHelperstring{field: "\"competition_level\".\"name\""},
+	CreatedAt: whereHelpertime_Time{field: "\"competition_level\".\"created_at\""},
+	UpdatedAt: whereHelpertime_Time{field: "\"competition_level\".\"updated_at\""},
 }
 
 // CompetitionLevelRels is where relationship names are stored.
@@ -113,9 +98,9 @@ func (r *competitionLevelR) GetLevelCompetitions() CompetitionSlice {
 type competitionLevelL struct{}
 
 var (
-	competitionLevelAllColumns            = []string{"id", "name", "created_at", "updated_at", "record_hash", "tx_hash"}
+	competitionLevelAllColumns            = []string{"id", "name", "created_at", "updated_at"}
 	competitionLevelColumnsWithoutDefault = []string{"name"}
-	competitionLevelColumnsWithDefault    = []string{"id", "created_at", "updated_at", "record_hash", "tx_hash"}
+	competitionLevelColumnsWithDefault    = []string{"id", "created_at", "updated_at"}
 	competitionLevelPrimaryKeyColumns     = []string{"id"}
 	competitionLevelGeneratedColumns      = []string{}
 )

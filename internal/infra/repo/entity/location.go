@@ -32,8 +32,6 @@ type Location struct {
 	FullAddress string      `boil:"full_address" json:"full_address" toml:"full_address" yaml:"full_address"`
 	CreatedAt   time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
 	UpdatedAt   time.Time   `boil:"updated_at" json:"updated_at" toml:"updated_at" yaml:"updated_at"`
-	RecordHash  null.Bytes  `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash      null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *locationR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L locationL  `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -48,8 +46,6 @@ var LocationColumns = struct {
 	FullAddress string
 	CreatedAt   string
 	UpdatedAt   string
-	RecordHash  string
-	TXHash      string
 }{
 	ID:          "id",
 	CountryID:   "country_id",
@@ -59,8 +55,6 @@ var LocationColumns = struct {
 	FullAddress: "full_address",
 	CreatedAt:   "created_at",
 	UpdatedAt:   "updated_at",
-	RecordHash:  "record_hash",
-	TXHash:      "tx_hash",
 }
 
 var LocationTableColumns = struct {
@@ -72,8 +66,6 @@ var LocationTableColumns = struct {
 	FullAddress string
 	CreatedAt   string
 	UpdatedAt   string
-	RecordHash  string
-	TXHash      string
 }{
 	ID:          "location.id",
 	CountryID:   "location.country_id",
@@ -83,8 +75,6 @@ var LocationTableColumns = struct {
 	FullAddress: "location.full_address",
 	CreatedAt:   "location.created_at",
 	UpdatedAt:   "location.updated_at",
-	RecordHash:  "location.record_hash",
-	TXHash:      "location.tx_hash",
 }
 
 // Generated where
@@ -98,8 +88,6 @@ var LocationWhere = struct {
 	FullAddress whereHelperstring
 	CreatedAt   whereHelpertime_Time
 	UpdatedAt   whereHelpertime_Time
-	RecordHash  whereHelpernull_Bytes
-	TXHash      whereHelpernull_String
 }{
 	ID:          whereHelperint64{field: "\"location\".\"id\""},
 	CountryID:   whereHelperint64{field: "\"location\".\"country_id\""},
@@ -109,8 +97,6 @@ var LocationWhere = struct {
 	FullAddress: whereHelperstring{field: "\"location\".\"full_address\""},
 	CreatedAt:   whereHelpertime_Time{field: "\"location\".\"created_at\""},
 	UpdatedAt:   whereHelpertime_Time{field: "\"location\".\"updated_at\""},
-	RecordHash:  whereHelpernull_Bytes{field: "\"location\".\"record_hash\""},
-	TXHash:      whereHelpernull_String{field: "\"location\".\"tx_hash\""},
 }
 
 // LocationRels is where relationship names are stored.
@@ -161,9 +147,9 @@ func (r *locationR) GetMatches() MatchSlice {
 type locationL struct{}
 
 var (
-	locationAllColumns            = []string{"id", "country_id", "state", "city", "address", "full_address", "created_at", "updated_at", "record_hash", "tx_hash"}
+	locationAllColumns            = []string{"id", "country_id", "state", "city", "address", "full_address", "created_at", "updated_at"}
 	locationColumnsWithoutDefault = []string{"country_id", "full_address"}
-	locationColumnsWithDefault    = []string{"id", "state", "city", "address", "created_at", "updated_at", "record_hash", "tx_hash"}
+	locationColumnsWithDefault    = []string{"id", "state", "city", "address", "created_at", "updated_at"}
 	locationPrimaryKeyColumns     = []string{"id"}
 	locationGeneratedColumns      = []string{}
 )
