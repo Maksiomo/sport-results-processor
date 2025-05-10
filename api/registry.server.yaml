@@ -1,0 +1,1279 @@
+openapi: 3.0.3
+info:
+  title: Sport registry server API Documentation
+  version: 1.0.0
+  description: |
+    REST API для доступа к данным спортивных соревнований.
+servers:
+  - url: http://localhost:8080
+    description: Локальный сервер
+
+paths:
+  /sports:
+    get:
+      summary: Список видов спорта
+      tags: [Sports]
+      responses:
+        '200':
+          description: Массив видов спорта
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sport'
+    post:
+      summary: Создать новый вид спорта
+      tags: [Sports]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewSport'
+      responses:
+        '201':
+          description: Создан вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+
+  /sports/{id}:
+    get:
+      summary: Получить вид спорта по ID
+      tags: [Sports]
+      parameters:
+        - name: id
+          in: path
+          description: ID вида спорта
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sport'
+        '404':
+          description: Не найден
+
+  /countries:
+    get:
+      summary: Список стран
+      tags: [Countries]
+      responses:
+        '200':
+          description: Массив стран
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Country'
+    post:
+      summary: Создать новую страну
+      tags: [Countries]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCountry'
+      responses:
+        '201':
+          description: Создана страна
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Country'
+
+  /locations:
+    get:
+      summary: Список локаций
+      tags: [Locations]
+      responses:
+        '200':
+          description: Массив локаций
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Location'
+    post:
+      summary: Создать новую локацию
+      tags: [Locations]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewLocation'
+      responses:
+        '201':
+          description: Создана локация
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Location'
+
+  /languages:
+    get:
+      summary: Список языков
+      tags: [Languages]
+      responses:
+        '200':
+          description: Массив языков
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Language'
+    post:
+      summary: Создать новый язык
+      tags: [Languages]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewLanguage'
+      responses:
+        '201':
+          description: Создан язык
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Language'
+
+  /roles:
+    get:
+      summary: Список ролей
+      tags: [Roles]
+      responses:
+        '200':
+          description: Массив ролей
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+    post:
+      summary: Создать новую роль
+      tags: [Roles]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewRole'
+      responses:
+        '201':
+          description: Создана роль
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Role'
+
+  /competition-levels:
+    get:
+      summary: Список уровней соревнований
+      tags: [CompetitionLevels]
+      responses:
+        '200':
+          description: Массив уровней
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompetitionLevel'
+    post:
+      summary: Создать новый уровень соревнований
+      tags: [CompetitionLevels]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCompetitionLevel'
+      responses:
+        '201':
+          description: Создан уровень
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionLevel'
+
+  /persons:
+    get:
+      summary: Список участников (person)
+      tags: [Persons]
+      responses:
+        '200':
+          description: Массив участников
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Person'
+    post:
+      summary: Создать участника
+      tags: [Persons]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPerson'
+      responses:
+        '201':
+          description: Создан участник
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+
+  /teams:
+    get:
+      summary: Список команд
+      tags: [Teams]
+      responses:
+        '200':
+          description: Массив команд
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Team'
+    post:
+      summary: Создать команду
+      tags: [Teams]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTeam'
+      responses:
+        '201':
+          description: Создана команда
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Team'
+
+  /competitions:
+    get:
+      summary: Список соревнований
+      tags: [Competitions]
+      responses:
+        '200':
+          description: Массив соревнований
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Competition'
+    post:
+      summary: Создать соревнование
+      tags: [Competitions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCompetition'
+      responses:
+        '201':
+          description: Создано соревнование
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Competition'
+
+  /stages:
+    get:
+      summary: Список этапов
+      tags: [Stages]
+      responses:
+        '200':
+          description: Массив этапов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+    post:
+      summary: Создать этап
+      tags: [Stages]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewStage'
+      responses:
+        '201':
+          description: Создан этап
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+
+  /matches:
+    get:
+      summary: Список матчей
+      tags: [Matches]
+      responses:
+        '200':
+          description: Массив матчей
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Match'
+    post:
+      summary: Создать матч
+      tags: [Matches]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatch'
+      responses:
+        '201':
+          description: Создан матч
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Match'
+
+  /match-participants:
+    get:
+      summary: Список участников матча
+      tags: [MatchParticipants]
+      responses:
+        '200':
+          description: Массив участников матча
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MatchParticipant'
+    post:
+      summary: Добавить участника в матч
+      tags: [MatchParticipants]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewMatchParticipant'
+      responses:
+        '201':
+          description: Участник добавлен
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MatchParticipant'
+
+  /prizes:
+    get:
+      summary: Список призов
+      tags: [Prizes]
+      responses:
+        '200':
+          description: Массив призов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Prize'
+    post:
+      summary: Создать приз
+      tags: [Prizes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewPrize'
+      responses:
+        '201':
+          description: Приз создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Prize'
+
+  /competition-teams:
+    get:
+      summary: Список участников соревнований
+      tags: [CompetitionTeams]
+      responses:
+        '200':
+          description: Массив связей команда↔соревнование
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompetitionTeams'
+    post:
+      summary: Добавить команду в соревнование
+      tags: [CompetitionTeams]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewCompetitionTeams'
+      responses:
+        '201':
+          description: Запись добавлена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompetitionTeams'
+
+  /team-achievements:
+    get:
+      summary: Список достижений команд
+      tags: [TeamAchievements]
+      responses:
+        '200':
+          description: Массив достижений
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TeamAchievements'
+    post:
+      summary: Добавить достижение команде
+      tags: [TeamAchievements]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTeamAchievements'
+      responses:
+        '201':
+          description: Достижение добавлено
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TeamAchievements'
+
+components:
+  schemas:
+    Sport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        min_team_size:
+          type: integer
+        max_team_size:
+          type: integer
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - min_team_size
+        - max_team_size
+        - created_at
+        - updated_at
+
+    NewSport:
+      type: object
+      properties:
+        name:
+          type: string
+        min_team_size:
+          type: integer
+        max_team_size:
+          type: integer
+        description:
+          type: string
+      required:
+        - name
+        - min_team_size
+        - max_team_size
+
+    Country:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - created_at
+        - updated_at
+
+    NewCountry:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        country_id:
+          type: integer
+          format: int64
+        state:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        full_address:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - country_id
+        - full_address
+
+    NewLocation:
+      type: object
+      properties:
+        country_id:
+          type: integer
+          format: int64
+        state:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        full_address:
+          type: string
+      required:
+        - country_id
+        - full_address
+
+    Language:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - created_at
+        - updated_at
+
+    NewLanguage:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - created_at
+        - updated_at
+
+    NewRole:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    CompetitionLevel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - created_at
+        - updated_at
+
+    NewCompetitionLevel:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        birth_date:
+          type: string
+          format: date-time
+        country_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - birth_date
+        - country_id
+        - created_at
+        - updated_at
+
+    NewPerson:
+      type: object
+      properties:
+        name:
+          type: string
+        birth_date:
+          type: string
+          format: date-time
+        country_id:
+          type: integer
+          format: int64
+      required:
+        - name
+        - birth_date
+        - country_id
+
+    PersonSport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        person_id:
+          type: integer
+          format: int64
+        sport_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - person_id
+        - sport_id
+        - created_at
+        - updated_at
+
+    NewPersonSport:
+      type: object
+      properties:
+        person_id:
+          type: integer
+          format: int64
+        sport_id:
+          type: integer
+          format: int64
+      required:
+        - person_id
+        - sport_id
+
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country_id:
+          type: integer
+          format: int64
+        foundation_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - country_id
+        - foundation_date
+        - created_at
+        - updated_at
+
+    NewTeam:
+      type: object
+      properties:
+        name:
+          type: string
+        country_id:
+          type: integer
+          format: int64
+        foundation_date:
+          type: string
+          format: date-time
+      required:
+        - name
+        - country_id
+        - foundation_date
+
+    TeamPerson:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        person_id:
+          type: integer
+          format: int64
+        role_id:
+          type: integer
+          format: int64
+        joined_at:
+          type: string
+          format: date-time
+        left_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - team_id
+        - person_id
+        - role_id
+        - joined_at
+        - created_at
+        - updated_at
+
+    NewTeamPerson:
+      type: object
+      properties:
+        team_id:
+          type: integer
+          format: int64
+        person_id:
+          type: integer
+          format: int64
+        role_id:
+          type: integer
+          format: int64
+        joined_at:
+          type: string
+          format: date-time
+        left_at:
+          type: string
+          format: date-time
+      required:
+        - team_id
+        - person_id
+        - role_id
+        - joined_at
+
+    Competition:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        sport_id:
+          type: integer
+          format: int64
+        location_id:
+          type: integer
+          format: int64
+        level_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - name
+        - sport_id
+        - location_id
+        - level_id
+        - created_at
+        - updated_at
+
+    NewCompetition:
+      type: object
+      properties:
+        name:
+          type: string
+        sport_id:
+          type: integer
+          format: int64
+        location_id:
+          type: integer
+          format: int64
+        level_id:
+          type: integer
+          format: int64
+      required:
+        - name
+        - sport_id
+        - location_id
+        - level_id
+
+    Stage:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - competition_id
+        - name
+        - start_time
+        - created_at
+        - updated_at
+
+    NewStage:
+      type: object
+      properties:
+        competition_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+      required:
+        - competition_id
+        - name
+        - start_time
+
+    Match:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        stage_id:
+          type: integer
+          format: int64
+        match_time:
+          type: string
+          format: date-time
+        location_id:
+          type: integer
+          format: int64
+        metadata:
+          type: object
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - stage_id
+        - match_time
+        - created_at
+        - updated_at
+
+    NewMatch:
+      type: object
+      properties:
+        stage_id:
+          type: integer
+          format: int64
+        match_time:
+          type: string
+          format: date-time
+        location_id:
+          type: integer
+          format: int64
+        metadata:
+          type: object
+      required:
+        - stage_id
+        - match_time
+
+    MatchParticipant:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        match_id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        score:
+          type: integer
+        is_winner:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - match_id
+        - team_id
+        - score
+        - created_at
+        - updated_at
+
+    NewMatchParticipant:
+      type: object
+      properties:
+        match_id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        score:
+          type: integer
+        is_winner:
+          type: boolean
+      required:
+        - match_id
+        - team_id
+        - score
+
+    Prize:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+        place_bracket:
+          type: string
+        currency_code:
+          type: string
+        prize_amount:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - competition_id
+        - place_bracket
+        - currency_code
+        - prize_amount
+        - created_at
+        - updated_at
+
+    NewPrize:
+      type: object
+      properties:
+        competition_id:
+          type: integer
+          format: int64
+        place_bracket:
+          type: string
+        currency_code:
+          type: string
+        prize_amount:
+          type: integer
+      required:
+        - competition_id
+        - place_bracket
+        - currency_code
+        - prize_amount
+
+    CompetitionTeams:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - team_id
+        - competition_id
+        - created_at
+        - updated_at
+
+    NewCompetitionTeams:
+      type: object
+      properties:
+        team_id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+      required:
+        - team_id
+        - competition_id
+
+    TeamAchievements:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        prize_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        record_hash:
+          type: string
+          format: byte
+        tx_hash:
+          type: string
+      required:
+        - id
+        - team_id
+        - prize_id
+        - created_at
+        - updated_at
+
+    NewTeamAchievements:
+      type: object
+      properties:
+        team_id:
+          type: integer
+          format: int64
+        prize_id:
+          type: integer
+          format: int64
+      required:
+        - team_id
+        - prize_id

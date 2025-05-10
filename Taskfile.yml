@@ -27,15 +27,15 @@ tasks:
       vars: [PG_PASSWORD]
     generates:
       - "pkg/gen/sqlboiler"
-
-  generate-server:
-    desc: generate server from OpenAPI v3.
-    cmds:
-      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/customer/server.go -package=customer -generate=std-http ./api/customer.server.yaml
-      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/customer/types.go -package=customer -generate=types ./api/customer.server.yaml
   
   generate-blockchain-client:
     desc: generate solc buids and blockchain client from sol contracts
     cmds:
       - solc --optimize --combined-json abi,bin --overwrite -o var/contracts/builds var/contracts/*.sol
       - abigen --combined-json var/contracts/builds/combined.json --pkg="blockchain" --out="pkg/gen/blockchain/blockchain.go"
+
+  generate-registry-server:
+    desc: generate registry server
+    cmds:
+      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/registry/server.go -package=registry -generate=std-http ./api/registry.server.yaml
+      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/registry/types.go -package=registry -generate=types ./api/registry.server.yaml
