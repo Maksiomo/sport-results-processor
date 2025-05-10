@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"sport-results-pocessor/internal/app"
 	"sport-results-pocessor/internal/common/adapter"
 	"sport-results-pocessor/internal/common/adapter/logger"
 	"sport-results-pocessor/internal/common/service"
@@ -28,7 +29,7 @@ func main() {
 		infra.Constructors,
 		service.Constructors,
 		fx.Invoke(
-			
+			app.SportRegistryServer,
 		),
 	)
 
