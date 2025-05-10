@@ -2,6 +2,7 @@ package infra
 
 import (
 	"sport-results-pocessor/internal/infra/repo"
+	"sport-results-pocessor/internal/infra/service"
 
 	"go.uber.org/fx"
 )
@@ -10,7 +11,6 @@ var Constructors = fx.Provide(
 	repo.NewCompetitionLevelRepoFactory,
 	repo.NewCompetitionTeamsRepoFactory,
 	repo.NewCompetitionRepoFactory,
-	repo.NewCompetitionRepoFactory,
 	repo.NewCountryRepoFactory,
 	repo.NewCurrencyRepoFactory,
 	repo.NewLocationRepoFactory,
@@ -18,11 +18,12 @@ var Constructors = fx.Provide(
 	repo.NewMatchRepoFactory,
 	repo.NewPersonSportRepoFactory,
 	repo.NewPersonRepoFactory,
-	repo.NewPrizeRepoRepoFactory,
+	repo.NewPrizeRepoFactory,
 	repo.NewRoleRepoFactory,
-	repo.NewSportRepoFactory,
 	repo.NewSportRepoFactory,
 	repo.NewTeamAchievementsRepoFactory,
 	repo.NewTeamPersonRepoFactory,
 	repo.NewTeamRepoFactory,
+
+	service.NewSportRegistryService,
 )
