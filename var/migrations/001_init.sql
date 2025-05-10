@@ -10,7 +10,6 @@ CREATE TABLE sport (
     max_team_size INT        NOT NULL,
     description   TEXT,
     created_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash   BYTEA,
     tx_hash       TEXT
 );
@@ -20,8 +19,7 @@ CREATE INDEX idx_sport_name ON sport(name);
 CREATE TABLE country (
     id          BIGSERIAL PRIMARY KEY,
     name        TEXT       NOT NULL UNIQUE,
-    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW()
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
@@ -32,24 +30,21 @@ CREATE TABLE location (
     city          TEXT,
     address       TEXT,
     full_address  TEXT       NOT NULL UNIQUE,
-    created_at    TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at    TIMESTAMP  NOT NULL DEFAULT NOW()
+    created_at    TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
 CREATE TABLE role (
     id          BIGSERIAL PRIMARY KEY,
     name        TEXT       NOT NULL UNIQUE,
-    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW()
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
 CREATE TABLE competition_level (
     id          BIGSERIAL PRIMARY KEY,
     name        TEXT       NOT NULL UNIQUE,
-    created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW()
+    created_at  TIMESTAMP  NOT NULL DEFAULT NOW()
 );
 
 
@@ -69,7 +64,6 @@ CREATE TABLE person (
     birth_date  TIMESTAMP  NOT NULL,
     country_id  BIGINT     NOT NULL REFERENCES country(id),
     created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash BYTEA,
     tx_hash     TEXT
 );
@@ -79,7 +73,6 @@ CREATE TABLE person_sport (
     person_id   BIGINT     NOT NULL REFERENCES person(id),
     sport_id    BIGINT     NOT NULL REFERENCES sport(id),
     created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
     UNIQUE(person_id, sport_id)
 );
 
@@ -90,7 +83,6 @@ CREATE TABLE team (
     country_id      BIGINT     NOT NULL REFERENCES country(id),
     foundation_date TIMESTAMP  NOT NULL,
     created_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash     BYTEA,
     tx_hash         TEXT
 );
@@ -104,7 +96,6 @@ CREATE TABLE team_person (
     joined_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
     left_at     TIMESTAMP,
     created_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at  TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash BYTEA,
     tx_hash     TEXT,
     UNIQUE(team_id, person_id, role_id, joined_at)
@@ -118,7 +109,6 @@ CREATE TABLE competition (
     location_id  BIGINT     NOT NULL REFERENCES location(id),
     level_id     BIGINT     NOT NULL REFERENCES competition_level(id),
     created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash  BYTEA,
     tx_hash      TEXT
 );
@@ -130,7 +120,6 @@ CREATE TABLE stage (
     start_time     TIMESTAMP  NOT NULL,
     end_time       TIMESTAMP,
     created_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
     UNIQUE(competition_id, name)
 );
 
@@ -141,7 +130,6 @@ CREATE TABLE match (
     location_id  BIGINT REFERENCES location(id),
     metadata     JSONB,
     created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash  BYTEA,
     tx_hash      TEXT,
     UNIQUE(stage_id, match_time, location_id)
@@ -154,7 +142,6 @@ CREATE TABLE match_participant (
     score        INT        NOT NULL,
     is_winner    BOOLEAN    NOT NULL DEFAULT FALSE,
     created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash  BYTEA,
     tx_hash      TEXT,
     UNIQUE(match_id, team_id)
@@ -167,7 +154,6 @@ CREATE TABLE prize (
     currency_code   TEXT       NOT NULL REFERENCES currency(code),
     prize_amount    BIGINT     NOT NULL,
     created_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at      TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash     BYTEA,
     tx_hash         TEXT,
     UNIQUE(competition_id, place_bracket)
@@ -178,7 +164,6 @@ CREATE TABLE competition_teams (
     team_id        BIGINT     NOT NULL REFERENCES team(id),
     competition_id BIGINT     NOT NULL REFERENCES competition(id),
     created_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at     TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash    BYTEA,
     tx_hash        TEXT,
     UNIQUE(team_id, competition_id)
@@ -189,7 +174,6 @@ CREATE TABLE team_achievements (
     team_id      BIGINT     NOT NULL REFERENCES team(id),
     prize_id     BIGINT     NOT NULL REFERENCES prize(id),
     created_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
-    updated_at   TIMESTAMP  NOT NULL DEFAULT NOW(),
     record_hash  BYTEA,
     tx_hash      TEXT,
     UNIQUE(team_id, prize_id)

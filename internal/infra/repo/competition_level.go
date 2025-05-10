@@ -32,3 +32,7 @@ type CompetitionLevelRepo struct {
 	log logger.Logger
 	db  pgclient.DB
 }
+
+func (s *CompetitionLevelRepo) List(ctx context.Context) {
+
+}
