@@ -16,7 +16,7 @@ type SportRegistryService struct {
 	blockchainClient *blockchain.BlockchainRegistryClient
 
 	competitionLevelRepo *repo.CompetitionLevelRepo
-	competitionTeamsRepo *repo.CompetitionTeamsRepo
+	competitionTeamsRepo *repo.CompetitionTeamRepo
 	competitionRepo      *repo.CompetitionRepo
 	countryRepo          *repo.CompetitionRepo
 	currencyRepo         *repo.CurrencyRepo
@@ -53,28 +53,28 @@ func NewSportRegistryService(
 	teamAchievementsRepoFactory *repo.TeamAchievementsRepoFactory,
 	teamPersonRepoFactory *repo.TeamPersonRepoFactory,
 	teamRepoFactory *repo.TeamRepoFactory,
-	blockchainClient *blockchain.BlockchainRegistryClient,	
+	blockchainClient *blockchain.BlockchainRegistryClient,
 ) *SportRegistryService {
 	return &SportRegistryService{
-		ctx: ctx,
-		db: db,
-		log: log.WithComponent(ctx, "sport-registry-server"),
+		ctx:                  ctx,
+		db:                   db,
+		log:                  log.WithComponent(ctx, "sport-registry-server"),
 		competitionLevelRepo: competitionLevelRepoFactory.Create(ctx, db),
 		competitionTeamsRepo: competitionTeamsRepoFactory.Create(ctx, db),
-		competitionRepo: competitionRepoFactory.Create(ctx, db),
-		countryRepo: countryRepoFactory.Create(ctx, db),
-		currencyRepo: currencyRepoFactory.Create(ctx, db),
-		locationRepo: locationRepoFactory.Create(ctx, db),
+		competitionRepo:      competitionRepoFactory.Create(ctx, db),
+		countryRepo:          countryRepoFactory.Create(ctx, db),
+		currencyRepo:         currencyRepoFactory.Create(ctx, db),
+		locationRepo:         locationRepoFactory.Create(ctx, db),
 		matchParticipantRepo: matchParticipantRepoFactory.Create(ctx, db),
-		matchRepo: matchRepoFactory.Create(ctx, db),
-		personSportRepo: personSportRepoFactory.Create(ctx, db),
-		personRepo: personRepoFactory.Create(ctx, db),
-		prizeRepo: prizeRepoFactory.Create(ctx, db),
-		roleRepo: roleRepoFactory.Create(ctx, db),
-		sportRepo: sportRepoFactory.Create(ctx, db),
+		matchRepo:            matchRepoFactory.Create(ctx, db),
+		personSportRepo:      personSportRepoFactory.Create(ctx, db),
+		personRepo:           personRepoFactory.Create(ctx, db),
+		prizeRepo:            prizeRepoFactory.Create(ctx, db),
+		roleRepo:             roleRepoFactory.Create(ctx, db),
+		sportRepo:            sportRepoFactory.Create(ctx, db),
 		teamAchievementsRepo: teamAchievementsRepoFactory.Create(ctx, db),
-		teamPersonRepo: teamPersonRepoFactory.Create(ctx, db),
-		teamRepo: teamRepoFactory.Create(ctx, db),
-		blockchainClient: blockchainClient,
+		teamPersonRepo:       teamPersonRepoFactory.Create(ctx, db),
+		teamRepo:             teamRepoFactory.Create(ctx, db),
+		blockchainClient:     blockchainClient,
 	}
 }
