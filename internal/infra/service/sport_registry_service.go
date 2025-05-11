@@ -86,191 +86,203 @@ func NewSportRegistryService(
 func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
 
 }
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+
+func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) (*registry.ListCompetitionLevelsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
+func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) error {
 
 }
 
 func (s *SportRegistryService) FindCompetitionTeam(ctx context.Context, id int64) (*registry.CompetitionTeams, error) {
 
 }
- 
-func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) ([]*registry.CompetitionTeams, error) {
+
+func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) (*registry.ListCompetitionTeamsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req registry.NewCompetitionTeams) (error) {
-	
+func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req registry.NewCompetitionTeams) error {
+
 }
 
 func (s *SportRegistryService) FindCompetition(ctx context.Context, id int64) (*registry.Competition, error) {
 
 }
- 
-func (s *SportRegistryService) ListCompetitions(ctx context.Context) ([]*registry.Competition, error) {
+
+func (s *SportRegistryService) ListCompetitions(ctx context.Context) (*registry.ListCompetitionsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetition(ctx context.Context, req registry.NewCompetition) (error) {
-	
+func (s *SportRegistryService) AddCompetition(ctx context.Context, req registry.NewCompetition) error {
+
 }
 
 func (s *SportRegistryService) FindCountry(ctx context.Context, id int64) (*registry.Country, error) {
 
 }
- 
-func (s *SportRegistryService) ListCountries(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+
+func (s *SportRegistryService) ListCountries(ctx context.Context) (*registry.ListCountriesResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddCountry(ctx context.Context, req registry.NewCountry) (error) {
-	
+func (s *SportRegistryService) AddCountry(ctx context.Context, req registry.NewCountry) error {
+
+}
+
+func (s *SportRegistryService) FindCurrency(ctx context.Context, code string) (*registry.Currency, error) {
+
+}
+
+func (s *SportRegistryService) ListCurrencies(ctx context.Context) (*registry.ListCurrenciesResponse, error) {
+
+}
+
+func (s *SportRegistryService) AddCurrency(ctx context.Context, req registry.NewCurrency) error {
+
 }
 
 func (s *SportRegistryService) FindLocation(ctx context.Context, id int64) (*registry.Location, error) {
 
 }
- 
-func (s *SportRegistryService) ListLocations(ctx context.Context) ([]*registry.Location, error) {
+
+func (s *SportRegistryService) ListLocations(ctx context.Context) (*registry.ListLocationsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddLocation(ctx context.Context, req registry.NewLocation) (error) {
-	
+func (s *SportRegistryService) AddLocation(ctx context.Context, req registry.NewLocation) error {
+
 }
 
 func (s *SportRegistryService) FindMatchParticipant(ctx context.Context, id int64) (*registry.MatchParticipant, error) {
 
 }
- 
-func (s *SportRegistryService) ListMatchParticipants(ctx context.Context) ([]*registry.MatchParticipant, error) {
+
+func (s *SportRegistryService) ListMatchParticipants(ctx context.Context) (*registry.ListMatchParticipantsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddMatchParticipant(ctx context.Context, req registry.NewMatchParticipant) (error) {
-	
+func (s *SportRegistryService) AddMatchParticipant(ctx context.Context, req registry.NewMatchParticipant) error {
+
 }
 
 func (s *SportRegistryService) FindMatch(ctx context.Context, id int64) (*registry.Match, error) {
 
 }
- 
-func (s *SportRegistryService) ListMatches(ctx context.Context) ([]*registry.Match, error) {
+
+func (s *SportRegistryService) ListMatches(ctx context.Context) (*registry.ListMatchParticipantsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddMatch(ctx context.Context, req registry.Match) (error) {
-	
-}
-
-func (s *SportRegistryService) FindPeopleSports(ctx context.Context, id int64) (*registry.PeopleSports, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) AddMatch(ctx context.Context, req registry.Match) error {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) FindPersonSports(ctx context.Context, id int64) (*registry.PersonSport, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) ListPersonSports(ctx context.Context) (*registry.ListPersonSportsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) AddPersonSport(ctx context.Context, req registry.NewPersonSport) error {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) FindPerson(ctx context.Context, id int64) (*registry.Person, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) ListPerson(ctx context.Context) (*registry.ListPersonsResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) AddPerson(ctx context.Context, req registry.NewPerson) error {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) FindPrize(ctx context.Context, id int64) (*registry.Prize, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
-}
-
-func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
-
-}
- 
-func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) ([]*registry.CompetitionLevel, error) {
+func (s *SportRegistryService) ListPrises(ctx context.Context) (*registry.ListPrizesResponse, error) {
 
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) (error) {
-	
+func (s *SportRegistryService) AddPrize(ctx context.Context, req registry.NewPrize) error {
+
+}
+
+func (s *SportRegistryService) FindRole(ctx context.Context, id int64) (*registry.Role, error) {
+
+}
+
+func (s *SportRegistryService) ListRoles(ctx context.Context) ([]*registry.ListRolesResponse, error) {
+
+}
+
+func (s *SportRegistryService) AddRole(ctx context.Context, req registry.NewRole) error {
+
+}
+
+func (s *SportRegistryService) FindSport(ctx context.Context, id int64) (*registry.Sport, error) {
+
+}
+
+func (s *SportRegistryService) ListSports(ctx context.Context) (*registry.ListSportsResponse, error) {
+
+}
+
+func (s *SportRegistryService) AddSport(ctx context.Context, req registry.NewSport) error {
+
+}
+
+func (s *SportRegistryService) FindStage(ctx context.Context, id int64) (*registry.Stage, error) {
+
+}
+
+func (s *SportRegistryService) ListStages(ctx context.Context) ([]*registry.ListStagesResponse, error) {
+
+}
+
+func (s *SportRegistryService) AddStage(ctx context.Context, req registry.NewStage) error {
+
+}
+
+func (s *SportRegistryService) FindTeamAchievement(ctx context.Context, id int64) (*registry.TeamAchievements, error) {
+
+}
+
+func (s *SportRegistryService) ListTeamAchievements(ctx context.Context) (*registry.ListTeamAchievementsResponse, error) {
+
+}
+
+func (s *SportRegistryService) AddTeamAchievement(ctx context.Context, req registry.NewTeamAchievements) error {
+
+}
+
+func (s *SportRegistryService) FindTeamPerson(ctx context.Context, id int64) (*registry.TeamPerson, error) {
+
+}
+
+func (s *SportRegistryService) ListTeamPersons(ctx context.Context) (*registry.ListTeamPersonsResponse, error) {
+
+}
+
+func (s *SportRegistryService) AddTeamPerson(ctx context.Context, req registry.NewTeamPerson) error {
+
+}
+
+func (s *SportRegistryService) FindTeam(ctx context.Context, id int64) (*registry.Team, error) {
+
+}
+
+func (s *SportRegistryService) ListTeams(ctx context.Context) ([]*registry.ListTeamsResponse, error) {
+
+}
+
+func (s *SportRegistryService) AddTeam(ctx context.Context, req registry.NewTeam) error {
+
 }

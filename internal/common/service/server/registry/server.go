@@ -20,54 +20,81 @@ type ServerInterface interface {
 	// Создать новый уровень соревнований
 	// (POST /competition-levels)
 	PostCompetitionLevels(w http.ResponseWriter, r *http.Request)
+	// Получить уровень соревнования по ID
+	// (GET /competition-levels/{id})
+	GetCompetitionLevelsId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список участников соревнований
 	// (GET /competition-teams)
 	GetCompetitionTeams(w http.ResponseWriter, r *http.Request)
 	// Добавить команду в соревнование
 	// (POST /competition-teams)
 	PostCompetitionTeams(w http.ResponseWriter, r *http.Request)
+	// Получить команду участницу соревнования по ID
+	// (GET /competition-teams/{id})
+	GetCompetitionTeamsId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список соревнований
 	// (GET /competitions)
 	GetCompetitions(w http.ResponseWriter, r *http.Request)
 	// Создать соревнование
 	// (POST /competitions)
 	PostCompetitions(w http.ResponseWriter, r *http.Request)
+	// Получить соревнование по ID
+	// (GET /competitions/{id})
+	GetCompetitionsId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список стран
 	// (GET /countries)
 	GetCountries(w http.ResponseWriter, r *http.Request)
 	// Создать новую страну
 	// (POST /countries)
 	PostCountries(w http.ResponseWriter, r *http.Request)
+	// Получить cтрану по ID
+	// (GET /countries/{id})
+	GetCountriesId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список валют
 	// (GET /currencies)
 	GetCurrencies(w http.ResponseWriter, r *http.Request)
 	// Создать новую валюту
 	// (POST /currencies)
 	PostCurrencies(w http.ResponseWriter, r *http.Request)
+	// Получить валюту по символьному коду
+	// (GET /currencies/{id})
+	GetCurrenciesId(w http.ResponseWriter, r *http.Request, id string)
 	// Список языков
 	// (GET /languages)
 	GetLanguages(w http.ResponseWriter, r *http.Request)
 	// Создать новый язык
 	// (POST /languages)
 	PostLanguages(w http.ResponseWriter, r *http.Request)
+	// Получить язык по ID
+	// (GET /languages/{id})
+	GetLanguagesId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список локаций
 	// (GET /locations)
 	GetLocations(w http.ResponseWriter, r *http.Request)
 	// Создать новую локацию
 	// (POST /locations)
 	PostLocations(w http.ResponseWriter, r *http.Request)
+	// Получить место проведения по ID
+	// (GET /locations/{id})
+	GetLocationsId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список участников матча
 	// (GET /match-participants)
 	GetMatchParticipants(w http.ResponseWriter, r *http.Request)
 	// Добавить участника в матч
 	// (POST /match-participants)
 	PostMatchParticipants(w http.ResponseWriter, r *http.Request)
+	// Получить участника встречи по ID
+	// (GET /match-participants/{id})
+	GetMatchParticipantsId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список матчей
 	// (GET /matches)
 	GetMatches(w http.ResponseWriter, r *http.Request)
 	// Создать матч
 	// (POST /matches)
 	PostMatches(w http.ResponseWriter, r *http.Request)
+	// Получить встречу по ID
+	// (GET /matches/{id})
+	GetMatchesId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список участников (person)
 	// (GET /persons)
 	GetPersons(w http.ResponseWriter, r *http.Request)
@@ -80,18 +107,39 @@ type ServerInterface interface {
 	// Создать участника
 	// (POST /persons/sport)
 	PostPersonsSport(w http.ResponseWriter, r *http.Request)
+	// Получить вид панель спортсмена по ID
+	// (GET /persons/sport/{id})
+	GetPersonsSportId(w http.ResponseWriter, r *http.Request, id int64)
+	// Список участников команд (person)
+	// (GET /persons/team)
+	GetPersonsTeam(w http.ResponseWriter, r *http.Request)
+	// Создать участника
+	// (POST /persons/team)
+	PostPersonsTeam(w http.ResponseWriter, r *http.Request)
+	// Получить участника команды по ID
+	// (GET /persons/teams/{id})
+	GetPersonsTeamsId(w http.ResponseWriter, r *http.Request, id int64)
+	// Получить человека по ID
+	// (GET /persons/{id})
+	GetPersonsId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список призов
 	// (GET /prizes)
 	GetPrizes(w http.ResponseWriter, r *http.Request)
 	// Создать приз
 	// (POST /prizes)
 	PostPrizes(w http.ResponseWriter, r *http.Request)
+	// Получить награду по ID
+	// (GET /prizes/{id})
+	GetPrizesId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список ролей
 	// (GET /roles)
 	GetRoles(w http.ResponseWriter, r *http.Request)
 	// Создать новую роль
 	// (POST /roles)
 	PostRoles(w http.ResponseWriter, r *http.Request)
+	// Получить роль по ID
+	// (GET /roles/{id})
+	GetRolesId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список видов спорта
 	// (GET /sports)
 	GetSports(w http.ResponseWriter, r *http.Request)
@@ -107,12 +155,21 @@ type ServerInterface interface {
 	// Создать этап
 	// (POST /stages)
 	PostStages(w http.ResponseWriter, r *http.Request)
+	// Получить этап соревнования по ID
+	// (GET /stages/{id})
+	GetStagesId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список достижений команд
 	// (GET /team-achievements)
 	GetTeamAchievements(w http.ResponseWriter, r *http.Request)
 	// Добавить достижение команде
 	// (POST /team-achievements)
 	PostTeamAchievements(w http.ResponseWriter, r *http.Request)
+	// Получить достижение команды
+	// (GET /team-achievements/{id})
+	GetTeamAchievementsId(w http.ResponseWriter, r *http.Request, id int64)
+	// Получить команду по ID
+	// (GET /team/{id})
+	GetTeamId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список команд
 	// (GET /teams)
 	GetTeams(w http.ResponseWriter, r *http.Request)
@@ -158,6 +215,31 @@ func (siw *ServerInterfaceWrapper) PostCompetitionLevels(w http.ResponseWriter, 
 	handler.ServeHTTP(w, r)
 }
 
+// GetCompetitionLevelsId operation middleware
+func (siw *ServerInterfaceWrapper) GetCompetitionLevelsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetCompetitionLevelsId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetCompetitionTeams operation middleware
 func (siw *ServerInterfaceWrapper) GetCompetitionTeams(w http.ResponseWriter, r *http.Request) {
 
@@ -177,6 +259,31 @@ func (siw *ServerInterfaceWrapper) PostCompetitionTeams(w http.ResponseWriter, r
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.PostCompetitionTeams(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetCompetitionTeamsId operation middleware
+func (siw *ServerInterfaceWrapper) GetCompetitionTeamsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetCompetitionTeamsId(w, r, id)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -214,6 +321,31 @@ func (siw *ServerInterfaceWrapper) PostCompetitions(w http.ResponseWriter, r *ht
 	handler.ServeHTTP(w, r)
 }
 
+// GetCompetitionsId operation middleware
+func (siw *ServerInterfaceWrapper) GetCompetitionsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetCompetitionsId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetCountries operation middleware
 func (siw *ServerInterfaceWrapper) GetCountries(w http.ResponseWriter, r *http.Request) {
 
@@ -233,6 +365,31 @@ func (siw *ServerInterfaceWrapper) PostCountries(w http.ResponseWriter, r *http.
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.PostCountries(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetCountriesId operation middleware
+func (siw *ServerInterfaceWrapper) GetCountriesId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetCountriesId(w, r, id)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -270,6 +427,31 @@ func (siw *ServerInterfaceWrapper) PostCurrencies(w http.ResponseWriter, r *http
 	handler.ServeHTTP(w, r)
 }
 
+// GetCurrenciesId operation middleware
+func (siw *ServerInterfaceWrapper) GetCurrenciesId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id string
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetCurrenciesId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetLanguages operation middleware
 func (siw *ServerInterfaceWrapper) GetLanguages(w http.ResponseWriter, r *http.Request) {
 
@@ -289,6 +471,31 @@ func (siw *ServerInterfaceWrapper) PostLanguages(w http.ResponseWriter, r *http.
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.PostLanguages(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetLanguagesId operation middleware
+func (siw *ServerInterfaceWrapper) GetLanguagesId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetLanguagesId(w, r, id)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -326,6 +533,31 @@ func (siw *ServerInterfaceWrapper) PostLocations(w http.ResponseWriter, r *http.
 	handler.ServeHTTP(w, r)
 }
 
+// GetLocationsId operation middleware
+func (siw *ServerInterfaceWrapper) GetLocationsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetLocationsId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetMatchParticipants operation middleware
 func (siw *ServerInterfaceWrapper) GetMatchParticipants(w http.ResponseWriter, r *http.Request) {
 
@@ -354,6 +586,31 @@ func (siw *ServerInterfaceWrapper) PostMatchParticipants(w http.ResponseWriter, 
 	handler.ServeHTTP(w, r)
 }
 
+// GetMatchParticipantsId operation middleware
+func (siw *ServerInterfaceWrapper) GetMatchParticipantsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetMatchParticipantsId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetMatches operation middleware
 func (siw *ServerInterfaceWrapper) GetMatches(w http.ResponseWriter, r *http.Request) {
 
@@ -373,6 +630,31 @@ func (siw *ServerInterfaceWrapper) PostMatches(w http.ResponseWriter, r *http.Re
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.PostMatches(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetMatchesId operation middleware
+func (siw *ServerInterfaceWrapper) GetMatchesId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetMatchesId(w, r, id)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -438,6 +720,109 @@ func (siw *ServerInterfaceWrapper) PostPersonsSport(w http.ResponseWriter, r *ht
 	handler.ServeHTTP(w, r)
 }
 
+// GetPersonsSportId operation middleware
+func (siw *ServerInterfaceWrapper) GetPersonsSportId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetPersonsSportId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetPersonsTeam operation middleware
+func (siw *ServerInterfaceWrapper) GetPersonsTeam(w http.ResponseWriter, r *http.Request) {
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetPersonsTeam(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// PostPersonsTeam operation middleware
+func (siw *ServerInterfaceWrapper) PostPersonsTeam(w http.ResponseWriter, r *http.Request) {
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.PostPersonsTeam(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetPersonsTeamsId operation middleware
+func (siw *ServerInterfaceWrapper) GetPersonsTeamsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetPersonsTeamsId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetPersonsId operation middleware
+func (siw *ServerInterfaceWrapper) GetPersonsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetPersonsId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetPrizes operation middleware
 func (siw *ServerInterfaceWrapper) GetPrizes(w http.ResponseWriter, r *http.Request) {
 
@@ -466,6 +851,31 @@ func (siw *ServerInterfaceWrapper) PostPrizes(w http.ResponseWriter, r *http.Req
 	handler.ServeHTTP(w, r)
 }
 
+// GetPrizesId operation middleware
+func (siw *ServerInterfaceWrapper) GetPrizesId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetPrizesId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetRoles operation middleware
 func (siw *ServerInterfaceWrapper) GetRoles(w http.ResponseWriter, r *http.Request) {
 
@@ -485,6 +895,31 @@ func (siw *ServerInterfaceWrapper) PostRoles(w http.ResponseWriter, r *http.Requ
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.PostRoles(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetRolesId operation middleware
+func (siw *ServerInterfaceWrapper) GetRolesId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetRolesId(w, r, id)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -575,6 +1010,31 @@ func (siw *ServerInterfaceWrapper) PostStages(w http.ResponseWriter, r *http.Req
 	handler.ServeHTTP(w, r)
 }
 
+// GetStagesId operation middleware
+func (siw *ServerInterfaceWrapper) GetStagesId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetStagesId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetTeamAchievements operation middleware
 func (siw *ServerInterfaceWrapper) GetTeamAchievements(w http.ResponseWriter, r *http.Request) {
 
@@ -594,6 +1054,56 @@ func (siw *ServerInterfaceWrapper) PostTeamAchievements(w http.ResponseWriter, r
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.PostTeamAchievements(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetTeamAchievementsId operation middleware
+func (siw *ServerInterfaceWrapper) GetTeamAchievementsId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetTeamAchievementsId(w, r, id)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetTeamId operation middleware
+func (siw *ServerInterfaceWrapper) GetTeamId(w http.ResponseWriter, r *http.Request) {
+
+	var err error
+
+	// ------------- Path parameter "id" -------------
+	var id int64
+
+	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
+	if err != nil {
+		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
+		return
+	}
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetTeamId(w, r, id)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -753,37 +1263,56 @@ func HandlerWithOptions(si ServerInterface, options StdHTTPServerOptions) http.H
 
 	m.HandleFunc("GET "+options.BaseURL+"/competition-levels", wrapper.GetCompetitionLevels)
 	m.HandleFunc("POST "+options.BaseURL+"/competition-levels", wrapper.PostCompetitionLevels)
+	m.HandleFunc("GET "+options.BaseURL+"/competition-levels/{id}", wrapper.GetCompetitionLevelsId)
 	m.HandleFunc("GET "+options.BaseURL+"/competition-teams", wrapper.GetCompetitionTeams)
 	m.HandleFunc("POST "+options.BaseURL+"/competition-teams", wrapper.PostCompetitionTeams)
+	m.HandleFunc("GET "+options.BaseURL+"/competition-teams/{id}", wrapper.GetCompetitionTeamsId)
 	m.HandleFunc("GET "+options.BaseURL+"/competitions", wrapper.GetCompetitions)
 	m.HandleFunc("POST "+options.BaseURL+"/competitions", wrapper.PostCompetitions)
+	m.HandleFunc("GET "+options.BaseURL+"/competitions/{id}", wrapper.GetCompetitionsId)
 	m.HandleFunc("GET "+options.BaseURL+"/countries", wrapper.GetCountries)
 	m.HandleFunc("POST "+options.BaseURL+"/countries", wrapper.PostCountries)
+	m.HandleFunc("GET "+options.BaseURL+"/countries/{id}", wrapper.GetCountriesId)
 	m.HandleFunc("GET "+options.BaseURL+"/currencies", wrapper.GetCurrencies)
 	m.HandleFunc("POST "+options.BaseURL+"/currencies", wrapper.PostCurrencies)
+	m.HandleFunc("GET "+options.BaseURL+"/currencies/{id}", wrapper.GetCurrenciesId)
 	m.HandleFunc("GET "+options.BaseURL+"/languages", wrapper.GetLanguages)
 	m.HandleFunc("POST "+options.BaseURL+"/languages", wrapper.PostLanguages)
+	m.HandleFunc("GET "+options.BaseURL+"/languages/{id}", wrapper.GetLanguagesId)
 	m.HandleFunc("GET "+options.BaseURL+"/locations", wrapper.GetLocations)
 	m.HandleFunc("POST "+options.BaseURL+"/locations", wrapper.PostLocations)
+	m.HandleFunc("GET "+options.BaseURL+"/locations/{id}", wrapper.GetLocationsId)
 	m.HandleFunc("GET "+options.BaseURL+"/match-participants", wrapper.GetMatchParticipants)
 	m.HandleFunc("POST "+options.BaseURL+"/match-participants", wrapper.PostMatchParticipants)
+	m.HandleFunc("GET "+options.BaseURL+"/match-participants/{id}", wrapper.GetMatchParticipantsId)
 	m.HandleFunc("GET "+options.BaseURL+"/matches", wrapper.GetMatches)
 	m.HandleFunc("POST "+options.BaseURL+"/matches", wrapper.PostMatches)
+	m.HandleFunc("GET "+options.BaseURL+"/matches/{id}", wrapper.GetMatchesId)
 	m.HandleFunc("GET "+options.BaseURL+"/persons", wrapper.GetPersons)
 	m.HandleFunc("POST "+options.BaseURL+"/persons", wrapper.PostPersons)
 	m.HandleFunc("GET "+options.BaseURL+"/persons/sport", wrapper.GetPersonsSport)
 	m.HandleFunc("POST "+options.BaseURL+"/persons/sport", wrapper.PostPersonsSport)
+	m.HandleFunc("GET "+options.BaseURL+"/persons/sport/{id}", wrapper.GetPersonsSportId)
+	m.HandleFunc("GET "+options.BaseURL+"/persons/team", wrapper.GetPersonsTeam)
+	m.HandleFunc("POST "+options.BaseURL+"/persons/team", wrapper.PostPersonsTeam)
+	m.HandleFunc("GET "+options.BaseURL+"/persons/teams/{id}", wrapper.GetPersonsTeamsId)
+	m.HandleFunc("GET "+options.BaseURL+"/persons/{id}", wrapper.GetPersonsId)
 	m.HandleFunc("GET "+options.BaseURL+"/prizes", wrapper.GetPrizes)
 	m.HandleFunc("POST "+options.BaseURL+"/prizes", wrapper.PostPrizes)
+	m.HandleFunc("GET "+options.BaseURL+"/prizes/{id}", wrapper.GetPrizesId)
 	m.HandleFunc("GET "+options.BaseURL+"/roles", wrapper.GetRoles)
 	m.HandleFunc("POST "+options.BaseURL+"/roles", wrapper.PostRoles)
+	m.HandleFunc("GET "+options.BaseURL+"/roles/{id}", wrapper.GetRolesId)
 	m.HandleFunc("GET "+options.BaseURL+"/sports", wrapper.GetSports)
 	m.HandleFunc("POST "+options.BaseURL+"/sports", wrapper.PostSports)
 	m.HandleFunc("GET "+options.BaseURL+"/sports/{id}", wrapper.GetSportsId)
 	m.HandleFunc("GET "+options.BaseURL+"/stages", wrapper.GetStages)
 	m.HandleFunc("POST "+options.BaseURL+"/stages", wrapper.PostStages)
+	m.HandleFunc("GET "+options.BaseURL+"/stages/{id}", wrapper.GetStagesId)
 	m.HandleFunc("GET "+options.BaseURL+"/team-achievements", wrapper.GetTeamAchievements)
 	m.HandleFunc("POST "+options.BaseURL+"/team-achievements", wrapper.PostTeamAchievements)
+	m.HandleFunc("GET "+options.BaseURL+"/team-achievements/{id}", wrapper.GetTeamAchievementsId)
+	m.HandleFunc("GET "+options.BaseURL+"/team/{id}", wrapper.GetTeamId)
 	m.HandleFunc("GET "+options.BaseURL+"/teams", wrapper.GetTeams)
 	m.HandleFunc("POST "+options.BaseURL+"/teams", wrapper.PostTeams)
 

@@ -91,6 +91,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Country"
 
+  /countries/{id}:
+    get:
+      summary: Получить cтрану по ID
+      tags: [Countries]
+      parameters:
+        - name: id
+          in: path
+          description: ID страны
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: страна
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Country"
+        "404":
+          description: Не найден
+
   /currencies:
     get:
       summary: Список валют
@@ -120,6 +142,27 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Currency"
+
+  /currencies/{id}:
+    get:
+      summary: Получить валюту по символьному коду
+      tags: [Currencies]
+      parameters:
+        - name: id
+          in: path
+          description: Код валюты
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Валюта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Currency"
+        "404":
+          description: Не найден
 
   /locations:
     get:
@@ -151,6 +194,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Location"
 
+  /locations/{id}:
+    get:
+      summary: Получить место проведения по ID
+      tags: [Locations]
+      parameters:
+        - name: id
+          in: path
+          description: ID места проведения
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Место проведения
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Location"
+        "404":
+          description: Не найден
+
   /languages:
     get:
       summary: Список языков
@@ -180,6 +245,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Language"
+
+  /languages/{id}:
+    get:
+      summary: Получить язык по ID
+      tags: [Languages]
+      parameters:
+        - name: id
+          in: path
+          description: ID языка
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Язык
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Language"
+        "404":
+          description: Не найден
 
   /roles:
     get:
@@ -211,6 +298,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Role"
 
+  /roles/{id}:
+    get:
+      summary: Получить роль по ID
+      tags: [Roles]
+      parameters:
+        - name: id
+          in: path
+          description: ID роли
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Вид роли
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Role"
+        "404":
+          description: Не найден
+
   /competition-levels:
     get:
       summary: Список уровней соревнований
@@ -240,6 +349,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CompetitionLevel"
+
+  /competition-levels/{id}:
+    get:
+      summary: Получить уровень соревнования по ID
+      tags: [CompetitionLevels]
+      parameters:
+        - name: id
+          in: path
+          description: ID уровня соревнования
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompetitionLevel"
+        "404":
+          description: Не найден
 
   /persons:
     get:
@@ -271,6 +402,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Person"
 
+  /persons/{id}:
+    get:
+      summary: Получить человека по ID
+      tags: [Persons]
+      parameters:
+        - name: id
+          in: path
+          description: ID человека
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: человек
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        "404":
+          description: Не найден
+
   /persons/sport:
     get:
       summary: Список участников (person)
@@ -300,6 +453,80 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PersonSport"
+
+  /persons/sport/{id}:
+    get:
+      summary: Получить вид панель спортсмена по ID
+      tags: [PersonSports]
+      parameters:
+        - name: id
+          in: path
+          description: ID спортсмена
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Спортсмен
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonSport"
+        "404":
+          description: Не найден
+
+  /persons/team:
+    get:
+      summary: Список участников команд (person)
+      tags: [TeamPersons]
+      responses:
+        "200":
+          description: Массив участников команд
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ListTeamPersonsResponse"
+    post:
+      summary: Создать участника
+      tags: [TeamPersons]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTeamPerson"
+      responses:
+        "201":
+          description: Создан участник
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamPerson"
+
+  /persons/teams/{id}:
+    get:
+      summary: Получить участника команды по ID
+      tags: [TeamPersons]
+      parameters:
+        - name: id
+          in: path
+          description: ID участника команды
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Участник команды
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamPerson"
+        "404":
+          description: Не найден
 
   /teams:
     get:
@@ -331,6 +558,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Team"
 
+  /team/{id}:
+    get:
+      summary: Получить команду по ID
+      tags: [Teams]
+      parameters:
+        - name: id
+          in: path
+          description: ID команды
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: команда
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+        "404":
+          description: Не найден
+
   /competitions:
     get:
       summary: Список соревнований
@@ -360,6 +609,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Competition"
+
+  /competitions/{id}:
+    get:
+      summary: Получить соревнование по ID
+      tags: [Competitions]
+      parameters:
+        - name: id
+          in: path
+          description: ID соревнования
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Соревнование
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Competition"
+        "404":
+          description: Не найден
 
   /stages:
     get:
@@ -391,6 +662,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/Stage"
 
+  /stages/{id}:
+    get:
+      summary: Получить этап соревнования по ID
+      tags: [Stages]
+      parameters:
+        - name: id
+          in: path
+          description: ID этапа соревнования
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Этап соревнования
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stage"
+        "404":
+          description: Не найден
+
   /matches:
     get:
       summary: Список матчей
@@ -420,6 +713,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Match"
+
+  /matches/{id}:
+    get:
+      summary: Получить встречу по ID
+      tags: [Matches]
+      parameters:
+        - name: id
+          in: path
+          description: ID встречи
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Встреча
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+        "404":
+          description: Не найден
 
   /match-participants:
     get:
@@ -451,6 +766,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/MatchParticipant"
 
+  /match-participants/{id}:
+    get:
+      summary: Получить участника встречи по ID
+      tags: [Sports]
+      parameters:
+        - name: id
+          in: path
+          description: ID участника встречи
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Участник встречи
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchParticipant"
+        "404":
+          description: Не найден
+
   /prizes:
     get:
       summary: Список призов
@@ -480,6 +817,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Prize"
+
+  /prizes/{id}:
+    get:
+      summary: Получить награду по ID
+      tags: [Prizes]
+      parameters:
+        - name: id
+          in: path
+          description: ID награду
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Награда
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Prize"
+        "404":
+          description: Не найден
 
   /competition-teams:
     get:
@@ -511,6 +870,28 @@ paths:
               schema:
                 $ref: "#/components/schemas/CompetitionTeams"
 
+  /competition-teams/{id}:
+    get:
+      summary: Получить команду участницу соревнования по ID
+      tags: [CompetitionTeams]
+      parameters:
+        - name: id
+          in: path
+          description: ID вида спорта
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompetitionTeams"
+        "404":
+          description: Не найден
+
   /team-achievements:
     get:
       summary: Список достижений команд
@@ -540,6 +921,28 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/TeamAchievements"
+
+  /team-achievements/{id}:
+    get:
+      summary: Получить достижение команды
+      tags: [TeamAchievements]
+      parameters:
+        - name: id
+          in: path
+          description: ID достижения
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Достижение
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamAchievements"
+        "404":
+          description: Не найден
 
 components:
   schemas:

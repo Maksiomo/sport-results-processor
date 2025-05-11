@@ -142,6 +142,11 @@ type ListTeamAchievementsResponse struct {
 	Data []Country `json:"data"`
 }
 
+// ListTeamPersonsResponse defines model for ListTeamPersonsResponse.
+type ListTeamPersonsResponse struct {
+	Data []TeamPerson `json:"data"`
+}
+
 // ListTeamsResponse defines model for ListTeamsResponse.
 type ListTeamsResponse struct {
 	Data []Team `json:"data"`
@@ -299,6 +304,15 @@ type NewTeamAchievements struct {
 	TeamId  int64 `json:"team_id"`
 }
 
+// NewTeamPerson defines model for NewTeamPerson.
+type NewTeamPerson struct {
+	JoinedAt time.Time  `json:"joined_at"`
+	LeftAt   *time.Time `json:"left_at,omitempty"`
+	PersonId int64      `json:"person_id"`
+	RoleId   int64      `json:"role_id"`
+	TeamId   int64      `json:"team_id"`
+}
+
 // Person defines model for Person.
 type Person struct {
 	BirthDate  time.Time `json:"birth_date"`
@@ -386,6 +400,19 @@ type TeamAchievements struct {
 	TxHash     *string   `json:"tx_hash,omitempty"`
 }
 
+// TeamPerson defines model for TeamPerson.
+type TeamPerson struct {
+	CreatedAt  time.Time  `json:"created_at"`
+	Id         int64      `json:"id"`
+	JoinedAt   time.Time  `json:"joined_at"`
+	LeftAt     *time.Time `json:"left_at,omitempty"`
+	PersonId   int64      `json:"person_id"`
+	RecordHash *[]byte    `json:"record_hash,omitempty"`
+	RoleId     int64      `json:"role_id"`
+	TeamId     int64      `json:"team_id"`
+	TxHash     *string    `json:"tx_hash,omitempty"`
+}
+
 // PostCompetitionLevelsJSONRequestBody defines body for PostCompetitionLevels for application/json ContentType.
 type PostCompetitionLevelsJSONRequestBody = NewCompetitionLevel
 
@@ -418,6 +445,9 @@ type PostPersonsJSONRequestBody = NewPerson
 
 // PostPersonsSportJSONRequestBody defines body for PostPersonsSport for application/json ContentType.
 type PostPersonsSportJSONRequestBody = NewPersonSport
+
+// PostPersonsTeamJSONRequestBody defines body for PostPersonsTeam for application/json ContentType.
+type PostPersonsTeamJSONRequestBody = NewTeamPerson
 
 // PostPrizesJSONRequestBody defines body for PostPrizes for application/json ContentType.
 type PostPrizesJSONRequestBody = NewPrize

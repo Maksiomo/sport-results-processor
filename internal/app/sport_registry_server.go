@@ -78,8 +78,18 @@ func (s *sportRegistryServer) GetCompetitionLevels(w http.ResponseWriter, r *htt
 	panic("unimplemented")
 }
 
+// GetCompetitionLevelsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetCompetitionLevelsId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
 // GetCompetitionTeams implements registry.ServerInterface.
 func (s *sportRegistryServer) GetCompetitionTeams(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetCompetitionTeamsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetCompetitionTeamsId(w http.ResponseWriter, r *http.Request, id int64) {
 	panic("unimplemented")
 }
 
@@ -88,8 +98,28 @@ func (s *sportRegistryServer) GetCompetitions(w http.ResponseWriter, r *http.Req
 	panic("unimplemented")
 }
 
+// GetCompetitionsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetCompetitionsId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
 // GetCountries implements registry.ServerInterface.
 func (s *sportRegistryServer) GetCountries(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetCountriesId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetCountriesId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
+// GetCurrencies implements registry.ServerInterface.
+func (s *sportRegistryServer) GetCurrencies(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetCurrenciesId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetCurrenciesId(w http.ResponseWriter, r *http.Request, id string) {
 	panic("unimplemented")
 }
 
@@ -98,8 +128,18 @@ func (s *sportRegistryServer) GetLanguages(w http.ResponseWriter, r *http.Reques
 	panic("unimplemented")
 }
 
+// GetLanguagesId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetLanguagesId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
 // GetLocations implements registry.ServerInterface.
 func (s *sportRegistryServer) GetLocations(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetLocationsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetLocationsId(w http.ResponseWriter, r *http.Request, id int64) {
 	panic("unimplemented")
 }
 
@@ -108,8 +148,18 @@ func (s *sportRegistryServer) GetMatchParticipants(w http.ResponseWriter, r *htt
 	panic("unimplemented")
 }
 
+// GetMatchParticipantsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetMatchParticipantsId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
 // GetMatches implements registry.ServerInterface.
 func (s *sportRegistryServer) GetMatches(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetMatchesId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetMatchesId(w http.ResponseWriter, r *http.Request, id int64) {
 	panic("unimplemented")
 }
 
@@ -118,13 +168,48 @@ func (s *sportRegistryServer) GetPersons(w http.ResponseWriter, r *http.Request)
 	panic("unimplemented")
 }
 
+// GetPersonsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetPersonsId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
+// GetPersonsSport implements registry.ServerInterface.
+func (s *sportRegistryServer) GetPersonsSport(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetPersonsSportId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetPersonsSportId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
+// GetPersonsTeam implements registry.ServerInterface.
+func (s *sportRegistryServer) GetPersonsTeam(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetPersonsTeamsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetPersonsTeamsId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
 // GetPrizes implements registry.ServerInterface.
 func (s *sportRegistryServer) GetPrizes(w http.ResponseWriter, r *http.Request) {
 	panic("unimplemented")
 }
 
+// GetPrizesId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetPrizesId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
 // GetRoles implements registry.ServerInterface.
 func (s *sportRegistryServer) GetRoles(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetRolesId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetRolesId(w http.ResponseWriter, r *http.Request, id int64) {
 	panic("unimplemented")
 }
 
@@ -143,8 +228,23 @@ func (s *sportRegistryServer) GetStages(w http.ResponseWriter, r *http.Request) 
 	panic("unimplemented")
 }
 
+// GetStagesId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetStagesId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
 // GetTeamAchievements implements registry.ServerInterface.
 func (s *sportRegistryServer) GetTeamAchievements(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// GetTeamAchievementsId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetTeamAchievementsId(w http.ResponseWriter, r *http.Request, id int64) {
+	panic("unimplemented")
+}
+
+// GetTeamId implements registry.ServerInterface.
+func (s *sportRegistryServer) GetTeamId(w http.ResponseWriter, r *http.Request, id int64) {
 	panic("unimplemented")
 }
 
@@ -173,6 +273,11 @@ func (s *sportRegistryServer) PostCountries(w http.ResponseWriter, r *http.Reque
 	panic("unimplemented")
 }
 
+// PostCurrencies implements registry.ServerInterface.
+func (s *sportRegistryServer) PostCurrencies(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
 // PostLanguages implements registry.ServerInterface.
 func (s *sportRegistryServer) PostLanguages(w http.ResponseWriter, r *http.Request) {
 	panic("unimplemented")
@@ -195,6 +300,16 @@ func (s *sportRegistryServer) PostMatches(w http.ResponseWriter, r *http.Request
 
 // PostPersons implements registry.ServerInterface.
 func (s *sportRegistryServer) PostPersons(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// PostPersonsSport implements registry.ServerInterface.
+func (s *sportRegistryServer) PostPersonsSport(w http.ResponseWriter, r *http.Request) {
+	panic("unimplemented")
+}
+
+// PostPersonsTeam implements registry.ServerInterface.
+func (s *sportRegistryServer) PostPersonsTeam(w http.ResponseWriter, r *http.Request) {
 	panic("unimplemented")
 }
 
@@ -226,13 +341,4 @@ func (s *sportRegistryServer) PostTeamAchievements(w http.ResponseWriter, r *htt
 // PostTeams implements registry.ServerInterface.
 func (s *sportRegistryServer) PostTeams(w http.ResponseWriter, r *http.Request) {
 	panic("unimplemented")
-}
-
-func (s *sportRegistryServer) validateKey(key string) error {
-	if key != s.validationKey {
-		s.log.WithMethod(s.ctx, "validateKey").Error("authenticate failed")
-		return errors.New("authenticate failed")
-	}
-
-	return nil
 }
