@@ -14,7 +14,6 @@ import (
 	"time"
 
 	"github.com/friendsofgo/errors"
-	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"github.com/volatiletech/sqlboiler/v4/queries"
 	"github.com/volatiletech/sqlboiler/v4/queries/qm"
@@ -24,44 +23,37 @@ import (
 
 // Currency is an object representing the database table.
 type Currency struct {
-	Code   string      `boil:"code" json:"code" toml:"code" yaml:"code"`
-	Name   string      `boil:"name" json:"name" toml:"name" yaml:"name"`
-	Symbol null.String `boil:"symbol" json:"symbol,omitempty" toml:"symbol" yaml:"symbol,omitempty"`
+	Code string `boil:"code" json:"code" toml:"code" yaml:"code"`
+	Name string `boil:"name" json:"name" toml:"name" yaml:"name"`
 
 	R *currencyR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L currencyL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var CurrencyColumns = struct {
-	Code   string
-	Name   string
-	Symbol string
+	Code string
+	Name string
 }{
-	Code:   "code",
-	Name:   "name",
-	Symbol: "symbol",
+	Code: "code",
+	Name: "name",
 }
 
 var CurrencyTableColumns = struct {
-	Code   string
-	Name   string
-	Symbol string
+	Code string
+	Name string
 }{
-	Code:   "currency.code",
-	Name:   "currency.name",
-	Symbol: "currency.symbol",
+	Code: "currency.code",
+	Name: "currency.name",
 }
 
 // Generated where
 
 var CurrencyWhere = struct {
-	Code   whereHelperstring
-	Name   whereHelperstring
-	Symbol whereHelpernull_String
+	Code whereHelperstring
+	Name whereHelperstring
 }{
-	Code:   whereHelperstring{field: "\"currency\".\"code\""},
-	Name:   whereHelperstring{field: "\"currency\".\"name\""},
-	Symbol: whereHelpernull_String{field: "\"currency\".\"symbol\""},
+	Code: whereHelperstring{field: "\"currency\".\"code\""},
+	Name: whereHelperstring{field: "\"currency\".\"name\""},
 }
 
 // CurrencyRels is where relationship names are stored.
@@ -92,9 +84,9 @@ func (r *currencyR) GetCurrencyCodePrizes() PrizeSlice {
 type currencyL struct{}
 
 var (
-	currencyAllColumns            = []string{"code", "name", "symbol"}
+	currencyAllColumns            = []string{"code", "name"}
 	currencyColumnsWithoutDefault = []string{"code", "name"}
-	currencyColumnsWithDefault    = []string{"symbol"}
+	currencyColumnsWithDefault    = []string{}
 	currencyPrimaryKeyColumns     = []string{"code"}
 	currencyGeneratedColumns      = []string{}
 )

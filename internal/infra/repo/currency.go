@@ -9,7 +9,6 @@ import (
 	"sport-results-pocessor/internal/domain/model"
 	"sport-results-pocessor/internal/infra/repo/entity"
 
-	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"go.uber.org/zap"
 )
@@ -85,16 +84,14 @@ func (r *CurrencyRepo) Create(ctx context.Context, m *model.Currency) error {
 
 func (*CurrencyRepo) toEntity(m *model.Currency) *entity.Currency {
 	return &entity.Currency{
-		Code:   m.Code,
-		Name:   m.Name,
-		Symbol: null.StringFromPtr(m.Symbol),
+		Code: m.Code,
+		Name: m.Name,
 	}
 }
 
 func (*CurrencyRepo) fromEntity(e *entity.Currency) *model.Currency {
 	return &model.Currency{
-		Code:   e.Code,
-		Name:   e.Name,
-		Symbol: e.Symbol.Ptr(),
+		Code: e.Code,
+		Name: e.Name,
 	}
 }

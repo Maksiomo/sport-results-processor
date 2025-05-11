@@ -17,7 +17,6 @@ type Competition struct {
 	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	SportId    int64     `json:"sport_id"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
 }
 
 // CompetitionLevel defines model for CompetitionLevel.
@@ -27,7 +26,6 @@ type CompetitionLevel struct {
 	Name       string    `json:"name"`
 	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
 }
 
 // CompetitionTeams defines model for CompetitionTeams.
@@ -38,7 +36,6 @@ type CompetitionTeams struct {
 	RecordHash    *[]byte   `json:"record_hash,omitempty"`
 	TeamId        int64     `json:"team_id"`
 	TxHash        *string   `json:"tx_hash,omitempty"`
-	UpdatedAt     time.Time `json:"updated_at"`
 }
 
 // Country defines model for Country.
@@ -48,7 +45,12 @@ type Country struct {
 	Name       string    `json:"name"`
 	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
+}
+
+// Currency defines model for Currency.
+type Currency struct {
+	Code string `json:"code"`
+	Name string `json:"name"`
 }
 
 // Language defines model for Language.
@@ -58,7 +60,91 @@ type Language struct {
 	Name       string    `json:"name"`
 	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
+}
+
+// ListCompetitionLevelsResponse defines model for ListCompetitionLevelsResponse.
+type ListCompetitionLevelsResponse struct {
+	Data []CompetitionLevel `json:"data"`
+}
+
+// ListCompetitionTeamsResponse defines model for ListCompetitionTeamsResponse.
+type ListCompetitionTeamsResponse struct {
+	Data []CompetitionTeams `json:"data"`
+}
+
+// ListCompetitionsResponse defines model for ListCompetitionsResponse.
+type ListCompetitionsResponse struct {
+	Data []Competition `json:"data"`
+}
+
+// ListCountriesResponse defines model for ListCountriesResponse.
+type ListCountriesResponse struct {
+	Data []Country `json:"data"`
+}
+
+// ListCurrenciesResponse defines model for ListCurrenciesResponse.
+type ListCurrenciesResponse struct {
+	Data []Currency `json:"data"`
+}
+
+// ListLanguagesResponse defines model for ListLanguagesResponse.
+type ListLanguagesResponse struct {
+	Data []Language `json:"data"`
+}
+
+// ListLocationsResponse defines model for ListLocationsResponse.
+type ListLocationsResponse struct {
+	Data []Location `json:"data"`
+}
+
+// ListMatchParticipantsResponse defines model for ListMatchParticipantsResponse.
+type ListMatchParticipantsResponse struct {
+	Data []MatchParticipant `json:"data"`
+}
+
+// ListMatchesResponse defines model for ListMatchesResponse.
+type ListMatchesResponse struct {
+	Data []Match `json:"data"`
+}
+
+// ListPersonSportsResponse defines model for ListPersonSportsResponse.
+type ListPersonSportsResponse struct {
+	Data []PersonSport `json:"data"`
+}
+
+// ListPersonsResponse defines model for ListPersonsResponse.
+type ListPersonsResponse struct {
+	Data []Person `json:"data"`
+}
+
+// ListPrizesResponse defines model for ListPrizesResponse.
+type ListPrizesResponse struct {
+	Data []Prize `json:"data"`
+}
+
+// ListRolesResponse defines model for ListRolesResponse.
+type ListRolesResponse struct {
+	Data []Role `json:"data"`
+}
+
+// ListSportsResponse defines model for ListSportsResponse.
+type ListSportsResponse struct {
+	Data []Sport `json:"data"`
+}
+
+// ListStagesResponse defines model for ListStagesResponse.
+type ListStagesResponse struct {
+	Data []Stage `json:"data"`
+}
+
+// ListTeamAchievementsResponse defines model for ListTeamAchievementsResponse.
+type ListTeamAchievementsResponse struct {
+	Data []Country `json:"data"`
+}
+
+// ListTeamsResponse defines model for ListTeamsResponse.
+type ListTeamsResponse struct {
+	Data []Team `json:"data"`
 }
 
 // Location defines model for Location.
@@ -72,7 +158,6 @@ type Location struct {
 	RecordHash  *[]byte    `json:"record_hash,omitempty"`
 	State       *string    `json:"state,omitempty"`
 	TxHash      *string    `json:"tx_hash,omitempty"`
-	UpdatedAt   *time.Time `json:"updated_at,omitempty"`
 }
 
 // Match defines model for Match.
@@ -85,7 +170,6 @@ type Match struct {
 	RecordHash *[]byte                 `json:"record_hash,omitempty"`
 	StageId    int64                   `json:"stage_id"`
 	TxHash     *string                 `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time               `json:"updated_at"`
 }
 
 // MatchParticipant defines model for MatchParticipant.
@@ -98,7 +182,6 @@ type MatchParticipant struct {
 	Score      int       `json:"score"`
 	TeamId     int64     `json:"team_id"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
 }
 
 // NewCompetition defines model for NewCompetition.
@@ -122,6 +205,12 @@ type NewCompetitionTeams struct {
 
 // NewCountry defines model for NewCountry.
 type NewCountry struct {
+	Name string `json:"name"`
+}
+
+// NewCurrency defines model for NewCurrency.
+type NewCurrency struct {
+	Code string `json:"code"`
 	Name string `json:"name"`
 }
 
@@ -160,6 +249,12 @@ type NewPerson struct {
 	BirthDate time.Time `json:"birth_date"`
 	CountryId int64     `json:"country_id"`
 	Name      string    `json:"name"`
+}
+
+// NewPersonSport defines model for NewPersonSport.
+type NewPersonSport struct {
+	PersonId int64 `json:"person_id"`
+	SportId  int64 `json:"sport_id"`
 }
 
 // NewPrize defines model for NewPrize.
@@ -213,7 +308,16 @@ type Person struct {
 	Name       string    `json:"name"`
 	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
+}
+
+// PersonSport defines model for PersonSport.
+type PersonSport struct {
+	CreatedAt  time.Time `json:"created_at"`
+	Id         int64     `json:"id"`
+	PersonId   int64     `json:"person_id"`
+	RecordHash *[]byte   `json:"record_hash,omitempty"`
+	SportId    int64     `json:"sport_id"`
+	TxHash     *string   `json:"tx_hash,omitempty"`
 }
 
 // Prize defines model for Prize.
@@ -226,7 +330,6 @@ type Prize struct {
 	PrizeAmount   int       `json:"prize_amount"`
 	RecordHash    *[]byte   `json:"record_hash,omitempty"`
 	TxHash        *string   `json:"tx_hash,omitempty"`
-	UpdatedAt     time.Time `json:"updated_at"`
 }
 
 // Role defines model for Role.
@@ -236,7 +339,6 @@ type Role struct {
 	Name       string    `json:"name"`
 	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
 }
 
 // Sport defines model for Sport.
@@ -249,7 +351,6 @@ type Sport struct {
 	Name        string    `json:"name"`
 	RecordHash  *[]byte   `json:"record_hash,omitempty"`
 	TxHash      *string   `json:"tx_hash,omitempty"`
-	UpdatedAt   time.Time `json:"updated_at"`
 }
 
 // Stage defines model for Stage.
@@ -262,7 +363,6 @@ type Stage struct {
 	RecordHash    *[]byte    `json:"record_hash,omitempty"`
 	StartTime     time.Time  `json:"start_time"`
 	TxHash        *string    `json:"tx_hash,omitempty"`
-	UpdatedAt     time.Time  `json:"updated_at"`
 }
 
 // Team defines model for Team.
@@ -274,7 +374,6 @@ type Team struct {
 	Name           string    `json:"name"`
 	RecordHash     *[]byte   `json:"record_hash,omitempty"`
 	TxHash         *string   `json:"tx_hash,omitempty"`
-	UpdatedAt      time.Time `json:"updated_at"`
 }
 
 // TeamAchievements defines model for TeamAchievements.
@@ -285,7 +384,6 @@ type TeamAchievements struct {
 	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	TeamId     int64     `json:"team_id"`
 	TxHash     *string   `json:"tx_hash,omitempty"`
-	UpdatedAt  time.Time `json:"updated_at"`
 }
 
 // PostCompetitionLevelsJSONRequestBody defines body for PostCompetitionLevels for application/json ContentType.
@@ -299,6 +397,9 @@ type PostCompetitionsJSONRequestBody = NewCompetition
 
 // PostCountriesJSONRequestBody defines body for PostCountries for application/json ContentType.
 type PostCountriesJSONRequestBody = NewCountry
+
+// PostCurrenciesJSONRequestBody defines body for PostCurrencies for application/json ContentType.
+type PostCurrenciesJSONRequestBody = NewCurrency
 
 // PostLanguagesJSONRequestBody defines body for PostLanguages for application/json ContentType.
 type PostLanguagesJSONRequestBody = NewLanguage
@@ -314,6 +415,9 @@ type PostMatchesJSONRequestBody = NewMatch
 
 // PostPersonsJSONRequestBody defines body for PostPersons for application/json ContentType.
 type PostPersonsJSONRequestBody = NewPerson
+
+// PostPersonsSportJSONRequestBody defines body for PostPersonsSport for application/json ContentType.
+type PostPersonsSportJSONRequestBody = NewPersonSport
 
 // PostPrizesJSONRequestBody defines body for PostPrizes for application/json ContentType.
 type PostPrizesJSONRequestBody = NewPrize

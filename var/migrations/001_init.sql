@@ -51,8 +51,7 @@ CREATE TABLE competition_level (
 -- Таблица валют для призов
 CREATE TABLE currency (
     code   TEXT PRIMARY KEY,
-    name   TEXT NOT NULL,
-    symbol TEXT UNIQUE
+    name   TEXT NOT NULL
 );
 
 

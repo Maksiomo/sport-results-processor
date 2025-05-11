@@ -14,14 +14,14 @@ paths:
       summary: Список видов спорта
       tags: [Sports]
       responses:
-        '200':
+        "200":
           description: Массив видов спорта
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Sport'
+                  $ref: "#/components/schemas/ListSportsResponse"
     post:
       summary: Создать новый вид спорта
       tags: [Sports]
@@ -30,14 +30,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewSport'
+              $ref: "#/components/schemas/NewSport"
       responses:
-        '201':
+        "201":
           description: Создан вид спорта
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sport'
+                $ref: "#/components/schemas/Sport"
 
   /sports/{id}:
     get:
@@ -52,13 +52,13 @@ paths:
             type: integer
             format: int64
       responses:
-        '200':
+        "200":
           description: Вид спорта
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Sport'
-        '404':
+                $ref: "#/components/schemas/Sport"
+        "404":
           description: Не найден
 
   /countries:
@@ -66,14 +66,14 @@ paths:
       summary: Список стран
       tags: [Countries]
       responses:
-        '200':
+        "200":
           description: Массив стран
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Country'
+                  $ref: "#/components/schemas/ListCountriesResponse"
     post:
       summary: Создать новую страну
       tags: [Countries]
@@ -82,28 +82,58 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewCountry'
+              $ref: "#/components/schemas/NewCountry"
       responses:
-        '201':
+        "201":
           description: Создана страна
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Country'
+                $ref: "#/components/schemas/Country"
+
+  /currencies:
+    get:
+      summary: Список валют
+      tags: [Currencies]
+      responses:
+        "200":
+          description: Массив валют
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ListCurrenciesResponse"
+    post:
+      summary: Создать новую валюту
+      tags: [Currencies]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewCurrency"
+      responses:
+        "201":
+          description: Создана локация
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Currency"
 
   /locations:
     get:
       summary: Список локаций
       tags: [Locations]
       responses:
-        '200':
+        "200":
           description: Массив локаций
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Location'
+                  $ref: "#/components/schemas/ListLocationsResponse"
     post:
       summary: Создать новую локацию
       tags: [Locations]
@@ -112,28 +142,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewLocation'
+              $ref: "#/components/schemas/NewLocation"
       responses:
-        '201':
+        "201":
           description: Создана локация
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Location'
+                $ref: "#/components/schemas/Location"
 
   /languages:
     get:
       summary: Список языков
       tags: [Languages]
       responses:
-        '200':
+        "200":
           description: Массив языков
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Language'
+                  $ref: "#/components/schemas/ListLanguagesResponse"
     post:
       summary: Создать новый язык
       tags: [Languages]
@@ -142,28 +172,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewLanguage'
+              $ref: "#/components/schemas/NewLanguage"
       responses:
-        '201':
+        "201":
           description: Создан язык
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Language'
+                $ref: "#/components/schemas/Language"
 
   /roles:
     get:
       summary: Список ролей
       tags: [Roles]
       responses:
-        '200':
+        "200":
           description: Массив ролей
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Role'
+                  $ref: "#/components/schemas/ListRolesResponse"
     post:
       summary: Создать новую роль
       tags: [Roles]
@@ -172,28 +202,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewRole'
+              $ref: "#/components/schemas/NewRole"
       responses:
-        '201':
+        "201":
           description: Создана роль
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Role'
+                $ref: "#/components/schemas/Role"
 
   /competition-levels:
     get:
       summary: Список уровней соревнований
       tags: [CompetitionLevels]
       responses:
-        '200':
+        "200":
           description: Массив уровней
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CompetitionLevel'
+                  $ref: "#/components/schemas/ListCompetitionLevelsResponse"
     post:
       summary: Создать новый уровень соревнований
       tags: [CompetitionLevels]
@@ -202,28 +232,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewCompetitionLevel'
+              $ref: "#/components/schemas/NewCompetitionLevel"
       responses:
-        '201':
+        "201":
           description: Создан уровень
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CompetitionLevel'
+                $ref: "#/components/schemas/CompetitionLevel"
 
   /persons:
     get:
       summary: Список участников (person)
       tags: [Persons]
       responses:
-        '200':
+        "200":
           description: Массив участников
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Person'
+                  $ref: "#/components/schemas/ListPersonsResponse"
     post:
       summary: Создать участника
       tags: [Persons]
@@ -232,28 +262,58 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewPerson'
+              $ref: "#/components/schemas/NewPerson"
       responses:
-        '201':
+        "201":
           description: Создан участник
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Person'
+                $ref: "#/components/schemas/Person"
+
+  /persons/sport:
+    get:
+      summary: Список участников (person)
+      tags: [PersonSports]
+      responses:
+        "200":
+          description: Массив участников
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/ListPersonSportsResponse"
+    post:
+      summary: Создать участника
+      tags: [PersonSports]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPersonSport"
+      responses:
+        "201":
+          description: Создан участник
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonSport"
 
   /teams:
     get:
       summary: Список команд
       tags: [Teams]
       responses:
-        '200':
+        "200":
           description: Массив команд
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Team'
+                  $ref: "#/components/schemas/ListTeamsResponse"
     post:
       summary: Создать команду
       tags: [Teams]
@@ -262,28 +322,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTeam'
+              $ref: "#/components/schemas/NewTeam"
       responses:
-        '201':
+        "201":
           description: Создана команда
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Team'
+                $ref: "#/components/schemas/Team"
 
   /competitions:
     get:
       summary: Список соревнований
       tags: [Competitions]
       responses:
-        '200':
+        "200":
           description: Массив соревнований
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Competition'
+                  $ref: "#/components/schemas/ListCompetitionsResponse"
     post:
       summary: Создать соревнование
       tags: [Competitions]
@@ -292,28 +352,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewCompetition'
+              $ref: "#/components/schemas/NewCompetition"
       responses:
-        '201':
+        "201":
           description: Создано соревнование
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Competition'
+                $ref: "#/components/schemas/Competition"
 
   /stages:
     get:
       summary: Список этапов
       tags: [Stages]
       responses:
-        '200':
+        "200":
           description: Массив этапов
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Stage'
+                  $ref: "#/components/schemas/ListStagesResponse"
     post:
       summary: Создать этап
       tags: [Stages]
@@ -322,28 +382,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewStage'
+              $ref: "#/components/schemas/NewStage"
       responses:
-        '201':
+        "201":
           description: Создан этап
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Stage'
+                $ref: "#/components/schemas/Stage"
 
   /matches:
     get:
       summary: Список матчей
       tags: [Matches]
       responses:
-        '200':
+        "200":
           description: Массив матчей
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Match'
+                  $ref: "#/components/schemas/ListMatchesResponse"
     post:
       summary: Создать матч
       tags: [Matches]
@@ -352,28 +412,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewMatch'
+              $ref: "#/components/schemas/NewMatch"
       responses:
-        '201':
+        "201":
           description: Создан матч
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Match'
+                $ref: "#/components/schemas/Match"
 
   /match-participants:
     get:
       summary: Список участников матча
       tags: [MatchParticipants]
       responses:
-        '200':
+        "200":
           description: Массив участников матча
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/MatchParticipant'
+                  $ref: "#/components/schemas/ListMatchParticipantsResponse"
     post:
       summary: Добавить участника в матч
       tags: [MatchParticipants]
@@ -382,28 +442,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewMatchParticipant'
+              $ref: "#/components/schemas/NewMatchParticipant"
       responses:
-        '201':
+        "201":
           description: Участник добавлен
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MatchParticipant'
+                $ref: "#/components/schemas/MatchParticipant"
 
   /prizes:
     get:
       summary: Список призов
       tags: [Prizes]
       responses:
-        '200':
+        "200":
           description: Массив призов
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Prize'
+                  $ref: "#/components/schemas/ListPrizesResponse"
     post:
       summary: Создать приз
       tags: [Prizes]
@@ -412,28 +472,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewPrize'
+              $ref: "#/components/schemas/NewPrize"
       responses:
-        '201':
+        "201":
           description: Приз создан
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Prize'
+                $ref: "#/components/schemas/Prize"
 
   /competition-teams:
     get:
       summary: Список участников соревнований
       tags: [CompetitionTeams]
       responses:
-        '200':
+        "200":
           description: Массив связей команда↔соревнование
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/CompetitionTeams'
+                  $ref: "#/components/schemas/ListCompetitionTeamsResponse"
     post:
       summary: Добавить команду в соревнование
       tags: [CompetitionTeams]
@@ -442,28 +502,28 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewCompetitionTeams'
+              $ref: "#/components/schemas/NewCompetitionTeams"
       responses:
-        '201':
+        "201":
           description: Запись добавлена
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CompetitionTeams'
+                $ref: "#/components/schemas/CompetitionTeams"
 
   /team-achievements:
     get:
       summary: Список достижений команд
       tags: [TeamAchievements]
       responses:
-        '200':
+        "200":
           description: Массив достижений
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/TeamAchievements'
+                  $ref: "#/components/schemas/ListTeamAchievementsResponse"
     post:
       summary: Добавить достижение команде
       tags: [TeamAchievements]
@@ -472,17 +532,57 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NewTeamAchievements'
+              $ref: "#/components/schemas/NewTeamAchievements"
       responses:
-        '201':
+        "201":
           description: Достижение добавлено
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TeamAchievements'
+                $ref: "#/components/schemas/TeamAchievements"
 
 components:
   schemas:
+    ListCurrenciesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Currency"
+
+    Currency:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+      required:
+        - code
+        - name
+
+    NewCurrency:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+      required:
+        - code
+        - name
+
+    ListSportsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Sport"
+
     Sport:
       type: object
       properties:
@@ -500,9 +600,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -514,7 +611,6 @@ components:
         - min_team_size
         - max_team_size
         - created_at
-        - updated_at
 
     NewSport:
       type: object
@@ -532,6 +628,15 @@ components:
         - min_team_size
         - max_team_size
 
+    ListCountriesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Country"
+
     Country:
       type: object
       properties:
@@ -543,9 +648,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -555,7 +657,6 @@ components:
         - id
         - name
         - created_at
-        - updated_at
 
     NewCountry:
       type: object
@@ -564,6 +665,15 @@ components:
           type: string
       required:
         - name
+
+    ListLocationsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Location"
 
     Location:
       type: object
@@ -583,9 +693,6 @@ components:
         full_address:
           type: string
         created_at:
-          type: string
-          format: date-time
-        updated_at:
           type: string
           format: date-time
         record_hash:
@@ -616,6 +723,15 @@ components:
         - country_id
         - full_address
 
+    ListLanguagesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Language"
+
     Language:
       type: object
       properties:
@@ -627,9 +743,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -639,7 +752,6 @@ components:
         - id
         - name
         - created_at
-        - updated_at
 
     NewLanguage:
       type: object
@@ -648,6 +760,15 @@ components:
           type: string
       required:
         - name
+
+    ListRolesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
 
     Role:
       type: object
@@ -660,9 +781,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -672,7 +790,6 @@ components:
         - id
         - name
         - created_at
-        - updated_at
 
     NewRole:
       type: object
@@ -681,6 +798,15 @@ components:
           type: string
       required:
         - name
+
+    ListCompetitionLevelsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/CompetitionLevel"
 
     CompetitionLevel:
       type: object
@@ -693,9 +819,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -705,7 +828,6 @@ components:
         - id
         - name
         - created_at
-        - updated_at
 
     NewCompetitionLevel:
       type: object
@@ -714,6 +836,15 @@ components:
           type: string
       required:
         - name
+
+    ListPersonsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
 
     Person:
       type: object
@@ -732,9 +863,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -746,7 +874,6 @@ components:
         - birth_date
         - country_id
         - created_at
-        - updated_at
 
     NewPerson:
       type: object
@@ -764,6 +891,15 @@ components:
         - birth_date
         - country_id
 
+    ListPersonSportsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/PersonSport"
+
     PersonSport:
       type: object
       properties:
@@ -779,9 +915,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -792,7 +925,6 @@ components:
         - person_id
         - sport_id
         - created_at
-        - updated_at
 
     NewPersonSport:
       type: object
@@ -806,6 +938,15 @@ components:
       required:
         - person_id
         - sport_id
+
+    ListTeamsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Team"
 
     Team:
       type: object
@@ -824,9 +965,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -838,7 +976,6 @@ components:
         - country_id
         - foundation_date
         - created_at
-        - updated_at
 
     NewTeam:
       type: object
@@ -855,6 +992,15 @@ components:
         - name
         - country_id
         - foundation_date
+
+    ListTeamPersonsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/TeamPerson"
 
     TeamPerson:
       type: object
@@ -880,9 +1026,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -895,7 +1038,6 @@ components:
         - role_id
         - joined_at
         - created_at
-        - updated_at
 
     NewTeamPerson:
       type: object
@@ -921,6 +1063,15 @@ components:
         - role_id
         - joined_at
 
+    ListCompetitionsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Competition"
+
     Competition:
       type: object
       properties:
@@ -941,9 +1092,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -956,7 +1104,6 @@ components:
         - location_id
         - level_id
         - created_at
-        - updated_at
 
     NewCompetition:
       type: object
@@ -978,6 +1125,15 @@ components:
         - location_id
         - level_id
 
+    ListStagesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Stage"
+
     Stage:
       type: object
       properties:
@@ -998,9 +1154,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -1012,7 +1165,6 @@ components:
         - name
         - start_time
         - created_at
-        - updated_at
 
     NewStage:
       type: object
@@ -1032,6 +1184,15 @@ components:
         - competition_id
         - name
         - start_time
+
+    ListMatchesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Match"
 
     Match:
       type: object
@@ -1053,9 +1214,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -1066,7 +1224,6 @@ components:
         - stage_id
         - match_time
         - created_at
-        - updated_at
 
     NewMatch:
       type: object
@@ -1085,6 +1242,15 @@ components:
       required:
         - stage_id
         - match_time
+
+    ListMatchParticipantsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/MatchParticipant"
 
     MatchParticipant:
       type: object
@@ -1105,9 +1271,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -1119,7 +1282,6 @@ components:
         - team_id
         - score
         - created_at
-        - updated_at
 
     NewMatchParticipant:
       type: object
@@ -1139,6 +1301,15 @@ components:
         - team_id
         - score
 
+    ListPrizesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Prize"
+
     Prize:
       type: object
       properties:
@@ -1157,9 +1328,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -1172,7 +1340,6 @@ components:
         - currency_code
         - prize_amount
         - created_at
-        - updated_at
 
     NewPrize:
       type: object
@@ -1192,6 +1359,15 @@ components:
         - currency_code
         - prize_amount
 
+    ListCompetitionTeamsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/CompetitionTeams"
+
     CompetitionTeams:
       type: object
       properties:
@@ -1207,9 +1383,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -1220,7 +1393,6 @@ components:
         - team_id
         - competition_id
         - created_at
-        - updated_at
 
     NewCompetitionTeams:
       type: object
@@ -1234,6 +1406,15 @@ components:
       required:
         - team_id
         - competition_id
+
+    ListTeamAchievementsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Country"
 
     TeamAchievements:
       type: object
@@ -1250,9 +1431,6 @@ components:
         created_at:
           type: string
           format: date-time
-        updated_at:
-          type: string
-          format: date-time
         record_hash:
           type: string
           format: byte
@@ -1263,7 +1441,6 @@ components:
         - team_id
         - prize_id
         - created_at
-        - updated_at
 
     NewTeamAchievements:
       type: object

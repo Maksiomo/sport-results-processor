@@ -37,5 +37,5 @@ tasks:
   generate-registry-server:
     desc: generate registry server
     cmds:
-      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/registry/server.go -package=registry -generate=std-http ./api/registry.server.yaml
-      - werf run --docker-options="-u $(id -u):$(id -g) -v `pwd`/:/app -w /app" --dev oapi-codegen -- oapi-codegen -o ./internal/common/service/server/registry/types.go -package=registry -generate=types ./api/registry.server.yaml
+      - oapi-codegen -o ./internal/common/service/server/registry/server.go -package=registry -generate=std-http ./api/registry.server.yaml
+      - oapi-codegen -o ./internal/common/service/server/registry/types.go -package=registry -generate=types ./api/registry.server.yaml

@@ -38,6 +38,12 @@ type ServerInterface interface {
 	// Создать новую страну
 	// (POST /countries)
 	PostCountries(w http.ResponseWriter, r *http.Request)
+	// Список валют
+	// (GET /currencies)
+	GetCurrencies(w http.ResponseWriter, r *http.Request)
+	// Создать новую валюту
+	// (POST /currencies)
+	PostCurrencies(w http.ResponseWriter, r *http.Request)
 	// Список языков
 	// (GET /languages)
 	GetLanguages(w http.ResponseWriter, r *http.Request)
@@ -68,6 +74,12 @@ type ServerInterface interface {
 	// Создать участника
 	// (POST /persons)
 	PostPersons(w http.ResponseWriter, r *http.Request)
+	// Список участников (person)
+	// (GET /persons/sport)
+	GetPersonsSport(w http.ResponseWriter, r *http.Request)
+	// Создать участника
+	// (POST /persons/sport)
+	PostPersonsSport(w http.ResponseWriter, r *http.Request)
 	// Список призов
 	// (GET /prizes)
 	GetPrizes(w http.ResponseWriter, r *http.Request)
@@ -230,6 +242,34 @@ func (siw *ServerInterfaceWrapper) PostCountries(w http.ResponseWriter, r *http.
 	handler.ServeHTTP(w, r)
 }
 
+// GetCurrencies operation middleware
+func (siw *ServerInterfaceWrapper) GetCurrencies(w http.ResponseWriter, r *http.Request) {
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetCurrencies(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// PostCurrencies operation middleware
+func (siw *ServerInterfaceWrapper) PostCurrencies(w http.ResponseWriter, r *http.Request) {
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.PostCurrencies(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
 // GetLanguages operation middleware
 func (siw *ServerInterfaceWrapper) GetLanguages(w http.ResponseWriter, r *http.Request) {
 
@@ -361,6 +401,34 @@ func (siw *ServerInterfaceWrapper) PostPersons(w http.ResponseWriter, r *http.Re
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.PostPersons(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// GetPersonsSport operation middleware
+func (siw *ServerInterfaceWrapper) GetPersonsSport(w http.ResponseWriter, r *http.Request) {
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.GetPersonsSport(w, r)
+	}))
+
+	for _, middleware := range siw.HandlerMiddlewares {
+		handler = middleware(handler)
+	}
+
+	handler.ServeHTTP(w, r)
+}
+
+// PostPersonsSport operation middleware
+func (siw *ServerInterfaceWrapper) PostPersonsSport(w http.ResponseWriter, r *http.Request) {
+
+	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		siw.Handler.PostPersonsSport(w, r)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -691,6 +759,8 @@ func HandlerWithOptions(si ServerInterface, options StdHTTPServerOptions) http.H
 	m.HandleFunc("POST "+options.BaseURL+"/competitions", wrapper.PostCompetitions)
 	m.HandleFunc("GET "+options.BaseURL+"/countries", wrapper.GetCountries)
 	m.HandleFunc("POST "+options.BaseURL+"/countries", wrapper.PostCountries)
+	m.HandleFunc("GET "+options.BaseURL+"/currencies", wrapper.GetCurrencies)
+	m.HandleFunc("POST "+options.BaseURL+"/currencies", wrapper.PostCurrencies)
 	m.HandleFunc("GET "+options.BaseURL+"/languages", wrapper.GetLanguages)
 	m.HandleFunc("POST "+options.BaseURL+"/languages", wrapper.PostLanguages)
 	m.HandleFunc("GET "+options.BaseURL+"/locations", wrapper.GetLocations)
@@ -701,6 +771,8 @@ func HandlerWithOptions(si ServerInterface, options StdHTTPServerOptions) http.H
 	m.HandleFunc("POST "+options.BaseURL+"/matches", wrapper.PostMatches)
 	m.HandleFunc("GET "+options.BaseURL+"/persons", wrapper.GetPersons)
 	m.HandleFunc("POST "+options.BaseURL+"/persons", wrapper.PostPersons)
+	m.HandleFunc("GET "+options.BaseURL+"/persons/sport", wrapper.GetPersonsSport)
+	m.HandleFunc("POST "+options.BaseURL+"/persons/sport", wrapper.PostPersonsSport)
 	m.HandleFunc("GET "+options.BaseURL+"/prizes", wrapper.GetPrizes)
 	m.HandleFunc("POST "+options.BaseURL+"/prizes", wrapper.PostPrizes)
 	m.HandleFunc("GET "+options.BaseURL+"/roles", wrapper.GetRoles)

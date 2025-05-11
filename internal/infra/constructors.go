@@ -21,6 +21,7 @@ var Constructors = fx.Provide(
 	repo.NewPrizeRepoFactory,
 	repo.NewRoleRepoFactory,
 	repo.NewSportRepoFactory,
+	repo.NewStageRepoFactory,
 	repo.NewTeamAchievementsRepoFactory,
 	repo.NewTeamPersonRepoFactory,
 	repo.NewTeamRepoFactory,
