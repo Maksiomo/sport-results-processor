@@ -94,7 +94,7 @@ func (*MatchParticipantRepo) toEntity(m *model.MatchParticipant) *entity.MatchPa
 		Score:      m.Score,
 		IsWinner:   m.IsWinner,
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.BytesFrom(m.RecordHash),
+		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -107,7 +107,7 @@ func (*MatchParticipantRepo) fromEntity(e *entity.MatchParticipant) *model.Match
 		Score:      e.Score,
 		IsWinner:   e.IsWinner,
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.Bytes,
+		RecordHash: e.RecordHash.String,
 		TXHash:     e.TXHash.Ptr(),
 	}
 }

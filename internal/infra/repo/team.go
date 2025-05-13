@@ -93,7 +93,7 @@ func (*TeamRepo) toEntity(m *model.Team) *entity.Team {
 		CountryID:      m.CountryID,
 		FoundationDate: m.FoundationDate,
 		CreatedAt:      m.CreatedAt,
-		RecordHash:     null.BytesFrom(m.RecordHash),
+		RecordHash:     null.StringFrom(m.RecordHash),
 		TXHash:         null.StringFromPtr(m.TXHash),
 	}
 }
@@ -105,7 +105,7 @@ func (*TeamRepo) fromEntity(e *entity.Team) *model.Team {
 		CountryID:      e.CountryID,
 		FoundationDate: e.FoundationDate,
 		CreatedAt:      e.CreatedAt,
-		RecordHash:     e.RecordHash.Bytes,
+		RecordHash:     e.RecordHash.String,
 		TXHash:         e.TXHash.Ptr(),
 	}
 }

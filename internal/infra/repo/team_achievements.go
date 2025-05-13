@@ -92,7 +92,7 @@ func (*TeamAchievementsRepo) toEntity(m *model.TeamAchievement) *entity.TeamAchi
 		TeamID:     m.TeamID,
 		PrizeID:    m.PrizeID,
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.BytesFrom(m.RecordHash),
+		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -103,7 +103,7 @@ func (*TeamAchievementsRepo) fromEntity(e *entity.TeamAchievement) *model.TeamAc
 		TeamID:     e.TeamID,
 		PrizeID:    e.PrizeID,
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.Bytes,
+		RecordHash: e.RecordHash.String,
 		TXHash:     e.TXHash.Ptr(),
 	}
 }

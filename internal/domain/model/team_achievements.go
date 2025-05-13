@@ -3,10 +3,10 @@ package model
 import "time"
 
 type TeamAchievement struct {
-	ID         int64     `json:"id"`
+	ID         int64     `json:"-"`
 	TeamID     int64     `json:"team_id"`
 	PrizeID    int64     `json:"prize_id"`
-	CreatedAt  time.Time `json:"created_at"`
-	RecordHash []byte    `json:"record_hash,omitempty"`
-	TXHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt  time.Time `json:"-"`
+	RecordHash string    `json:"-"`
+	TXHash     *string   `json:"-"`
 }

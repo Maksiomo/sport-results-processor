@@ -31,8 +31,8 @@ var (
 
 // CompetitionRegistryMetaData contains all meta data concerning the CompetitionRegistry contract.
 var CompetitionRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"CompetitionRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordCompetition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateCompetition\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c806301bc9c641461004e5780631a85ad3614610063578063501895ae1461008b57806360b2267b146100b8575b5f5ffd5b61006161005c3660046101c7565b6100da565b005b6100766100713660046101c7565b610197565b60405190151581526020015b60405180910390f35b6100aa6100993660046101e7565b60016020525f908152604090205481565b604051908152602001610082565b6100766100c63660046101e7565b5f6020819052908152604090205460ff1681565b5f8281526020819052604090205460ff161561013c5760405162461bcd60e51b815260206004820152601c60248201527f436f6d7065746974696f6e20616c7265616479207265636f7264656400000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a910160405180910390a25050565b5f8281526020819052604081205460ff1680156101c057505f8381526001602052604090205482145b9392505050565b5f5f604083850312156101d8575f5ffd5b50508035926020909101359150565b5f602082840312156101f7575f5ffd5b503591905056fea2646970667358221220233edc59f1a2c0ff8b5199fd361d636df001886bea96f3224f3059af8d45b53a64736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"CompetitionRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordCompetition\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateCompetition\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b5061058c8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610077578063a098e6ae146100a9578063a91c2213146100bc575b5f5ffd5b61006161005c366004610293565b6100d1565b60405161006e91906102aa565b60405180910390f35b610099610085366004610293565b5f6020819052908152604090205460ff1681565b604051901515815260200161006e565b6100996100b73660046102df565b610168565b6100cf6100ca3660046102df565b6101c5565b005b60016020525f9081526040902080546100e990610356565b80601f016020809104026020016040519081016040528092919081815260200182805461011590610356565b80156101605780601f1061013757610100808354040283529160200191610160565b820191905f5260205f20905b81548152906001019060200180831161014357829003601f168201915b505050505081565b5f8381526020819052604081205460ff1680156101bd5750828260405161019092919061038e565b604080519182900382205f87815260016020529190912090916101b3919061039d565b6040518091039020145b949350505050565b5f8381526020819052604090205460ff16156102275760405162461bcd60e51b815260206004820152601c60248201527f436f6d7065746974696f6e20616c7265616479207265636f7264656400000000604482015260640160405180910390fd5b5f83815260208181526040808320805460ff19166001908117909155909152902061025382848361046e565b50827f1c05c0829b9e8a2ee03538ba5c7cc384bde635f39b98fb6e99b182ff124a44728383604051610286929190610528565b60405180910390a2505050565b5f602082840312156102a3575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b5f5f5f604084860312156102f1575f5ffd5b83359250602084013567ffffffffffffffff81111561030e575f5ffd5b8401601f8101861361031e575f5ffd5b803567ffffffffffffffff811115610334575f5ffd5b866020828401011115610345575f5ffd5b939660209190910195509293505050565b600181811c9082168061036a57607f821691505b60208210810361038857634e487b7160e01b5f52602260045260245ffd5b50919050565b818382375f9101908152919050565b5f5f83546103aa81610356565b6001821680156103c157600181146103d657610403565b60ff1983168652811515820286019350610403565b865f5260205f205f5b838110156103fb578154888201526001909101906020016103df565b505081860193505b509195945050505050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561046957805f5260205f20601f840160051c810160208510156104475750805b601f840160051c820191505b81811015610466575f8155600101610453565b50505b505050565b67ffffffffffffffff8311156104865761048661040e565b61049a836104948354610356565b83610422565b5f601f8411600181146104cb575f85156104b45750838201355b5f19600387901b1c1916600186901b178355610466565b5f83815260208120601f198716915b828110156104fa57868501358255602094850194600190920191016104da565b5086821015610516575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f1916010191905056fea264697066735822122083d3e1d40a2300ee9daf08ec1c80e1ecafb514040f353a905235532bea66866764736f6c634300081e0033",
 }
 
 // CompetitionRegistryABI is the input ABI used to generate the binding from.
@@ -204,16 +204,16 @@ func (_CompetitionRegistry *CompetitionRegistryTransactorRaw) Transact(opts *bin
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_CompetitionRegistry *CompetitionRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_CompetitionRegistry *CompetitionRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _CompetitionRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -221,15 +221,15 @@ func (_CompetitionRegistry *CompetitionRegistryCaller) Hashes(opts *bind.CallOpt
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_CompetitionRegistry *CompetitionRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_CompetitionRegistry *CompetitionRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _CompetitionRegistry.Contract.Hashes(&_CompetitionRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_CompetitionRegistry *CompetitionRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_CompetitionRegistry *CompetitionRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _CompetitionRegistry.Contract.Hashes(&_CompetitionRegistry.CallOpts, arg0)
 }
 
@@ -264,10 +264,10 @@ func (_CompetitionRegistry *CompetitionRegistryCallerSession) Recorded(arg0 *big
 	return _CompetitionRegistry.Contract.Recorded(&_CompetitionRegistry.CallOpts, arg0)
 }
 
-// ValidateCompetition is a free data retrieval call binding the contract method 0x1a85ad36.
+// ValidateCompetition is a free data retrieval call binding the contract method 0xa098e6ae.
 //
-// Solidity: function validateCompetition(uint256 id, bytes32 recordHash) view returns(bool)
-func (_CompetitionRegistry *CompetitionRegistryCaller) ValidateCompetition(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateCompetition(uint256 id, string recordHash) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistryCaller) ValidateCompetition(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _CompetitionRegistry.contract.Call(opts, &out, "validateCompetition", id, recordHash)
 
@@ -281,38 +281,38 @@ func (_CompetitionRegistry *CompetitionRegistryCaller) ValidateCompetition(opts 
 
 }
 
-// ValidateCompetition is a free data retrieval call binding the contract method 0x1a85ad36.
+// ValidateCompetition is a free data retrieval call binding the contract method 0xa098e6ae.
 //
-// Solidity: function validateCompetition(uint256 id, bytes32 recordHash) view returns(bool)
-func (_CompetitionRegistry *CompetitionRegistrySession) ValidateCompetition(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateCompetition(uint256 id, string recordHash) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistrySession) ValidateCompetition(id *big.Int, recordHash string) (bool, error) {
 	return _CompetitionRegistry.Contract.ValidateCompetition(&_CompetitionRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateCompetition is a free data retrieval call binding the contract method 0x1a85ad36.
+// ValidateCompetition is a free data retrieval call binding the contract method 0xa098e6ae.
 //
-// Solidity: function validateCompetition(uint256 id, bytes32 recordHash) view returns(bool)
-func (_CompetitionRegistry *CompetitionRegistryCallerSession) ValidateCompetition(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateCompetition(uint256 id, string recordHash) view returns(bool)
+func (_CompetitionRegistry *CompetitionRegistryCallerSession) ValidateCompetition(id *big.Int, recordHash string) (bool, error) {
 	return _CompetitionRegistry.Contract.ValidateCompetition(&_CompetitionRegistry.CallOpts, id, recordHash)
 }
 
-// RecordCompetition is a paid mutator transaction binding the contract method 0x01bc9c64.
+// RecordCompetition is a paid mutator transaction binding the contract method 0xa91c2213.
 //
-// Solidity: function recordCompetition(uint256 id, bytes32 recordHash) returns()
-func (_CompetitionRegistry *CompetitionRegistryTransactor) RecordCompetition(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordCompetition(uint256 id, string recordHash) returns()
+func (_CompetitionRegistry *CompetitionRegistryTransactor) RecordCompetition(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _CompetitionRegistry.contract.Transact(opts, "recordCompetition", id, recordHash)
 }
 
-// RecordCompetition is a paid mutator transaction binding the contract method 0x01bc9c64.
+// RecordCompetition is a paid mutator transaction binding the contract method 0xa91c2213.
 //
-// Solidity: function recordCompetition(uint256 id, bytes32 recordHash) returns()
-func (_CompetitionRegistry *CompetitionRegistrySession) RecordCompetition(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordCompetition(uint256 id, string recordHash) returns()
+func (_CompetitionRegistry *CompetitionRegistrySession) RecordCompetition(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _CompetitionRegistry.Contract.RecordCompetition(&_CompetitionRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordCompetition is a paid mutator transaction binding the contract method 0x01bc9c64.
+// RecordCompetition is a paid mutator transaction binding the contract method 0xa91c2213.
 //
-// Solidity: function recordCompetition(uint256 id, bytes32 recordHash) returns()
-func (_CompetitionRegistry *CompetitionRegistryTransactorSession) RecordCompetition(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordCompetition(uint256 id, string recordHash) returns()
+func (_CompetitionRegistry *CompetitionRegistryTransactorSession) RecordCompetition(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _CompetitionRegistry.Contract.RecordCompetition(&_CompetitionRegistry.TransactOpts, id, recordHash)
 }
 
@@ -386,13 +386,13 @@ func (it *CompetitionRegistryCompetitionRecordedIterator) Close() error {
 // CompetitionRegistryCompetitionRecorded represents a CompetitionRecorded event raised by the CompetitionRegistry contract.
 type CompetitionRegistryCompetitionRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterCompetitionRecorded is a free log retrieval operation binding the contract event 0x9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a.
+// FilterCompetitionRecorded is a free log retrieval operation binding the contract event 0x1c05c0829b9e8a2ee03538ba5c7cc384bde635f39b98fb6e99b182ff124a4472.
 //
-// Solidity: event CompetitionRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event CompetitionRecorded(uint256 indexed id, string recordHash)
 func (_CompetitionRegistry *CompetitionRegistryFilterer) FilterCompetitionRecorded(opts *bind.FilterOpts, id []*big.Int) (*CompetitionRegistryCompetitionRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -407,9 +407,9 @@ func (_CompetitionRegistry *CompetitionRegistryFilterer) FilterCompetitionRecord
 	return &CompetitionRegistryCompetitionRecordedIterator{contract: _CompetitionRegistry.contract, event: "CompetitionRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchCompetitionRecorded is a free log subscription operation binding the contract event 0x9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a.
+// WatchCompetitionRecorded is a free log subscription operation binding the contract event 0x1c05c0829b9e8a2ee03538ba5c7cc384bde635f39b98fb6e99b182ff124a4472.
 //
-// Solidity: event CompetitionRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event CompetitionRecorded(uint256 indexed id, string recordHash)
 func (_CompetitionRegistry *CompetitionRegistryFilterer) WatchCompetitionRecorded(opts *bind.WatchOpts, sink chan<- *CompetitionRegistryCompetitionRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -449,9 +449,9 @@ func (_CompetitionRegistry *CompetitionRegistryFilterer) WatchCompetitionRecorde
 	}), nil
 }
 
-// ParseCompetitionRecorded is a log parse operation binding the contract event 0x9673b7da9e6c6f14cae77cc4de7ed1a3a1de31678248178da835a6cf48d7f61a.
+// ParseCompetitionRecorded is a log parse operation binding the contract event 0x1c05c0829b9e8a2ee03538ba5c7cc384bde635f39b98fb6e99b182ff124a4472.
 //
-// Solidity: event CompetitionRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event CompetitionRecorded(uint256 indexed id, string recordHash)
 func (_CompetitionRegistry *CompetitionRegistryFilterer) ParseCompetitionRecorded(log types.Log) (*CompetitionRegistryCompetitionRecorded, error) {
 	event := new(CompetitionRegistryCompetitionRecorded)
 	if err := _CompetitionRegistry.contract.UnpackLog(event, "CompetitionRecorded", log); err != nil {
@@ -463,8 +463,8 @@ func (_CompetitionRegistry *CompetitionRegistryFilterer) ParseCompetitionRecorde
 
 // CompetitionTeamsRegistryMetaData contains all meta data concerning the CompetitionTeamsRegistry contract.
 var CompetitionTeamsRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"CompetitionTeamsRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordCompetitionTeams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateCompetitionTeams\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063334e90af1461004e5780634516146e14610063578063501895ae1461008b57806360b2267b146100b8575b5f5ffd5b61006161005c3660046101d1565b6100da565b005b6100766100713660046101d1565b6101a1565b60405190151581526020015b60405180910390f35b6100aa6100993660046101f1565b60016020525f908152604090205481565b604051908152602001610082565b6100766100c63660046101f1565b5f6020819052908152604090205460ff1681565b5f8281526020819052604090205460ff16156101465760405162461bcd60e51b815260206004820152602160248201527f436f6d7065746974696f6e5465616d7320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fcca48f312d5dfa82c50dfc7934b24c6f1b3bdc730987f6c36180693a526c9d78910160405180910390a25050565b5f8281526020819052604081205460ff1680156101ca57505f8381526001602052604090205482145b9392505050565b5f5f604083850312156101e2575f5ffd5b50508035926020909101359150565b5f60208284031215610201575f5ffd5b503591905056fea264697066735822122093a83298e8ed3071b62071261a00abb7255d7d0a8093d0451fd246531b84c64164736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"CompetitionTeamsRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordCompetitionTeams\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateCompetitionTeams\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105968061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610077578063b7a549e0146100a9578063e5fe541e146100be575b5f5ffd5b61006161005c36600461029d565b6100d1565b60405161006e91906102b4565b60405180910390f35b61009961008536600461029d565b5f6020819052908152604090205460ff1681565b604051901515815260200161006e565b6100bc6100b73660046102e9565b610168565b005b6100996100cc3660046102e9565b610240565b60016020525f9081526040902080546100e990610360565b80601f016020809104026020016040519081016040528092919081815260200182805461011590610360565b80156101605780601f1061013757610100808354040283529160200191610160565b820191905f5260205f20905b81548152906001019060200180831161014357829003601f168201915b505050505081565b5f8381526020819052604090205460ff16156101d45760405162461bcd60e51b815260206004820152602160248201527f436f6d7065746974696f6e5465616d7320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f83815260208181526040808320805460ff1916600190811790915590915290206102008284836103f8565b50827fb5afd97b4f740b109d4828fcda8584f7e87aebb685df30a0aae5f00b7659114883836040516102339291906104b2565b60405180910390a2505050565b5f8381526020819052604081205460ff168015610295575082826040516102689291906104e0565b604080519182900382205f878152600160205291909120909161028b91906104ef565b6040518091039020145b949350505050565b5f602082840312156102ad575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b5f5f5f604084860312156102fb575f5ffd5b83359250602084013567ffffffffffffffff811115610318575f5ffd5b8401601f81018613610328575f5ffd5b803567ffffffffffffffff81111561033e575f5ffd5b86602082840101111561034f575f5ffd5b939660209190910195509293505050565b600181811c9082168061037457607f821691505b60208210810361039257634e487b7160e01b5f52602260045260245ffd5b50919050565b634e487b7160e01b5f52604160045260245ffd5b601f8211156103f357805f5260205f20601f840160051c810160208510156103d15750805b601f840160051c820191505b818110156103f0575f81556001016103dd565b50505b505050565b67ffffffffffffffff83111561041057610410610398565b6104248361041e8354610360565b836103ac565b5f601f841160018114610455575f851561043e5750838201355b5f19600387901b1c1916600186901b1783556103f0565b5f83815260208120601f198716915b828110156104845786850135825560209485019460019092019101610464565b50868210156104a0575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f19160101919050565b818382375f9101908152919050565b5f5f83546104fc81610360565b600182168015610513576001811461052857610555565b60ff1983168652811515820286019350610555565b865f5260205f205f5b8381101561054d57815488820152600190910190602001610531565b505081860193505b50919594505050505056fea2646970667358221220c54993009f71e17dc48bc9431909c0de87f9a0b18448e272a2d93018316730e064736f6c634300081e0033",
 }
 
 // CompetitionTeamsRegistryABI is the input ABI used to generate the binding from.
@@ -636,16 +636,16 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryTransactorRaw) Transact
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _CompetitionTeamsRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -653,15 +653,15 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCaller) Hashes(opts *bi
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _CompetitionTeamsRegistry.Contract.Hashes(&_CompetitionTeamsRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _CompetitionTeamsRegistry.Contract.Hashes(&_CompetitionTeamsRegistry.CallOpts, arg0)
 }
 
@@ -696,10 +696,10 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCallerSession) Recorded
 	return _CompetitionTeamsRegistry.Contract.Recorded(&_CompetitionTeamsRegistry.CallOpts, arg0)
 }
 
-// ValidateCompetitionTeams is a free data retrieval call binding the contract method 0x4516146e.
+// ValidateCompetitionTeams is a free data retrieval call binding the contract method 0xe5fe541e.
 //
-// Solidity: function validateCompetitionTeams(uint256 id, bytes32 recordHash) view returns(bool)
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCaller) ValidateCompetitionTeams(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateCompetitionTeams(uint256 id, string recordHash) view returns(bool)
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCaller) ValidateCompetitionTeams(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _CompetitionTeamsRegistry.contract.Call(opts, &out, "validateCompetitionTeams", id, recordHash)
 
@@ -713,38 +713,38 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCaller) ValidateCompeti
 
 }
 
-// ValidateCompetitionTeams is a free data retrieval call binding the contract method 0x4516146e.
+// ValidateCompetitionTeams is a free data retrieval call binding the contract method 0xe5fe541e.
 //
-// Solidity: function validateCompetitionTeams(uint256 id, bytes32 recordHash) view returns(bool)
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistrySession) ValidateCompetitionTeams(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateCompetitionTeams(uint256 id, string recordHash) view returns(bool)
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistrySession) ValidateCompetitionTeams(id *big.Int, recordHash string) (bool, error) {
 	return _CompetitionTeamsRegistry.Contract.ValidateCompetitionTeams(&_CompetitionTeamsRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateCompetitionTeams is a free data retrieval call binding the contract method 0x4516146e.
+// ValidateCompetitionTeams is a free data retrieval call binding the contract method 0xe5fe541e.
 //
-// Solidity: function validateCompetitionTeams(uint256 id, bytes32 recordHash) view returns(bool)
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCallerSession) ValidateCompetitionTeams(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateCompetitionTeams(uint256 id, string recordHash) view returns(bool)
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryCallerSession) ValidateCompetitionTeams(id *big.Int, recordHash string) (bool, error) {
 	return _CompetitionTeamsRegistry.Contract.ValidateCompetitionTeams(&_CompetitionTeamsRegistry.CallOpts, id, recordHash)
 }
 
-// RecordCompetitionTeams is a paid mutator transaction binding the contract method 0x334e90af.
+// RecordCompetitionTeams is a paid mutator transaction binding the contract method 0xb7a549e0.
 //
-// Solidity: function recordCompetitionTeams(uint256 id, bytes32 recordHash) returns()
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryTransactor) RecordCompetitionTeams(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordCompetitionTeams(uint256 id, string recordHash) returns()
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryTransactor) RecordCompetitionTeams(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _CompetitionTeamsRegistry.contract.Transact(opts, "recordCompetitionTeams", id, recordHash)
 }
 
-// RecordCompetitionTeams is a paid mutator transaction binding the contract method 0x334e90af.
+// RecordCompetitionTeams is a paid mutator transaction binding the contract method 0xb7a549e0.
 //
-// Solidity: function recordCompetitionTeams(uint256 id, bytes32 recordHash) returns()
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistrySession) RecordCompetitionTeams(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordCompetitionTeams(uint256 id, string recordHash) returns()
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistrySession) RecordCompetitionTeams(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _CompetitionTeamsRegistry.Contract.RecordCompetitionTeams(&_CompetitionTeamsRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordCompetitionTeams is a paid mutator transaction binding the contract method 0x334e90af.
+// RecordCompetitionTeams is a paid mutator transaction binding the contract method 0xb7a549e0.
 //
-// Solidity: function recordCompetitionTeams(uint256 id, bytes32 recordHash) returns()
-func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryTransactorSession) RecordCompetitionTeams(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordCompetitionTeams(uint256 id, string recordHash) returns()
+func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryTransactorSession) RecordCompetitionTeams(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _CompetitionTeamsRegistry.Contract.RecordCompetitionTeams(&_CompetitionTeamsRegistry.TransactOpts, id, recordHash)
 }
 
@@ -818,13 +818,13 @@ func (it *CompetitionTeamsRegistryCompetitionTeamsRecordedIterator) Close() erro
 // CompetitionTeamsRegistryCompetitionTeamsRecorded represents a CompetitionTeamsRecorded event raised by the CompetitionTeamsRegistry contract.
 type CompetitionTeamsRegistryCompetitionTeamsRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterCompetitionTeamsRecorded is a free log retrieval operation binding the contract event 0xcca48f312d5dfa82c50dfc7934b24c6f1b3bdc730987f6c36180693a526c9d78.
+// FilterCompetitionTeamsRecorded is a free log retrieval operation binding the contract event 0xb5afd97b4f740b109d4828fcda8584f7e87aebb685df30a0aae5f00b76591148.
 //
-// Solidity: event CompetitionTeamsRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event CompetitionTeamsRecorded(uint256 indexed id, string recordHash)
 func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryFilterer) FilterCompetitionTeamsRecorded(opts *bind.FilterOpts, id []*big.Int) (*CompetitionTeamsRegistryCompetitionTeamsRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -839,9 +839,9 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryFilterer) FilterCompeti
 	return &CompetitionTeamsRegistryCompetitionTeamsRecordedIterator{contract: _CompetitionTeamsRegistry.contract, event: "CompetitionTeamsRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchCompetitionTeamsRecorded is a free log subscription operation binding the contract event 0xcca48f312d5dfa82c50dfc7934b24c6f1b3bdc730987f6c36180693a526c9d78.
+// WatchCompetitionTeamsRecorded is a free log subscription operation binding the contract event 0xb5afd97b4f740b109d4828fcda8584f7e87aebb685df30a0aae5f00b76591148.
 //
-// Solidity: event CompetitionTeamsRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event CompetitionTeamsRecorded(uint256 indexed id, string recordHash)
 func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryFilterer) WatchCompetitionTeamsRecorded(opts *bind.WatchOpts, sink chan<- *CompetitionTeamsRegistryCompetitionTeamsRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -881,9 +881,9 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryFilterer) WatchCompetit
 	}), nil
 }
 
-// ParseCompetitionTeamsRecorded is a log parse operation binding the contract event 0xcca48f312d5dfa82c50dfc7934b24c6f1b3bdc730987f6c36180693a526c9d78.
+// ParseCompetitionTeamsRecorded is a log parse operation binding the contract event 0xb5afd97b4f740b109d4828fcda8584f7e87aebb685df30a0aae5f00b76591148.
 //
-// Solidity: event CompetitionTeamsRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event CompetitionTeamsRecorded(uint256 indexed id, string recordHash)
 func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryFilterer) ParseCompetitionTeamsRecorded(log types.Log) (*CompetitionTeamsRegistryCompetitionTeamsRecorded, error) {
 	event := new(CompetitionTeamsRegistryCompetitionTeamsRecorded)
 	if err := _CompetitionTeamsRegistry.contract.UnpackLog(event, "CompetitionTeamsRecorded", log); err != nil {
@@ -895,8 +895,8 @@ func (_CompetitionTeamsRegistry *CompetitionTeamsRegistryFilterer) ParseCompetit
 
 // MatchParticipantRegistryMetaData contains all meta data concerning the MatchParticipantRegistry contract.
 var MatchParticipantRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"MatchParticipantRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordMatchParticipant\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateMatchParticipant\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806370a9bd7c146100b2578063a33b5273146100c5575b5f5ffd5b61006d61005c3660046101d1565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101d1565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101e8565b6100da565b6100d86100d33660046101e8565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101765760405162461bcd60e51b815260206004820152602160248201527f4d617463685061727469636970616e7420616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f8150f40e33aac4e36316694127820faf2edce46c48e34b3ea472d2027b1e97b2910160405180910390a25050565b5f602082840312156101e1575f5ffd5b5035919050565b5f5f604083850312156101f9575f5ffd5b5050803592602090910135915056fea264697066735822122016be88eb6d1943c799f71d879bdfd5bf86935c099a78710822d0c9c54f7b53c564736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"MatchParticipantRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordMatchParticipant\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateMatchParticipant\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105968061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461007757806363c3542d146100a9578063ac2a85a6146100bc575b5f5ffd5b61006161005c36600461029d565b6100d1565b60405161006e91906102b4565b60405180910390f35b61009961008536600461029d565b5f6020819052908152604090205460ff1681565b604051901515815260200161006e565b6100996100b73660046102e9565b610168565b6100cf6100ca3660046102e9565b6101c5565b005b60016020525f9081526040902080546100e990610360565b80601f016020809104026020016040519081016040528092919081815260200182805461011590610360565b80156101605780601f1061013757610100808354040283529160200191610160565b820191905f5260205f20905b81548152906001019060200180831161014357829003601f168201915b505050505081565b5f8381526020819052604081205460ff1680156101bd57508282604051610190929190610398565b604080519182900382205f87815260016020529190912090916101b391906103a7565b6040518091039020145b949350505050565b5f8381526020819052604090205460ff16156102315760405162461bcd60e51b815260206004820152602160248201527f4d617463685061727469636970616e7420616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f83815260208181526040808320805460ff19166001908117909155909152902061025d828483610478565b50827f4a4c497b8c1e81bc7bb92e9151f380955f34fa46ab887d42cdd5100df6d6e82f8383604051610290929190610532565b60405180910390a2505050565b5f602082840312156102ad575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b5f5f5f604084860312156102fb575f5ffd5b83359250602084013567ffffffffffffffff811115610318575f5ffd5b8401601f81018613610328575f5ffd5b803567ffffffffffffffff81111561033e575f5ffd5b86602082840101111561034f575f5ffd5b939660209190910195509293505050565b600181811c9082168061037457607f821691505b60208210810361039257634e487b7160e01b5f52602260045260245ffd5b50919050565b818382375f9101908152919050565b5f5f83546103b481610360565b6001821680156103cb57600181146103e05761040d565b60ff198316865281151582028601935061040d565b865f5260205f205f5b83811015610405578154888201526001909101906020016103e9565b505081860193505b509195945050505050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561047357805f5260205f20601f840160051c810160208510156104515750805b601f840160051c820191505b81811015610470575f815560010161045d565b50505b505050565b67ffffffffffffffff83111561049057610490610418565b6104a48361049e8354610360565b8361042c565b5f601f8411600181146104d5575f85156104be5750838201355b5f19600387901b1c1916600186901b178355610470565b5f83815260208120601f198716915b8281101561050457868501358255602094850194600190920191016104e4565b5086821015610520575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f1916010191905056fea264697066735822122073b39842d18ddfa896f05dbb916b99cd2d9ec4030a3a3ff559fc985e3353ca1d64736f6c634300081e0033",
 }
 
 // MatchParticipantRegistryABI is the input ABI used to generate the binding from.
@@ -1068,16 +1068,16 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryTransactorRaw) Transact
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_MatchParticipantRegistry *MatchParticipantRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_MatchParticipantRegistry *MatchParticipantRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _MatchParticipantRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -1085,15 +1085,15 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryCaller) Hashes(opts *bi
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_MatchParticipantRegistry *MatchParticipantRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_MatchParticipantRegistry *MatchParticipantRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _MatchParticipantRegistry.Contract.Hashes(&_MatchParticipantRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_MatchParticipantRegistry *MatchParticipantRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_MatchParticipantRegistry *MatchParticipantRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _MatchParticipantRegistry.Contract.Hashes(&_MatchParticipantRegistry.CallOpts, arg0)
 }
 
@@ -1128,10 +1128,10 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryCallerSession) Recorded
 	return _MatchParticipantRegistry.Contract.Recorded(&_MatchParticipantRegistry.CallOpts, arg0)
 }
 
-// ValidateMatchParticipant is a free data retrieval call binding the contract method 0x70a9bd7c.
+// ValidateMatchParticipant is a free data retrieval call binding the contract method 0x63c3542d.
 //
-// Solidity: function validateMatchParticipant(uint256 id, bytes32 recordHash) view returns(bool)
-func (_MatchParticipantRegistry *MatchParticipantRegistryCaller) ValidateMatchParticipant(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateMatchParticipant(uint256 id, string recordHash) view returns(bool)
+func (_MatchParticipantRegistry *MatchParticipantRegistryCaller) ValidateMatchParticipant(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _MatchParticipantRegistry.contract.Call(opts, &out, "validateMatchParticipant", id, recordHash)
 
@@ -1145,38 +1145,38 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryCaller) ValidateMatchPa
 
 }
 
-// ValidateMatchParticipant is a free data retrieval call binding the contract method 0x70a9bd7c.
+// ValidateMatchParticipant is a free data retrieval call binding the contract method 0x63c3542d.
 //
-// Solidity: function validateMatchParticipant(uint256 id, bytes32 recordHash) view returns(bool)
-func (_MatchParticipantRegistry *MatchParticipantRegistrySession) ValidateMatchParticipant(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateMatchParticipant(uint256 id, string recordHash) view returns(bool)
+func (_MatchParticipantRegistry *MatchParticipantRegistrySession) ValidateMatchParticipant(id *big.Int, recordHash string) (bool, error) {
 	return _MatchParticipantRegistry.Contract.ValidateMatchParticipant(&_MatchParticipantRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateMatchParticipant is a free data retrieval call binding the contract method 0x70a9bd7c.
+// ValidateMatchParticipant is a free data retrieval call binding the contract method 0x63c3542d.
 //
-// Solidity: function validateMatchParticipant(uint256 id, bytes32 recordHash) view returns(bool)
-func (_MatchParticipantRegistry *MatchParticipantRegistryCallerSession) ValidateMatchParticipant(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateMatchParticipant(uint256 id, string recordHash) view returns(bool)
+func (_MatchParticipantRegistry *MatchParticipantRegistryCallerSession) ValidateMatchParticipant(id *big.Int, recordHash string) (bool, error) {
 	return _MatchParticipantRegistry.Contract.ValidateMatchParticipant(&_MatchParticipantRegistry.CallOpts, id, recordHash)
 }
 
-// RecordMatchParticipant is a paid mutator transaction binding the contract method 0xa33b5273.
+// RecordMatchParticipant is a paid mutator transaction binding the contract method 0xac2a85a6.
 //
-// Solidity: function recordMatchParticipant(uint256 id, bytes32 recordHash) returns()
-func (_MatchParticipantRegistry *MatchParticipantRegistryTransactor) RecordMatchParticipant(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordMatchParticipant(uint256 id, string recordHash) returns()
+func (_MatchParticipantRegistry *MatchParticipantRegistryTransactor) RecordMatchParticipant(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _MatchParticipantRegistry.contract.Transact(opts, "recordMatchParticipant", id, recordHash)
 }
 
-// RecordMatchParticipant is a paid mutator transaction binding the contract method 0xa33b5273.
+// RecordMatchParticipant is a paid mutator transaction binding the contract method 0xac2a85a6.
 //
-// Solidity: function recordMatchParticipant(uint256 id, bytes32 recordHash) returns()
-func (_MatchParticipantRegistry *MatchParticipantRegistrySession) RecordMatchParticipant(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordMatchParticipant(uint256 id, string recordHash) returns()
+func (_MatchParticipantRegistry *MatchParticipantRegistrySession) RecordMatchParticipant(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _MatchParticipantRegistry.Contract.RecordMatchParticipant(&_MatchParticipantRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordMatchParticipant is a paid mutator transaction binding the contract method 0xa33b5273.
+// RecordMatchParticipant is a paid mutator transaction binding the contract method 0xac2a85a6.
 //
-// Solidity: function recordMatchParticipant(uint256 id, bytes32 recordHash) returns()
-func (_MatchParticipantRegistry *MatchParticipantRegistryTransactorSession) RecordMatchParticipant(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordMatchParticipant(uint256 id, string recordHash) returns()
+func (_MatchParticipantRegistry *MatchParticipantRegistryTransactorSession) RecordMatchParticipant(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _MatchParticipantRegistry.Contract.RecordMatchParticipant(&_MatchParticipantRegistry.TransactOpts, id, recordHash)
 }
 
@@ -1250,13 +1250,13 @@ func (it *MatchParticipantRegistryMatchParticipantRecordedIterator) Close() erro
 // MatchParticipantRegistryMatchParticipantRecorded represents a MatchParticipantRecorded event raised by the MatchParticipantRegistry contract.
 type MatchParticipantRegistryMatchParticipantRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterMatchParticipantRecorded is a free log retrieval operation binding the contract event 0x8150f40e33aac4e36316694127820faf2edce46c48e34b3ea472d2027b1e97b2.
+// FilterMatchParticipantRecorded is a free log retrieval operation binding the contract event 0x4a4c497b8c1e81bc7bb92e9151f380955f34fa46ab887d42cdd5100df6d6e82f.
 //
-// Solidity: event MatchParticipantRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event MatchParticipantRecorded(uint256 indexed id, string recordHash)
 func (_MatchParticipantRegistry *MatchParticipantRegistryFilterer) FilterMatchParticipantRecorded(opts *bind.FilterOpts, id []*big.Int) (*MatchParticipantRegistryMatchParticipantRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -1271,9 +1271,9 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryFilterer) FilterMatchPa
 	return &MatchParticipantRegistryMatchParticipantRecordedIterator{contract: _MatchParticipantRegistry.contract, event: "MatchParticipantRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchMatchParticipantRecorded is a free log subscription operation binding the contract event 0x8150f40e33aac4e36316694127820faf2edce46c48e34b3ea472d2027b1e97b2.
+// WatchMatchParticipantRecorded is a free log subscription operation binding the contract event 0x4a4c497b8c1e81bc7bb92e9151f380955f34fa46ab887d42cdd5100df6d6e82f.
 //
-// Solidity: event MatchParticipantRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event MatchParticipantRecorded(uint256 indexed id, string recordHash)
 func (_MatchParticipantRegistry *MatchParticipantRegistryFilterer) WatchMatchParticipantRecorded(opts *bind.WatchOpts, sink chan<- *MatchParticipantRegistryMatchParticipantRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -1313,9 +1313,9 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryFilterer) WatchMatchPar
 	}), nil
 }
 
-// ParseMatchParticipantRecorded is a log parse operation binding the contract event 0x8150f40e33aac4e36316694127820faf2edce46c48e34b3ea472d2027b1e97b2.
+// ParseMatchParticipantRecorded is a log parse operation binding the contract event 0x4a4c497b8c1e81bc7bb92e9151f380955f34fa46ab887d42cdd5100df6d6e82f.
 //
-// Solidity: event MatchParticipantRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event MatchParticipantRecorded(uint256 indexed id, string recordHash)
 func (_MatchParticipantRegistry *MatchParticipantRegistryFilterer) ParseMatchParticipantRecorded(log types.Log) (*MatchParticipantRegistryMatchParticipantRecorded, error) {
 	event := new(MatchParticipantRegistryMatchParticipantRecorded)
 	if err := _MatchParticipantRegistry.contract.UnpackLog(event, "MatchParticipantRecorded", log); err != nil {
@@ -1327,8 +1327,8 @@ func (_MatchParticipantRegistry *MatchParticipantRegistryFilterer) ParseMatchPar
 
 // MatchRegistryMetaData contains all meta data concerning the MatchRegistry contract.
 var MatchRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"MatchRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordMatch\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateMatch\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806394e40e9a146100b2578063dc01da5b146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b815260206004820152601660248201527513585d18da08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fc8000df4b446153e43b5c2ff7a39fdcb7f2b5bec162aa92b4e17b740d604c171910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea26469706673582212208047fa4c5296e92cf8c1f4f3bea2e625db1568fed9ffc2d2f2ad55e141ad74d064736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"MatchRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordMatch\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateMatch\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105858061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610077578063daec364f146100a9578063fb77d0d8146100be575b5f5ffd5b61006161005c36600461028c565b6100d1565b60405161006e91906102a3565b60405180910390f35b61009961008536600461028c565b5f6020819052908152604090205460ff1681565b604051901515815260200161006e565b6100bc6100b73660046102d8565b610168565b005b6100996100cc3660046102d8565b61022f565b60016020525f9081526040902080546100e99061034f565b80601f01602080910402602001604051908101604052809291908181526020018280546101159061034f565b80156101605780601f1061013757610100808354040283529160200191610160565b820191905f5260205f20905b81548152906001019060200180831161014357829003601f168201915b505050505081565b5f8381526020819052604090205460ff16156101c35760405162461bcd60e51b815260206004820152601660248201527513585d18da08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f83815260208181526040808320805460ff1916600190811790915590915290206101ef8284836103e7565b50827f480d6ba8c2fc3a872f1ea9cb5995e6c5e2eddf416be39c71e88a62a33bd8135a83836040516102229291906104a1565b60405180910390a2505050565b5f8381526020819052604081205460ff168015610284575082826040516102579291906104cf565b604080519182900382205f878152600160205291909120909161027a91906104de565b6040518091039020145b949350505050565b5f6020828403121561029c575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b5f5f5f604084860312156102ea575f5ffd5b83359250602084013567ffffffffffffffff811115610307575f5ffd5b8401601f81018613610317575f5ffd5b803567ffffffffffffffff81111561032d575f5ffd5b86602082840101111561033e575f5ffd5b939660209190910195509293505050565b600181811c9082168061036357607f821691505b60208210810361038157634e487b7160e01b5f52602260045260245ffd5b50919050565b634e487b7160e01b5f52604160045260245ffd5b601f8211156103e257805f5260205f20601f840160051c810160208510156103c05750805b601f840160051c820191505b818110156103df575f81556001016103cc565b50505b505050565b67ffffffffffffffff8311156103ff576103ff610387565b6104138361040d835461034f565b8361039b565b5f601f841160018114610444575f851561042d5750838201355b5f19600387901b1c1916600186901b1783556103df565b5f83815260208120601f198716915b828110156104735786850135825560209485019460019092019101610453565b508682101561048f575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f19160101919050565b818382375f9101908152919050565b5f5f83546104eb8161034f565b600182168015610502576001811461051757610544565b60ff1983168652811515820286019350610544565b865f5260205f205f5b8381101561053c57815488820152600190910190602001610520565b505081860193505b50919594505050505056fea2646970667358221220098bf52451f8fa89fb5860229a5cc43ec578e63512b3b4df339451e5686ba37364736f6c634300081e0033",
 }
 
 // MatchRegistryABI is the input ABI used to generate the binding from.
@@ -1500,16 +1500,16 @@ func (_MatchRegistry *MatchRegistryTransactorRaw) Transact(opts *bind.TransactOp
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_MatchRegistry *MatchRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_MatchRegistry *MatchRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _MatchRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -1517,15 +1517,15 @@ func (_MatchRegistry *MatchRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_MatchRegistry *MatchRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_MatchRegistry *MatchRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _MatchRegistry.Contract.Hashes(&_MatchRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_MatchRegistry *MatchRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_MatchRegistry *MatchRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _MatchRegistry.Contract.Hashes(&_MatchRegistry.CallOpts, arg0)
 }
 
@@ -1560,10 +1560,10 @@ func (_MatchRegistry *MatchRegistryCallerSession) Recorded(arg0 *big.Int) (bool,
 	return _MatchRegistry.Contract.Recorded(&_MatchRegistry.CallOpts, arg0)
 }
 
-// ValidateMatch is a free data retrieval call binding the contract method 0x94e40e9a.
+// ValidateMatch is a free data retrieval call binding the contract method 0xfb77d0d8.
 //
-// Solidity: function validateMatch(uint256 id, bytes32 recordHash) view returns(bool)
-func (_MatchRegistry *MatchRegistryCaller) ValidateMatch(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateMatch(uint256 id, string recordHash) view returns(bool)
+func (_MatchRegistry *MatchRegistryCaller) ValidateMatch(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _MatchRegistry.contract.Call(opts, &out, "validateMatch", id, recordHash)
 
@@ -1577,38 +1577,38 @@ func (_MatchRegistry *MatchRegistryCaller) ValidateMatch(opts *bind.CallOpts, id
 
 }
 
-// ValidateMatch is a free data retrieval call binding the contract method 0x94e40e9a.
+// ValidateMatch is a free data retrieval call binding the contract method 0xfb77d0d8.
 //
-// Solidity: function validateMatch(uint256 id, bytes32 recordHash) view returns(bool)
-func (_MatchRegistry *MatchRegistrySession) ValidateMatch(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateMatch(uint256 id, string recordHash) view returns(bool)
+func (_MatchRegistry *MatchRegistrySession) ValidateMatch(id *big.Int, recordHash string) (bool, error) {
 	return _MatchRegistry.Contract.ValidateMatch(&_MatchRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateMatch is a free data retrieval call binding the contract method 0x94e40e9a.
+// ValidateMatch is a free data retrieval call binding the contract method 0xfb77d0d8.
 //
-// Solidity: function validateMatch(uint256 id, bytes32 recordHash) view returns(bool)
-func (_MatchRegistry *MatchRegistryCallerSession) ValidateMatch(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateMatch(uint256 id, string recordHash) view returns(bool)
+func (_MatchRegistry *MatchRegistryCallerSession) ValidateMatch(id *big.Int, recordHash string) (bool, error) {
 	return _MatchRegistry.Contract.ValidateMatch(&_MatchRegistry.CallOpts, id, recordHash)
 }
 
-// RecordMatch is a paid mutator transaction binding the contract method 0xdc01da5b.
+// RecordMatch is a paid mutator transaction binding the contract method 0xdaec364f.
 //
-// Solidity: function recordMatch(uint256 id, bytes32 recordHash) returns()
-func (_MatchRegistry *MatchRegistryTransactor) RecordMatch(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordMatch(uint256 id, string recordHash) returns()
+func (_MatchRegistry *MatchRegistryTransactor) RecordMatch(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _MatchRegistry.contract.Transact(opts, "recordMatch", id, recordHash)
 }
 
-// RecordMatch is a paid mutator transaction binding the contract method 0xdc01da5b.
+// RecordMatch is a paid mutator transaction binding the contract method 0xdaec364f.
 //
-// Solidity: function recordMatch(uint256 id, bytes32 recordHash) returns()
-func (_MatchRegistry *MatchRegistrySession) RecordMatch(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordMatch(uint256 id, string recordHash) returns()
+func (_MatchRegistry *MatchRegistrySession) RecordMatch(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _MatchRegistry.Contract.RecordMatch(&_MatchRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordMatch is a paid mutator transaction binding the contract method 0xdc01da5b.
+// RecordMatch is a paid mutator transaction binding the contract method 0xdaec364f.
 //
-// Solidity: function recordMatch(uint256 id, bytes32 recordHash) returns()
-func (_MatchRegistry *MatchRegistryTransactorSession) RecordMatch(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordMatch(uint256 id, string recordHash) returns()
+func (_MatchRegistry *MatchRegistryTransactorSession) RecordMatch(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _MatchRegistry.Contract.RecordMatch(&_MatchRegistry.TransactOpts, id, recordHash)
 }
 
@@ -1682,13 +1682,13 @@ func (it *MatchRegistryMatchRecordedIterator) Close() error {
 // MatchRegistryMatchRecorded represents a MatchRecorded event raised by the MatchRegistry contract.
 type MatchRegistryMatchRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterMatchRecorded is a free log retrieval operation binding the contract event 0xc8000df4b446153e43b5c2ff7a39fdcb7f2b5bec162aa92b4e17b740d604c171.
+// FilterMatchRecorded is a free log retrieval operation binding the contract event 0x480d6ba8c2fc3a872f1ea9cb5995e6c5e2eddf416be39c71e88a62a33bd8135a.
 //
-// Solidity: event MatchRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event MatchRecorded(uint256 indexed id, string recordHash)
 func (_MatchRegistry *MatchRegistryFilterer) FilterMatchRecorded(opts *bind.FilterOpts, id []*big.Int) (*MatchRegistryMatchRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -1703,9 +1703,9 @@ func (_MatchRegistry *MatchRegistryFilterer) FilterMatchRecorded(opts *bind.Filt
 	return &MatchRegistryMatchRecordedIterator{contract: _MatchRegistry.contract, event: "MatchRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchMatchRecorded is a free log subscription operation binding the contract event 0xc8000df4b446153e43b5c2ff7a39fdcb7f2b5bec162aa92b4e17b740d604c171.
+// WatchMatchRecorded is a free log subscription operation binding the contract event 0x480d6ba8c2fc3a872f1ea9cb5995e6c5e2eddf416be39c71e88a62a33bd8135a.
 //
-// Solidity: event MatchRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event MatchRecorded(uint256 indexed id, string recordHash)
 func (_MatchRegistry *MatchRegistryFilterer) WatchMatchRecorded(opts *bind.WatchOpts, sink chan<- *MatchRegistryMatchRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -1745,9 +1745,9 @@ func (_MatchRegistry *MatchRegistryFilterer) WatchMatchRecorded(opts *bind.Watch
 	}), nil
 }
 
-// ParseMatchRecorded is a log parse operation binding the contract event 0xc8000df4b446153e43b5c2ff7a39fdcb7f2b5bec162aa92b4e17b740d604c171.
+// ParseMatchRecorded is a log parse operation binding the contract event 0x480d6ba8c2fc3a872f1ea9cb5995e6c5e2eddf416be39c71e88a62a33bd8135a.
 //
-// Solidity: event MatchRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event MatchRecorded(uint256 indexed id, string recordHash)
 func (_MatchRegistry *MatchRegistryFilterer) ParseMatchRecorded(log types.Log) (*MatchRegistryMatchRecorded, error) {
 	event := new(MatchRegistryMatchRecorded)
 	if err := _MatchRegistry.contract.UnpackLog(event, "MatchRecorded", log); err != nil {
@@ -1759,8 +1759,8 @@ func (_MatchRegistry *MatchRegistryFilterer) ParseMatchRecorded(log types.Log) (
 
 // PersonRegistryMetaData contains all meta data concerning the PersonRegistry contract.
 var PersonRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"PersonRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordPerson\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validatePerson\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806372013409146100b2578063e600835d146100c7575b5f5ffd5b61006d61005c3660046101c7565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c7565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100c56100c03660046101de565b6100da565b005b6100a26100d53660046101de565b610197565b5f8281526020819052604090205460ff161561013c5760405162461bcd60e51b815260206004820152601760248201527f506572736f6e20616c7265616479207265636f72646564000000000000000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fccc35dc586d377da368a5e0ae6527ddbd36d7520272350d11ddde3995c8e2ff9910160405180910390a25050565b5f8281526020819052604081205460ff1680156101c057505f8381526001602052604090205482145b9392505050565b5f602082840312156101d7575f5ffd5b5035919050565b5f5f604083850312156101ef575f5ffd5b5050803592602090910135915056fea2646970667358221220e091981366b12065b6d7879c42609bdfc2e98bc758778fdfa948910e3def357c64736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"PersonRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordPerson\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validatePerson\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105888061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c80632b796d5e1461004e578063501895ae146100765780635a204a5a1461009657806360b2267b146100ab575b5f5ffd5b61006161005c36600461028f565b6100cd565b60405190151581526020015b60405180910390f35b610089610084366004610306565b61012a565b60405161006d919061031d565b6100a96100a436600461028f565b6101c1565b005b6100616100b9366004610306565b5f6020819052908152604090205460ff1681565b5f8381526020819052604081205460ff168015610122575082826040516100f5929190610352565b604080519182900382205f87815260016020529190912090916101189190610399565b6040518091039020145b949350505050565b60016020525f90815260409020805461014290610361565b80601f016020809104026020016040519081016040528092919081815260200182805461016e90610361565b80156101b95780601f10610190576101008083540402835291602001916101b9565b820191905f5260205f20905b81548152906001019060200180831161019c57829003601f168201915b505050505081565b5f8381526020819052604090205460ff16156102235760405162461bcd60e51b815260206004820152601760248201527f506572736f6e20616c7265616479207265636f72646564000000000000000000604482015260640160405180910390fd5b5f83815260208181526040808320805460ff19166001908117909155909152902061024f82848361046a565b50827fd908cd34fe6486ae21421c8f652420da6374812e726c445a45c3ea56cdc1ad488383604051610282929190610524565b60405180910390a2505050565b5f5f5f604084860312156102a1575f5ffd5b83359250602084013567ffffffffffffffff8111156102be575f5ffd5b8401601f810186136102ce575f5ffd5b803567ffffffffffffffff8111156102e4575f5ffd5b8660208284010111156102f5575f5ffd5b939660209190910195509293505050565b5f60208284031215610316575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b818382375f9101908152919050565b600181811c9082168061037557607f821691505b60208210810361039357634e487b7160e01b5f52602260045260245ffd5b50919050565b5f5f83546103a681610361565b6001821680156103bd57600181146103d2576103ff565b60ff19831686528115158202860193506103ff565b865f5260205f205f5b838110156103f7578154888201526001909101906020016103db565b505081860193505b509195945050505050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561046557805f5260205f20601f840160051c810160208510156104435750805b601f840160051c820191505b81811015610462575f815560010161044f565b50505b505050565b67ffffffffffffffff8311156104825761048261040a565b610496836104908354610361565b8361041e565b5f601f8411600181146104c7575f85156104b05750838201355b5f19600387901b1c1916600186901b178355610462565b5f83815260208120601f198716915b828110156104f657868501358255602094850194600190920191016104d6565b5086821015610512575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f1916010191905056fea2646970667358221220d7d42889adddd3fef725ef7089ea36b9c666fa69d4877a07943933800a49d4ee64736f6c634300081e0033",
 }
 
 // PersonRegistryABI is the input ABI used to generate the binding from.
@@ -1932,16 +1932,16 @@ func (_PersonRegistry *PersonRegistryTransactorRaw) Transact(opts *bind.Transact
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_PersonRegistry *PersonRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_PersonRegistry *PersonRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _PersonRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -1949,15 +1949,15 @@ func (_PersonRegistry *PersonRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *b
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_PersonRegistry *PersonRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_PersonRegistry *PersonRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _PersonRegistry.Contract.Hashes(&_PersonRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_PersonRegistry *PersonRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_PersonRegistry *PersonRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _PersonRegistry.Contract.Hashes(&_PersonRegistry.CallOpts, arg0)
 }
 
@@ -1992,10 +1992,10 @@ func (_PersonRegistry *PersonRegistryCallerSession) Recorded(arg0 *big.Int) (boo
 	return _PersonRegistry.Contract.Recorded(&_PersonRegistry.CallOpts, arg0)
 }
 
-// ValidatePerson is a free data retrieval call binding the contract method 0xe600835d.
+// ValidatePerson is a free data retrieval call binding the contract method 0x2b796d5e.
 //
-// Solidity: function validatePerson(uint256 id, bytes32 recordHash) view returns(bool)
-func (_PersonRegistry *PersonRegistryCaller) ValidatePerson(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validatePerson(uint256 id, string recordHash) view returns(bool)
+func (_PersonRegistry *PersonRegistryCaller) ValidatePerson(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _PersonRegistry.contract.Call(opts, &out, "validatePerson", id, recordHash)
 
@@ -2009,38 +2009,38 @@ func (_PersonRegistry *PersonRegistryCaller) ValidatePerson(opts *bind.CallOpts,
 
 }
 
-// ValidatePerson is a free data retrieval call binding the contract method 0xe600835d.
+// ValidatePerson is a free data retrieval call binding the contract method 0x2b796d5e.
 //
-// Solidity: function validatePerson(uint256 id, bytes32 recordHash) view returns(bool)
-func (_PersonRegistry *PersonRegistrySession) ValidatePerson(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validatePerson(uint256 id, string recordHash) view returns(bool)
+func (_PersonRegistry *PersonRegistrySession) ValidatePerson(id *big.Int, recordHash string) (bool, error) {
 	return _PersonRegistry.Contract.ValidatePerson(&_PersonRegistry.CallOpts, id, recordHash)
 }
 
-// ValidatePerson is a free data retrieval call binding the contract method 0xe600835d.
+// ValidatePerson is a free data retrieval call binding the contract method 0x2b796d5e.
 //
-// Solidity: function validatePerson(uint256 id, bytes32 recordHash) view returns(bool)
-func (_PersonRegistry *PersonRegistryCallerSession) ValidatePerson(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validatePerson(uint256 id, string recordHash) view returns(bool)
+func (_PersonRegistry *PersonRegistryCallerSession) ValidatePerson(id *big.Int, recordHash string) (bool, error) {
 	return _PersonRegistry.Contract.ValidatePerson(&_PersonRegistry.CallOpts, id, recordHash)
 }
 
-// RecordPerson is a paid mutator transaction binding the contract method 0x72013409.
+// RecordPerson is a paid mutator transaction binding the contract method 0x5a204a5a.
 //
-// Solidity: function recordPerson(uint256 id, bytes32 recordHash) returns()
-func (_PersonRegistry *PersonRegistryTransactor) RecordPerson(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordPerson(uint256 id, string recordHash) returns()
+func (_PersonRegistry *PersonRegistryTransactor) RecordPerson(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _PersonRegistry.contract.Transact(opts, "recordPerson", id, recordHash)
 }
 
-// RecordPerson is a paid mutator transaction binding the contract method 0x72013409.
+// RecordPerson is a paid mutator transaction binding the contract method 0x5a204a5a.
 //
-// Solidity: function recordPerson(uint256 id, bytes32 recordHash) returns()
-func (_PersonRegistry *PersonRegistrySession) RecordPerson(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordPerson(uint256 id, string recordHash) returns()
+func (_PersonRegistry *PersonRegistrySession) RecordPerson(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _PersonRegistry.Contract.RecordPerson(&_PersonRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordPerson is a paid mutator transaction binding the contract method 0x72013409.
+// RecordPerson is a paid mutator transaction binding the contract method 0x5a204a5a.
 //
-// Solidity: function recordPerson(uint256 id, bytes32 recordHash) returns()
-func (_PersonRegistry *PersonRegistryTransactorSession) RecordPerson(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordPerson(uint256 id, string recordHash) returns()
+func (_PersonRegistry *PersonRegistryTransactorSession) RecordPerson(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _PersonRegistry.Contract.RecordPerson(&_PersonRegistry.TransactOpts, id, recordHash)
 }
 
@@ -2114,13 +2114,13 @@ func (it *PersonRegistryPersonRecordedIterator) Close() error {
 // PersonRegistryPersonRecorded represents a PersonRecorded event raised by the PersonRegistry contract.
 type PersonRegistryPersonRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterPersonRecorded is a free log retrieval operation binding the contract event 0xccc35dc586d377da368a5e0ae6527ddbd36d7520272350d11ddde3995c8e2ff9.
+// FilterPersonRecorded is a free log retrieval operation binding the contract event 0xd908cd34fe6486ae21421c8f652420da6374812e726c445a45c3ea56cdc1ad48.
 //
-// Solidity: event PersonRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event PersonRecorded(uint256 indexed id, string recordHash)
 func (_PersonRegistry *PersonRegistryFilterer) FilterPersonRecorded(opts *bind.FilterOpts, id []*big.Int) (*PersonRegistryPersonRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -2135,9 +2135,9 @@ func (_PersonRegistry *PersonRegistryFilterer) FilterPersonRecorded(opts *bind.F
 	return &PersonRegistryPersonRecordedIterator{contract: _PersonRegistry.contract, event: "PersonRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchPersonRecorded is a free log subscription operation binding the contract event 0xccc35dc586d377da368a5e0ae6527ddbd36d7520272350d11ddde3995c8e2ff9.
+// WatchPersonRecorded is a free log subscription operation binding the contract event 0xd908cd34fe6486ae21421c8f652420da6374812e726c445a45c3ea56cdc1ad48.
 //
-// Solidity: event PersonRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event PersonRecorded(uint256 indexed id, string recordHash)
 func (_PersonRegistry *PersonRegistryFilterer) WatchPersonRecorded(opts *bind.WatchOpts, sink chan<- *PersonRegistryPersonRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -2177,9 +2177,9 @@ func (_PersonRegistry *PersonRegistryFilterer) WatchPersonRecorded(opts *bind.Wa
 	}), nil
 }
 
-// ParsePersonRecorded is a log parse operation binding the contract event 0xccc35dc586d377da368a5e0ae6527ddbd36d7520272350d11ddde3995c8e2ff9.
+// ParsePersonRecorded is a log parse operation binding the contract event 0xd908cd34fe6486ae21421c8f652420da6374812e726c445a45c3ea56cdc1ad48.
 //
-// Solidity: event PersonRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event PersonRecorded(uint256 indexed id, string recordHash)
 func (_PersonRegistry *PersonRegistryFilterer) ParsePersonRecorded(log types.Log) (*PersonRegistryPersonRecorded, error) {
 	event := new(PersonRegistryPersonRecorded)
 	if err := _PersonRegistry.contract.UnpackLog(event, "PersonRecorded", log); err != nil {
@@ -2191,8 +2191,8 @@ func (_PersonRegistry *PersonRegistryFilterer) ParsePersonRecorded(log types.Log
 
 // PrizeRegistryMetaData contains all meta data concerning the PrizeRegistry contract.
 var PrizeRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"PrizeRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordPrize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validatePrize\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b146100805780636e7a2303146100b2578063d6b2e79c146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b8152602060048201526016602482015275141c9a5e9948185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fe10db0f42bd2a99cbdf969539fe5a713c22dd4f295a12c3eff519e78e1909d36910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea26469706673582212205d5a369675f7fbc44b7ead3bcb1db6017512aa3fdabd128a1eed6f1290d629cf64736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"PrizeRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordPrize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validatePrize\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105858061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461007757806363a66be2146100a9578063ab84ec9f146100bc575b5f5ffd5b61006161005c36600461028c565b6100d1565b60405161006e91906102a3565b60405180910390f35b61009961008536600461028c565b5f6020819052908152604090205460ff1681565b604051901515815260200161006e565b6100996100b73660046102d8565b610168565b6100cf6100ca3660046102d8565b6101c5565b005b60016020525f9081526040902080546100e99061034f565b80601f01602080910402602001604051908101604052809291908181526020018280546101159061034f565b80156101605780601f1061013757610100808354040283529160200191610160565b820191905f5260205f20905b81548152906001019060200180831161014357829003601f168201915b505050505081565b5f8381526020819052604081205460ff1680156101bd57508282604051610190929190610387565b604080519182900382205f87815260016020529190912090916101b39190610396565b6040518091039020145b949350505050565b5f8381526020819052604090205460ff16156102205760405162461bcd60e51b8152602060048201526016602482015275141c9a5e9948185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f83815260208181526040808320805460ff19166001908117909155909152902061024c828483610467565b50827f2f8720dba077ce08b29ef00ca011bd0420304cd53e1795486dbf734022d4c659838360405161027f929190610521565b60405180910390a2505050565b5f6020828403121561029c575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b5f5f5f604084860312156102ea575f5ffd5b83359250602084013567ffffffffffffffff811115610307575f5ffd5b8401601f81018613610317575f5ffd5b803567ffffffffffffffff81111561032d575f5ffd5b86602082840101111561033e575f5ffd5b939660209190910195509293505050565b600181811c9082168061036357607f821691505b60208210810361038157634e487b7160e01b5f52602260045260245ffd5b50919050565b818382375f9101908152919050565b5f5f83546103a38161034f565b6001821680156103ba57600181146103cf576103fc565b60ff19831686528115158202860193506103fc565b865f5260205f205f5b838110156103f4578154888201526001909101906020016103d8565b505081860193505b509195945050505050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561046257805f5260205f20601f840160051c810160208510156104405750805b601f840160051c820191505b8181101561045f575f815560010161044c565b50505b505050565b67ffffffffffffffff83111561047f5761047f610407565b6104938361048d835461034f565b8361041b565b5f601f8411600181146104c4575f85156104ad5750838201355b5f19600387901b1c1916600186901b17835561045f565b5f83815260208120601f198716915b828110156104f357868501358255602094850194600190920191016104d3565b508682101561050f575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f1916010191905056fea2646970667358221220da41a58e7f8f5c9fe308e7dfc3fee7d5f7dd761cb9de0de04f5470427e4a55c464736f6c634300081e0033",
 }
 
 // PrizeRegistryABI is the input ABI used to generate the binding from.
@@ -2364,16 +2364,16 @@ func (_PrizeRegistry *PrizeRegistryTransactorRaw) Transact(opts *bind.TransactOp
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_PrizeRegistry *PrizeRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_PrizeRegistry *PrizeRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _PrizeRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -2381,15 +2381,15 @@ func (_PrizeRegistry *PrizeRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_PrizeRegistry *PrizeRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_PrizeRegistry *PrizeRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _PrizeRegistry.Contract.Hashes(&_PrizeRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_PrizeRegistry *PrizeRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_PrizeRegistry *PrizeRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _PrizeRegistry.Contract.Hashes(&_PrizeRegistry.CallOpts, arg0)
 }
 
@@ -2424,10 +2424,10 @@ func (_PrizeRegistry *PrizeRegistryCallerSession) Recorded(arg0 *big.Int) (bool,
 	return _PrizeRegistry.Contract.Recorded(&_PrizeRegistry.CallOpts, arg0)
 }
 
-// ValidatePrize is a free data retrieval call binding the contract method 0x6e7a2303.
+// ValidatePrize is a free data retrieval call binding the contract method 0x63a66be2.
 //
-// Solidity: function validatePrize(uint256 id, bytes32 recordHash) view returns(bool)
-func (_PrizeRegistry *PrizeRegistryCaller) ValidatePrize(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validatePrize(uint256 id, string recordHash) view returns(bool)
+func (_PrizeRegistry *PrizeRegistryCaller) ValidatePrize(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _PrizeRegistry.contract.Call(opts, &out, "validatePrize", id, recordHash)
 
@@ -2441,38 +2441,38 @@ func (_PrizeRegistry *PrizeRegistryCaller) ValidatePrize(opts *bind.CallOpts, id
 
 }
 
-// ValidatePrize is a free data retrieval call binding the contract method 0x6e7a2303.
+// ValidatePrize is a free data retrieval call binding the contract method 0x63a66be2.
 //
-// Solidity: function validatePrize(uint256 id, bytes32 recordHash) view returns(bool)
-func (_PrizeRegistry *PrizeRegistrySession) ValidatePrize(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validatePrize(uint256 id, string recordHash) view returns(bool)
+func (_PrizeRegistry *PrizeRegistrySession) ValidatePrize(id *big.Int, recordHash string) (bool, error) {
 	return _PrizeRegistry.Contract.ValidatePrize(&_PrizeRegistry.CallOpts, id, recordHash)
 }
 
-// ValidatePrize is a free data retrieval call binding the contract method 0x6e7a2303.
+// ValidatePrize is a free data retrieval call binding the contract method 0x63a66be2.
 //
-// Solidity: function validatePrize(uint256 id, bytes32 recordHash) view returns(bool)
-func (_PrizeRegistry *PrizeRegistryCallerSession) ValidatePrize(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validatePrize(uint256 id, string recordHash) view returns(bool)
+func (_PrizeRegistry *PrizeRegistryCallerSession) ValidatePrize(id *big.Int, recordHash string) (bool, error) {
 	return _PrizeRegistry.Contract.ValidatePrize(&_PrizeRegistry.CallOpts, id, recordHash)
 }
 
-// RecordPrize is a paid mutator transaction binding the contract method 0xd6b2e79c.
+// RecordPrize is a paid mutator transaction binding the contract method 0xab84ec9f.
 //
-// Solidity: function recordPrize(uint256 id, bytes32 recordHash) returns()
-func (_PrizeRegistry *PrizeRegistryTransactor) RecordPrize(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordPrize(uint256 id, string recordHash) returns()
+func (_PrizeRegistry *PrizeRegistryTransactor) RecordPrize(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _PrizeRegistry.contract.Transact(opts, "recordPrize", id, recordHash)
 }
 
-// RecordPrize is a paid mutator transaction binding the contract method 0xd6b2e79c.
+// RecordPrize is a paid mutator transaction binding the contract method 0xab84ec9f.
 //
-// Solidity: function recordPrize(uint256 id, bytes32 recordHash) returns()
-func (_PrizeRegistry *PrizeRegistrySession) RecordPrize(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordPrize(uint256 id, string recordHash) returns()
+func (_PrizeRegistry *PrizeRegistrySession) RecordPrize(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _PrizeRegistry.Contract.RecordPrize(&_PrizeRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordPrize is a paid mutator transaction binding the contract method 0xd6b2e79c.
+// RecordPrize is a paid mutator transaction binding the contract method 0xab84ec9f.
 //
-// Solidity: function recordPrize(uint256 id, bytes32 recordHash) returns()
-func (_PrizeRegistry *PrizeRegistryTransactorSession) RecordPrize(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordPrize(uint256 id, string recordHash) returns()
+func (_PrizeRegistry *PrizeRegistryTransactorSession) RecordPrize(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _PrizeRegistry.Contract.RecordPrize(&_PrizeRegistry.TransactOpts, id, recordHash)
 }
 
@@ -2546,13 +2546,13 @@ func (it *PrizeRegistryPrizeRecordedIterator) Close() error {
 // PrizeRegistryPrizeRecorded represents a PrizeRecorded event raised by the PrizeRegistry contract.
 type PrizeRegistryPrizeRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterPrizeRecorded is a free log retrieval operation binding the contract event 0xe10db0f42bd2a99cbdf969539fe5a713c22dd4f295a12c3eff519e78e1909d36.
+// FilterPrizeRecorded is a free log retrieval operation binding the contract event 0x2f8720dba077ce08b29ef00ca011bd0420304cd53e1795486dbf734022d4c659.
 //
-// Solidity: event PrizeRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event PrizeRecorded(uint256 indexed id, string recordHash)
 func (_PrizeRegistry *PrizeRegistryFilterer) FilterPrizeRecorded(opts *bind.FilterOpts, id []*big.Int) (*PrizeRegistryPrizeRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -2567,9 +2567,9 @@ func (_PrizeRegistry *PrizeRegistryFilterer) FilterPrizeRecorded(opts *bind.Filt
 	return &PrizeRegistryPrizeRecordedIterator{contract: _PrizeRegistry.contract, event: "PrizeRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchPrizeRecorded is a free log subscription operation binding the contract event 0xe10db0f42bd2a99cbdf969539fe5a713c22dd4f295a12c3eff519e78e1909d36.
+// WatchPrizeRecorded is a free log subscription operation binding the contract event 0x2f8720dba077ce08b29ef00ca011bd0420304cd53e1795486dbf734022d4c659.
 //
-// Solidity: event PrizeRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event PrizeRecorded(uint256 indexed id, string recordHash)
 func (_PrizeRegistry *PrizeRegistryFilterer) WatchPrizeRecorded(opts *bind.WatchOpts, sink chan<- *PrizeRegistryPrizeRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -2609,9 +2609,9 @@ func (_PrizeRegistry *PrizeRegistryFilterer) WatchPrizeRecorded(opts *bind.Watch
 	}), nil
 }
 
-// ParsePrizeRecorded is a log parse operation binding the contract event 0xe10db0f42bd2a99cbdf969539fe5a713c22dd4f295a12c3eff519e78e1909d36.
+// ParsePrizeRecorded is a log parse operation binding the contract event 0x2f8720dba077ce08b29ef00ca011bd0420304cd53e1795486dbf734022d4c659.
 //
-// Solidity: event PrizeRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event PrizeRecorded(uint256 indexed id, string recordHash)
 func (_PrizeRegistry *PrizeRegistryFilterer) ParsePrizeRecorded(log types.Log) (*PrizeRegistryPrizeRecorded, error) {
 	event := new(PrizeRegistryPrizeRecorded)
 	if err := _PrizeRegistry.contract.UnpackLog(event, "PrizeRecorded", log); err != nil {
@@ -2623,8 +2623,8 @@ func (_PrizeRegistry *PrizeRegistryFilterer) ParsePrizeRecorded(log types.Log) (
 
 // SportRegistryMetaData contains all meta data concerning the SportRegistry contract.
 var SportRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"SportRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordSport\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateSport\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022d8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610080578063bec12103146100b2578063d76c9386146100c5575b5f5ffd5b61006d61005c3660046101c0565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c0565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101d7565b6100da565b6100d86100d33660046101d7565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101655760405162461bcd60e51b815260206004820152601660248201527514dc1bdc9d08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f3a90657270ecf8ae1de2f87142a28a59f2ff9d42307e84a7e388ccab1413610b910160405180910390a25050565b5f602082840312156101d0575f5ffd5b5035919050565b5f5f604083850312156101e8575f5ffd5b5050803592602090910135915056fea264697066735822122094879eb3d906b65b9206a94ab4ecbb99fc978f5c427e0a5947ee58fca868393464736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"SportRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordSport\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateSport\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105818061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c80632806ebd41461004e578063501895ae1461007657806360b2267b146100965780639f3c80b8146100b8575b5f5ffd5b61006161005c366004610288565b6100cd565b60405190151581526020015b60405180910390f35b6100896100843660046102ff565b61012a565b60405161006d9190610316565b6100616100a43660046102ff565b5f6020819052908152604090205460ff1681565b6100cb6100c6366004610288565b6101c1565b005b5f8381526020819052604081205460ff168015610122575082826040516100f592919061034b565b604080519182900382205f87815260016020529190912090916101189190610392565b6040518091039020145b949350505050565b60016020525f9081526040902080546101429061035a565b80601f016020809104026020016040519081016040528092919081815260200182805461016e9061035a565b80156101b95780601f10610190576101008083540402835291602001916101b9565b820191905f5260205f20905b81548152906001019060200180831161019c57829003601f168201915b505050505081565b5f8381526020819052604090205460ff161561021c5760405162461bcd60e51b815260206004820152601660248201527514dc1bdc9d08185b1c9958591e481c9958dbdc99195960521b604482015260640160405180910390fd5b5f83815260208181526040808320805460ff191660019081179091559091529020610248828483610463565b50827f85f8c8eab2cb1e62ec63641891be02349d978d3bfda05de067d6cfd4eb5b7aaf838360405161027b92919061051d565b60405180910390a2505050565b5f5f5f6040848603121561029a575f5ffd5b83359250602084013567ffffffffffffffff8111156102b7575f5ffd5b8401601f810186136102c7575f5ffd5b803567ffffffffffffffff8111156102dd575f5ffd5b8660208284010111156102ee575f5ffd5b939660209190910195509293505050565b5f6020828403121561030f575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b818382375f9101908152919050565b600181811c9082168061036e57607f821691505b60208210810361038c57634e487b7160e01b5f52602260045260245ffd5b50919050565b5f5f835461039f8161035a565b6001821680156103b657600181146103cb576103f8565b60ff19831686528115158202860193506103f8565b865f5260205f205f5b838110156103f0578154888201526001909101906020016103d4565b505081860193505b509195945050505050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561045e57805f5260205f20601f840160051c8101602085101561043c5750805b601f840160051c820191505b8181101561045b575f8155600101610448565b50505b505050565b67ffffffffffffffff83111561047b5761047b610403565b61048f83610489835461035a565b83610417565b5f601f8411600181146104c0575f85156104a95750838201355b5f19600387901b1c1916600186901b17835561045b565b5f83815260208120601f198716915b828110156104ef57868501358255602094850194600190920191016104cf565b508682101561050b575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f1916010191905056fea2646970667358221220af045c8195ef3f50a55601e3522c587c974b0cd7810840b7d2bd00875bd21f1264736f6c634300081e0033",
 }
 
 // SportRegistryABI is the input ABI used to generate the binding from.
@@ -2796,16 +2796,16 @@ func (_SportRegistry *SportRegistryTransactorRaw) Transact(opts *bind.TransactOp
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_SportRegistry *SportRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_SportRegistry *SportRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _SportRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -2813,15 +2813,15 @@ func (_SportRegistry *SportRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_SportRegistry *SportRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_SportRegistry *SportRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _SportRegistry.Contract.Hashes(&_SportRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_SportRegistry *SportRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_SportRegistry *SportRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _SportRegistry.Contract.Hashes(&_SportRegistry.CallOpts, arg0)
 }
 
@@ -2856,10 +2856,10 @@ func (_SportRegistry *SportRegistryCallerSession) Recorded(arg0 *big.Int) (bool,
 	return _SportRegistry.Contract.Recorded(&_SportRegistry.CallOpts, arg0)
 }
 
-// ValidateSport is a free data retrieval call binding the contract method 0xbec12103.
+// ValidateSport is a free data retrieval call binding the contract method 0x2806ebd4.
 //
-// Solidity: function validateSport(uint256 id, bytes32 recordHash) view returns(bool)
-func (_SportRegistry *SportRegistryCaller) ValidateSport(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateSport(uint256 id, string recordHash) view returns(bool)
+func (_SportRegistry *SportRegistryCaller) ValidateSport(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _SportRegistry.contract.Call(opts, &out, "validateSport", id, recordHash)
 
@@ -2873,38 +2873,38 @@ func (_SportRegistry *SportRegistryCaller) ValidateSport(opts *bind.CallOpts, id
 
 }
 
-// ValidateSport is a free data retrieval call binding the contract method 0xbec12103.
+// ValidateSport is a free data retrieval call binding the contract method 0x2806ebd4.
 //
-// Solidity: function validateSport(uint256 id, bytes32 recordHash) view returns(bool)
-func (_SportRegistry *SportRegistrySession) ValidateSport(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateSport(uint256 id, string recordHash) view returns(bool)
+func (_SportRegistry *SportRegistrySession) ValidateSport(id *big.Int, recordHash string) (bool, error) {
 	return _SportRegistry.Contract.ValidateSport(&_SportRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateSport is a free data retrieval call binding the contract method 0xbec12103.
+// ValidateSport is a free data retrieval call binding the contract method 0x2806ebd4.
 //
-// Solidity: function validateSport(uint256 id, bytes32 recordHash) view returns(bool)
-func (_SportRegistry *SportRegistryCallerSession) ValidateSport(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateSport(uint256 id, string recordHash) view returns(bool)
+func (_SportRegistry *SportRegistryCallerSession) ValidateSport(id *big.Int, recordHash string) (bool, error) {
 	return _SportRegistry.Contract.ValidateSport(&_SportRegistry.CallOpts, id, recordHash)
 }
 
-// RecordSport is a paid mutator transaction binding the contract method 0xd76c9386.
+// RecordSport is a paid mutator transaction binding the contract method 0x9f3c80b8.
 //
-// Solidity: function recordSport(uint256 id, bytes32 recordHash) returns()
-func (_SportRegistry *SportRegistryTransactor) RecordSport(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordSport(uint256 id, string recordHash) returns()
+func (_SportRegistry *SportRegistryTransactor) RecordSport(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _SportRegistry.contract.Transact(opts, "recordSport", id, recordHash)
 }
 
-// RecordSport is a paid mutator transaction binding the contract method 0xd76c9386.
+// RecordSport is a paid mutator transaction binding the contract method 0x9f3c80b8.
 //
-// Solidity: function recordSport(uint256 id, bytes32 recordHash) returns()
-func (_SportRegistry *SportRegistrySession) RecordSport(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordSport(uint256 id, string recordHash) returns()
+func (_SportRegistry *SportRegistrySession) RecordSport(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _SportRegistry.Contract.RecordSport(&_SportRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordSport is a paid mutator transaction binding the contract method 0xd76c9386.
+// RecordSport is a paid mutator transaction binding the contract method 0x9f3c80b8.
 //
-// Solidity: function recordSport(uint256 id, bytes32 recordHash) returns()
-func (_SportRegistry *SportRegistryTransactorSession) RecordSport(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordSport(uint256 id, string recordHash) returns()
+func (_SportRegistry *SportRegistryTransactorSession) RecordSport(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _SportRegistry.Contract.RecordSport(&_SportRegistry.TransactOpts, id, recordHash)
 }
 
@@ -2978,13 +2978,13 @@ func (it *SportRegistrySportRecordedIterator) Close() error {
 // SportRegistrySportRecorded represents a SportRecorded event raised by the SportRegistry contract.
 type SportRegistrySportRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterSportRecorded is a free log retrieval operation binding the contract event 0x3a90657270ecf8ae1de2f87142a28a59f2ff9d42307e84a7e388ccab1413610b.
+// FilterSportRecorded is a free log retrieval operation binding the contract event 0x85f8c8eab2cb1e62ec63641891be02349d978d3bfda05de067d6cfd4eb5b7aaf.
 //
-// Solidity: event SportRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event SportRecorded(uint256 indexed id, string recordHash)
 func (_SportRegistry *SportRegistryFilterer) FilterSportRecorded(opts *bind.FilterOpts, id []*big.Int) (*SportRegistrySportRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -2999,9 +2999,9 @@ func (_SportRegistry *SportRegistryFilterer) FilterSportRecorded(opts *bind.Filt
 	return &SportRegistrySportRecordedIterator{contract: _SportRegistry.contract, event: "SportRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchSportRecorded is a free log subscription operation binding the contract event 0x3a90657270ecf8ae1de2f87142a28a59f2ff9d42307e84a7e388ccab1413610b.
+// WatchSportRecorded is a free log subscription operation binding the contract event 0x85f8c8eab2cb1e62ec63641891be02349d978d3bfda05de067d6cfd4eb5b7aaf.
 //
-// Solidity: event SportRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event SportRecorded(uint256 indexed id, string recordHash)
 func (_SportRegistry *SportRegistryFilterer) WatchSportRecorded(opts *bind.WatchOpts, sink chan<- *SportRegistrySportRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -3041,9 +3041,9 @@ func (_SportRegistry *SportRegistryFilterer) WatchSportRecorded(opts *bind.Watch
 	}), nil
 }
 
-// ParseSportRecorded is a log parse operation binding the contract event 0x3a90657270ecf8ae1de2f87142a28a59f2ff9d42307e84a7e388ccab1413610b.
+// ParseSportRecorded is a log parse operation binding the contract event 0x85f8c8eab2cb1e62ec63641891be02349d978d3bfda05de067d6cfd4eb5b7aaf.
 //
-// Solidity: event SportRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event SportRecorded(uint256 indexed id, string recordHash)
 func (_SportRegistry *SportRegistryFilterer) ParseSportRecorded(log types.Log) (*SportRegistrySportRecorded, error) {
 	event := new(SportRegistrySportRecorded)
 	if err := _SportRegistry.contract.UnpackLog(event, "SportRecorded", log); err != nil {
@@ -3055,8 +3055,8 @@ func (_SportRegistry *SportRegistryFilterer) ParseSportRecorded(log types.Log) (
 
 // TeamAchievementsRegistryMetaData contains all meta data concerning the TeamAchievementsRegistry contract.
 var TeamAchievementsRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"TeamAchievementsRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordTeamAchievements\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateTeamAchievements\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061023e8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461008057806367f7f8e9146100b257806390601114146100c5575b5f5ffd5b61006d61005c3660046101d1565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101d1565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101e8565b6100da565b6100d86100d33660046101e8565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101765760405162461bcd60e51b815260206004820152602160248201527f5465616d416368696576656d656e747320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f4ccb76ae22e046343f35e06efd22087741eef767301af42bd138cae899df4899910160405180910390a25050565b5f602082840312156101e1575f5ffd5b5035919050565b5f5f604083850312156101f9575f5ffd5b5050803592602090910135915056fea2646970667358221220050001b3f121ac5be12d197c72d23a8f42ee927cb06c76433e9f0c2cacb5ce6364736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"TeamAchievementsRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordTeamAchievements\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateTeamAchievements\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105968061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b146100775780636d4f4153146100a95780637659e820146100be575b5f5ffd5b61006161005c36600461029d565b6100d1565b60405161006e91906102b4565b60405180910390f35b61009961008536600461029d565b5f6020819052908152604090205460ff1681565b604051901515815260200161006e565b6100bc6100b73660046102e9565b610168565b005b6100996100cc3660046102e9565b610240565b60016020525f9081526040902080546100e990610360565b80601f016020809104026020016040519081016040528092919081815260200182805461011590610360565b80156101605780601f1061013757610100808354040283529160200191610160565b820191905f5260205f20905b81548152906001019060200180831161014357829003601f168201915b505050505081565b5f8381526020819052604090205460ff16156101d45760405162461bcd60e51b815260206004820152602160248201527f5465616d416368696576656d656e747320616c7265616479207265636f7264656044820152601960fa1b606482015260840160405180910390fd5b5f83815260208181526040808320805460ff1916600190811790915590915290206102008284836103f8565b50827fb0c1034ffefd8772b51b2995a0cf2233ab4a1a7135761b86fbee097ceaac232883836040516102339291906104b2565b60405180910390a2505050565b5f8381526020819052604081205460ff168015610295575082826040516102689291906104e0565b604080519182900382205f878152600160205291909120909161028b91906104ef565b6040518091039020145b949350505050565b5f602082840312156102ad575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b5f5f5f604084860312156102fb575f5ffd5b83359250602084013567ffffffffffffffff811115610318575f5ffd5b8401601f81018613610328575f5ffd5b803567ffffffffffffffff81111561033e575f5ffd5b86602082840101111561034f575f5ffd5b939660209190910195509293505050565b600181811c9082168061037457607f821691505b60208210810361039257634e487b7160e01b5f52602260045260245ffd5b50919050565b634e487b7160e01b5f52604160045260245ffd5b601f8211156103f357805f5260205f20601f840160051c810160208510156103d15750805b601f840160051c820191505b818110156103f0575f81556001016103dd565b50505b505050565b67ffffffffffffffff83111561041057610410610398565b6104248361041e8354610360565b836103ac565b5f601f841160018114610455575f851561043e5750838201355b5f19600387901b1c1916600186901b1783556103f0565b5f83815260208120601f198716915b828110156104845786850135825560209485019460019092019101610464565b50868210156104a0575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f19160101919050565b818382375f9101908152919050565b5f5f83546104fc81610360565b600182168015610513576001811461052857610555565b60ff1983168652811515820286019350610555565b865f5260205f205f5b8381101561054d57815488820152600190910190602001610531565b505081860193505b50919594505050505056fea2646970667358221220dc135980ab05ef1e1b363e67a939aa1b207318179255be5a16a7761e1a14503064736f6c634300081e0033",
 }
 
 // TeamAchievementsRegistryABI is the input ABI used to generate the binding from.
@@ -3228,16 +3228,16 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryTransactorRaw) Transact
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamAchievementsRegistry *TeamAchievementsRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamAchievementsRegistry *TeamAchievementsRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _TeamAchievementsRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -3245,15 +3245,15 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryCaller) Hashes(opts *bi
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamAchievementsRegistry *TeamAchievementsRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamAchievementsRegistry *TeamAchievementsRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _TeamAchievementsRegistry.Contract.Hashes(&_TeamAchievementsRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamAchievementsRegistry *TeamAchievementsRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamAchievementsRegistry *TeamAchievementsRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _TeamAchievementsRegistry.Contract.Hashes(&_TeamAchievementsRegistry.CallOpts, arg0)
 }
 
@@ -3288,10 +3288,10 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryCallerSession) Recorded
 	return _TeamAchievementsRegistry.Contract.Recorded(&_TeamAchievementsRegistry.CallOpts, arg0)
 }
 
-// ValidateTeamAchievements is a free data retrieval call binding the contract method 0x67f7f8e9.
+// ValidateTeamAchievements is a free data retrieval call binding the contract method 0x7659e820.
 //
-// Solidity: function validateTeamAchievements(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamAchievementsRegistry *TeamAchievementsRegistryCaller) ValidateTeamAchievements(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeamAchievements(uint256 id, string recordHash) view returns(bool)
+func (_TeamAchievementsRegistry *TeamAchievementsRegistryCaller) ValidateTeamAchievements(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _TeamAchievementsRegistry.contract.Call(opts, &out, "validateTeamAchievements", id, recordHash)
 
@@ -3305,38 +3305,38 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryCaller) ValidateTeamAch
 
 }
 
-// ValidateTeamAchievements is a free data retrieval call binding the contract method 0x67f7f8e9.
+// ValidateTeamAchievements is a free data retrieval call binding the contract method 0x7659e820.
 //
-// Solidity: function validateTeamAchievements(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamAchievementsRegistry *TeamAchievementsRegistrySession) ValidateTeamAchievements(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeamAchievements(uint256 id, string recordHash) view returns(bool)
+func (_TeamAchievementsRegistry *TeamAchievementsRegistrySession) ValidateTeamAchievements(id *big.Int, recordHash string) (bool, error) {
 	return _TeamAchievementsRegistry.Contract.ValidateTeamAchievements(&_TeamAchievementsRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateTeamAchievements is a free data retrieval call binding the contract method 0x67f7f8e9.
+// ValidateTeamAchievements is a free data retrieval call binding the contract method 0x7659e820.
 //
-// Solidity: function validateTeamAchievements(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamAchievementsRegistry *TeamAchievementsRegistryCallerSession) ValidateTeamAchievements(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeamAchievements(uint256 id, string recordHash) view returns(bool)
+func (_TeamAchievementsRegistry *TeamAchievementsRegistryCallerSession) ValidateTeamAchievements(id *big.Int, recordHash string) (bool, error) {
 	return _TeamAchievementsRegistry.Contract.ValidateTeamAchievements(&_TeamAchievementsRegistry.CallOpts, id, recordHash)
 }
 
-// RecordTeamAchievements is a paid mutator transaction binding the contract method 0x90601114.
+// RecordTeamAchievements is a paid mutator transaction binding the contract method 0x6d4f4153.
 //
-// Solidity: function recordTeamAchievements(uint256 id, bytes32 recordHash) returns()
-func (_TeamAchievementsRegistry *TeamAchievementsRegistryTransactor) RecordTeamAchievements(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeamAchievements(uint256 id, string recordHash) returns()
+func (_TeamAchievementsRegistry *TeamAchievementsRegistryTransactor) RecordTeamAchievements(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamAchievementsRegistry.contract.Transact(opts, "recordTeamAchievements", id, recordHash)
 }
 
-// RecordTeamAchievements is a paid mutator transaction binding the contract method 0x90601114.
+// RecordTeamAchievements is a paid mutator transaction binding the contract method 0x6d4f4153.
 //
-// Solidity: function recordTeamAchievements(uint256 id, bytes32 recordHash) returns()
-func (_TeamAchievementsRegistry *TeamAchievementsRegistrySession) RecordTeamAchievements(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeamAchievements(uint256 id, string recordHash) returns()
+func (_TeamAchievementsRegistry *TeamAchievementsRegistrySession) RecordTeamAchievements(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamAchievementsRegistry.Contract.RecordTeamAchievements(&_TeamAchievementsRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordTeamAchievements is a paid mutator transaction binding the contract method 0x90601114.
+// RecordTeamAchievements is a paid mutator transaction binding the contract method 0x6d4f4153.
 //
-// Solidity: function recordTeamAchievements(uint256 id, bytes32 recordHash) returns()
-func (_TeamAchievementsRegistry *TeamAchievementsRegistryTransactorSession) RecordTeamAchievements(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeamAchievements(uint256 id, string recordHash) returns()
+func (_TeamAchievementsRegistry *TeamAchievementsRegistryTransactorSession) RecordTeamAchievements(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamAchievementsRegistry.Contract.RecordTeamAchievements(&_TeamAchievementsRegistry.TransactOpts, id, recordHash)
 }
 
@@ -3410,13 +3410,13 @@ func (it *TeamAchievementsRegistryTeamAchievementsRecordedIterator) Close() erro
 // TeamAchievementsRegistryTeamAchievementsRecorded represents a TeamAchievementsRecorded event raised by the TeamAchievementsRegistry contract.
 type TeamAchievementsRegistryTeamAchievementsRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterTeamAchievementsRecorded is a free log retrieval operation binding the contract event 0x4ccb76ae22e046343f35e06efd22087741eef767301af42bd138cae899df4899.
+// FilterTeamAchievementsRecorded is a free log retrieval operation binding the contract event 0xb0c1034ffefd8772b51b2995a0cf2233ab4a1a7135761b86fbee097ceaac2328.
 //
-// Solidity: event TeamAchievementsRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamAchievementsRecorded(uint256 indexed id, string recordHash)
 func (_TeamAchievementsRegistry *TeamAchievementsRegistryFilterer) FilterTeamAchievementsRecorded(opts *bind.FilterOpts, id []*big.Int) (*TeamAchievementsRegistryTeamAchievementsRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -3431,9 +3431,9 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryFilterer) FilterTeamAch
 	return &TeamAchievementsRegistryTeamAchievementsRecordedIterator{contract: _TeamAchievementsRegistry.contract, event: "TeamAchievementsRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchTeamAchievementsRecorded is a free log subscription operation binding the contract event 0x4ccb76ae22e046343f35e06efd22087741eef767301af42bd138cae899df4899.
+// WatchTeamAchievementsRecorded is a free log subscription operation binding the contract event 0xb0c1034ffefd8772b51b2995a0cf2233ab4a1a7135761b86fbee097ceaac2328.
 //
-// Solidity: event TeamAchievementsRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamAchievementsRecorded(uint256 indexed id, string recordHash)
 func (_TeamAchievementsRegistry *TeamAchievementsRegistryFilterer) WatchTeamAchievementsRecorded(opts *bind.WatchOpts, sink chan<- *TeamAchievementsRegistryTeamAchievementsRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -3473,9 +3473,9 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryFilterer) WatchTeamAchi
 	}), nil
 }
 
-// ParseTeamAchievementsRecorded is a log parse operation binding the contract event 0x4ccb76ae22e046343f35e06efd22087741eef767301af42bd138cae899df4899.
+// ParseTeamAchievementsRecorded is a log parse operation binding the contract event 0xb0c1034ffefd8772b51b2995a0cf2233ab4a1a7135761b86fbee097ceaac2328.
 //
-// Solidity: event TeamAchievementsRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamAchievementsRecorded(uint256 indexed id, string recordHash)
 func (_TeamAchievementsRegistry *TeamAchievementsRegistryFilterer) ParseTeamAchievementsRecorded(log types.Log) (*TeamAchievementsRegistryTeamAchievementsRecorded, error) {
 	event := new(TeamAchievementsRegistryTeamAchievementsRecorded)
 	if err := _TeamAchievementsRegistry.contract.UnpackLog(event, "TeamAchievementsRecorded", log); err != nil {
@@ -3487,8 +3487,8 @@ func (_TeamAchievementsRegistry *TeamAchievementsRegistryFilterer) ParseTeamAchi
 
 // TeamPersonRegistryMetaData contains all meta data concerning the TeamPersonRegistry contract.
 var TeamPersonRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"TeamPersonRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordTeamPerson\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateTeamPerson\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b506102348061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b14610080578063c8461d7d146100b2578063ce44aa83146100c5575b5f5ffd5b61006d61005c3660046101c7565b60016020525f908152604090205481565b6040519081526020015b60405180910390f35b6100a261008e3660046101c7565b5f6020819052908152604090205460ff1681565b6040519015158152602001610077565b6100a26100c03660046101de565b6100da565b6100d86100d33660046101de565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff161561016c5760405162461bcd60e51b815260206004820152601b60248201527f5465616d506572736f6e20616c7265616479207265636f726465640000000000604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917f19b871a1e9d52c1eeecd8e47c380c8aeabac9753b1e4dbaefab31819d47e13d8910160405180910390a25050565b5f602082840312156101d7575f5ffd5b5035919050565b5f5f604083850312156101ef575f5ffd5b5050803592602090910135915056fea2646970667358221220d9b31d6e7fd410fdcedf30c78d8fe53133fba5930180cb7fe28d127dfc49938964736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"TeamPersonRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordTeamPerson\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateTeamPerson\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105888061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c80631101f6751461004e5780634bea644614610076578063501895ae1461008b57806360b2267b146100ab575b5f5ffd5b61006161005c36600461028f565b6100cd565b60405190151581526020015b60405180910390f35b61008961008436600461028f565b61012a565b005b61009e610099366004610306565b6101f8565b60405161006d919061031d565b6100616100b9366004610306565b5f6020819052908152604090205460ff1681565b5f8381526020819052604081205460ff168015610122575082826040516100f5929190610352565b604080519182900382205f87815260016020529190912090916101189190610399565b6040518091039020145b949350505050565b5f8381526020819052604090205460ff161561018c5760405162461bcd60e51b815260206004820152601b60248201527f5465616d506572736f6e20616c7265616479207265636f726465640000000000604482015260640160405180910390fd5b5f83815260208181526040808320805460ff1916600190811790915590915290206101b882848361046a565b50827fa949f116d73f2c1a318d60c6fecf77c0f66e5394ae0345f20f9c5429a1924fc983836040516101eb929190610524565b60405180910390a2505050565b60016020525f90815260409020805461021090610361565b80601f016020809104026020016040519081016040528092919081815260200182805461023c90610361565b80156102875780601f1061025e57610100808354040283529160200191610287565b820191905f5260205f20905b81548152906001019060200180831161026a57829003601f168201915b505050505081565b5f5f5f604084860312156102a1575f5ffd5b83359250602084013567ffffffffffffffff8111156102be575f5ffd5b8401601f810186136102ce575f5ffd5b803567ffffffffffffffff8111156102e4575f5ffd5b8660208284010111156102f5575f5ffd5b939660209190910195509293505050565b5f60208284031215610316575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b818382375f9101908152919050565b600181811c9082168061037557607f821691505b60208210810361039357634e487b7160e01b5f52602260045260245ffd5b50919050565b5f5f83546103a681610361565b6001821680156103bd57600181146103d2576103ff565b60ff19831686528115158202860193506103ff565b865f5260205f205f5b838110156103f7578154888201526001909101906020016103db565b505081860193505b509195945050505050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561046557805f5260205f20601f840160051c810160208510156104435750805b601f840160051c820191505b81811015610462575f815560010161044f565b50505b505050565b67ffffffffffffffff8311156104825761048261040a565b610496836104908354610361565b8361041e565b5f601f8411600181146104c7575f85156104b05750838201355b5f19600387901b1c1916600186901b178355610462565b5f83815260208120601f198716915b828110156104f657868501358255602094850194600190920191016104d6565b5086821015610512575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f1916010191905056fea26469706673582212200f071b05c35bcbc2a045940e675d14cc76c1dd22762819220d50d954825b03ca64736f6c634300081e0033",
 }
 
 // TeamPersonRegistryABI is the input ABI used to generate the binding from.
@@ -3660,16 +3660,16 @@ func (_TeamPersonRegistry *TeamPersonRegistryTransactorRaw) Transact(opts *bind.
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamPersonRegistry *TeamPersonRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamPersonRegistry *TeamPersonRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _TeamPersonRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -3677,15 +3677,15 @@ func (_TeamPersonRegistry *TeamPersonRegistryCaller) Hashes(opts *bind.CallOpts,
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamPersonRegistry *TeamPersonRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamPersonRegistry *TeamPersonRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _TeamPersonRegistry.Contract.Hashes(&_TeamPersonRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamPersonRegistry *TeamPersonRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamPersonRegistry *TeamPersonRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _TeamPersonRegistry.Contract.Hashes(&_TeamPersonRegistry.CallOpts, arg0)
 }
 
@@ -3720,10 +3720,10 @@ func (_TeamPersonRegistry *TeamPersonRegistryCallerSession) Recorded(arg0 *big.I
 	return _TeamPersonRegistry.Contract.Recorded(&_TeamPersonRegistry.CallOpts, arg0)
 }
 
-// ValidateTeamPerson is a free data retrieval call binding the contract method 0xc8461d7d.
+// ValidateTeamPerson is a free data retrieval call binding the contract method 0x1101f675.
 //
-// Solidity: function validateTeamPerson(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamPersonRegistry *TeamPersonRegistryCaller) ValidateTeamPerson(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeamPerson(uint256 id, string recordHash) view returns(bool)
+func (_TeamPersonRegistry *TeamPersonRegistryCaller) ValidateTeamPerson(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _TeamPersonRegistry.contract.Call(opts, &out, "validateTeamPerson", id, recordHash)
 
@@ -3737,38 +3737,38 @@ func (_TeamPersonRegistry *TeamPersonRegistryCaller) ValidateTeamPerson(opts *bi
 
 }
 
-// ValidateTeamPerson is a free data retrieval call binding the contract method 0xc8461d7d.
+// ValidateTeamPerson is a free data retrieval call binding the contract method 0x1101f675.
 //
-// Solidity: function validateTeamPerson(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamPersonRegistry *TeamPersonRegistrySession) ValidateTeamPerson(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeamPerson(uint256 id, string recordHash) view returns(bool)
+func (_TeamPersonRegistry *TeamPersonRegistrySession) ValidateTeamPerson(id *big.Int, recordHash string) (bool, error) {
 	return _TeamPersonRegistry.Contract.ValidateTeamPerson(&_TeamPersonRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateTeamPerson is a free data retrieval call binding the contract method 0xc8461d7d.
+// ValidateTeamPerson is a free data retrieval call binding the contract method 0x1101f675.
 //
-// Solidity: function validateTeamPerson(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamPersonRegistry *TeamPersonRegistryCallerSession) ValidateTeamPerson(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeamPerson(uint256 id, string recordHash) view returns(bool)
+func (_TeamPersonRegistry *TeamPersonRegistryCallerSession) ValidateTeamPerson(id *big.Int, recordHash string) (bool, error) {
 	return _TeamPersonRegistry.Contract.ValidateTeamPerson(&_TeamPersonRegistry.CallOpts, id, recordHash)
 }
 
-// RecordTeamPerson is a paid mutator transaction binding the contract method 0xce44aa83.
+// RecordTeamPerson is a paid mutator transaction binding the contract method 0x4bea6446.
 //
-// Solidity: function recordTeamPerson(uint256 id, bytes32 recordHash) returns()
-func (_TeamPersonRegistry *TeamPersonRegistryTransactor) RecordTeamPerson(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeamPerson(uint256 id, string recordHash) returns()
+func (_TeamPersonRegistry *TeamPersonRegistryTransactor) RecordTeamPerson(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamPersonRegistry.contract.Transact(opts, "recordTeamPerson", id, recordHash)
 }
 
-// RecordTeamPerson is a paid mutator transaction binding the contract method 0xce44aa83.
+// RecordTeamPerson is a paid mutator transaction binding the contract method 0x4bea6446.
 //
-// Solidity: function recordTeamPerson(uint256 id, bytes32 recordHash) returns()
-func (_TeamPersonRegistry *TeamPersonRegistrySession) RecordTeamPerson(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeamPerson(uint256 id, string recordHash) returns()
+func (_TeamPersonRegistry *TeamPersonRegistrySession) RecordTeamPerson(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamPersonRegistry.Contract.RecordTeamPerson(&_TeamPersonRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordTeamPerson is a paid mutator transaction binding the contract method 0xce44aa83.
+// RecordTeamPerson is a paid mutator transaction binding the contract method 0x4bea6446.
 //
-// Solidity: function recordTeamPerson(uint256 id, bytes32 recordHash) returns()
-func (_TeamPersonRegistry *TeamPersonRegistryTransactorSession) RecordTeamPerson(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeamPerson(uint256 id, string recordHash) returns()
+func (_TeamPersonRegistry *TeamPersonRegistryTransactorSession) RecordTeamPerson(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamPersonRegistry.Contract.RecordTeamPerson(&_TeamPersonRegistry.TransactOpts, id, recordHash)
 }
 
@@ -3842,13 +3842,13 @@ func (it *TeamPersonRegistryTeamPersonRecordedIterator) Close() error {
 // TeamPersonRegistryTeamPersonRecorded represents a TeamPersonRecorded event raised by the TeamPersonRegistry contract.
 type TeamPersonRegistryTeamPersonRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterTeamPersonRecorded is a free log retrieval operation binding the contract event 0x19b871a1e9d52c1eeecd8e47c380c8aeabac9753b1e4dbaefab31819d47e13d8.
+// FilterTeamPersonRecorded is a free log retrieval operation binding the contract event 0xa949f116d73f2c1a318d60c6fecf77c0f66e5394ae0345f20f9c5429a1924fc9.
 //
-// Solidity: event TeamPersonRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamPersonRecorded(uint256 indexed id, string recordHash)
 func (_TeamPersonRegistry *TeamPersonRegistryFilterer) FilterTeamPersonRecorded(opts *bind.FilterOpts, id []*big.Int) (*TeamPersonRegistryTeamPersonRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -3863,9 +3863,9 @@ func (_TeamPersonRegistry *TeamPersonRegistryFilterer) FilterTeamPersonRecorded(
 	return &TeamPersonRegistryTeamPersonRecordedIterator{contract: _TeamPersonRegistry.contract, event: "TeamPersonRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchTeamPersonRecorded is a free log subscription operation binding the contract event 0x19b871a1e9d52c1eeecd8e47c380c8aeabac9753b1e4dbaefab31819d47e13d8.
+// WatchTeamPersonRecorded is a free log subscription operation binding the contract event 0xa949f116d73f2c1a318d60c6fecf77c0f66e5394ae0345f20f9c5429a1924fc9.
 //
-// Solidity: event TeamPersonRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamPersonRecorded(uint256 indexed id, string recordHash)
 func (_TeamPersonRegistry *TeamPersonRegistryFilterer) WatchTeamPersonRecorded(opts *bind.WatchOpts, sink chan<- *TeamPersonRegistryTeamPersonRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -3905,9 +3905,9 @@ func (_TeamPersonRegistry *TeamPersonRegistryFilterer) WatchTeamPersonRecorded(o
 	}), nil
 }
 
-// ParseTeamPersonRecorded is a log parse operation binding the contract event 0x19b871a1e9d52c1eeecd8e47c380c8aeabac9753b1e4dbaefab31819d47e13d8.
+// ParseTeamPersonRecorded is a log parse operation binding the contract event 0xa949f116d73f2c1a318d60c6fecf77c0f66e5394ae0345f20f9c5429a1924fc9.
 //
-// Solidity: event TeamPersonRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamPersonRecorded(uint256 indexed id, string recordHash)
 func (_TeamPersonRegistry *TeamPersonRegistryFilterer) ParseTeamPersonRecorded(log types.Log) (*TeamPersonRegistryTeamPersonRecorded, error) {
 	event := new(TeamPersonRegistryTeamPersonRecorded)
 	if err := _TeamPersonRegistry.contract.UnpackLog(event, "TeamPersonRecorded", log); err != nil {
@@ -3919,8 +3919,8 @@ func (_TeamPersonRegistry *TeamPersonRegistryFilterer) ParseTeamPersonRecorded(l
 
 // TeamRegistryMetaData contains all meta data concerning the TeamRegistry contract.
 var TeamRegistryMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"TeamRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"recordTeam\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"recordHash\",\"type\":\"bytes32\"}],\"name\":\"validateTeam\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b5061022c8061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c806317c22dcd1461004e578063501895ae1461007657806360b2267b146100a35780637e55300b146100c5575b5f5ffd5b61006161005c3660046101bf565b6100da565b60405190151581526020015b60405180910390f35b6100956100843660046101df565b60016020525f908152604090205481565b60405190815260200161006d565b6100616100b13660046101df565b5f6020819052908152604090205460ff1681565b6100d86100d33660046101bf565b61010a565b005b5f8281526020819052604081205460ff16801561010357505f8381526001602052604090205482145b9392505050565b5f8281526020819052604090205460ff16156101645760405162461bcd60e51b81526020600482015260156024820152741519585b48185b1c9958591e481c9958dbdc991959605a1b604482015260640160405180910390fd5b5f82815260208181526040808320805460ff19166001908117909155825291829020839055905182815283917fc7c2936543b717eb7c516edee4f9e4f4055071ab079302b387ee8c28e512c0ae910160405180910390a25050565b5f5f604083850312156101d0575f5ffd5b50508035926020909101359150565b5f602082840312156101ef575f5ffd5b503591905056fea2646970667358221220eada0298718873a5d43b86bb07c899ba035d490e9351dd564081368ff0f0df2164736f6c634300081d0033",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"TeamRecorded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"hashes\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"recordTeam\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"recorded\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"recordHash\",\"type\":\"string\"}],\"name\":\"validateTeam\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b506105848061001c5f395ff3fe608060405234801561000f575f5ffd5b506004361061004a575f3560e01c8063501895ae1461004e57806360b2267b1461007757806378768229146100a957806395fe1e7e146100bc575b5f5ffd5b61006161005c36600461028b565b6100d1565b60405161006e91906102a2565b60405180910390f35b61009961008536600461028b565b5f6020819052908152604090205460ff1681565b604051901515815260200161006e565b6100996100b73660046102d7565b610168565b6100cf6100ca3660046102d7565b6101c5565b005b60016020525f9081526040902080546100e99061034e565b80601f01602080910402602001604051908101604052809291908181526020018280546101159061034e565b80156101605780601f1061013757610100808354040283529160200191610160565b820191905f5260205f20905b81548152906001019060200180831161014357829003601f168201915b505050505081565b5f8381526020819052604081205460ff1680156101bd57508282604051610190929190610386565b604080519182900382205f87815260016020529190912090916101b39190610395565b6040518091039020145b949350505050565b5f8381526020819052604090205460ff161561021f5760405162461bcd60e51b81526020600482015260156024820152741519585b48185b1c9958591e481c9958dbdc991959605a1b604482015260640160405180910390fd5b5f83815260208181526040808320805460ff19166001908117909155909152902061024b828483610466565b50827f4c10eb58093e6afcff1f799a75ce04b158a68b5b1b9fe4d67ae71d86556e51c3838360405161027e929190610520565b60405180910390a2505050565b5f6020828403121561029b575f5ffd5b5035919050565b602081525f82518060208401528060208501604085015e5f604082850101526040601f19601f83011684010191505092915050565b5f5f5f604084860312156102e9575f5ffd5b83359250602084013567ffffffffffffffff811115610306575f5ffd5b8401601f81018613610316575f5ffd5b803567ffffffffffffffff81111561032c575f5ffd5b86602082840101111561033d575f5ffd5b939660209190910195509293505050565b600181811c9082168061036257607f821691505b60208210810361038057634e487b7160e01b5f52602260045260245ffd5b50919050565b818382375f9101908152919050565b5f5f83546103a28161034e565b6001821680156103b957600181146103ce576103fb565b60ff19831686528115158202860193506103fb565b865f5260205f205f5b838110156103f3578154888201526001909101906020016103d7565b505081860193505b509195945050505050565b634e487b7160e01b5f52604160045260245ffd5b601f82111561046157805f5260205f20601f840160051c8101602085101561043f5750805b601f840160051c820191505b8181101561045e575f815560010161044b565b50505b505050565b67ffffffffffffffff83111561047e5761047e610406565b6104928361048c835461034e565b8361041a565b5f601f8411600181146104c3575f85156104ac5750838201355b5f19600387901b1c1916600186901b17835561045e565b5f83815260208120601f198716915b828110156104f257868501358255602094850194600190920191016104d2565b508682101561050e575f1960f88860031b161c19848701351681555b505060018560011b0183555050505050565b60208152816020820152818360408301375f818301604090810191909152601f909201601f1916010191905056fea2646970667358221220f5371004ca7f0cebbf43f1c7274a5706b286ac83f4e64385a6d0543afa18d24d64736f6c634300081e0033",
 }
 
 // TeamRegistryABI is the input ABI used to generate the binding from.
@@ -4092,16 +4092,16 @@ func (_TeamRegistry *TeamRegistryTransactorRaw) Transact(opts *bind.TransactOpts
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamRegistry *TeamRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamRegistry *TeamRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.Int) (string, error) {
 	var out []interface{}
 	err := _TeamRegistry.contract.Call(opts, &out, "hashes", arg0)
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(string), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
 
 	return out0, err
 
@@ -4109,15 +4109,15 @@ func (_TeamRegistry *TeamRegistryCaller) Hashes(opts *bind.CallOpts, arg0 *big.I
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamRegistry *TeamRegistrySession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamRegistry *TeamRegistrySession) Hashes(arg0 *big.Int) (string, error) {
 	return _TeamRegistry.Contract.Hashes(&_TeamRegistry.CallOpts, arg0)
 }
 
 // Hashes is a free data retrieval call binding the contract method 0x501895ae.
 //
-// Solidity: function hashes(uint256 ) view returns(bytes32)
-func (_TeamRegistry *TeamRegistryCallerSession) Hashes(arg0 *big.Int) ([32]byte, error) {
+// Solidity: function hashes(uint256 ) view returns(string)
+func (_TeamRegistry *TeamRegistryCallerSession) Hashes(arg0 *big.Int) (string, error) {
 	return _TeamRegistry.Contract.Hashes(&_TeamRegistry.CallOpts, arg0)
 }
 
@@ -4152,10 +4152,10 @@ func (_TeamRegistry *TeamRegistryCallerSession) Recorded(arg0 *big.Int) (bool, e
 	return _TeamRegistry.Contract.Recorded(&_TeamRegistry.CallOpts, arg0)
 }
 
-// ValidateTeam is a free data retrieval call binding the contract method 0x17c22dcd.
+// ValidateTeam is a free data retrieval call binding the contract method 0x78768229.
 //
-// Solidity: function validateTeam(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamRegistry *TeamRegistryCaller) ValidateTeam(opts *bind.CallOpts, id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeam(uint256 id, string recordHash) view returns(bool)
+func (_TeamRegistry *TeamRegistryCaller) ValidateTeam(opts *bind.CallOpts, id *big.Int, recordHash string) (bool, error) {
 	var out []interface{}
 	err := _TeamRegistry.contract.Call(opts, &out, "validateTeam", id, recordHash)
 
@@ -4169,38 +4169,38 @@ func (_TeamRegistry *TeamRegistryCaller) ValidateTeam(opts *bind.CallOpts, id *b
 
 }
 
-// ValidateTeam is a free data retrieval call binding the contract method 0x17c22dcd.
+// ValidateTeam is a free data retrieval call binding the contract method 0x78768229.
 //
-// Solidity: function validateTeam(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamRegistry *TeamRegistrySession) ValidateTeam(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeam(uint256 id, string recordHash) view returns(bool)
+func (_TeamRegistry *TeamRegistrySession) ValidateTeam(id *big.Int, recordHash string) (bool, error) {
 	return _TeamRegistry.Contract.ValidateTeam(&_TeamRegistry.CallOpts, id, recordHash)
 }
 
-// ValidateTeam is a free data retrieval call binding the contract method 0x17c22dcd.
+// ValidateTeam is a free data retrieval call binding the contract method 0x78768229.
 //
-// Solidity: function validateTeam(uint256 id, bytes32 recordHash) view returns(bool)
-func (_TeamRegistry *TeamRegistryCallerSession) ValidateTeam(id *big.Int, recordHash [32]byte) (bool, error) {
+// Solidity: function validateTeam(uint256 id, string recordHash) view returns(bool)
+func (_TeamRegistry *TeamRegistryCallerSession) ValidateTeam(id *big.Int, recordHash string) (bool, error) {
 	return _TeamRegistry.Contract.ValidateTeam(&_TeamRegistry.CallOpts, id, recordHash)
 }
 
-// RecordTeam is a paid mutator transaction binding the contract method 0x7e55300b.
+// RecordTeam is a paid mutator transaction binding the contract method 0x95fe1e7e.
 //
-// Solidity: function recordTeam(uint256 id, bytes32 recordHash) returns()
-func (_TeamRegistry *TeamRegistryTransactor) RecordTeam(opts *bind.TransactOpts, id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeam(uint256 id, string recordHash) returns()
+func (_TeamRegistry *TeamRegistryTransactor) RecordTeam(opts *bind.TransactOpts, id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamRegistry.contract.Transact(opts, "recordTeam", id, recordHash)
 }
 
-// RecordTeam is a paid mutator transaction binding the contract method 0x7e55300b.
+// RecordTeam is a paid mutator transaction binding the contract method 0x95fe1e7e.
 //
-// Solidity: function recordTeam(uint256 id, bytes32 recordHash) returns()
-func (_TeamRegistry *TeamRegistrySession) RecordTeam(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeam(uint256 id, string recordHash) returns()
+func (_TeamRegistry *TeamRegistrySession) RecordTeam(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamRegistry.Contract.RecordTeam(&_TeamRegistry.TransactOpts, id, recordHash)
 }
 
-// RecordTeam is a paid mutator transaction binding the contract method 0x7e55300b.
+// RecordTeam is a paid mutator transaction binding the contract method 0x95fe1e7e.
 //
-// Solidity: function recordTeam(uint256 id, bytes32 recordHash) returns()
-func (_TeamRegistry *TeamRegistryTransactorSession) RecordTeam(id *big.Int, recordHash [32]byte) (*types.Transaction, error) {
+// Solidity: function recordTeam(uint256 id, string recordHash) returns()
+func (_TeamRegistry *TeamRegistryTransactorSession) RecordTeam(id *big.Int, recordHash string) (*types.Transaction, error) {
 	return _TeamRegistry.Contract.RecordTeam(&_TeamRegistry.TransactOpts, id, recordHash)
 }
 
@@ -4274,13 +4274,13 @@ func (it *TeamRegistryTeamRecordedIterator) Close() error {
 // TeamRegistryTeamRecorded represents a TeamRecorded event raised by the TeamRegistry contract.
 type TeamRegistryTeamRecorded struct {
 	Id         *big.Int
-	RecordHash [32]byte
+	RecordHash string
 	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterTeamRecorded is a free log retrieval operation binding the contract event 0xc7c2936543b717eb7c516edee4f9e4f4055071ab079302b387ee8c28e512c0ae.
+// FilterTeamRecorded is a free log retrieval operation binding the contract event 0x4c10eb58093e6afcff1f799a75ce04b158a68b5b1b9fe4d67ae71d86556e51c3.
 //
-// Solidity: event TeamRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamRecorded(uint256 indexed id, string recordHash)
 func (_TeamRegistry *TeamRegistryFilterer) FilterTeamRecorded(opts *bind.FilterOpts, id []*big.Int) (*TeamRegistryTeamRecordedIterator, error) {
 
 	var idRule []interface{}
@@ -4295,9 +4295,9 @@ func (_TeamRegistry *TeamRegistryFilterer) FilterTeamRecorded(opts *bind.FilterO
 	return &TeamRegistryTeamRecordedIterator{contract: _TeamRegistry.contract, event: "TeamRecorded", logs: logs, sub: sub}, nil
 }
 
-// WatchTeamRecorded is a free log subscription operation binding the contract event 0xc7c2936543b717eb7c516edee4f9e4f4055071ab079302b387ee8c28e512c0ae.
+// WatchTeamRecorded is a free log subscription operation binding the contract event 0x4c10eb58093e6afcff1f799a75ce04b158a68b5b1b9fe4d67ae71d86556e51c3.
 //
-// Solidity: event TeamRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamRecorded(uint256 indexed id, string recordHash)
 func (_TeamRegistry *TeamRegistryFilterer) WatchTeamRecorded(opts *bind.WatchOpts, sink chan<- *TeamRegistryTeamRecorded, id []*big.Int) (event.Subscription, error) {
 
 	var idRule []interface{}
@@ -4337,9 +4337,9 @@ func (_TeamRegistry *TeamRegistryFilterer) WatchTeamRecorded(opts *bind.WatchOpt
 	}), nil
 }
 
-// ParseTeamRecorded is a log parse operation binding the contract event 0xc7c2936543b717eb7c516edee4f9e4f4055071ab079302b387ee8c28e512c0ae.
+// ParseTeamRecorded is a log parse operation binding the contract event 0x4c10eb58093e6afcff1f799a75ce04b158a68b5b1b9fe4d67ae71d86556e51c3.
 //
-// Solidity: event TeamRecorded(uint256 indexed id, bytes32 recordHash)
+// Solidity: event TeamRecorded(uint256 indexed id, string recordHash)
 func (_TeamRegistry *TeamRegistryFilterer) ParseTeamRecorded(log types.Log) (*TeamRegistryTeamRecorded, error) {
 	event := new(TeamRegistryTeamRecorded)
 	if err := _TeamRegistry.contract.UnpackLog(event, "TeamRecorded", log); err != nil {

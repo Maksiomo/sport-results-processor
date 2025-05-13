@@ -86,13 +86,34 @@ func (r *CompetitionTeamRepo) Create(ctx context.Context, m *model.CompetitionTe
 	return nil
 }
 
+func (r *CompetitionTeamRepo) SetTxHash(ctx context.Context, id int64, txHash string) error {
+	ct, err := entity.CompetitionTeams(
+        entity.CompetitionTeamWhere.ID.EQ(id),
+    ).One(ctx, r.db)
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not get ent", zap.Error(err))
+		return err
+    }
+
+    // 2. Меняем поле
+    ct.RecordHash = null.StringFrom(txHash)
+
+    // 3. Обновляем только record_hash
+    _, err = ct.Update(ctx, r.db, boil.Whitelist(entity.CompetitionTeamColumns.RecordHash))
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not update ent", zap.Error(err))
+		return err
+    }
+    return nil
+}
+
 func (*CompetitionTeamRepo) toEntity(m *model.CompetitionTeam) *entity.CompetitionTeam {
 	return &entity.CompetitionTeam{
 		ID:            m.ID,
 		TeamID:        m.TeamID,
 		CompetitionID: m.CompetitionID,
 		CreatedAt:     m.CreatedAt,
-		RecordHash:    null.BytesFrom(m.RecordHash),
+		RecordHash:    null.StringFrom(m.RecordHash),
 		TXHash:        null.StringFromPtr(m.TXHash),
 	}
 }
@@ -103,7 +124,7 @@ func (*CompetitionTeamRepo) fromEntity(e *entity.CompetitionTeam) *model.Competi
 		TeamID:        e.TeamID,
 		CompetitionID: e.CompetitionID,
 		CreatedAt:     e.CreatedAt,
-		RecordHash:    e.RecordHash.Bytes,
+		RecordHash:    e.RecordHash.String,
 		TXHash:        &e.TXHash.String,
 	}
 }

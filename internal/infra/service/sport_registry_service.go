@@ -2,12 +2,18 @@ package service
 
 import (
 	"context"
+	"crypto/sha1"
+	"encoding/base64"
+	"encoding/json"
+	"math/big"
 	"sport-results-pocessor/internal/common/adapter/logger"
 	"sport-results-pocessor/internal/common/adapter/pgclient"
 	"sport-results-pocessor/internal/common/service/client/blockchain"
 	"sport-results-pocessor/internal/common/service/server/registry"
 	"sport-results-pocessor/internal/domain/model"
 	"sport-results-pocessor/internal/infra/repo"
+
+	"go.uber.org/zap"
 )
 
 type SportRegistryService struct {
@@ -132,15 +138,64 @@ func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req regi
 }
 
 func (s *SportRegistryService) FindCompetitionTeam(ctx context.Context, id int64) (*registry.CompetitionTeams, error) {
+	res, err := s.competitionTeamsRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	return &registry.CompetitionTeams{
+		Id: res.ID,
+		CompetitionId: res.CompetitionID,
+		TeamId: res.TeamID,
+		CreatedAt: res.CreatedAt,
+	}, nil
 }
 
 func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) (*registry.ListCompetitionTeamsResponse, error) {
+	res, err := s.competitionTeamsRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.CompetitionTeams, 0, len(res))
+
+	for i := range res {
+		out = append(out, registry.CompetitionTeams{
+			Id: res[i].ID,
+			CompetitionId: res[i].CompetitionID,
+			TeamId: res[i].TeamID,
+			CreatedAt: res[i].CreatedAt,
+		})
+	}
+
+	return &registry.ListCompetitionTeamsResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req registry.NewCompetitionTeams) error {
+	buf := &model.CompetitionTeam{
+		TeamID: req.TeamId,
+		CompetitionID: req.CompetitionId,
+	}
 
+	hash, err := s.calcHash(buf)
+	if err != nil {
+		return err
+	}
+
+	buf.RecordHash = hash
+
+	err = s.competitionTeamsRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	tx, err := s.blockchainClient.CompetitionTeams.RecordCompetitionTeams(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
+
+	err = s.competitionTeamsRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
+	
+	return nil
 }
 
 func (s *SportRegistryService) FindCompetition(ctx context.Context, id int64) (*registry.Competition, error) {
@@ -321,4 +376,18 @@ func (s *SportRegistryService) ListTeams(ctx context.Context) ([]*registry.ListT
 
 func (s *SportRegistryService) AddTeam(ctx context.Context, req registry.NewTeam) error {
 
+}
+
+func (s *SportRegistryService) calcHash(t any) (string, error) {
+	out := ""
+	json, err := json.Marshal(t)
+	if err != nil {
+		s.log.WithMethod(s.ctx, "calcHash").Error("can not marshal t", zap.Any("object", t))
+		return out, err
+	}
+
+	buf := sha1.Sum(json)
+	out = base64.RawURLEncoding.EncodeToString(buf[:])
+
+	return out, nil
 }

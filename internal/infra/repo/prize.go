@@ -93,7 +93,7 @@ func (*PrizeRepo) toEntity(m *model.Prize) *entity.Prize {
 		PlaceBracket:  m.PlaceBracket,
 		CurrencyCode:  m.CurrencyCode,
 		CreatedAt:     m.CreatedAt,
-		RecordHash:    null.BytesFrom(m.RecordHash),
+		RecordHash:    null.StringFrom(m.RecordHash),
 		TXHash:        null.StringFromPtr(m.TXHash),
 	}
 }
@@ -106,7 +106,7 @@ func (*PrizeRepo) fromEntity(e *entity.Prize) *model.Prize {
 		CurrencyCode:  e.CurrencyCode,
 		PrizeAmount:   e.PrizeAmount,
 		CreatedAt:     e.CreatedAt,
-		RecordHash:    e.RecordHash.Bytes,
+		RecordHash:    e.RecordHash.String,
 		TXHash:        e.TXHash.Ptr(),
 	}
 }

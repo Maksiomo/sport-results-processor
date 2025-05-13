@@ -94,7 +94,7 @@ func (*MatchRepo) toEntity(m *model.Match) *entity.Match {
 		LocationID: null.Int64FromPtr(m.LocationID),
 		Metadata:   null.JSONFrom(m.Metadata),
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.BytesFrom(m.RecordHash),
+		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -107,7 +107,7 @@ func (*MatchRepo) fromEntity(e *entity.Match) *model.Match {
 		LocationID: e.LocationID.Ptr(),
 		Metadata:   e.Metadata.JSON,
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.Bytes,
+		RecordHash: e.RecordHash.String,
 		TXHash:     e.TXHash.Ptr(),
 	}
 }

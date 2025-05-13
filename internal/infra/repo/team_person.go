@@ -95,7 +95,7 @@ func (*TeamPersonRepo) toEntity(m *model.TeamPerson) *entity.TeamPerson {
 		JoinedAt:   m.JoinedAt,
 		LeftAt:     null.TimeFromPtr(m.LeftAt),
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.BytesFrom(m.RecordHash),
+		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -109,7 +109,7 @@ func (*TeamPersonRepo) fromEntity(e *entity.TeamPerson) *model.TeamPerson {
 		JoinedAt:   e.JoinedAt,
 		LeftAt:     e.LeftAt.Ptr(),
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.Bytes,
+		RecordHash: e.RecordHash.String,
 		TXHash:     e.TXHash.Ptr(),
 	}
 }

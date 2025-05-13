@@ -94,7 +94,7 @@ func (*SportRepo) toEntity(m *model.Sport) *entity.Sport {
 		MaxTeamSize: m.MaxTeamSize,
 		Description: null.StringFromPtr(m.Description),
 		CreatedAt:   m.CreatedAt,
-		RecordHash:  null.BytesFrom(m.RecordHash),
+		RecordHash:  null.StringFrom(m.RecordHash),
 		TXHash:      null.StringFromPtr(m.TXHash),
 	}
 }
@@ -107,7 +107,7 @@ func (*SportRepo) fromEntity(e *entity.Sport) *model.Sport {
 		MaxTeamSize: e.MaxTeamSize,
 		Description: e.Description.Ptr(),
 		CreatedAt:   e.CreatedAt,
-		RecordHash:  e.RecordHash.Bytes,
+		RecordHash:  e.RecordHash.String,
 		TXHash:      e.TXHash.Ptr(),
 	}
 }

@@ -14,6 +14,7 @@ import (
 )
 
 type BlockchainRegistryClient struct {
+	Auth			 *bind.TransactOpts
 	EthClient        *ethclient.Client
 	Sport            *blockchain.SportRegistry
 	Person           *blockchain.PersonRegistry
@@ -47,6 +48,8 @@ func NewBlockchainRegistryClient(ctx context.Context, cfg *Config, logg logger.L
 		log.Error("can not make auth", zap.Error(err))
 		return nil, err
 	}
+
+	c.Auth = auth
 
 	// Initialize each registry
 

@@ -94,7 +94,7 @@ func (*CompetitionRepo) toEntity(m *model.Competition) *entity.Competition {
 		LocationID: m.LocationID,
 		LevelID:    m.LevelID,
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.BytesFrom(m.RecordHash),
+		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -107,7 +107,7 @@ func (*CompetitionRepo) fromEntity(e *entity.Competition) *model.Competition {
 		LocationID: e.LocationID,
 		LevelID:    e.LevelID,
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.Bytes,
+		RecordHash: e.RecordHash.String,
 		TXHash:     &e.TXHash.String,
 	}
 }
