@@ -6,6 +6,7 @@ import (
 	"sport-results-pocessor/internal/common/adapter/pgclient"
 	"sport-results-pocessor/internal/common/service/client/blockchain"
 	"sport-results-pocessor/internal/common/service/server/registry"
+	"sport-results-pocessor/internal/domain/model"
 	"sport-results-pocessor/internal/infra/repo"
 )
 
@@ -84,15 +85,50 @@ func NewSportRegistryService(
 }
 
 func (s *SportRegistryService) FindCompetitionLevel(ctx context.Context, id int64) (*registry.CompetitionLevel, error) {
+	res, err := s.competitionLevelRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	return &registry.CompetitionLevel{
+		Id:        res.ID,
+		Name:      res.Name,
+		CreatedAt: res.CreatedAt,
+	}, nil
 }
 
 func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) (*registry.ListCompetitionLevelsResponse, error) {
+	res, err := s.competitionLevelRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.CompetitionLevel, 0, len(res))
+
+	for i := range res {
+		out = append(out, registry.CompetitionLevel{
+			Id:        res[i].ID,
+			Name:      res[i].Name,
+			CreatedAt: res[i].CreatedAt,
+		})
+	}
+
+	return &registry.ListCompetitionLevelsResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) error {
+	buf := &model.CompetitionLevel{
+		Name: req.Name,
+	}
 
+	err := s.competitionLevelRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindCompetitionTeam(ctx context.Context, id int64) (*registry.CompetitionTeams, error) {

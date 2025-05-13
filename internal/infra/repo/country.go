@@ -80,6 +80,7 @@ func (r *CountryRepo) Create(ctx context.Context, m *model.Country) error {
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

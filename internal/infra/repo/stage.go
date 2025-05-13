@@ -81,6 +81,7 @@ func (r *StageRepo) Create(ctx context.Context, m *model.Stage) error {
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

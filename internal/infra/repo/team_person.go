@@ -81,6 +81,7 @@ func (r *TeamPersonRepo) Create(ctx context.Context, m *model.TeamPerson) error 
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

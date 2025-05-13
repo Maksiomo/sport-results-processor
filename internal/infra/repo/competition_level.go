@@ -80,6 +80,7 @@ func (r *CompetitionLevelRepo) Create(ctx context.Context, m *model.CompetitionL
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

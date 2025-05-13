@@ -14,18 +14,14 @@ type Competition struct {
 	LevelId    int64     `json:"level_id"`
 	LocationId int64     `json:"location_id"`
 	Name       string    `json:"name"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
 	SportId    int64     `json:"sport_id"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
 }
 
 // CompetitionLevel defines model for CompetitionLevel.
 type CompetitionLevel struct {
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	Name       string    `json:"name"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	Name      string    `json:"name"`
 }
 
 // CompetitionTeams defines model for CompetitionTeams.
@@ -33,18 +29,14 @@ type CompetitionTeams struct {
 	CompetitionId int64     `json:"competition_id"`
 	CreatedAt     time.Time `json:"created_at"`
 	Id            int64     `json:"id"`
-	RecordHash    *[]byte   `json:"record_hash,omitempty"`
 	TeamId        int64     `json:"team_id"`
-	TxHash        *string   `json:"tx_hash,omitempty"`
 }
 
 // Country defines model for Country.
 type Country struct {
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	Name       string    `json:"name"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	Name      string    `json:"name"`
 }
 
 // Currency defines model for Currency.
@@ -55,11 +47,9 @@ type Currency struct {
 
 // Language defines model for Language.
 type Language struct {
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	Name       string    `json:"name"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	Name      string    `json:"name"`
 }
 
 // ListCompetitionLevelsResponse defines model for ListCompetitionLevelsResponse.
@@ -160,9 +150,7 @@ type Location struct {
 	CreatedAt   *time.Time `json:"created_at,omitempty"`
 	FullAddress string     `json:"full_address"`
 	Id          int64      `json:"id"`
-	RecordHash  *[]byte    `json:"record_hash,omitempty"`
 	State       *string    `json:"state,omitempty"`
-	TxHash      *string    `json:"tx_hash,omitempty"`
 }
 
 // Match defines model for Match.
@@ -172,21 +160,17 @@ type Match struct {
 	LocationId *int64                  `json:"location_id,omitempty"`
 	MatchTime  time.Time               `json:"match_time"`
 	Metadata   *map[string]interface{} `json:"metadata,omitempty"`
-	RecordHash *[]byte                 `json:"record_hash,omitempty"`
 	StageId    int64                   `json:"stage_id"`
-	TxHash     *string                 `json:"tx_hash,omitempty"`
 }
 
 // MatchParticipant defines model for MatchParticipant.
 type MatchParticipant struct {
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	IsWinner   *bool     `json:"is_winner,omitempty"`
-	MatchId    int64     `json:"match_id"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	Score      int       `json:"score"`
-	TeamId     int64     `json:"team_id"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	IsWinner  *bool     `json:"is_winner,omitempty"`
+	MatchId   int64     `json:"match_id"`
+	Score     int       `json:"score"`
+	TeamId    int64     `json:"team_id"`
 }
 
 // NewCompetition defines model for NewCompetition.
@@ -315,23 +299,19 @@ type NewTeamPerson struct {
 
 // Person defines model for Person.
 type Person struct {
-	BirthDate  time.Time `json:"birth_date"`
-	CountryId  int64     `json:"country_id"`
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	Name       string    `json:"name"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	BirthDate time.Time `json:"birth_date"`
+	CountryId int64     `json:"country_id"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	Name      string    `json:"name"`
 }
 
 // PersonSport defines model for PersonSport.
 type PersonSport struct {
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	PersonId   int64     `json:"person_id"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	SportId    int64     `json:"sport_id"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	PersonId  int64     `json:"person_id"`
+	SportId   int64     `json:"sport_id"`
 }
 
 // Prize defines model for Prize.
@@ -342,17 +322,13 @@ type Prize struct {
 	Id            int64     `json:"id"`
 	PlaceBracket  string    `json:"place_bracket"`
 	PrizeAmount   int       `json:"prize_amount"`
-	RecordHash    *[]byte   `json:"record_hash,omitempty"`
-	TxHash        *string   `json:"tx_hash,omitempty"`
 }
 
 // Role defines model for Role.
 type Role struct {
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	Name       string    `json:"name"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	Name      string    `json:"name"`
 }
 
 // Sport defines model for Sport.
@@ -363,8 +339,6 @@ type Sport struct {
 	MaxTeamSize int       `json:"max_team_size"`
 	MinTeamSize int       `json:"min_team_size"`
 	Name        string    `json:"name"`
-	RecordHash  *[]byte   `json:"record_hash,omitempty"`
-	TxHash      *string   `json:"tx_hash,omitempty"`
 }
 
 // Stage defines model for Stage.
@@ -374,9 +348,7 @@ type Stage struct {
 	EndTime       *time.Time `json:"end_time,omitempty"`
 	Id            int64      `json:"id"`
 	Name          string     `json:"name"`
-	RecordHash    *[]byte    `json:"record_hash,omitempty"`
 	StartTime     time.Time  `json:"start_time"`
-	TxHash        *string    `json:"tx_hash,omitempty"`
 }
 
 // Team defines model for Team.
@@ -386,31 +358,25 @@ type Team struct {
 	FoundationDate time.Time `json:"foundation_date"`
 	Id             int64     `json:"id"`
 	Name           string    `json:"name"`
-	RecordHash     *[]byte   `json:"record_hash,omitempty"`
-	TxHash         *string   `json:"tx_hash,omitempty"`
 }
 
 // TeamAchievements defines model for TeamAchievements.
 type TeamAchievements struct {
-	CreatedAt  time.Time `json:"created_at"`
-	Id         int64     `json:"id"`
-	PrizeId    int64     `json:"prize_id"`
-	RecordHash *[]byte   `json:"record_hash,omitempty"`
-	TeamId     int64     `json:"team_id"`
-	TxHash     *string   `json:"tx_hash,omitempty"`
+	CreatedAt time.Time `json:"created_at"`
+	Id        int64     `json:"id"`
+	PrizeId   int64     `json:"prize_id"`
+	TeamId    int64     `json:"team_id"`
 }
 
 // TeamPerson defines model for TeamPerson.
 type TeamPerson struct {
-	CreatedAt  time.Time  `json:"created_at"`
-	Id         int64      `json:"id"`
-	JoinedAt   time.Time  `json:"joined_at"`
-	LeftAt     *time.Time `json:"left_at,omitempty"`
-	PersonId   int64      `json:"person_id"`
-	RecordHash *[]byte    `json:"record_hash,omitempty"`
-	RoleId     int64      `json:"role_id"`
-	TeamId     int64      `json:"team_id"`
-	TxHash     *string    `json:"tx_hash,omitempty"`
+	CreatedAt time.Time  `json:"created_at"`
+	Id        int64      `json:"id"`
+	JoinedAt  time.Time  `json:"joined_at"`
+	LeftAt    *time.Time `json:"left_at,omitempty"`
+	PersonId  int64      `json:"person_id"`
+	RoleId    int64      `json:"role_id"`
+	TeamId    int64      `json:"team_id"`
 }
 
 // PostCompetitionLevelsJSONRequestBody defines body for PostCompetitionLevels for application/json ContentType.

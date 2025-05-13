@@ -80,6 +80,7 @@ func (r *RoleRepo) Create(ctx context.Context, m *model.Role) error {
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

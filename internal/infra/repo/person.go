@@ -80,6 +80,7 @@ func (r *PersonRepo) Create(ctx context.Context, m *model.Person) error {
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

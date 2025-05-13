@@ -81,6 +81,7 @@ func (r *MatchParticipantRepo) Create(ctx context.Context, m *model.MatchPartici
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

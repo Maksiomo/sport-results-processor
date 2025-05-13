@@ -81,6 +81,7 @@ func (r *TeamAchievementsRepo) Create(ctx context.Context, m *model.TeamAchievem
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

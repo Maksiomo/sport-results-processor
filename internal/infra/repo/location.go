@@ -81,6 +81,7 @@ func (r *LocationRepo) Create(ctx context.Context, m *model.Location) error {
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

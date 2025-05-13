@@ -81,6 +81,7 @@ func (r *MatchRepo) Create(ctx context.Context, m *model.Match) error {
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }

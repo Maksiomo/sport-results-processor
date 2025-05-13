@@ -81,6 +81,7 @@ func (r *CompetitionTeamRepo) Create(ctx context.Context, m *model.CompetitionTe
 	}
 
 	m.ID = ent.ID
+	m.CreatedAt = ent.CreatedAt
 
 	return nil
 }
