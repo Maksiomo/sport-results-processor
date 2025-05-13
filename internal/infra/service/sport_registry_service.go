@@ -194,6 +194,9 @@ func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req regis
 	tx, err := s.blockchainClient.CompetitionTeams.RecordCompetitionTeams(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
 
 	err = s.competitionTeamsRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
+	if err != nil {
+		return err
+	}
 	
 	return nil
 }
