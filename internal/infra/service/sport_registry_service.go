@@ -5,6 +5,7 @@ import (
 	"crypto/sha1"
 	"encoding/base64"
 	"encoding/json"
+	"go.uber.org/zap"
 	"math/big"
 	"sport-results-pocessor/internal/common/adapter/logger"
 	"sport-results-pocessor/internal/common/adapter/pgclient"
@@ -12,7 +13,6 @@ import (
 	"sport-results-pocessor/internal/common/service/server/registry"
 	"sport-results-pocessor/internal/domain/model"
 	"sport-results-pocessor/internal/infra/repo"
-	"go.uber.org/zap"
 )
 
 type SportRegistryService struct {
@@ -25,7 +25,7 @@ type SportRegistryService struct {
 	competitionLevelRepo *repo.CompetitionLevelRepo
 	competitionTeamsRepo *repo.CompetitionTeamRepo
 	competitionRepo      *repo.CompetitionRepo
-	countryRepo          *repo.CompetitionRepo
+	countryRepo          *repo.CountryRepo
 	currencyRepo         *repo.CurrencyRepo
 	locationRepo         *repo.LocationRepo
 	matchParticipantRepo *repo.MatchParticipantRepo
@@ -48,7 +48,7 @@ func NewSportRegistryService(
 	competitionLevelRepoFactory *repo.CompetitionLevelRepoFactory,
 	competitionTeamsRepoFactory *repo.CompetitionTeamsRepoFactory,
 	competitionRepoFactory *repo.CompetitionRepoFactory,
-	countryRepoFactory *repo.CompetitionRepoFactory,
+	countryRepoFactory *repo.CountryRepoFactory,
 	currencyRepoFactory *repo.CurrencyRepoFactory,
 	locationRepoFactory *repo.LocationRepoFactory,
 	matchParticipantRepoFactory *repo.MatchParticipantRepoFactory,
@@ -143,10 +143,10 @@ func (s *SportRegistryService) FindCompetitionTeam(ctx context.Context, id int64
 	}
 
 	return &registry.CompetitionTeams{
-		Id: res.ID,
+		Id:            res.ID,
 		CompetitionId: res.CompetitionID,
-		TeamId: res.TeamID,
-		CreatedAt: res.CreatedAt,
+		TeamId:        res.TeamID,
+		CreatedAt:     res.CreatedAt,
 	}, nil
 }
 
@@ -176,10 +176,10 @@ func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) (*regis
 		}
 
 		out = append(out, registry.CompetitionTeams{
-			Id: res[i].ID,
+			Id:            res[i].ID,
 			CompetitionId: res[i].CompetitionID,
-			TeamId: res[i].TeamID,
-			CreatedAt: res[i].CreatedAt,
+			TeamId:        res[i].TeamID,
+			CreatedAt:     res[i].CreatedAt,
 		})
 	}
 
@@ -190,7 +190,7 @@ func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) (*regis
 
 func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req registry.NewCompetitionTeams) error {
 	buf := &model.CompetitionTeam{
-		TeamID: req.TeamId,
+		TeamID:        req.TeamId,
 		CompetitionID: req.CompetitionId,
 	}
 
@@ -210,56 +210,245 @@ func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req regis
 	if err != nil {
 		return err
 	}
-	
+
 	return nil
 }
 
 func (s *SportRegistryService) FindCompetition(ctx context.Context, id int64) (*registry.Competition, error) {
+	res, err := s.competitionRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	return &registry.Competition{
+		Id:         res.ID,
+		LevelId:    res.LevelID,
+		LocationId: res.LocationID,
+		Name:       res.Name,
+		SportId:    res.SportID,
+		CreatedAt:  res.CreatedAt,
+	}, nil
 }
 
 func (s *SportRegistryService) ListCompetitions(ctx context.Context) (*registry.ListCompetitionsResponse, error) {
+	res, err := s.competitionRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.Competition, 0, len(res))
+
+	for i := range res {
+
+		hash, err := s.calcHash(res)
+		if err != nil {
+			return nil, err
+		}
+
+		hashValid, err := s.blockchainClient.Competition.ValidateCompetition(s.blockchainClient.CallOpts, big.NewInt(res[i].ID), hash)
+		if err != nil {
+			s.log.WithMethod(ctx, "ListCompetition").Error("can no validate object", zap.Error(err))
+			return nil, err
+		}
+		if !hashValid {
+			s.log.WithMethod(ctx, "ListCompetition").Error("invalid object detected", zap.Any("object", res[i]))
+			return nil, err
+		}
+
+		out = append(out, registry.Competition{
+			Id:         res[i].ID,
+			LevelId:    res[i].LevelID,
+			LocationId: res[i].LocationID,
+			Name:       res[i].Name,
+			SportId:    res[i].SportID,
+			CreatedAt:  res[i].CreatedAt,
+		})
+	}
+
+	return &registry.ListCompetitionsResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddCompetition(ctx context.Context, req registry.NewCompetition) error {
+	buf := &model.Competition{
+		LocationID: req.LocationId,
+		LevelID:    req.LevelId,
+		SportID:    req.SportId,
+		Name:       req.Name,
+	}
 
+	hash, err := s.calcHash(buf)
+	if err != nil {
+		return err
+	}
+
+	err = s.competitionRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	tx, err := s.blockchainClient.Competition.RecordCompetition(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
+
+	err = s.competitionRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindCountry(ctx context.Context, id int64) (*registry.Country, error) {
+	res, err := s.countryRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	return &registry.Country{
+		Id:        res.ID,
+		Name:      res.Name,
+		CreatedAt: res.CreatedAt,
+	}, nil
 }
 
 func (s *SportRegistryService) ListCountries(ctx context.Context) (*registry.ListCountriesResponse, error) {
+	res, err := s.countryRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.Country, 0, len(res))
+
+	for i := range res {
+		out = append(out, registry.Country{
+			Id:        res[i].ID,
+			Name:      res[i].Name,
+			CreatedAt: res[i].CreatedAt,
+		})
+	}
+
+	return &registry.ListCountriesResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddCountry(ctx context.Context, req registry.NewCountry) error {
+	buf := &model.Country{
+		Name: req.Name,
+	}
 
+	err := s.countryRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindCurrency(ctx context.Context, code string) (*registry.Currency, error) {
+	res, err := s.currencyRepo.One(ctx, code)
+	if err != nil {
+		return nil, err
+	}
 
+	return &registry.Currency{
+		Code: res.Code,
+		Name: res.Name,
+	}, nil
 }
 
 func (s *SportRegistryService) ListCurrencies(ctx context.Context) (*registry.ListCurrenciesResponse, error) {
+	res, err := s.currencyRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.Currency, 0, len(res))
+
+	for i := range res {
+		out = append(out, registry.Currency{
+			Code: res[i].Code,
+			Name: res[i].Name,
+		})
+	}
+
+	return &registry.ListCurrenciesResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddCurrency(ctx context.Context, req registry.NewCurrency) error {
+	buf := &model.Currency{
+		Code: req.Code,
+		Name: req.Name,
+	}
 
+	err := s.currencyRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindLocation(ctx context.Context, id int64) (*registry.Location, error) {
+	res, err := s.locationRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+
+	return &registry.Location{
+		Id:          res.ID,
+		Address:     res.Address,
+		City:        res.City,
+		CountryId:   res.CountryID,
+		CreatedAt:   &res.CreatedAt,
+		FullAddress: *res.Address,
+		State:       res.State,
+	}, nil
 
 }
 
 func (s *SportRegistryService) ListLocations(ctx context.Context) (*registry.ListLocationsResponse, error) {
+	res, err := s.locationRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.Location, 0, len(res))
+
+	for i := range res {
+		out = append(out, registry.Location{
+			Id:          res[i].ID,
+			Address:     res[i].Address,
+			City:        res[i].City,
+			CountryId:   res[i].CountryID,
+			CreatedAt:   &res[i].CreatedAt,
+			FullAddress: *res[i].Address,
+			State:       res[i].State,
+		})
+	}
+
+	return &registry.ListLocationsResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddLocation(ctx context.Context, req registry.NewLocation) error {
+	buf := &model.Location{
+		Address:     req.Address,
+		City:        req.City,
+		CountryID:   req.CountryId,
+		FullAddress: *req.Address,
+		State:       req.State,
+	}
 
+	err := s.locationRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindMatchParticipant(ctx context.Context, id int64) (*registry.MatchParticipant, error) {
