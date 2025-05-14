@@ -32,6 +32,8 @@ func SportRegistryServer(
 
 	handler = middleware.NewLoggingMiddleware(ctx, handler, log.WithComponent(ctx, "sport-registry-server"))
 	handler = middleware.NewRecoverMiddleware(ctx, handler, log.WithComponent(ctx, "sport-registry-server"))
+	auth := middleware.NewAuthMiddleware(cfg.Server.Registry.ValidationKey, log.WithComponent(ctx, "sport-registry-server"))
+	handler = auth.Auth(handler)
 
 	httpServer := &http.Server{
 		Addr:              ":" + strconv.Itoa(cfg.Server.Registry.Port),
