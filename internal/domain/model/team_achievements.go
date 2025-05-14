@@ -7,6 +7,5 @@ type TeamAchievement struct {
 	TeamID     int64     `json:"team_id"`
 	PrizeID    int64     `json:"prize_id"`
 	CreatedAt  time.Time `json:"-"`
-	RecordHash string    `json:"-"`
 	TXHash     *string   `json:"-"`
 }

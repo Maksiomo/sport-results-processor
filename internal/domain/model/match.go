@@ -9,6 +9,5 @@ type Match struct {
 	LocationID *int64    `json:"location_id,omitempty"`
 	Metadata   []byte    `json:"metadata,omitempty"`
 	CreatedAt  time.Time `json:"-"`
-	RecordHash string    `json:"-"`
 	TXHash     *string   `json:"-"`
 }

@@ -86,6 +86,27 @@ func (r *MatchRepo) Create(ctx context.Context, m *model.Match) error {
 	return nil
 }
 
+func (r *MatchRepo) SetTxHash(ctx context.Context, id int64, txHash string) error {
+	ct, err := entity.Matches(
+        entity.MatchWhere.ID.EQ(id),
+    ).One(ctx, r.db)
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not get ent", zap.Error(err))
+		return err
+    }
+
+    // 2. Меняем поле
+    ct.TXHash = null.StringFrom(txHash)
+
+    // 3. Обновляем только record_hash
+    _, err = ct.Update(ctx, r.db, boil.Whitelist(entity.MatchColumns.TXHash))
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not update ent", zap.Error(err))
+		return err
+    }
+    return nil
+}
+
 func (*MatchRepo) toEntity(m *model.Match) *entity.Match {
 	return &entity.Match{
 		ID:         m.ID,
@@ -94,7 +115,6 @@ func (*MatchRepo) toEntity(m *model.Match) *entity.Match {
 		LocationID: null.Int64FromPtr(m.LocationID),
 		Metadata:   null.JSONFrom(m.Metadata),
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -107,7 +127,6 @@ func (*MatchRepo) fromEntity(e *entity.Match) *model.Match {
 		LocationID: e.LocationID.Ptr(),
 		Metadata:   e.Metadata.JSON,
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.String,
 		TXHash:     e.TXHash.Ptr(),
 	}
 }

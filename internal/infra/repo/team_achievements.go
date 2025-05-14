@@ -86,13 +86,33 @@ func (r *TeamAchievementsRepo) Create(ctx context.Context, m *model.TeamAchievem
 	return nil
 }
 
+func (r *TeamAchievementsRepo) SetTxHash(ctx context.Context, id int64, txHash string) error {
+	ct, err := entity.TeamAchievements(
+        entity.TeamAchievementWhere.ID.EQ(id),
+    ).One(ctx, r.db)
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not get ent", zap.Error(err))
+		return err
+    }
+
+    // 2. Меняем поле
+    ct.TXHash = null.StringFrom(txHash)
+
+    // 3. Обновляем только record_hash
+    _, err = ct.Update(ctx, r.db, boil.Whitelist(entity.TeamAchievementColumns.TXHash))
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not update ent", zap.Error(err))
+		return err
+    }
+    return nil
+}
+
 func (*TeamAchievementsRepo) toEntity(m *model.TeamAchievement) *entity.TeamAchievement {
 	return &entity.TeamAchievement{
 		ID:         m.ID,
 		TeamID:     m.TeamID,
 		PrizeID:    m.PrizeID,
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -103,7 +123,6 @@ func (*TeamAchievementsRepo) fromEntity(e *entity.TeamAchievement) *model.TeamAc
 		TeamID:     e.TeamID,
 		PrizeID:    e.PrizeID,
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.String,
 		TXHash:     e.TXHash.Ptr(),
 	}
 }

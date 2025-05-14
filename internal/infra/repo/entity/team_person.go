@@ -24,86 +24,79 @@ import (
 
 // TeamPerson is an object representing the database table.
 type TeamPerson struct {
-	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	TeamID     int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
-	PersonID   int64       `boil:"person_id" json:"person_id" toml:"person_id" yaml:"person_id"`
-	RoleID     int64       `boil:"role_id" json:"role_id" toml:"role_id" yaml:"role_id"`
-	JoinedAt   time.Time   `boil:"joined_at" json:"joined_at" toml:"joined_at" yaml:"joined_at"`
-	LeftAt     null.Time   `boil:"left_at" json:"left_at,omitempty" toml:"left_at" yaml:"left_at,omitempty"`
-	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID        int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	TeamID    int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
+	PersonID  int64       `boil:"person_id" json:"person_id" toml:"person_id" yaml:"person_id"`
+	RoleID    int64       `boil:"role_id" json:"role_id" toml:"role_id" yaml:"role_id"`
+	JoinedAt  time.Time   `boil:"joined_at" json:"joined_at" toml:"joined_at" yaml:"joined_at"`
+	LeftAt    null.Time   `boil:"left_at" json:"left_at,omitempty" toml:"left_at" yaml:"left_at,omitempty"`
+	CreatedAt time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	TXHash    null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *teamPersonR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L teamPersonL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var TeamPersonColumns = struct {
-	ID         string
-	TeamID     string
-	PersonID   string
-	RoleID     string
-	JoinedAt   string
-	LeftAt     string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	TeamID    string
+	PersonID  string
+	RoleID    string
+	JoinedAt  string
+	LeftAt    string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "id",
-	TeamID:     "team_id",
-	PersonID:   "person_id",
-	RoleID:     "role_id",
-	JoinedAt:   "joined_at",
-	LeftAt:     "left_at",
-	CreatedAt:  "created_at",
-	RecordHash: "record_hash",
-	TXHash:     "tx_hash",
+	ID:        "id",
+	TeamID:    "team_id",
+	PersonID:  "person_id",
+	RoleID:    "role_id",
+	JoinedAt:  "joined_at",
+	LeftAt:    "left_at",
+	CreatedAt: "created_at",
+	TXHash:    "tx_hash",
 }
 
 var TeamPersonTableColumns = struct {
-	ID         string
-	TeamID     string
-	PersonID   string
-	RoleID     string
-	JoinedAt   string
-	LeftAt     string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	TeamID    string
+	PersonID  string
+	RoleID    string
+	JoinedAt  string
+	LeftAt    string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "team_person.id",
-	TeamID:     "team_person.team_id",
-	PersonID:   "team_person.person_id",
-	RoleID:     "team_person.role_id",
-	JoinedAt:   "team_person.joined_at",
-	LeftAt:     "team_person.left_at",
-	CreatedAt:  "team_person.created_at",
-	RecordHash: "team_person.record_hash",
-	TXHash:     "team_person.tx_hash",
+	ID:        "team_person.id",
+	TeamID:    "team_person.team_id",
+	PersonID:  "team_person.person_id",
+	RoleID:    "team_person.role_id",
+	JoinedAt:  "team_person.joined_at",
+	LeftAt:    "team_person.left_at",
+	CreatedAt: "team_person.created_at",
+	TXHash:    "team_person.tx_hash",
 }
 
 // Generated where
 
 var TeamPersonWhere = struct {
-	ID         whereHelperint64
-	TeamID     whereHelperint64
-	PersonID   whereHelperint64
-	RoleID     whereHelperint64
-	JoinedAt   whereHelpertime_Time
-	LeftAt     whereHelpernull_Time
-	CreatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_String
-	TXHash     whereHelpernull_String
+	ID        whereHelperint64
+	TeamID    whereHelperint64
+	PersonID  whereHelperint64
+	RoleID    whereHelperint64
+	JoinedAt  whereHelpertime_Time
+	LeftAt    whereHelpernull_Time
+	CreatedAt whereHelpertime_Time
+	TXHash    whereHelpernull_String
 }{
-	ID:         whereHelperint64{field: "\"team_person\".\"id\""},
-	TeamID:     whereHelperint64{field: "\"team_person\".\"team_id\""},
-	PersonID:   whereHelperint64{field: "\"team_person\".\"person_id\""},
-	RoleID:     whereHelperint64{field: "\"team_person\".\"role_id\""},
-	JoinedAt:   whereHelpertime_Time{field: "\"team_person\".\"joined_at\""},
-	LeftAt:     whereHelpernull_Time{field: "\"team_person\".\"left_at\""},
-	CreatedAt:  whereHelpertime_Time{field: "\"team_person\".\"created_at\""},
-	RecordHash: whereHelpernull_String{field: "\"team_person\".\"record_hash\""},
-	TXHash:     whereHelpernull_String{field: "\"team_person\".\"tx_hash\""},
+	ID:        whereHelperint64{field: "\"team_person\".\"id\""},
+	TeamID:    whereHelperint64{field: "\"team_person\".\"team_id\""},
+	PersonID:  whereHelperint64{field: "\"team_person\".\"person_id\""},
+	RoleID:    whereHelperint64{field: "\"team_person\".\"role_id\""},
+	JoinedAt:  whereHelpertime_Time{field: "\"team_person\".\"joined_at\""},
+	LeftAt:    whereHelpernull_Time{field: "\"team_person\".\"left_at\""},
+	CreatedAt: whereHelpertime_Time{field: "\"team_person\".\"created_at\""},
+	TXHash:    whereHelpernull_String{field: "\"team_person\".\"tx_hash\""},
 }
 
 // TeamPersonRels is where relationship names are stored.
@@ -181,9 +174,9 @@ func (r *teamPersonR) GetTeam() *Team {
 type teamPersonL struct{}
 
 var (
-	teamPersonAllColumns            = []string{"id", "team_id", "person_id", "role_id", "joined_at", "left_at", "created_at", "record_hash", "tx_hash"}
+	teamPersonAllColumns            = []string{"id", "team_id", "person_id", "role_id", "joined_at", "left_at", "created_at", "tx_hash"}
 	teamPersonColumnsWithoutDefault = []string{"team_id", "person_id", "role_id"}
-	teamPersonColumnsWithDefault    = []string{"id", "joined_at", "left_at", "created_at", "record_hash", "tx_hash"}
+	teamPersonColumnsWithDefault    = []string{"id", "joined_at", "left_at", "created_at", "tx_hash"}
 	teamPersonPrimaryKeyColumns     = []string{"id"}
 	teamPersonGeneratedColumns      = []string{}
 )

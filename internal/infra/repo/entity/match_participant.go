@@ -24,57 +24,52 @@ import (
 
 // MatchParticipant is an object representing the database table.
 type MatchParticipant struct {
-	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	MatchID    int64       `boil:"match_id" json:"match_id" toml:"match_id" yaml:"match_id"`
-	TeamID     int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
-	Score      int         `boil:"score" json:"score" toml:"score" yaml:"score"`
-	IsWinner   bool        `boil:"is_winner" json:"is_winner" toml:"is_winner" yaml:"is_winner"`
-	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID        int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	MatchID   int64       `boil:"match_id" json:"match_id" toml:"match_id" yaml:"match_id"`
+	TeamID    int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
+	Score     int         `boil:"score" json:"score" toml:"score" yaml:"score"`
+	IsWinner  bool        `boil:"is_winner" json:"is_winner" toml:"is_winner" yaml:"is_winner"`
+	CreatedAt time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	TXHash    null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *matchParticipantR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L matchParticipantL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var MatchParticipantColumns = struct {
-	ID         string
-	MatchID    string
-	TeamID     string
-	Score      string
-	IsWinner   string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	MatchID   string
+	TeamID    string
+	Score     string
+	IsWinner  string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "id",
-	MatchID:    "match_id",
-	TeamID:     "team_id",
-	Score:      "score",
-	IsWinner:   "is_winner",
-	CreatedAt:  "created_at",
-	RecordHash: "record_hash",
-	TXHash:     "tx_hash",
+	ID:        "id",
+	MatchID:   "match_id",
+	TeamID:    "team_id",
+	Score:     "score",
+	IsWinner:  "is_winner",
+	CreatedAt: "created_at",
+	TXHash:    "tx_hash",
 }
 
 var MatchParticipantTableColumns = struct {
-	ID         string
-	MatchID    string
-	TeamID     string
-	Score      string
-	IsWinner   string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	MatchID   string
+	TeamID    string
+	Score     string
+	IsWinner  string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "match_participant.id",
-	MatchID:    "match_participant.match_id",
-	TeamID:     "match_participant.team_id",
-	Score:      "match_participant.score",
-	IsWinner:   "match_participant.is_winner",
-	CreatedAt:  "match_participant.created_at",
-	RecordHash: "match_participant.record_hash",
-	TXHash:     "match_participant.tx_hash",
+	ID:        "match_participant.id",
+	MatchID:   "match_participant.match_id",
+	TeamID:    "match_participant.team_id",
+	Score:     "match_participant.score",
+	IsWinner:  "match_participant.is_winner",
+	CreatedAt: "match_participant.created_at",
+	TXHash:    "match_participant.tx_hash",
 }
 
 // Generated where
@@ -112,23 +107,21 @@ func (w whereHelperbool) GT(x bool) qm.QueryMod  { return qmhelper.Where(w.field
 func (w whereHelperbool) GTE(x bool) qm.QueryMod { return qmhelper.Where(w.field, qmhelper.GTE, x) }
 
 var MatchParticipantWhere = struct {
-	ID         whereHelperint64
-	MatchID    whereHelperint64
-	TeamID     whereHelperint64
-	Score      whereHelperint
-	IsWinner   whereHelperbool
-	CreatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_String
-	TXHash     whereHelpernull_String
+	ID        whereHelperint64
+	MatchID   whereHelperint64
+	TeamID    whereHelperint64
+	Score     whereHelperint
+	IsWinner  whereHelperbool
+	CreatedAt whereHelpertime_Time
+	TXHash    whereHelpernull_String
 }{
-	ID:         whereHelperint64{field: "\"match_participant\".\"id\""},
-	MatchID:    whereHelperint64{field: "\"match_participant\".\"match_id\""},
-	TeamID:     whereHelperint64{field: "\"match_participant\".\"team_id\""},
-	Score:      whereHelperint{field: "\"match_participant\".\"score\""},
-	IsWinner:   whereHelperbool{field: "\"match_participant\".\"is_winner\""},
-	CreatedAt:  whereHelpertime_Time{field: "\"match_participant\".\"created_at\""},
-	RecordHash: whereHelpernull_String{field: "\"match_participant\".\"record_hash\""},
-	TXHash:     whereHelpernull_String{field: "\"match_participant\".\"tx_hash\""},
+	ID:        whereHelperint64{field: "\"match_participant\".\"id\""},
+	MatchID:   whereHelperint64{field: "\"match_participant\".\"match_id\""},
+	TeamID:    whereHelperint64{field: "\"match_participant\".\"team_id\""},
+	Score:     whereHelperint{field: "\"match_participant\".\"score\""},
+	IsWinner:  whereHelperbool{field: "\"match_participant\".\"is_winner\""},
+	CreatedAt: whereHelpertime_Time{field: "\"match_participant\".\"created_at\""},
+	TXHash:    whereHelpernull_String{field: "\"match_participant\".\"tx_hash\""},
 }
 
 // MatchParticipantRels is where relationship names are stored.
@@ -187,9 +180,9 @@ func (r *matchParticipantR) GetTeam() *Team {
 type matchParticipantL struct{}
 
 var (
-	matchParticipantAllColumns            = []string{"id", "match_id", "team_id", "score", "is_winner", "created_at", "record_hash", "tx_hash"}
+	matchParticipantAllColumns            = []string{"id", "match_id", "team_id", "score", "is_winner", "created_at", "tx_hash"}
 	matchParticipantColumnsWithoutDefault = []string{"match_id", "team_id", "score"}
-	matchParticipantColumnsWithDefault    = []string{"id", "is_winner", "created_at", "record_hash", "tx_hash"}
+	matchParticipantColumnsWithDefault    = []string{"id", "is_winner", "created_at", "tx_hash"}
 	matchParticipantPrimaryKeyColumns     = []string{"id"}
 	matchParticipantGeneratedColumns      = []string{}
 )

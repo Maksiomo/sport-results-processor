@@ -24,72 +24,65 @@ import (
 
 // Person is an object representing the database table.
 type Person struct {
-	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	Name       string      `boil:"name" json:"name" toml:"name" yaml:"name"`
-	BirthDate  time.Time   `boil:"birth_date" json:"birth_date" toml:"birth_date" yaml:"birth_date"`
-	CountryID  int64       `boil:"country_id" json:"country_id" toml:"country_id" yaml:"country_id"`
-	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID        int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	Name      string      `boil:"name" json:"name" toml:"name" yaml:"name"`
+	BirthDate time.Time   `boil:"birth_date" json:"birth_date" toml:"birth_date" yaml:"birth_date"`
+	CountryID int64       `boil:"country_id" json:"country_id" toml:"country_id" yaml:"country_id"`
+	CreatedAt time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	TXHash    null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *personR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L personL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var PersonColumns = struct {
-	ID         string
-	Name       string
-	BirthDate  string
-	CountryID  string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	BirthDate string
+	CountryID string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "id",
-	Name:       "name",
-	BirthDate:  "birth_date",
-	CountryID:  "country_id",
-	CreatedAt:  "created_at",
-	RecordHash: "record_hash",
-	TXHash:     "tx_hash",
+	ID:        "id",
+	Name:      "name",
+	BirthDate: "birth_date",
+	CountryID: "country_id",
+	CreatedAt: "created_at",
+	TXHash:    "tx_hash",
 }
 
 var PersonTableColumns = struct {
-	ID         string
-	Name       string
-	BirthDate  string
-	CountryID  string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	Name      string
+	BirthDate string
+	CountryID string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "person.id",
-	Name:       "person.name",
-	BirthDate:  "person.birth_date",
-	CountryID:  "person.country_id",
-	CreatedAt:  "person.created_at",
-	RecordHash: "person.record_hash",
-	TXHash:     "person.tx_hash",
+	ID:        "person.id",
+	Name:      "person.name",
+	BirthDate: "person.birth_date",
+	CountryID: "person.country_id",
+	CreatedAt: "person.created_at",
+	TXHash:    "person.tx_hash",
 }
 
 // Generated where
 
 var PersonWhere = struct {
-	ID         whereHelperint64
-	Name       whereHelperstring
-	BirthDate  whereHelpertime_Time
-	CountryID  whereHelperint64
-	CreatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_String
-	TXHash     whereHelpernull_String
+	ID        whereHelperint64
+	Name      whereHelperstring
+	BirthDate whereHelpertime_Time
+	CountryID whereHelperint64
+	CreatedAt whereHelpertime_Time
+	TXHash    whereHelpernull_String
 }{
-	ID:         whereHelperint64{field: "\"person\".\"id\""},
-	Name:       whereHelperstring{field: "\"person\".\"name\""},
-	BirthDate:  whereHelpertime_Time{field: "\"person\".\"birth_date\""},
-	CountryID:  whereHelperint64{field: "\"person\".\"country_id\""},
-	CreatedAt:  whereHelpertime_Time{field: "\"person\".\"created_at\""},
-	RecordHash: whereHelpernull_String{field: "\"person\".\"record_hash\""},
-	TXHash:     whereHelpernull_String{field: "\"person\".\"tx_hash\""},
+	ID:        whereHelperint64{field: "\"person\".\"id\""},
+	Name:      whereHelperstring{field: "\"person\".\"name\""},
+	BirthDate: whereHelpertime_Time{field: "\"person\".\"birth_date\""},
+	CountryID: whereHelperint64{field: "\"person\".\"country_id\""},
+	CreatedAt: whereHelpertime_Time{field: "\"person\".\"created_at\""},
+	TXHash:    whereHelpernull_String{field: "\"person\".\"tx_hash\""},
 }
 
 // PersonRels is where relationship names are stored.
@@ -167,9 +160,9 @@ func (r *personR) GetTeamPeople() TeamPersonSlice {
 type personL struct{}
 
 var (
-	personAllColumns            = []string{"id", "name", "birth_date", "country_id", "created_at", "record_hash", "tx_hash"}
+	personAllColumns            = []string{"id", "name", "birth_date", "country_id", "created_at", "tx_hash"}
 	personColumnsWithoutDefault = []string{"name", "birth_date", "country_id"}
-	personColumnsWithDefault    = []string{"id", "created_at", "record_hash", "tx_hash"}
+	personColumnsWithDefault    = []string{"id", "created_at", "tx_hash"}
 	personPrimaryKeyColumns     = []string{"id"}
 	personGeneratedColumns      = []string{}
 )

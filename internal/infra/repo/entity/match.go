@@ -30,7 +30,6 @@ type Match struct {
 	LocationID null.Int64  `boil:"location_id" json:"location_id,omitempty" toml:"location_id" yaml:"location_id,omitempty"`
 	Metadata   null.JSON   `boil:"metadata" json:"metadata,omitempty" toml:"metadata" yaml:"metadata,omitempty"`
 	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
 	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *matchR `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -44,7 +43,6 @@ var MatchColumns = struct {
 	LocationID string
 	Metadata   string
 	CreatedAt  string
-	RecordHash string
 	TXHash     string
 }{
 	ID:         "id",
@@ -53,7 +51,6 @@ var MatchColumns = struct {
 	LocationID: "location_id",
 	Metadata:   "metadata",
 	CreatedAt:  "created_at",
-	RecordHash: "record_hash",
 	TXHash:     "tx_hash",
 }
 
@@ -64,7 +61,6 @@ var MatchTableColumns = struct {
 	LocationID string
 	Metadata   string
 	CreatedAt  string
-	RecordHash string
 	TXHash     string
 }{
 	ID:         "match.id",
@@ -73,7 +69,6 @@ var MatchTableColumns = struct {
 	LocationID: "match.location_id",
 	Metadata:   "match.metadata",
 	CreatedAt:  "match.created_at",
-	RecordHash: "match.record_hash",
 	TXHash:     "match.tx_hash",
 }
 
@@ -148,7 +143,6 @@ var MatchWhere = struct {
 	LocationID whereHelpernull_Int64
 	Metadata   whereHelpernull_JSON
 	CreatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_String
 	TXHash     whereHelpernull_String
 }{
 	ID:         whereHelperint64{field: "\"match\".\"id\""},
@@ -157,7 +151,6 @@ var MatchWhere = struct {
 	LocationID: whereHelpernull_Int64{field: "\"match\".\"location_id\""},
 	Metadata:   whereHelpernull_JSON{field: "\"match\".\"metadata\""},
 	CreatedAt:  whereHelpertime_Time{field: "\"match\".\"created_at\""},
-	RecordHash: whereHelpernull_String{field: "\"match\".\"record_hash\""},
 	TXHash:     whereHelpernull_String{field: "\"match\".\"tx_hash\""},
 }
 
@@ -236,9 +229,9 @@ func (r *matchR) GetMatchParticipants() MatchParticipantSlice {
 type matchL struct{}
 
 var (
-	matchAllColumns            = []string{"id", "stage_id", "match_time", "location_id", "metadata", "created_at", "record_hash", "tx_hash"}
+	matchAllColumns            = []string{"id", "stage_id", "match_time", "location_id", "metadata", "created_at", "tx_hash"}
 	matchColumnsWithoutDefault = []string{"stage_id", "match_time"}
-	matchColumnsWithDefault    = []string{"id", "location_id", "metadata", "created_at", "record_hash", "tx_hash"}
+	matchColumnsWithDefault    = []string{"id", "location_id", "metadata", "created_at", "tx_hash"}
 	matchPrimaryKeyColumns     = []string{"id"}
 	matchGeneratedColumns      = []string{}
 )

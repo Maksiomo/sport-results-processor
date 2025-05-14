@@ -15,6 +15,7 @@ import (
 
 type BlockchainRegistryClient struct {
 	Auth			 *bind.TransactOpts
+	CallOpts		 *bind.CallOpts
 	EthClient        *ethclient.Client
 	Sport            *blockchain.SportRegistry
 	Person           *blockchain.PersonRegistry
@@ -50,6 +51,7 @@ func NewBlockchainRegistryClient(ctx context.Context, cfg *Config, logg logger.L
 	}
 
 	c.Auth = auth
+	c.CallOpts = &bind.CallOpts{Context: ctx}
 
 	// Initialize each registry
 

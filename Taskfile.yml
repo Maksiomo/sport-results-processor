@@ -28,6 +28,12 @@ tasks:
     generates:
       - "pkg/gen/sqlboiler"
   
+  ent:
+    cmds:
+      - task migrate-down
+      - task migrate-up
+      - task generate-ent
+
   generate-blockchain-client:
     desc: generate solc buids and blockchain client from sol contracts
     cmds:

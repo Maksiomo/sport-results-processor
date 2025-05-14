@@ -30,7 +30,6 @@ type Competition struct {
 	LocationID int64       `boil:"location_id" json:"location_id" toml:"location_id" yaml:"location_id"`
 	LevelID    int64       `boil:"level_id" json:"level_id" toml:"level_id" yaml:"level_id"`
 	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
 	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *competitionR `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -44,7 +43,6 @@ var CompetitionColumns = struct {
 	LocationID string
 	LevelID    string
 	CreatedAt  string
-	RecordHash string
 	TXHash     string
 }{
 	ID:         "id",
@@ -53,7 +51,6 @@ var CompetitionColumns = struct {
 	LocationID: "location_id",
 	LevelID:    "level_id",
 	CreatedAt:  "created_at",
-	RecordHash: "record_hash",
 	TXHash:     "tx_hash",
 }
 
@@ -64,7 +61,6 @@ var CompetitionTableColumns = struct {
 	LocationID string
 	LevelID    string
 	CreatedAt  string
-	RecordHash string
 	TXHash     string
 }{
 	ID:         "competition.id",
@@ -73,7 +69,6 @@ var CompetitionTableColumns = struct {
 	LocationID: "competition.location_id",
 	LevelID:    "competition.level_id",
 	CreatedAt:  "competition.created_at",
-	RecordHash: "competition.record_hash",
 	TXHash:     "competition.tx_hash",
 }
 
@@ -217,7 +212,6 @@ var CompetitionWhere = struct {
 	LocationID whereHelperint64
 	LevelID    whereHelperint64
 	CreatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_String
 	TXHash     whereHelpernull_String
 }{
 	ID:         whereHelperint64{field: "\"competition\".\"id\""},
@@ -226,7 +220,6 @@ var CompetitionWhere = struct {
 	LocationID: whereHelperint64{field: "\"competition\".\"location_id\""},
 	LevelID:    whereHelperint64{field: "\"competition\".\"level_id\""},
 	CreatedAt:  whereHelpertime_Time{field: "\"competition\".\"created_at\""},
-	RecordHash: whereHelpernull_String{field: "\"competition\".\"record_hash\""},
 	TXHash:     whereHelpernull_String{field: "\"competition\".\"tx_hash\""},
 }
 
@@ -362,9 +355,9 @@ func (r *competitionR) GetStages() StageSlice {
 type competitionL struct{}
 
 var (
-	competitionAllColumns            = []string{"id", "name", "sport_id", "location_id", "level_id", "created_at", "record_hash", "tx_hash"}
+	competitionAllColumns            = []string{"id", "name", "sport_id", "location_id", "level_id", "created_at", "tx_hash"}
 	competitionColumnsWithoutDefault = []string{"name", "sport_id", "location_id", "level_id"}
-	competitionColumnsWithDefault    = []string{"id", "created_at", "record_hash", "tx_hash"}
+	competitionColumnsWithDefault    = []string{"id", "created_at", "tx_hash"}
 	competitionPrimaryKeyColumns     = []string{"id"}
 	competitionGeneratedColumns      = []string{}
 )

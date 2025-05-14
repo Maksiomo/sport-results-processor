@@ -30,7 +30,6 @@ type Sport struct {
 	MaxTeamSize int         `boil:"max_team_size" json:"max_team_size" toml:"max_team_size" yaml:"max_team_size"`
 	Description null.String `boil:"description" json:"description,omitempty" toml:"description" yaml:"description,omitempty"`
 	CreatedAt   time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash  null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
 	TXHash      null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *sportR `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -44,7 +43,6 @@ var SportColumns = struct {
 	MaxTeamSize string
 	Description string
 	CreatedAt   string
-	RecordHash  string
 	TXHash      string
 }{
 	ID:          "id",
@@ -53,7 +51,6 @@ var SportColumns = struct {
 	MaxTeamSize: "max_team_size",
 	Description: "description",
 	CreatedAt:   "created_at",
-	RecordHash:  "record_hash",
 	TXHash:      "tx_hash",
 }
 
@@ -64,7 +61,6 @@ var SportTableColumns = struct {
 	MaxTeamSize string
 	Description string
 	CreatedAt   string
-	RecordHash  string
 	TXHash      string
 }{
 	ID:          "sport.id",
@@ -73,7 +69,6 @@ var SportTableColumns = struct {
 	MaxTeamSize: "sport.max_team_size",
 	Description: "sport.description",
 	CreatedAt:   "sport.created_at",
-	RecordHash:  "sport.record_hash",
 	TXHash:      "sport.tx_hash",
 }
 
@@ -86,7 +81,6 @@ var SportWhere = struct {
 	MaxTeamSize whereHelperint
 	Description whereHelpernull_String
 	CreatedAt   whereHelpertime_Time
-	RecordHash  whereHelpernull_String
 	TXHash      whereHelpernull_String
 }{
 	ID:          whereHelperint64{field: "\"sport\".\"id\""},
@@ -95,7 +89,6 @@ var SportWhere = struct {
 	MaxTeamSize: whereHelperint{field: "\"sport\".\"max_team_size\""},
 	Description: whereHelpernull_String{field: "\"sport\".\"description\""},
 	CreatedAt:   whereHelpertime_Time{field: "\"sport\".\"created_at\""},
-	RecordHash:  whereHelpernull_String{field: "\"sport\".\"record_hash\""},
 	TXHash:      whereHelpernull_String{field: "\"sport\".\"tx_hash\""},
 }
 
@@ -155,9 +148,9 @@ func (r *sportR) GetPersonSports() PersonSportSlice {
 type sportL struct{}
 
 var (
-	sportAllColumns            = []string{"id", "name", "min_team_size", "max_team_size", "description", "created_at", "record_hash", "tx_hash"}
+	sportAllColumns            = []string{"id", "name", "min_team_size", "max_team_size", "description", "created_at", "tx_hash"}
 	sportColumnsWithoutDefault = []string{"name", "min_team_size", "max_team_size"}
-	sportColumnsWithDefault    = []string{"id", "description", "created_at", "record_hash", "tx_hash"}
+	sportColumnsWithDefault    = []string{"id", "description", "created_at", "tx_hash"}
 	sportPrimaryKeyColumns     = []string{"id"}
 	sportGeneratedColumns      = []string{}
 )

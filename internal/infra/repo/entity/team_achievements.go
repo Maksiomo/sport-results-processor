@@ -24,65 +24,58 @@ import (
 
 // TeamAchievement is an object representing the database table.
 type TeamAchievement struct {
-	ID         int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
-	TeamID     int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
-	PrizeID    int64       `boil:"prize_id" json:"prize_id" toml:"prize_id" yaml:"prize_id"`
-	CreatedAt  time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
-	TXHash     null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
+	ID        int64       `boil:"id" json:"id" toml:"id" yaml:"id"`
+	TeamID    int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
+	PrizeID   int64       `boil:"prize_id" json:"prize_id" toml:"prize_id" yaml:"prize_id"`
+	CreatedAt time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
+	TXHash    null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *teamAchievementR `boil:"-" json:"-" toml:"-" yaml:"-"`
 	L teamAchievementL  `boil:"-" json:"-" toml:"-" yaml:"-"`
 }
 
 var TeamAchievementColumns = struct {
-	ID         string
-	TeamID     string
-	PrizeID    string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	TeamID    string
+	PrizeID   string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "id",
-	TeamID:     "team_id",
-	PrizeID:    "prize_id",
-	CreatedAt:  "created_at",
-	RecordHash: "record_hash",
-	TXHash:     "tx_hash",
+	ID:        "id",
+	TeamID:    "team_id",
+	PrizeID:   "prize_id",
+	CreatedAt: "created_at",
+	TXHash:    "tx_hash",
 }
 
 var TeamAchievementTableColumns = struct {
-	ID         string
-	TeamID     string
-	PrizeID    string
-	CreatedAt  string
-	RecordHash string
-	TXHash     string
+	ID        string
+	TeamID    string
+	PrizeID   string
+	CreatedAt string
+	TXHash    string
 }{
-	ID:         "team_achievements.id",
-	TeamID:     "team_achievements.team_id",
-	PrizeID:    "team_achievements.prize_id",
-	CreatedAt:  "team_achievements.created_at",
-	RecordHash: "team_achievements.record_hash",
-	TXHash:     "team_achievements.tx_hash",
+	ID:        "team_achievements.id",
+	TeamID:    "team_achievements.team_id",
+	PrizeID:   "team_achievements.prize_id",
+	CreatedAt: "team_achievements.created_at",
+	TXHash:    "team_achievements.tx_hash",
 }
 
 // Generated where
 
 var TeamAchievementWhere = struct {
-	ID         whereHelperint64
-	TeamID     whereHelperint64
-	PrizeID    whereHelperint64
-	CreatedAt  whereHelpertime_Time
-	RecordHash whereHelpernull_String
-	TXHash     whereHelpernull_String
+	ID        whereHelperint64
+	TeamID    whereHelperint64
+	PrizeID   whereHelperint64
+	CreatedAt whereHelpertime_Time
+	TXHash    whereHelpernull_String
 }{
-	ID:         whereHelperint64{field: "\"team_achievements\".\"id\""},
-	TeamID:     whereHelperint64{field: "\"team_achievements\".\"team_id\""},
-	PrizeID:    whereHelperint64{field: "\"team_achievements\".\"prize_id\""},
-	CreatedAt:  whereHelpertime_Time{field: "\"team_achievements\".\"created_at\""},
-	RecordHash: whereHelpernull_String{field: "\"team_achievements\".\"record_hash\""},
-	TXHash:     whereHelpernull_String{field: "\"team_achievements\".\"tx_hash\""},
+	ID:        whereHelperint64{field: "\"team_achievements\".\"id\""},
+	TeamID:    whereHelperint64{field: "\"team_achievements\".\"team_id\""},
+	PrizeID:   whereHelperint64{field: "\"team_achievements\".\"prize_id\""},
+	CreatedAt: whereHelpertime_Time{field: "\"team_achievements\".\"created_at\""},
+	TXHash:    whereHelpernull_String{field: "\"team_achievements\".\"tx_hash\""},
 }
 
 // TeamAchievementRels is where relationship names are stored.
@@ -141,9 +134,9 @@ func (r *teamAchievementR) GetTeam() *Team {
 type teamAchievementL struct{}
 
 var (
-	teamAchievementAllColumns            = []string{"id", "team_id", "prize_id", "created_at", "record_hash", "tx_hash"}
+	teamAchievementAllColumns            = []string{"id", "team_id", "prize_id", "created_at", "tx_hash"}
 	teamAchievementColumnsWithoutDefault = []string{"team_id", "prize_id"}
-	teamAchievementColumnsWithDefault    = []string{"id", "created_at", "record_hash", "tx_hash"}
+	teamAchievementColumnsWithDefault    = []string{"id", "created_at", "tx_hash"}
 	teamAchievementPrimaryKeyColumns     = []string{"id"}
 	teamAchievementGeneratedColumns      = []string{}
 )

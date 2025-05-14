@@ -86,6 +86,27 @@ func (r *TeamPersonRepo) Create(ctx context.Context, m *model.TeamPerson) error 
 	return nil
 }
 
+func (r *TeamPersonRepo) SetTxHash(ctx context.Context, id int64, txHash string) error {
+	ct, err := entity.TeamPeople(
+        entity.TeamPersonWhere.ID.EQ(id),
+    ).One(ctx, r.db)
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not get ent", zap.Error(err))
+		return err
+    }
+
+    // 2. Меняем поле
+    ct.TXHash = null.StringFrom(txHash)
+
+    // 3. Обновляем только record_hash
+    _, err = ct.Update(ctx, r.db, boil.Whitelist(entity.TeamPersonColumns.TXHash))
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not update ent", zap.Error(err))
+		return err
+    }
+    return nil
+}
+
 func (*TeamPersonRepo) toEntity(m *model.TeamPerson) *entity.TeamPerson {
 	return &entity.TeamPerson{
 		ID:         m.ID,
@@ -95,7 +116,6 @@ func (*TeamPersonRepo) toEntity(m *model.TeamPerson) *entity.TeamPerson {
 		JoinedAt:   m.JoinedAt,
 		LeftAt:     null.TimeFromPtr(m.LeftAt),
 		CreatedAt:  m.CreatedAt,
-		RecordHash: null.StringFrom(m.RecordHash),
 		TXHash:     null.StringFromPtr(m.TXHash),
 	}
 }
@@ -109,7 +129,6 @@ func (*TeamPersonRepo) fromEntity(e *entity.TeamPerson) *model.TeamPerson {
 		JoinedAt:   e.JoinedAt,
 		LeftAt:     e.LeftAt.Ptr(),
 		CreatedAt:  e.CreatedAt,
-		RecordHash: e.RecordHash.String,
 		TXHash:     e.TXHash.Ptr(),
 	}
 }

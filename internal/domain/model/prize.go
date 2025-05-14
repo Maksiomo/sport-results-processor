@@ -9,6 +9,5 @@ type Prize struct {
 	CurrencyCode  string    `json:"currency_code"`
 	PrizeAmount   int64     `json:"prize_amount"`
 	CreatedAt     time.Time `json:"-"`
-	RecordHash    string    `json:"-"`
 	TXHash        *string   `json:"-"`
 }

@@ -29,7 +29,6 @@ type Team struct {
 	CountryID      int64       `boil:"country_id" json:"country_id" toml:"country_id" yaml:"country_id"`
 	FoundationDate time.Time   `boil:"foundation_date" json:"foundation_date" toml:"foundation_date" yaml:"foundation_date"`
 	CreatedAt      time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash     null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
 	TXHash         null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *teamR `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -42,7 +41,6 @@ var TeamColumns = struct {
 	CountryID      string
 	FoundationDate string
 	CreatedAt      string
-	RecordHash     string
 	TXHash         string
 }{
 	ID:             "id",
@@ -50,7 +48,6 @@ var TeamColumns = struct {
 	CountryID:      "country_id",
 	FoundationDate: "foundation_date",
 	CreatedAt:      "created_at",
-	RecordHash:     "record_hash",
 	TXHash:         "tx_hash",
 }
 
@@ -60,7 +57,6 @@ var TeamTableColumns = struct {
 	CountryID      string
 	FoundationDate string
 	CreatedAt      string
-	RecordHash     string
 	TXHash         string
 }{
 	ID:             "team.id",
@@ -68,7 +64,6 @@ var TeamTableColumns = struct {
 	CountryID:      "team.country_id",
 	FoundationDate: "team.foundation_date",
 	CreatedAt:      "team.created_at",
-	RecordHash:     "team.record_hash",
 	TXHash:         "team.tx_hash",
 }
 
@@ -80,7 +75,6 @@ var TeamWhere = struct {
 	CountryID      whereHelperint64
 	FoundationDate whereHelpertime_Time
 	CreatedAt      whereHelpertime_Time
-	RecordHash     whereHelpernull_String
 	TXHash         whereHelpernull_String
 }{
 	ID:             whereHelperint64{field: "\"team\".\"id\""},
@@ -88,7 +82,6 @@ var TeamWhere = struct {
 	CountryID:      whereHelperint64{field: "\"team\".\"country_id\""},
 	FoundationDate: whereHelpertime_Time{field: "\"team\".\"foundation_date\""},
 	CreatedAt:      whereHelpertime_Time{field: "\"team\".\"created_at\""},
-	RecordHash:     whereHelpernull_String{field: "\"team\".\"record_hash\""},
 	TXHash:         whereHelpernull_String{field: "\"team\".\"tx_hash\""},
 }
 
@@ -205,9 +198,9 @@ func (r *teamR) GetTeamPeople() TeamPersonSlice {
 type teamL struct{}
 
 var (
-	teamAllColumns            = []string{"id", "name", "country_id", "foundation_date", "created_at", "record_hash", "tx_hash"}
+	teamAllColumns            = []string{"id", "name", "country_id", "foundation_date", "created_at", "tx_hash"}
 	teamColumnsWithoutDefault = []string{"name", "country_id", "foundation_date"}
-	teamColumnsWithDefault    = []string{"id", "created_at", "record_hash", "tx_hash"}
+	teamColumnsWithDefault    = []string{"id", "created_at", "tx_hash"}
 	teamPrimaryKeyColumns     = []string{"id"}
 	teamGeneratedColumns      = []string{}
 )

@@ -9,6 +9,5 @@ type MatchParticipant struct {
 	Score      int       `json:"score"`
 	IsWinner   bool      `json:"is_winner"`
 	CreatedAt  time.Time `json:"-"`
-	RecordHash string    `json:"-"`
 	TXHash     *string   `json:"-"`
 }

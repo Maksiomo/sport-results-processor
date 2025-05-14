@@ -10,6 +10,5 @@ type TeamPerson struct {
 	JoinedAt   time.Time  `json:"joined_at"`
 	LeftAt     *time.Time `json:"left_at,omitempty"`
 	CreatedAt  time.Time  `json:"-"`
-	RecordHash string     `json:"-"`
 	TXHash     *string    `json:"-"`
 }

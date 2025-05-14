@@ -86,6 +86,27 @@ func (r *PrizeRepo) Create(ctx context.Context, m *model.Prize) error {
 	return nil
 }
 
+func (r *PrizeRepo) SetTxHash(ctx context.Context, id int64, txHash string) error {
+	ct, err := entity.Prizes(
+        entity.PrizeWhere.ID.EQ(id),
+    ).One(ctx, r.db)
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not get ent", zap.Error(err))
+		return err
+    }
+
+    // 2. Меняем поле
+    ct.TXHash = null.StringFrom(txHash)
+
+    // 3. Обновляем только record_hash
+    _, err = ct.Update(ctx, r.db, boil.Whitelist(entity.PrizeColumns.TXHash))
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not update ent", zap.Error(err))
+		return err
+    }
+    return nil
+}
+
 func (*PrizeRepo) toEntity(m *model.Prize) *entity.Prize {
 	return &entity.Prize{
 		ID:            m.ID,
@@ -93,7 +114,6 @@ func (*PrizeRepo) toEntity(m *model.Prize) *entity.Prize {
 		PlaceBracket:  m.PlaceBracket,
 		CurrencyCode:  m.CurrencyCode,
 		CreatedAt:     m.CreatedAt,
-		RecordHash:    null.StringFrom(m.RecordHash),
 		TXHash:        null.StringFromPtr(m.TXHash),
 	}
 }
@@ -106,7 +126,6 @@ func (*PrizeRepo) fromEntity(e *entity.Prize) *model.Prize {
 		CurrencyCode:  e.CurrencyCode,
 		PrizeAmount:   e.PrizeAmount,
 		CreatedAt:     e.CreatedAt,
-		RecordHash:    e.RecordHash.String,
 		TXHash:        e.TXHash.Ptr(),
 	}
 }

@@ -12,7 +12,6 @@ import (
 	"sport-results-pocessor/internal/common/service/server/registry"
 	"sport-results-pocessor/internal/domain/model"
 	"sport-results-pocessor/internal/infra/repo"
-
 	"go.uber.org/zap"
 )
 
@@ -160,6 +159,22 @@ func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) (*regis
 	out := make([]registry.CompetitionTeams, 0, len(res))
 
 	for i := range res {
+
+		hash, err := s.calcHash(res)
+		if err != nil {
+			return nil, err
+		}
+
+		hashValid, err := s.blockchainClient.CompetitionTeams.ValidateCompetitionTeams(s.blockchainClient.CallOpts, big.NewInt(res[i].ID), hash)
+		if err != nil {
+			s.log.WithMethod(ctx, "ListCompetitionTeams").Error("can no validate object", zap.Error(err))
+			return nil, err
+		}
+		if !hashValid {
+			s.log.WithMethod(ctx, "ListCompetitionTeams").Error("invalid object detected", zap.Any("object", res[i]))
+			return nil, err
+		}
+
 		out = append(out, registry.CompetitionTeams{
 			Id: res[i].ID,
 			CompetitionId: res[i].CompetitionID,
@@ -183,8 +198,6 @@ func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req regis
 	if err != nil {
 		return err
 	}
-
-	buf.RecordHash = hash
 
 	err = s.competitionTeamsRepo.Create(ctx, buf)
 	if err != nil {

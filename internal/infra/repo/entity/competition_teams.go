@@ -28,7 +28,6 @@ type CompetitionTeam struct {
 	TeamID        int64       `boil:"team_id" json:"team_id" toml:"team_id" yaml:"team_id"`
 	CompetitionID int64       `boil:"competition_id" json:"competition_id" toml:"competition_id" yaml:"competition_id"`
 	CreatedAt     time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash    null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
 	TXHash        null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *competitionTeamR `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -40,14 +39,12 @@ var CompetitionTeamColumns = struct {
 	TeamID        string
 	CompetitionID string
 	CreatedAt     string
-	RecordHash    string
 	TXHash        string
 }{
 	ID:            "id",
 	TeamID:        "team_id",
 	CompetitionID: "competition_id",
 	CreatedAt:     "created_at",
-	RecordHash:    "record_hash",
 	TXHash:        "tx_hash",
 }
 
@@ -56,14 +53,12 @@ var CompetitionTeamTableColumns = struct {
 	TeamID        string
 	CompetitionID string
 	CreatedAt     string
-	RecordHash    string
 	TXHash        string
 }{
 	ID:            "competition_teams.id",
 	TeamID:        "competition_teams.team_id",
 	CompetitionID: "competition_teams.competition_id",
 	CreatedAt:     "competition_teams.created_at",
-	RecordHash:    "competition_teams.record_hash",
 	TXHash:        "competition_teams.tx_hash",
 }
 
@@ -74,14 +69,12 @@ var CompetitionTeamWhere = struct {
 	TeamID        whereHelperint64
 	CompetitionID whereHelperint64
 	CreatedAt     whereHelpertime_Time
-	RecordHash    whereHelpernull_String
 	TXHash        whereHelpernull_String
 }{
 	ID:            whereHelperint64{field: "\"competition_teams\".\"id\""},
 	TeamID:        whereHelperint64{field: "\"competition_teams\".\"team_id\""},
 	CompetitionID: whereHelperint64{field: "\"competition_teams\".\"competition_id\""},
 	CreatedAt:     whereHelpertime_Time{field: "\"competition_teams\".\"created_at\""},
-	RecordHash:    whereHelpernull_String{field: "\"competition_teams\".\"record_hash\""},
 	TXHash:        whereHelpernull_String{field: "\"competition_teams\".\"tx_hash\""},
 }
 
@@ -141,9 +134,9 @@ func (r *competitionTeamR) GetTeam() *Team {
 type competitionTeamL struct{}
 
 var (
-	competitionTeamAllColumns            = []string{"id", "team_id", "competition_id", "created_at", "record_hash", "tx_hash"}
+	competitionTeamAllColumns            = []string{"id", "team_id", "competition_id", "created_at", "tx_hash"}
 	competitionTeamColumnsWithoutDefault = []string{"team_id", "competition_id"}
-	competitionTeamColumnsWithDefault    = []string{"id", "created_at", "record_hash", "tx_hash"}
+	competitionTeamColumnsWithDefault    = []string{"id", "created_at", "tx_hash"}
 	competitionTeamPrimaryKeyColumns     = []string{"id"}
 	competitionTeamGeneratedColumns      = []string{}
 )

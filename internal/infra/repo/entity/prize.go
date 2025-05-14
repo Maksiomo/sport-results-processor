@@ -30,7 +30,6 @@ type Prize struct {
 	CurrencyCode  string      `boil:"currency_code" json:"currency_code" toml:"currency_code" yaml:"currency_code"`
 	PrizeAmount   int64       `boil:"prize_amount" json:"prize_amount" toml:"prize_amount" yaml:"prize_amount"`
 	CreatedAt     time.Time   `boil:"created_at" json:"created_at" toml:"created_at" yaml:"created_at"`
-	RecordHash    null.String `boil:"record_hash" json:"record_hash,omitempty" toml:"record_hash" yaml:"record_hash,omitempty"`
 	TXHash        null.String `boil:"tx_hash" json:"tx_hash,omitempty" toml:"tx_hash" yaml:"tx_hash,omitempty"`
 
 	R *prizeR `boil:"-" json:"-" toml:"-" yaml:"-"`
@@ -44,7 +43,6 @@ var PrizeColumns = struct {
 	CurrencyCode  string
 	PrizeAmount   string
 	CreatedAt     string
-	RecordHash    string
 	TXHash        string
 }{
 	ID:            "id",
@@ -53,7 +51,6 @@ var PrizeColumns = struct {
 	CurrencyCode:  "currency_code",
 	PrizeAmount:   "prize_amount",
 	CreatedAt:     "created_at",
-	RecordHash:    "record_hash",
 	TXHash:        "tx_hash",
 }
 
@@ -64,7 +61,6 @@ var PrizeTableColumns = struct {
 	CurrencyCode  string
 	PrizeAmount   string
 	CreatedAt     string
-	RecordHash    string
 	TXHash        string
 }{
 	ID:            "prize.id",
@@ -73,7 +69,6 @@ var PrizeTableColumns = struct {
 	CurrencyCode:  "prize.currency_code",
 	PrizeAmount:   "prize.prize_amount",
 	CreatedAt:     "prize.created_at",
-	RecordHash:    "prize.record_hash",
 	TXHash:        "prize.tx_hash",
 }
 
@@ -86,7 +81,6 @@ var PrizeWhere = struct {
 	CurrencyCode  whereHelperstring
 	PrizeAmount   whereHelperint64
 	CreatedAt     whereHelpertime_Time
-	RecordHash    whereHelpernull_String
 	TXHash        whereHelpernull_String
 }{
 	ID:            whereHelperint64{field: "\"prize\".\"id\""},
@@ -95,7 +89,6 @@ var PrizeWhere = struct {
 	CurrencyCode:  whereHelperstring{field: "\"prize\".\"currency_code\""},
 	PrizeAmount:   whereHelperint64{field: "\"prize\".\"prize_amount\""},
 	CreatedAt:     whereHelpertime_Time{field: "\"prize\".\"created_at\""},
-	RecordHash:    whereHelpernull_String{field: "\"prize\".\"record_hash\""},
 	TXHash:        whereHelpernull_String{field: "\"prize\".\"tx_hash\""},
 }
 
@@ -174,9 +167,9 @@ func (r *prizeR) GetTeamAchievements() TeamAchievementSlice {
 type prizeL struct{}
 
 var (
-	prizeAllColumns            = []string{"id", "competition_id", "place_bracket", "currency_code", "prize_amount", "created_at", "record_hash", "tx_hash"}
+	prizeAllColumns            = []string{"id", "competition_id", "place_bracket", "currency_code", "prize_amount", "created_at", "tx_hash"}
 	prizeColumnsWithoutDefault = []string{"competition_id", "place_bracket", "currency_code", "prize_amount"}
-	prizeColumnsWithDefault    = []string{"id", "created_at", "record_hash", "tx_hash"}
+	prizeColumnsWithDefault    = []string{"id", "created_at", "tx_hash"}
 	prizePrimaryKeyColumns     = []string{"id"}
 	prizeGeneratedColumns      = []string{}
 )

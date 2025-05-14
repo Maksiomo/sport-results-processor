@@ -9,6 +9,5 @@ type Competition struct {
 	LocationID int64     `json:"location_id"`
 	LevelID    int64     `json:"level_id"`
 	CreatedAt  time.Time `json:"-"`
-	RecordHash string    `json:"-"`
 	TXHash     *string   `json:"-"`
 }

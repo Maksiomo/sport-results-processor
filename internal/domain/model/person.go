@@ -8,6 +8,5 @@ type Person struct {
 	BirthDate  time.Time `json:"birth_date"`
 	CountryID  int64     `json:"country_id"`
 	CreatedAt  time.Time `json:"-"`
-	RecordHash string    `json:"-"`
 	TXHash     *string   `json:"-"`
 }

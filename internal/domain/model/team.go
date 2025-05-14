@@ -8,6 +8,5 @@ type Team struct {
 	CountryID      int64     `json:"country_id"`
 	FoundationDate time.Time `json:"foundation_date"`
 	CreatedAt      time.Time `json:"-"`
-	RecordHash     string    `json:"-"`
 	TXHash         *string   `json:"-"`
 }
