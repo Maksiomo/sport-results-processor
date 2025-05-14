@@ -9,6 +9,7 @@ import (
 	"sport-results-pocessor/internal/domain/model"
 	"sport-results-pocessor/internal/infra/repo/entity"
 
+	"github.com/volatiletech/null/v8"
 	"github.com/volatiletech/sqlboiler/v4/boil"
 	"go.uber.org/zap"
 )
@@ -83,6 +84,27 @@ func (r *PersonRepo) Create(ctx context.Context, m *model.Person) error {
 	m.CreatedAt = ent.CreatedAt
 
 	return nil
+}
+
+func (r *PersonRepo) SetTxHash(ctx context.Context, id int64, txHash string) error {
+	ct, err := entity.People(
+        entity.PersonWhere.ID.EQ(id),
+    ).One(ctx, r.db)
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not get ent", zap.Error(err))
+		return err
+    }
+
+    // 2. Меняем поле
+    ct.TXHash = null.StringFrom(txHash)
+
+    // 3. Обновляем только record_hash
+    _, err = ct.Update(ctx, r.db, boil.Whitelist(entity.PersonColumns.TXHash))
+    if err != nil {
+        r.log.WithMethod(ctx, "SetTxHash").Error("can not update ent", zap.Error(err))
+		return err
+    }
+    return nil
 }
 
 func (*PersonRepo) toEntity(m *model.Person) *entity.Person {

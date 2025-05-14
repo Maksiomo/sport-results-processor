@@ -142,6 +142,21 @@ func (s *SportRegistryService) FindCompetitionTeam(ctx context.Context, id int64
 		return nil, err
 	}
 
+	hash, err := s.calcHash(res)
+	if err != nil {
+		return nil, err
+	}
+
+	hashValid, err := s.blockchainClient.CompetitionTeams.ValidateCompetitionTeams(s.blockchainClient.CallOpts, big.NewInt(res.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "FindCompetitionTeam").Error("can no validate object", zap.Error(err))
+		return nil, err
+	}
+	if !hashValid {
+		s.log.WithMethod(ctx, "FindCompetitionTeam").Error("invalid object detected", zap.Any("object", res))
+		return nil, err
+	}
+
 	return &registry.CompetitionTeams{
 		Id:            res.ID,
 		CompetitionId: res.CompetitionID,
@@ -205,6 +220,15 @@ func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req regis
 	}
 
 	tx, err := s.blockchainClient.CompetitionTeams.RecordCompetitionTeams(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "AddCompetitionTeam").Error("can not record object hash", zap.Error(err))
+		return err
+	}
+
+	err = s.competitionRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
+	if err != nil {
+		return err
+	}
 
 	err = s.competitionTeamsRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
 	if err != nil {
@@ -217,6 +241,21 @@ func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req regis
 func (s *SportRegistryService) FindCompetition(ctx context.Context, id int64) (*registry.Competition, error) {
 	res, err := s.competitionRepo.One(ctx, id)
 	if err != nil {
+		return nil, err
+	}
+
+	hash, err := s.calcHash(res)
+	if err != nil {
+		return nil, err
+	}
+
+	hashValid, err := s.blockchainClient.Competition.ValidateCompetition(s.blockchainClient.CallOpts, big.NewInt(res.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "FindCompetition").Error("can no validate object", zap.Error(err))
+		return nil, err
+	}
+	if !hashValid {
+		s.log.WithMethod(ctx, "FindCompetition").Error("invalid object detected", zap.Any("object", res))
 		return nil, err
 	}
 
@@ -289,6 +328,10 @@ func (s *SportRegistryService) AddCompetition(ctx context.Context, req registry.
 	}
 
 	tx, err := s.blockchainClient.Competition.RecordCompetition(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "AddCompetition").Error("can not record object hash", zap.Error(err))
+		return err
+	}
 
 	err = s.competitionRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
 	if err != nil {
@@ -406,7 +449,6 @@ func (s *SportRegistryService) FindLocation(ctx context.Context, id int64) (*reg
 		FullAddress: *res.Address,
 		State:       res.State,
 	}, nil
-
 }
 
 func (s *SportRegistryService) ListLocations(ctx context.Context) (*registry.ListLocationsResponse, error) {
@@ -452,51 +494,368 @@ func (s *SportRegistryService) AddLocation(ctx context.Context, req registry.New
 }
 
 func (s *SportRegistryService) FindMatchParticipant(ctx context.Context, id int64) (*registry.MatchParticipant, error) {
+	res, err := s.matchParticipantRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	hash, err := s.calcHash(res)
+	if err != nil {
+		return nil, err
+	}
+
+	hashValid, err := s.blockchainClient.MatchParticipant.ValidateMatchParticipant(s.blockchainClient.CallOpts, big.NewInt(res.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "FindMatchParticipant").Error("can no validate object", zap.Error(err))
+		return nil, err
+	}
+	if !hashValid {
+		s.log.WithMethod(ctx, "FindMatchParticipant").Error("invalid object detected", zap.Any("object", res))
+		return nil, err
+	}
+
+	return &registry.MatchParticipant{
+		Id:       res.ID,
+		IsWinner: &res.IsWinner,
+		MatchId:  res.MatchID,
+		Score:    res.Score,
+		TeamId:   res.TeamID,
+	}, nil
 }
 
 func (s *SportRegistryService) ListMatchParticipants(ctx context.Context) (*registry.ListMatchParticipantsResponse, error) {
+	res, err := s.matchParticipantRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.MatchParticipant, 0, len(res))
+
+	for i := range res {
+
+		hash, err := s.calcHash(res)
+		if err != nil {
+			return nil, err
+		}
+
+		hashValid, err := s.blockchainClient.MatchParticipant.ValidateMatchParticipant(s.blockchainClient.CallOpts, big.NewInt(res[i].ID), hash)
+		if err != nil {
+			s.log.WithMethod(ctx, "ListMatchParticipants").Error("can no validate object", zap.Error(err))
+			return nil, err
+		}
+		if !hashValid {
+			s.log.WithMethod(ctx, "ListMatchParticipants").Error("invalid object detected", zap.Any("object", res[i]))
+			return nil, err
+		}
+
+		out = append(out, registry.MatchParticipant{
+			Id:       res[i].ID,
+			IsWinner: &res[i].IsWinner,
+			MatchId:  res[i].MatchID,
+			Score:    res[i].Score,
+			TeamId:   res[i].TeamID,
+		})
+	}
+
+	return &registry.ListMatchParticipantsResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddMatchParticipant(ctx context.Context, req registry.NewMatchParticipant) error {
+	buf := &model.MatchParticipant{
+		IsWinner: *req.IsWinner,
+		MatchID:  req.MatchId,
+		Score:    req.Score,
+		TeamID:   req.TeamId,
+	}
 
+	hash, err := s.calcHash(buf)
+	if err != nil {
+		return err
+	}
+
+	err = s.matchParticipantRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	tx, err := s.blockchainClient.Competition.RecordCompetition(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "AddMatchParticipant").Error("can not record object hash", zap.Error(err))
+		return err
+	}
+
+	err = s.matchParticipantRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindMatch(ctx context.Context, id int64) (*registry.Match, error) {
+	res, err := s.matchRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	hash, err := s.calcHash(res)
+	if err != nil {
+		return nil, err
+	}
+
+	hashValid, err := s.blockchainClient.Match.ValidateMatch(s.blockchainClient.CallOpts, big.NewInt(res.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "FindMatch").Error("can no validate object", zap.Error(err))
+		return nil, err
+	}
+	if !hashValid {
+		s.log.WithMethod(ctx, "FindMatch").Error("invalid object detected", zap.Any("object", res))
+		return nil, err
+	}
+
+	m := make(map[string]interface{})
+	if err := json.Unmarshal(res.Metadata, &m); err != nil {
+		s.log.WithMethod(ctx, "FindMatch").Error("invalid object metadata", zap.ByteString("object", res.Metadata))
+	}
+
+	return &registry.Match{
+		Id:         res.ID,
+		LocationId: res.LocationID,
+		MatchTime:  res.MatchTime,
+		Metadata:   &m,
+		StageId:    res.StageID,
+		CreatedAt:  res.CreatedAt,
+	}, nil
 }
 
-func (s *SportRegistryService) ListMatches(ctx context.Context) (*registry.ListMatchParticipantsResponse, error) {
+func (s *SportRegistryService) ListMatches(ctx context.Context) (*registry.ListMatchesResponse, error) {
+	res, err := s.matchRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.Match, 0, len(res))
+
+	for i := range res {
+
+		hash, err := s.calcHash(res)
+		if err != nil {
+			return nil, err
+		}
+
+		hashValid, err := s.blockchainClient.Match.ValidateMatch(s.blockchainClient.CallOpts, big.NewInt(res[i].ID), hash)
+		if err != nil {
+			s.log.WithMethod(ctx, "ListMatches").Error("can no validate object", zap.Error(err))
+			return nil, err
+		}
+		if !hashValid {
+			s.log.WithMethod(ctx, "ListMatches").Error("invalid object detected", zap.Any("object", res[i]))
+			return nil, err
+		}
+
+		m := make(map[string]interface{})
+		if err := json.Unmarshal(res[i].Metadata, &m); err != nil {
+			s.log.WithMethod(ctx, "ListMatches").Error("invalid object metadata", zap.ByteString("object", res[i].Metadata))
+		}
+
+		out = append(out, registry.Match{
+			Id:         res[i].ID,
+			LocationId: res[i].LocationID,
+			MatchTime:  res[i].MatchTime,
+			Metadata:   &m,
+			StageId:    res[i].StageID,
+			CreatedAt:  res[i].CreatedAt,
+		})
+	}
+
+	return &registry.ListMatchesResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddMatch(ctx context.Context, req registry.Match) error {
+	m, err := json.Marshal(req.Metadata)
+	buf := &model.Match{
+		LocationID: req.LocationId,
+		MatchTime:  req.MatchTime,
+		Metadata:   m,
+		StageID:    req.StageId,
+	}
 
+	hash, err := s.calcHash(buf)
+	if err != nil {
+		return err
+	}
+
+	err = s.matchRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	tx, err := s.blockchainClient.Match.RecordMatch(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "AddMatch").Error("can not record object hash", zap.Error(err))
+		return err
+	}
+
+	err = s.matchRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindPersonSports(ctx context.Context, id int64) (*registry.PersonSport, error) {
+	res, err := s.personSportRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	return &registry.PersonSport{
+		Id:        res.ID,
+		PersonId:  res.PersonID,
+		SportId:   res.SportID,
+		CreatedAt: res.CreatedAt,
+	}, nil
 }
 
 func (s *SportRegistryService) ListPersonSports(ctx context.Context) (*registry.ListPersonSportsResponse, error) {
+	res, err := s.personSportRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.PersonSport, 0, len(res))
+
+	for i := range res {
+		out = append(out, registry.PersonSport{
+			Id:        res[i].ID,
+			PersonId:  res[i].PersonID,
+			SportId:   res[i].SportID,
+			CreatedAt: res[i].CreatedAt,
+		})
+	}
+
+	return &registry.ListPersonSportsResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddPersonSport(ctx context.Context, req registry.NewPersonSport) error {
+	buf := &model.PersonSport{
+		PersonID: req.PersonId,
+		SportID:  req.SportId,
+	}
 
+	err := s.personSportRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindPerson(ctx context.Context, id int64) (*registry.Person, error) {
+	res, err := s.personRepo.One(ctx, id)
+	if err != nil {
+		return nil, err
+	}
 
+	hash, err := s.calcHash(res)
+	if err != nil {
+		return nil, err
+	}
+
+	hashValid, err := s.blockchainClient.Person.ValidatePerson(s.blockchainClient.CallOpts, big.NewInt(res.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "FindPerson").Error("can no validate object", zap.Error(err))
+		return nil, err
+	}
+	if !hashValid {
+		s.log.WithMethod(ctx, "FindPerson").Error("invalid object detected", zap.Any("object", res))
+		return nil, err
+	}
+
+	return &registry.Person{
+		Id:        res.ID,
+		BirthDate: res.BirthDate,
+		CountryId: res.CountryID,
+		Name:      res.Name,
+		CreatedAt: res.CreatedAt,
+	}, nil
 }
 
 func (s *SportRegistryService) ListPerson(ctx context.Context) (*registry.ListPersonsResponse, error) {
+	res, err := s.personRepo.List(ctx)
+	if err != nil {
+		return nil, err
+	}
 
+	out := make([]registry.Person, 0, len(res))
+
+	for i := range res {
+
+		hash, err := s.calcHash(res)
+		if err != nil {
+			return nil, err
+		}
+
+		hashValid, err := s.blockchainClient.Person.ValidatePerson(s.blockchainClient.CallOpts, big.NewInt(res[i].ID), hash)
+		if err != nil {
+			s.log.WithMethod(ctx, "ListPerson").Error("can no validate object", zap.Error(err))
+			return nil, err
+		}
+		if !hashValid {
+			s.log.WithMethod(ctx, "ListPerson").Error("invalid object detected", zap.Any("object", res[i]))
+			return nil, err
+		}
+
+		out = append(out, registry.Person{
+			Id:        res[i].ID,
+			BirthDate: res[i].BirthDate,
+			Name:      res[i].Name,
+			CountryId: res[i].CountryID,
+			CreatedAt: res[i].CreatedAt,
+		})
+	}
+
+	return &registry.ListPersonsResponse{
+		Data: out,
+	}, nil
 }
 
 func (s *SportRegistryService) AddPerson(ctx context.Context, req registry.NewPerson) error {
+	buf := &model.Person{
+		Name:      req.Name,
+		CountryID: req.CountryId,
+		BirthDate: req.BirthDate,
+	}
 
+	hash, err := s.calcHash(buf)
+	if err != nil {
+		return err
+	}
+
+	err = s.personRepo.Create(ctx, buf)
+	if err != nil {
+		return err
+	}
+
+	tx, err := s.blockchainClient.Person.RecordPerson(s.blockchainClient.Auth, big.NewInt(buf.ID), hash)
+	if err != nil {
+		s.log.WithMethod(ctx, "AddPerson").Error("can not record object hash", zap.Error(err))
+		return err
+	}
+
+	err = s.personRepo.SetTxHash(ctx, buf.ID, tx.Hash().String())
+	if err != nil {
+		return err
+	}
+
+	return nil
 }
 
 func (s *SportRegistryService) FindPrize(ctx context.Context, id int64) (*registry.Prize, error) {
