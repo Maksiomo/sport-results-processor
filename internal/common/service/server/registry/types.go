@@ -129,7 +129,7 @@ type ListStagesResponse struct {
 
 // ListTeamAchievementsResponse defines model for ListTeamAchievementsResponse.
 type ListTeamAchievementsResponse struct {
-	Data []Country `json:"data"`
+	Data []TeamAchievements `json:"data"`
 }
 
 // ListTeamPersonsResponse defines model for ListTeamPersonsResponse.

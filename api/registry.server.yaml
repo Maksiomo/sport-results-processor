@@ -1701,7 +1701,7 @@ components:
         data:
           type: array
           items:
-            $ref: "#/components/schemas/Country"
+            $ref: "#/components/schemas/TeamAchievements"
 
     TeamAchievements:
       type: object
