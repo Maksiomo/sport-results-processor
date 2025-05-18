@@ -45,13 +45,6 @@ type Currency struct {
 	Name string `json:"name"`
 }
 
-// Language defines model for Language.
-type Language struct {
-	CreatedAt time.Time `json:"created_at"`
-	Id        int64     `json:"id"`
-	Name      string    `json:"name"`
-}
-
 // ListCompetitionLevelsResponse defines model for ListCompetitionLevelsResponse.
 type ListCompetitionLevelsResponse struct {
 	Data []CompetitionLevel `json:"data"`
@@ -75,11 +68,6 @@ type ListCountriesResponse struct {
 // ListCurrenciesResponse defines model for ListCurrenciesResponse.
 type ListCurrenciesResponse struct {
 	Data []Currency `json:"data"`
-}
-
-// ListLanguagesResponse defines model for ListLanguagesResponse.
-type ListLanguagesResponse struct {
-	Data []Language `json:"data"`
 }
 
 // ListLocationsResponse defines model for ListLocationsResponse.
@@ -200,11 +188,6 @@ type NewCountry struct {
 // NewCurrency defines model for NewCurrency.
 type NewCurrency struct {
 	Code string `json:"code"`
-	Name string `json:"name"`
-}
-
-// NewLanguage defines model for NewLanguage.
-type NewLanguage struct {
 	Name string `json:"name"`
 }
 
@@ -393,9 +376,6 @@ type PostCountriesJSONRequestBody = NewCountry
 
 // PostCurrenciesJSONRequestBody defines body for PostCurrencies for application/json ContentType.
 type PostCurrenciesJSONRequestBody = NewCurrency
-
-// PostLanguagesJSONRequestBody defines body for PostLanguages for application/json ContentType.
-type PostLanguagesJSONRequestBody = NewLanguage
 
 // PostLocationsJSONRequestBody defines body for PostLocations for application/json ContentType.
 type PostLocationsJSONRequestBody = NewLocation

@@ -208,56 +208,6 @@ paths:
         "404":
           description: Не найден
 
-  /languages:
-    get:
-      summary: Список языков
-      tags: [Languages]
-      responses:
-        "200":
-          description: Массив языков
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ListLanguagesResponse"
-    post:
-      summary: Создать новый язык
-      tags: [Languages]
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/NewLanguage"
-      responses:
-        "201":
-          description: Создан язык
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Language"
-
-  /languages/{id}:
-    get:
-      summary: Получить язык по ID
-      tags: [Languages]
-      parameters:
-        - name: id
-          in: path
-          description: ID языка
-          required: true
-          schema:
-            type: integer
-            format: int64
-      responses:
-        "200":
-          description: Язык
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Language"
-        "404":
-          description: Не найден
-
   /roles:
     get:
       summary: Список ролей
@@ -1074,39 +1024,6 @@ components:
       required:
         - country_id
         - full_address
-
-    ListLanguagesResponse:
-      type: object
-      required: [data]
-      properties:
-        data:
-          type: array
-          items:
-            $ref: "#/components/schemas/Language"
-
-    Language:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        created_at:
-          type: string
-          format: date-time
-      required:
-        - id
-        - name
-        - created_at
-
-    NewLanguage:
-      type: object
-      properties:
-        name:
-          type: string
-      required:
-        - name
 
     ListRolesResponse:
       type: object

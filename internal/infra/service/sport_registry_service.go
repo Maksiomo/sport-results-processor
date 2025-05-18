@@ -123,7 +123,7 @@ func (s *SportRegistryService) ListCompetitionLevels(ctx context.Context) (*regi
 	}, nil
 }
 
-func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req registry.NewCompetitionLevel) error {
+func (s *SportRegistryService) AddCompetitionLevel(ctx context.Context, req *registry.NewCompetitionLevel) error {
 	buf := &model.CompetitionLevel{
 		Name: req.Name,
 	}
@@ -203,7 +203,7 @@ func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) (*regis
 	}, nil
 }
 
-func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req registry.NewCompetitionTeams) error {
+func (s *SportRegistryService) AddCompetitionTeam(ctx context.Context, req *registry.NewCompetitionTeams) error {
 	buf := &model.CompetitionTeam{
 		TeamID:        req.TeamId,
 		CompetitionID: req.CompetitionId,
@@ -309,7 +309,7 @@ func (s *SportRegistryService) ListCompetitions(ctx context.Context) (*registry.
 	}, nil
 }
 
-func (s *SportRegistryService) AddCompetition(ctx context.Context, req registry.NewCompetition) error {
+func (s *SportRegistryService) AddCompetition(ctx context.Context, req *registry.NewCompetition) error {
 	buf := &model.Competition{
 		LocationID: req.LocationId,
 		LevelID:    req.LevelId,
@@ -375,7 +375,7 @@ func (s *SportRegistryService) ListCountries(ctx context.Context) (*registry.Lis
 	}, nil
 }
 
-func (s *SportRegistryService) AddCountry(ctx context.Context, req registry.NewCountry) error {
+func (s *SportRegistryService) AddCountry(ctx context.Context, req *registry.NewCountry) error {
 	buf := &model.Country{
 		Name: req.Name,
 	}
@@ -420,7 +420,7 @@ func (s *SportRegistryService) ListCurrencies(ctx context.Context) (*registry.Li
 	}, nil
 }
 
-func (s *SportRegistryService) AddCurrency(ctx context.Context, req registry.NewCurrency) error {
+func (s *SportRegistryService) AddCurrency(ctx context.Context, req *registry.NewCurrency) error {
 	buf := &model.Currency{
 		Code: req.Code,
 		Name: req.Name,
@@ -476,7 +476,7 @@ func (s *SportRegistryService) ListLocations(ctx context.Context) (*registry.Lis
 	}, nil
 }
 
-func (s *SportRegistryService) AddLocation(ctx context.Context, req registry.NewLocation) error {
+func (s *SportRegistryService) AddLocation(ctx context.Context, req *registry.NewLocation) error {
 	buf := &model.Location{
 		Address:     req.Address,
 		City:        req.City,
@@ -562,7 +562,7 @@ func (s *SportRegistryService) ListMatchParticipants(ctx context.Context) (*regi
 	}, nil
 }
 
-func (s *SportRegistryService) AddMatchParticipant(ctx context.Context, req registry.NewMatchParticipant) error {
+func (s *SportRegistryService) AddMatchParticipant(ctx context.Context, req *registry.NewMatchParticipant) error {
 	buf := &model.MatchParticipant{
 		IsWinner: *req.IsWinner,
 		MatchID:  req.MatchId,
@@ -675,7 +675,7 @@ func (s *SportRegistryService) ListMatches(ctx context.Context) (*registry.ListM
 	}, nil
 }
 
-func (s *SportRegistryService) AddMatch(ctx context.Context, req registry.Match) error {
+func (s *SportRegistryService) AddMatch(ctx context.Context, req *registry.NewMatch) error {
 	m, err := json.Marshal(req.Metadata)
 	buf := &model.Match{
 		LocationID: req.LocationId,
@@ -744,7 +744,7 @@ func (s *SportRegistryService) ListPersonSports(ctx context.Context) (*registry.
 	}, nil
 }
 
-func (s *SportRegistryService) AddPersonSport(ctx context.Context, req registry.NewPersonSport) error {
+func (s *SportRegistryService) AddPersonSport(ctx context.Context, req *registry.NewPersonSport) error {
 	buf := &model.PersonSport{
 		PersonID: req.PersonId,
 		SportID:  req.SportId,
@@ -827,7 +827,7 @@ func (s *SportRegistryService) ListPerson(ctx context.Context) (*registry.ListPe
 	}, nil
 }
 
-func (s *SportRegistryService) AddPerson(ctx context.Context, req registry.NewPerson) error {
+func (s *SportRegistryService) AddPerson(ctx context.Context, req *registry.NewPerson) error {
 	buf := &model.Person{
 		Name:      req.Name,
 		CountryID: req.CountryId,
@@ -929,7 +929,7 @@ func (s *SportRegistryService) ListPrises(ctx context.Context) (*registry.ListPr
 	}, nil
 }
 
-func (s *SportRegistryService) AddPrize(ctx context.Context, req registry.NewPrize) error {
+func (s *SportRegistryService) AddPrize(ctx context.Context, req *registry.NewPrize) error {
 	buf := &model.Prize{
 		CompetitionID: req.CompetitionId,
 		CurrencyCode:  req.CurrencyCode,
@@ -995,7 +995,7 @@ func (s *SportRegistryService) ListRoles(ctx context.Context) (*registry.ListRol
 	}, nil
 }
 
-func (s *SportRegistryService) AddRole(ctx context.Context, req registry.NewRole) error {
+func (s *SportRegistryService) AddRole(ctx context.Context, req *registry.NewRole) error {
 	buf := &model.Role{
 		Name: req.Name,
 	}
@@ -1079,7 +1079,7 @@ func (s *SportRegistryService) ListSports(ctx context.Context) (*registry.ListSp
 	}, nil
 }
 
-func (s *SportRegistryService) AddSport(ctx context.Context, req registry.NewSport) error {
+func (s *SportRegistryService) AddSport(ctx context.Context, req *registry.NewSport) error {
 	buf := &model.Sport{
 		Description: req.Description,
 		Name:        req.Name,
@@ -1151,7 +1151,7 @@ func (s *SportRegistryService) ListStages(ctx context.Context) (*registry.ListSt
 	}, nil
 }
 
-func (s *SportRegistryService) AddStage(ctx context.Context, req registry.NewStage) error {
+func (s *SportRegistryService) AddStage(ctx context.Context, req *registry.NewStage) error {
 	buf := &model.Stage{
 		Name:          req.Name,
 		CompetitionID: req.CompetitionId,
@@ -1234,7 +1234,7 @@ func (s *SportRegistryService) ListTeamAchievements(ctx context.Context) (*regis
 	}, nil
 }
 
-func (s *SportRegistryService) AddTeamAchievement(ctx context.Context, req registry.NewTeamAchievements) error {
+func (s *SportRegistryService) AddTeamAchievement(ctx context.Context, req *registry.NewTeamAchievements) error {
 	buf := &model.TeamAchievement{
 		PrizeID: req.PrizeId,
 		TeamID:  req.TeamId,
@@ -1337,7 +1337,7 @@ func (s *SportRegistryService) ListTeamPersons(ctx context.Context) (*registry.L
 	}, nil
 }
 
-func (s *SportRegistryService) AddTeamPerson(ctx context.Context, req registry.NewTeamPerson) error {
+func (s *SportRegistryService) AddTeamPerson(ctx context.Context, req *registry.NewTeamPerson) error {
 	buf := &model.TeamPerson{
 		RoleID:   req.RoleId,
 		TeamID:   req.TeamId,
@@ -1439,7 +1439,7 @@ func (s *SportRegistryService) ListTeams(ctx context.Context) (*registry.ListTea
 	}, nil
 }
 
-func (s *SportRegistryService) AddTeam(ctx context.Context, req registry.NewTeam) error {
+func (s *SportRegistryService) AddTeam(ctx context.Context, req *registry.NewTeam) error {
 	buf := &model.Team{
 		Name:           req.Name,
 		CountryID:      req.CountryId,

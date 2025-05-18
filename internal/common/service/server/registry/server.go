@@ -59,15 +59,6 @@ type ServerInterface interface {
 	// Получить валюту по символьному коду
 	// (GET /currencies/{id})
 	GetCurrenciesId(w http.ResponseWriter, r *http.Request, id string)
-	// Список языков
-	// (GET /languages)
-	GetLanguages(w http.ResponseWriter, r *http.Request)
-	// Создать новый язык
-	// (POST /languages)
-	PostLanguages(w http.ResponseWriter, r *http.Request)
-	// Получить язык по ID
-	// (GET /languages/{id})
-	GetLanguagesId(w http.ResponseWriter, r *http.Request, id int64)
 	// Список локаций
 	// (GET /locations)
 	GetLocations(w http.ResponseWriter, r *http.Request)
@@ -443,59 +434,6 @@ func (siw *ServerInterfaceWrapper) GetCurrenciesId(w http.ResponseWriter, r *htt
 
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		siw.Handler.GetCurrenciesId(w, r, id)
-	}))
-
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
-	}
-
-	handler.ServeHTTP(w, r)
-}
-
-// GetLanguages operation middleware
-func (siw *ServerInterfaceWrapper) GetLanguages(w http.ResponseWriter, r *http.Request) {
-
-	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetLanguages(w, r)
-	}))
-
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
-	}
-
-	handler.ServeHTTP(w, r)
-}
-
-// PostLanguages operation middleware
-func (siw *ServerInterfaceWrapper) PostLanguages(w http.ResponseWriter, r *http.Request) {
-
-	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostLanguages(w, r)
-	}))
-
-	for _, middleware := range siw.HandlerMiddlewares {
-		handler = middleware(handler)
-	}
-
-	handler.ServeHTTP(w, r)
-}
-
-// GetLanguagesId operation middleware
-func (siw *ServerInterfaceWrapper) GetLanguagesId(w http.ResponseWriter, r *http.Request) {
-
-	var err error
-
-	// ------------- Path parameter "id" -------------
-	var id int64
-
-	err = runtime.BindStyledParameterWithOptions("simple", "id", r.PathValue("id"), &id, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationPath, Explode: false, Required: true})
-	if err != nil {
-		siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "id", Err: err})
-		return
-	}
-
-	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.GetLanguagesId(w, r, id)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -1276,9 +1214,6 @@ func HandlerWithOptions(si ServerInterface, options StdHTTPServerOptions) http.H
 	m.HandleFunc("GET "+options.BaseURL+"/currencies", wrapper.GetCurrencies)
 	m.HandleFunc("POST "+options.BaseURL+"/currencies", wrapper.PostCurrencies)
 	m.HandleFunc("GET "+options.BaseURL+"/currencies/{id}", wrapper.GetCurrenciesId)
-	m.HandleFunc("GET "+options.BaseURL+"/languages", wrapper.GetLanguages)
-	m.HandleFunc("POST "+options.BaseURL+"/languages", wrapper.PostLanguages)
-	m.HandleFunc("GET "+options.BaseURL+"/languages/{id}", wrapper.GetLanguagesId)
 	m.HandleFunc("GET "+options.BaseURL+"/locations", wrapper.GetLocations)
 	m.HandleFunc("POST "+options.BaseURL+"/locations", wrapper.PostLocations)
 	m.HandleFunc("GET "+options.BaseURL+"/locations/{id}", wrapper.GetLocationsId)
