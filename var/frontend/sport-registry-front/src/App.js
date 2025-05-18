@@ -1,66 +1,63 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Sidebar from './components/Sidebar';
-import Dashboard from './components/Dashboard';
 import ResourceView from './components/ResourceView';
 
 const resources = [
-  { key: 'dashboard', pluralLabel: 'Dashboard', singularLabel: '' },
-  { key: 'sports',   pluralLabel: 'Sports',   singularLabel: 'Sport' },
-  { key: 'countries',pluralLabel: 'Countries',singularLabel: 'Country' },
-  { key: 'currencies',pluralLabel:'Currencies',singularLabel: 'Currency' },
-  { key: 'locations',pluralLabel: 'Locations', singularLabel: 'Location' },
-  { key: 'roles',    pluralLabel: 'Roles',     singularLabel: 'Role' },
+  { key: 'sports',             pluralLabel: 'Sports',             singularLabel: 'Sport' },
+  { key: 'countries',          pluralLabel: 'Countries',          singularLabel: 'Country' },
+  { key: 'currencies',         pluralLabel: 'Currencies',         singularLabel: 'Currency' },
+  { key: 'locations',          pluralLabel: 'Locations',          singularLabel: 'Location' },
+
+  {
+    key: 'teams',
+    pluralLabel: 'Teams',
+    singularLabel: 'Team',
+    children: [
+      { key: 'competition-teams',  pluralLabel: 'Competition Teams',  singularLabel: 'Competition Team' },
+      { key: 'match-participants', pluralLabel: 'Match Participants', singularLabel: 'Match Participant' },
+      { key: 'team-achievements',  pluralLabel: 'Team Achievements',  singularLabel: 'Team Achievement' },
+    ]
+  },
+
   {
     key: 'persons',
     pluralLabel: 'People',
     singularLabel: 'Person',
     children: [
       { key: 'persons/sport', pluralLabel: 'Sports',       singularLabel: 'Sport' },
+      { key: 'roles',         pluralLabel: 'Roles',        singularLabel: 'Role' },
       { key: 'persons/team',  pluralLabel: 'Team Persons', singularLabel: 'Team Person' },
     ]
   },
-  {
-    key: 'teams',
-    pluralLabel: 'Teams',
-    singularLabel: 'Team',
-    children: [
-      { key: 'competition-teams', pluralLabel: 'Competition Teams',  singularLabel: 'Competition Team' },
-      { key: 'team-achievements', pluralLabel: 'Team Achievements',  singularLabel: 'Team Achievement' },
-      { key: 'match-participants',pluralLabel: 'Match Participants',singularLabel: 'Match Participant' },
-    ]
-  },
+
   {
     key: 'competitions',
     pluralLabel: 'Competitions',
     singularLabel: 'Competition',
     children: [
-      { key: 'competition-levels',pluralLabel:'Competition Levels', singularLabel:'Competition Level' },
-      {
-        key: 'stages',
-        pluralLabel: 'Stages',
-        singularLabel: 'Stage',
-        children: [
-          { key: 'matches', pluralLabel: 'Matches', singularLabel: 'Match' }
-        ]
-      },
+      { key: 'competition-levels', pluralLabel: 'Competition Levels', singularLabel: 'Competition Level' },
+      { key: 'prizes', pluralLabel: 'Prizes', singularLabel: 'Prize' },
+      { key: 'stages', pluralLabel: 'Stages', singularLabel: 'Stage' },
+      { key: 'matches',            pluralLabel: 'Matches',            singularLabel: 'Match' },
     ]
   },
-  { key: 'prizes', pluralLabel: 'Prizes', singularLabel: 'Prize' },
 ];
 
 export default function App() {
-  const [current, setCurrent] = useState('dashboard');
+  const [current, setCurrent] = useState(resources[0].key);
 
   return (
     <Container fluid className="p-0">
       <Row>
         <Col
-          xs={12} md={3} lg={2}
+          xs={12}
+          md={3}
+          lg={2}
           className="bg-light border-end vh-100 position-fixed"
           style={{ overflowY: 'auto' }}
         >
-          <Sidebar resources={resources} current={current} onSelect={setCurrent}/>
+          <Sidebar resources={resources} current={current} onSelect={setCurrent} />
         </Col>
         <Col
           xs={12}
@@ -69,11 +66,7 @@ export default function App() {
           className="p-4"
           style={{ maxHeight: '100vh', overflowY: 'auto' }}
         >
-          {current === 'dashboard' ? (
-            <Dashboard resources={resources.filter(r => r.key!=='dashboard')} />
-          ) : (
-            <ResourceView resourceKey={current} resources={resources} />
-          )}
+          <ResourceView resourceKey={current} resources={resources} />
         </Col>
       </Row>
     </Container>
