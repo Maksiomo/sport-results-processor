@@ -5,6 +5,7 @@ import (
 	"math/big"
 	"sport-results-pocessor/internal/common/adapter/logger"
 	"sport-results-pocessor/pkg/gen/blockchain"
+	"strings"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -14,8 +15,8 @@ import (
 )
 
 type BlockchainRegistryClient struct {
-	Auth			 *bind.TransactOpts
-	CallOpts		 *bind.CallOpts
+	Auth             *bind.TransactOpts
+	CallOpts         *bind.CallOpts
 	EthClient        *ethclient.Client
 	Sport            *blockchain.SportRegistry
 	Person           *blockchain.PersonRegistry
@@ -39,7 +40,7 @@ func NewBlockchainRegistryClient(ctx context.Context, cfg *Config, logg logger.L
 	c := &BlockchainRegistryClient{EthClient: ec}
 
 	// приватный ключ первого аккаунта Ganache (из логов)
-	key, err := crypto.HexToECDSA(cfg.AccountPrivKey)
+	key, err := crypto.HexToECDSA(strings.TrimPrefix(cfg.AccountPrivKey, "0x"))
 	if err != nil {
 		log.Error("can not parse priv key", zap.Error(err))
 		return nil, err
@@ -56,57 +57,68 @@ func NewBlockchainRegistryClient(ctx context.Context, cfg *Config, logg logger.L
 	// Initialize each registry
 
 	if cfg.Init {
+		addr := common.Address{}
 		// deploy contracts from scratch
-		_, _, c.Sport, err = blockchain.DeploySportRegistry(auth, c.EthClient)
+		addr, _, c.Sport, err = blockchain.DeploySportRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make sport registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.Person, err = blockchain.DeployPersonRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init sport", zap.String("addr", addr.String()))
+		addr, _, c.Person, err = blockchain.DeployPersonRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make person registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.Team, err = blockchain.DeployTeamRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init person", zap.String("addr", addr.String()))
+		addr, _, c.Team, err = blockchain.DeployTeamRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make team registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.TeamPerson, err = blockchain.DeployTeamPersonRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init team", zap.String("addr", addr.String()))
+		addr, _, c.TeamPerson, err = blockchain.DeployTeamPersonRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make team person registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.Competition, err = blockchain.DeployCompetitionRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init team person", zap.String("addr", addr.String()))
+		addr, _, c.Competition, err = blockchain.DeployCompetitionRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make competition registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.Match, err = blockchain.DeployMatchRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init competition", zap.String("addr", addr.String()))
+		addr, _, c.Match, err = blockchain.DeployMatchRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make match registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.MatchParticipant, err = blockchain.DeployMatchParticipantRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init match", zap.String("addr", addr.String()))
+		addr, _, c.MatchParticipant, err = blockchain.DeployMatchParticipantRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make match participants registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.Prize, err = blockchain.DeployPrizeRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init match participant", zap.String("addr", addr.String()))
+		addr, _, c.Prize, err = blockchain.DeployPrizeRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make prize registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.CompetitionTeams, err = blockchain.DeployCompetitionTeamsRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init prize", zap.String("addr", addr.String()))
+		addr, _, c.CompetitionTeams, err = blockchain.DeployCompetitionTeamsRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make competition teams registry", zap.Error(err))
 			return nil, err
 		}
-		_, _, c.TeamAchievements, err = blockchain.DeployTeamAchievementsRegistry(auth, c.EthClient)
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init competition teams", zap.String("addr", addr.String()))
+		addr, _, c.TeamAchievements, err = blockchain.DeployTeamAchievementsRegistry(auth, c.EthClient)
 		if err != nil {
 			log.Error("can not make team achievements registry", zap.Error(err))
 			return nil, err
 		}
+		log.WithMethod(ctx, "NewBlockchainRegistryClient").Info("init team achievements", zap.String("addr", addr.String()))
 	} else {
 		// connect to existing regisrties
 		if c.Sport, err = blockchain.NewSportRegistry(common.HexToAddress(cfg.SportAddr), ec); err != nil {

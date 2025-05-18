@@ -13,3 +13,4 @@
 /.helm/charts/
 /.helm/charts/helm-snippets-0.0.1.tgz
 /.vscode/
+/ganache_db/

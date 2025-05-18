@@ -34,6 +34,16 @@ tasks:
       - task migrate-up
       - task generate-ent
 
+  ganache:
+    desc: launches local ganache eth node in dev mode
+    cmds:
+      - ganache   --port 8545   --deterministic   --chain.chainId 253 --db ./ganache_db
+  
+  run:
+    desc: launhes app locally
+    cmds:
+      - go run ./cmd/main.go
+
   generate-blockchain-client:
     desc: generate solc buids and blockchain client from sol contracts
     cmds:

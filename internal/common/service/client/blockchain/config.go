@@ -9,7 +9,7 @@ type Config struct {
 	SportAddr             string `yaml:"sport_addr"`
 	PersonAddr            string `yaml:"person_addr"`
 	TeamAddr              string `yaml:"team_addr"`
-	TeamPersonAddr        string `yaml:"team__person_addr"`
+	TeamPersonAddr        string `yaml:"team_person_addr"`
 	CompetitionAddr       string `yaml:"competition_addr"`
 	MatchAddr             string `yaml:"match_addr"`
 	MatchParticipantsAddr string `yaml:"match_participants_addr"`
