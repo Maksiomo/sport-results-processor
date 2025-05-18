@@ -121,6 +121,7 @@ export default function ResourceView({ resourceKey, resources }) {
   };
 
   const fetchList = () => {
+    setError(null);
     setLoading(true);
     api.get(`/${resourceKey}`)
       .then(res => {
