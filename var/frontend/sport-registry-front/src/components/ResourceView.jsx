@@ -182,7 +182,9 @@ export default function ResourceView({ resourceKey, resources }) {
 
     api.post(`/${resourceKey}`, payload)
       .then(() => {
-        fetchList();           // <-- здесь
+        fetchList();
+        setFormData(newFields.reduce((acc, f) => ({ ...acc, [f]: '' }), {}));
+        setErrors({});
         setShowCreate(false);
       })
       .catch(err => alert('Create error: ' + err.message));
