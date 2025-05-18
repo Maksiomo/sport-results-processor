@@ -175,7 +175,7 @@ func (s *SportRegistryService) ListCompetitionTeams(ctx context.Context) (*regis
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -279,7 +279,7 @@ func (s *SportRegistryService) ListCompetitions(ctx context.Context) (*registry.
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -533,7 +533,7 @@ func (s *SportRegistryService) ListMatchParticipants(ctx context.Context) (*regi
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -640,7 +640,7 @@ func (s *SportRegistryService) ListMatches(ctx context.Context) (*registry.ListM
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -798,7 +798,7 @@ func (s *SportRegistryService) ListPerson(ctx context.Context) (*registry.ListPe
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -899,7 +899,7 @@ func (s *SportRegistryService) ListPrises(ctx context.Context) (*registry.ListPr
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -1049,7 +1049,7 @@ func (s *SportRegistryService) ListSports(ctx context.Context) (*registry.ListSp
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -1206,7 +1206,7 @@ func (s *SportRegistryService) ListTeamAchievements(ctx context.Context) (*regis
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -1306,7 +1306,7 @@ func (s *SportRegistryService) ListTeamPersons(ctx context.Context) (*registry.L
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}
@@ -1410,7 +1410,7 @@ func (s *SportRegistryService) ListTeams(ctx context.Context) (*registry.ListTea
 
 	for i := range res {
 
-		hash, err := s.calcHash(res)
+		hash, err := s.calcHash(res[i])
 		if err != nil {
 			return nil, err
 		}

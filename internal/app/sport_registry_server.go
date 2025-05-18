@@ -783,7 +783,6 @@ func (s *sportRegistryServer) writeResponse(w http.ResponseWriter, response any,
 		statusCode = http.StatusInternalServerError
 	}
 
-	w.WriteHeader(statusCode)
 	_, err = w.Write(bytes)
 	if err != nil {
 		s.log.WithMethod(s.ctx, "writeResponse").Error("cannot write response", zap.Error(err))
