@@ -4,6 +4,7 @@ import Sidebar from './components/Sidebar';
 import ResourceView from './components/ResourceView';
 
 const resources = [
+  { key: 'dashboard',          pluralLabel: 'Dashboard',          singularLabel: '' },
   { key: 'sports',             pluralLabel: 'Sports',             singularLabel: 'Sport' },
   { key: 'countries',          pluralLabel: 'Countries',          singularLabel: 'Country' },
   { key: 'currencies',         pluralLabel: 'Currencies',         singularLabel: 'Currency' },
