@@ -1,0 +1,31 @@
+logger:
+  encoding: ${LOGGER_ENCODING:json}
+  level: ${LOGGER_LEVEL:debug}
+  level_encoder: ${LOGGER_LEVEL_ENCODER:lower}
+
+db:
+  dsn: ${PG_DSN}
+  max_open_conns: 10
+  max_idle_conns: 5
+
+server:
+  registry:
+    port: 8080
+    validation_key: ${REGISTRY_VALIDATION_KEY}
+
+client:
+  blockchain:
+    rpc_url: ${RPC_URL}
+    account_priv_key: ${GANACHE_PRIV_KEY}
+    network_id: ${NETWORK_ID}
+    init: ${INIT_REGISTRY}
+    sport_addr: ${SPORT_ADDRESS}
+    person_addr: ${PERSON_ADDRESS}
+    team_addr: ${TEAM_ADDRESS}
+    team_person_addr: ${TEAM_PERSON_ADDRESS}
+    competition_addr: ${COMPETITION_ADDRESS}
+    match_addr: ${MATCH_ADDRESS}
+    match_participants_addr: ${MATCH_PARTICIPANTS_ADDRESS}
+    prize_addr: ${PRIZE_ADDRESS}
+    competition_team_addr: ${COMPETITION_TEAM_ADDRESS}
+    team_achievements_addr: ${TEAM_ACHIEVEMENTS_ADDRESS}

@@ -1,0 +1,57 @@
+version: '3'
+
+dotenv: ['.env']
+
+vars:
+  PROJECT_DIR:
+    sh: pwd
+  MIGRATIONS_DIR: ./var/migrations
+  ENTITIES_DIR: ./internal/infra/repo/entity
+
+tasks:
+  migrate-up:
+    desc: runs migrations.
+    cmds:
+      - goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" up
+
+  migrate-down:
+    desc: revert migrations.
+    cmds:
+      - goose -dir {{ .MIGRATIONS_DIR }} postgres "{{ .PG_DSN }}" down
+
+  generate-ent:
+    desc: generate entities.
+    cmds:
+      - sqlboiler psql --no-tests -o ./internal/infra/repo/entity  -c ./var/config/.sqlboiler.toml
+    requires:
+      vars: [PG_PASSWORD]
+    generates:
+      - "pkg/gen/sqlboiler"
+  
+  ent:
+    cmds:
+      - task migrate-down
+      - task migrate-up
+      - task generate-ent
+
+  ganache:
+    desc: launches local ganache eth node in dev mode
+    cmds:
+      - ganache   --port 8545   --deterministic   --chain.chainId 253 --db ./ganache_db
+  
+  run:
+    desc: launhes app locally
+    cmds:
+      - go run ./cmd/main.go
+
+  generate-blockchain-client:
+    desc: generate solc buids and blockchain client from sol contracts
+    cmds:
+      - solc --optimize --combined-json abi,bin --overwrite -o var/contracts/builds var/contracts/*.sol
+      - abigen --combined-json var/contracts/builds/combined.json --pkg="blockchain" --out="pkg/gen/blockchain/blockchain.go"
+
+  generate-registry-server:
+    desc: generate registry server
+    cmds:
+      - oapi-codegen -o ./internal/common/service/server/registry/server.go -package=registry -generate=std-http ./api/registry.server.yaml
+      - oapi-codegen -o ./internal/common/service/server/registry/types.go -package=registry -generate=types ./api/registry.server.yaml

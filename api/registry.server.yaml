@@ -1,0 +1,1655 @@
+openapi: 3.0.3
+info:
+  title: Sport registry server API Documentation
+  version: 1.0.0
+  description: |
+    REST API для доступа к данным спортивных соревнований.
+servers:
+  - url: http://localhost:8080
+    description: Локальный сервер
+
+paths:
+  /sports:
+    get:
+      summary: Список видов спорта
+      tags: [Sports]
+      responses:
+        "200":
+          description: Массив видов спорта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListSportsResponse"
+    post:
+      summary: Создать новый вид спорта
+      tags: [Sports]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewSport"
+      responses:
+        "201":
+          description: Создан вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sport"
+
+  /sports/{id}:
+    get:
+      summary: Получить вид спорта по ID
+      tags: [Sports]
+      parameters:
+        - name: id
+          in: path
+          description: ID вида спорта
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sport"
+        "404":
+          description: Не найден
+
+  /countries:
+    get:
+      summary: Список стран
+      tags: [Countries]
+      responses:
+        "200":
+          description: Массив стран
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCountriesResponse"
+    post:
+      summary: Создать новую страну
+      tags: [Countries]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewCountry"
+      responses:
+        "201":
+          description: Создана страна
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Country"
+
+  /countries/{id}:
+    get:
+      summary: Получить cтрану по ID
+      tags: [Countries]
+      parameters:
+        - name: id
+          in: path
+          description: ID страны
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: страна
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Country"
+        "404":
+          description: Не найден
+
+  /currencies:
+    get:
+      summary: Список валют
+      tags: [Currencies]
+      responses:
+        "200":
+          description: Массив валют
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCurrenciesResponse"
+    post:
+      summary: Создать новую валюту
+      tags: [Currencies]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewCurrency"
+      responses:
+        "201":
+          description: Создана локация
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Currency"
+
+  /currencies/{id}:
+    get:
+      summary: Получить валюту по символьному коду
+      tags: [Currencies]
+      parameters:
+        - name: id
+          in: path
+          description: Код валюты
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Валюта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Currency"
+        "404":
+          description: Не найден
+
+  /locations:
+    get:
+      summary: Список локаций
+      tags: [Locations]
+      responses:
+        "200":
+          description: Массив локаций
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListLocationsResponse"
+    post:
+      summary: Создать новую локацию
+      tags: [Locations]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewLocation"
+      responses:
+        "201":
+          description: Создана локация
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Location"
+
+  /locations/{id}:
+    get:
+      summary: Получить место проведения по ID
+      tags: [Locations]
+      parameters:
+        - name: id
+          in: path
+          description: ID места проведения
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Место проведения
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Location"
+        "404":
+          description: Не найден
+
+  /roles:
+    get:
+      summary: Список ролей
+      tags: [Roles]
+      responses:
+        "200":
+          description: Массив ролей
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListRolesResponse"
+    post:
+      summary: Создать новую роль
+      tags: [Roles]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewRole"
+      responses:
+        "201":
+          description: Создана роль
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Role"
+
+  /roles/{id}:
+    get:
+      summary: Получить роль по ID
+      tags: [Roles]
+      parameters:
+        - name: id
+          in: path
+          description: ID роли
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Вид роли
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Role"
+        "404":
+          description: Не найден
+
+  /competition-levels:
+    get:
+      summary: Список уровней соревнований
+      tags: [CompetitionLevels]
+      responses:
+        "200":
+          description: Массив уровней
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCompetitionLevelsResponse"
+    post:
+      summary: Создать новый уровень соревнований
+      tags: [CompetitionLevels]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewCompetitionLevel"
+      responses:
+        "201":
+          description: Создан уровень
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompetitionLevel"
+
+  /competition-levels/{id}:
+    get:
+      summary: Получить уровень соревнования по ID
+      tags: [CompetitionLevels]
+      parameters:
+        - name: id
+          in: path
+          description: ID уровня соревнования
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompetitionLevel"
+        "404":
+          description: Не найден
+
+  /persons:
+    get:
+      summary: Список участников (person)
+      tags: [Persons]
+      responses:
+        "200":
+          description: Массив участников
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListPersonsResponse"
+    post:
+      summary: Создать участника
+      tags: [Persons]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPerson"
+      responses:
+        "201":
+          description: Создан участник
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+
+  /persons/{id}:
+    get:
+      summary: Получить человека по ID
+      tags: [Persons]
+      parameters:
+        - name: id
+          in: path
+          description: ID человека
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: человек
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Person"
+        "404":
+          description: Не найден
+
+  /persons/sport:
+    get:
+      summary: Список участников (person)
+      tags: [PersonSports]
+      responses:
+        "200":
+          description: Массив участников
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListPersonSportsResponse"
+    post:
+      summary: Создать участника
+      tags: [PersonSports]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPersonSport"
+      responses:
+        "201":
+          description: Создан участник
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonSport"
+
+  /persons/sport/{id}:
+    get:
+      summary: Получить вид панель спортсмена по ID
+      tags: [PersonSports]
+      parameters:
+        - name: id
+          in: path
+          description: ID спортсмена
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Спортсмен
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PersonSport"
+        "404":
+          description: Не найден
+
+  /persons/team:
+    get:
+      summary: Список участников команд (person)
+      tags: [TeamPersons]
+      responses:
+        "200":
+          description: Массив участников команд
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListTeamPersonsResponse"
+    post:
+      summary: Создать участника
+      tags: [TeamPersons]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTeamPerson"
+      responses:
+        "201":
+          description: Создан участник
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamPerson"
+
+  /persons/teams/{id}:
+    get:
+      summary: Получить участника команды по ID
+      tags: [TeamPersons]
+      parameters:
+        - name: id
+          in: path
+          description: ID участника команды
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Участник команды
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamPerson"
+        "404":
+          description: Не найден
+
+  /teams:
+    get:
+      summary: Список команд
+      tags: [Teams]
+      responses:
+        "200":
+          description: Массив команд
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListTeamsResponse"
+    post:
+      summary: Создать команду
+      tags: [Teams]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTeam"
+      responses:
+        "201":
+          description: Создана команда
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+
+  /team/{id}:
+    get:
+      summary: Получить команду по ID
+      tags: [Teams]
+      parameters:
+        - name: id
+          in: path
+          description: ID команды
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: команда
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Team"
+        "404":
+          description: Не найден
+
+  /competitions:
+    get:
+      summary: Список соревнований
+      tags: [Competitions]
+      responses:
+        "200":
+          description: Массив соревнований
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCompetitionsResponse"
+    post:
+      summary: Создать соревнование
+      tags: [Competitions]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewCompetition"
+      responses:
+        "201":
+          description: Создано соревнование
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Competition"
+
+  /competitions/{id}:
+    get:
+      summary: Получить соревнование по ID
+      tags: [Competitions]
+      parameters:
+        - name: id
+          in: path
+          description: ID соревнования
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Соревнование
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Competition"
+        "404":
+          description: Не найден
+
+  /stages:
+    get:
+      summary: Список этапов
+      tags: [Stages]
+      responses:
+        "200":
+          description: Массив этапов
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListStagesResponse"
+    post:
+      summary: Создать этап
+      tags: [Stages]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewStage"
+      responses:
+        "201":
+          description: Создан этап
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stage"
+
+  /stages/{id}:
+    get:
+      summary: Получить этап соревнования по ID
+      tags: [Stages]
+      parameters:
+        - name: id
+          in: path
+          description: ID этапа соревнования
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Этап соревнования
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Stage"
+        "404":
+          description: Не найден
+
+  /matches:
+    get:
+      summary: Список матчей
+      tags: [Matches]
+      responses:
+        "200":
+          description: Массив матчей
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListMatchesResponse"
+    post:
+      summary: Создать матч
+      tags: [Matches]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewMatch"
+      responses:
+        "201":
+          description: Создан матч
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+
+  /matches/{id}:
+    get:
+      summary: Получить встречу по ID
+      tags: [Matches]
+      parameters:
+        - name: id
+          in: path
+          description: ID встречи
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Встреча
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+        "404":
+          description: Не найден
+
+  /match-participants:
+    get:
+      summary: Список участников матча
+      tags: [MatchParticipants]
+      responses:
+        "200":
+          description: Массив участников матча
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListMatchParticipantsResponse"
+    post:
+      summary: Добавить участника в матч
+      tags: [MatchParticipants]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewMatchParticipant"
+      responses:
+        "201":
+          description: Участник добавлен
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchParticipant"
+
+  /match-participants/{id}:
+    get:
+      summary: Получить участника встречи по ID
+      tags: [MatchParticipants]
+      parameters:
+        - name: id
+          in: path
+          description: ID участника встречи
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Участник встречи
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MatchParticipant"
+        "404":
+          description: Не найден
+
+  /prizes:
+    get:
+      summary: Список призов
+      tags: [Prizes]
+      responses:
+        "200":
+          description: Массив призов
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListPrizesResponse"
+    post:
+      summary: Создать приз
+      tags: [Prizes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPrize"
+      responses:
+        "201":
+          description: Приз создан
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Prize"
+
+  /prizes/{id}:
+    get:
+      summary: Получить награду по ID
+      tags: [Prizes]
+      parameters:
+        - name: id
+          in: path
+          description: ID награду
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Награда
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Prize"
+        "404":
+          description: Не найден
+
+  /competition-teams:
+    get:
+      summary: Список участников соревнований
+      tags: [CompetitionTeams]
+      responses:
+        "200":
+          description: Массив связей команда↔соревнование
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCompetitionTeamsResponse"
+    post:
+      summary: Добавить команду в соревнование
+      tags: [CompetitionTeams]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewCompetitionTeams"
+      responses:
+        "201":
+          description: Запись добавлена
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompetitionTeams"
+
+  /competition-teams/{id}:
+    get:
+      summary: Получить команду участницу соревнования по ID
+      tags: [CompetitionTeams]
+      parameters:
+        - name: id
+          in: path
+          description: ID вида спорта
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Вид спорта
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CompetitionTeams"
+        "404":
+          description: Не найден
+
+  /team-achievements:
+    get:
+      summary: Список достижений команд
+      tags: [TeamAchievements]
+      responses:
+        "200":
+          description: Массив достижений
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListTeamAchievementsResponse"
+    post:
+      summary: Добавить достижение команде
+      tags: [TeamAchievements]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewTeamAchievements"
+      responses:
+        "201":
+          description: Достижение добавлено
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamAchievements"
+
+  /team-achievements/{id}:
+    get:
+      summary: Получить достижение команды
+      tags: [TeamAchievements]
+      parameters:
+        - name: id
+          in: path
+          description: ID достижения
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        "200":
+          description: Достижение
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamAchievements"
+        "404":
+          description: Не найден
+
+components:
+  schemas:
+    ListCurrenciesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Currency"
+
+    Currency:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+      required:
+        - code
+        - name
+
+    NewCurrency:
+      type: object
+      properties:
+        code:
+          type: string
+        name:
+          type: string
+      required:
+        - code
+        - name
+
+    ListSportsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Sport"
+
+    Sport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        min_team_size:
+          type: integer
+        max_team_size:
+          type: integer
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - min_team_size
+        - max_team_size
+        - created_at
+
+    NewSport:
+      type: object
+      properties:
+        name:
+          type: string
+        min_team_size:
+          type: integer
+        max_team_size:
+          type: integer
+        description:
+          type: string
+      required:
+        - name
+        - min_team_size
+        - max_team_size
+
+    ListCountriesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Country"
+
+    Country:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - created_at
+
+    NewCountry:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    ListLocationsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Location"
+
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        country_id:
+          type: integer
+          format: int64
+        state:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        full_address:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - country_id
+        - full_address
+
+    NewLocation:
+      type: object
+      properties:
+        country_id:
+          type: integer
+          format: int64
+        state:
+          type: string
+        city:
+          type: string
+        address:
+          type: string
+        full_address:
+          type: string
+      required:
+        - country_id
+        - full_address
+
+    ListRolesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - created_at
+
+    NewRole:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    ListCompetitionLevelsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/CompetitionLevel"
+
+    CompetitionLevel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - created_at
+
+    NewCompetitionLevel:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+
+    ListPersonsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        birth_date:
+          type: string
+          format: date-time
+        country_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - birth_date
+        - country_id
+        - created_at
+
+    NewPerson:
+      type: object
+      properties:
+        name:
+          type: string
+        birth_date:
+          type: string
+          format: date-time
+        country_id:
+          type: integer
+          format: int64
+      required:
+        - name
+        - birth_date
+        - country_id
+
+    ListPersonSportsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/PersonSport"
+
+    PersonSport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        person_id:
+          type: integer
+          format: int64
+        sport_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - person_id
+        - sport_id
+        - created_at
+
+    NewPersonSport:
+      type: object
+      properties:
+        person_id:
+          type: integer
+          format: int64
+        sport_id:
+          type: integer
+          format: int64
+      required:
+        - person_id
+        - sport_id
+
+    ListTeamsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Team"
+
+    Team:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        country_id:
+          type: integer
+          format: int64
+        foundation_date:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - country_id
+        - foundation_date
+        - created_at
+
+    NewTeam:
+      type: object
+      properties:
+        name:
+          type: string
+        country_id:
+          type: integer
+          format: int64
+        foundation_date:
+          type: string
+          format: date-time
+      required:
+        - name
+        - country_id
+        - foundation_date
+
+    ListTeamPersonsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/TeamPerson"
+
+    TeamPerson:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        person_id:
+          type: integer
+          format: int64
+        role_id:
+          type: integer
+          format: int64
+        joined_at:
+          type: string
+          format: date-time
+        left_at:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - team_id
+        - person_id
+        - role_id
+        - joined_at
+        - created_at
+
+    NewTeamPerson:
+      type: object
+      properties:
+        team_id:
+          type: integer
+          format: int64
+        person_id:
+          type: integer
+          format: int64
+        role_id:
+          type: integer
+          format: int64
+        joined_at:
+          type: string
+          format: date-time
+        left_at:
+          type: string
+          format: date-time
+      required:
+        - team_id
+        - person_id
+        - role_id
+        - joined_at
+
+    ListCompetitionsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Competition"
+
+    Competition:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        sport_id:
+          type: integer
+          format: int64
+        location_id:
+          type: integer
+          format: int64
+        level_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - sport_id
+        - location_id
+        - level_id
+        - created_at
+
+    NewCompetition:
+      type: object
+      properties:
+        name:
+          type: string
+        sport_id:
+          type: integer
+          format: int64
+        location_id:
+          type: integer
+          format: int64
+        level_id:
+          type: integer
+          format: int64
+      required:
+        - name
+        - sport_id
+        - location_id
+        - level_id
+
+    ListStagesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Stage"
+
+    Stage:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - competition_id
+        - name
+        - start_time
+        - created_at
+
+    NewStage:
+      type: object
+      properties:
+        competition_id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+      required:
+        - competition_id
+        - name
+        - start_time
+
+    ListMatchesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Match"
+
+    Match:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        stage_id:
+          type: integer
+          format: int64
+        match_time:
+          type: string
+          format: date-time
+        location_id:
+          type: integer
+          format: int64
+        metadata:
+          type: object
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - stage_id
+        - match_time
+        - created_at
+
+    NewMatch:
+      type: object
+      properties:
+        stage_id:
+          type: integer
+          format: int64
+        match_time:
+          type: string
+          format: date-time
+        location_id:
+          type: integer
+          format: int64
+        metadata:
+          type: object
+      required:
+        - stage_id
+        - match_time
+
+    ListMatchParticipantsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/MatchParticipant"
+
+    MatchParticipant:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        match_id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        score:
+          type: integer
+        is_winner:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - match_id
+        - team_id
+        - score
+        - created_at
+
+    NewMatchParticipant:
+      type: object
+      properties:
+        match_id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        score:
+          type: integer
+        is_winner:
+          type: boolean
+      required:
+        - match_id
+        - team_id
+        - score
+
+    ListPrizesResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/Prize"
+
+    Prize:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+        place_bracket:
+          type: string
+        currency_code:
+          type: string
+        prize_amount:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - competition_id
+        - place_bracket
+        - currency_code
+        - prize_amount
+        - created_at
+
+    NewPrize:
+      type: object
+      properties:
+        competition_id:
+          type: integer
+          format: int64
+        place_bracket:
+          type: string
+        currency_code:
+          type: string
+        prize_amount:
+          type: integer
+      required:
+        - competition_id
+        - place_bracket
+        - currency_code
+        - prize_amount
+
+    ListCompetitionTeamsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/CompetitionTeams"
+
+    CompetitionTeams:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - team_id
+        - competition_id
+        - created_at
+
+    NewCompetitionTeams:
+      type: object
+      properties:
+        team_id:
+          type: integer
+          format: int64
+        competition_id:
+          type: integer
+          format: int64
+      required:
+        - team_id
+        - competition_id
+
+    ListTeamAchievementsResponse:
+      type: object
+      required: [data]
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/TeamAchievements"
+
+    TeamAchievements:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        team_id:
+          type: integer
+          format: int64
+        prize_id:
+          type: integer
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+      required:
+        - id
+        - team_id
+        - prize_id
+        - created_at
+
+    NewTeamAchievements:
+      type: object
+      properties:
+        team_id:
+          type: integer
+          format: int64
+        prize_id:
+          type: integer
+          format: int64
+      required:
+        - team_id
+        - prize_id

@@ -1,0 +1,40 @@
+/ssl/
+/ssh/
+/bin/
+/tmp/
+/.idea/
+*.env
+/ssl/
+/var/cert/
+/.werf_secret_key
+/secret-values.yaml
+/cover.html
+/.helm/Chart.lock
+/.helm/charts/
+/.helm/charts/helm-snippets-0.0.1.tgz
+/.vscode/
+/ganache_db/
+
+
+# dependencies
+
+/var/frontend/sport-registry-front/node_modules/
+/var/frontend/sport-registry-front/.pnp
+/var/frontend/sport-registry-front/.pnp.js
+
+# testing
+/var/frontend/sport-registry-front/coverage
+
+# production
+/var/frontend/sport-registry-front/build
+
+# misc
+/var/frontend/sport-registry-front/.DS_Store
+/var/frontend/sport-registry-front/.env.local
+/var/frontend/sport-registry-front/.env.development.local
+/var/frontend/sport-registry-front/.env.test.local
+/var/frontend/sport-registry-front/.env.production.local
+
+/var/frontend/sport-registry-front/npm-debug.log*
+/var/frontend/sport-registry-front/yarn-debug.log*
+/var/frontend/sport-registry-front/yarn-error.log*
