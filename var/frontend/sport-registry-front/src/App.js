@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import Sidebar from './components/Sidebar';
@@ -11,12 +12,9 @@ const resources = [
   { key: 'roles',              pluralLabel: 'Roles',              singularLabel: 'Role' },
   { key: 'competition-levels', pluralLabel: 'Competition Levels', singularLabel: 'Competition Level' },
   {
-    key: 'persons',
-    pluralLabel: 'People',
-    singularLabel: 'Person',
-    children: [
-      { key: 'persons/sport', pluralLabel: `Person's sports`, singularLabel: 'Person Sport' },
-      { key: 'persons/team',  pluralLabel: `Person's team`, singularLabel: 'Person Team' },
+    key: 'persons', pluralLabel: 'People', singularLabel: 'Person', children: [
+      { key: 'persons/sport', pluralLabel: 'Sports',       singularLabel: 'Sport' },
+      { key: 'persons/team',  pluralLabel: 'Team Persons', singularLabel: 'Team Person' },
     ]
   },
   { key: 'teams',             pluralLabel: 'Teams',             singularLabel: 'Team' },
@@ -31,32 +29,18 @@ const resources = [
 
 export default function App() {
   const [current, setCurrent] = useState(resources[0].key);
-
   return (
     <Container fluid className="p-0">
       <Row>
-        <Col
-          xs={12} md={3} lg={2}
-          className="bg-light border-end vh-100 position-fixed"
-          style={{ overflowY: 'auto' }}
-        >
-          <Sidebar
-            resources={resources}
-            current={current}
-            onSelect={setCurrent}
-          />
+        <Col xs={12} md={3} lg={2}
+             className="bg-light border-end vh-100 position-fixed"
+             style={{ overflowY: 'auto' }}>
+          <Sidebar resources={resources} current={current} onSelect={setCurrent} />
         </Col>
-        <Col
-          xs={12}
-          md={{ span: 9, offset: 3 }}
-          lg={{ span: 10, offset: 2 }}
-          className="p-4"
-          style={{ maxHeight: '100vh', overflowY: 'auto' }}
-        >
-          <ResourceView
-            resourceKey={current}
-            resources={resources}
-          />
+        <Col xs={12} md={{ span: 9, offset: 3 }} lg={{ span: 10, offset: 2 }}
+             className="p-4"
+             style={{ maxHeight: '100vh', overflowY: 'auto' }}>
+          <ResourceView resourceKey={current} resources={resources} />
         </Col>
       </Row>
     </Container>
