@@ -120,13 +120,21 @@ export default function ResourceView({ resourceKey, resources }) {
     return `Enter ${f.replace(/_/g, ' ')}`;
   };
 
-  // 8. Загрузка списка и FK опций
-  useEffect(() => {
+  const fetchList = () => {
     setLoading(true);
     api.get(`/${resourceKey}`)
-      .then(r => setList(r.data.data ?? r.data))
-      .catch(e => setError(e.message))
+      .then(res => {
+        const data = res.data.data ?? res.data;
+        setList(data);
+        setPage(1);           // вернём пагинацию на первую страницу
+      })
+      .catch(err => setError(err.message))
       .finally(() => setLoading(false));
+  };
+
+  // 8. Загрузка списка + FK-опций
+  useEffect(() => {
+    fetchList();
 
     newFields.forEach(f => {
       const ep = fkMap[f];
@@ -136,9 +144,9 @@ export default function ResourceView({ resourceKey, resources }) {
         .catch(console.error);
     });
 
-    setFormData(newFields.reduce((a,f)=>(a[f]='',a),{}));
+    // сброс формы и ошибок
+    setFormData(newFields.reduce((a, f) => ({ ...a, [f]: '' }), {}));
     setErrors({});
-    setPage(1);
   }, [resourceKey]);
 
   // 9. Конвертация перед отправкой
@@ -167,11 +175,13 @@ export default function ResourceView({ resourceKey, resources }) {
   const handleCreate = e => {
     e.preventDefault();
     if (!validate()) return;
+
     const payload = {};
     newFields.forEach(f => { payload[f] = convert(f, formData[f]); });
+
     api.post(`/${resourceKey}`, payload)
-      .then(r => {
-        setList(prev => [...prev, r.data.data ?? r.data]);
+      .then(() => {
+        fetchList();           // <-- здесь
         setShowCreate(false);
       })
       .catch(err => alert('Create error: ' + err.message));
