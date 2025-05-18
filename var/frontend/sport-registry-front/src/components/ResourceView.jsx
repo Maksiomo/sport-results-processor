@@ -1,9 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { Table, Form, Button, Row, Col, Alert } from 'react-bootstrap';
 import api from '../api';
 
 export default function ResourceView({ resourceKey, resources }) {
-  // 1. Найти метаданные о ресурсе из списка, чтобы получить labels и children
+  // 1. Метаданные из App.js
   const findMeta = (key, list) => {
     for (const r of list) {
       if (r.key === key) return r;
@@ -15,11 +16,9 @@ export default function ResourceView({ resourceKey, resources }) {
     return null;
   };
   const cfgMeta = findMeta(resourceKey, resources);
-  if (!cfgMeta) {
-    return <Alert variant="warning">Unknown resource: {resourceKey}</Alert>;
-  }
+  if (!cfgMeta) return <Alert variant="warning">Unknown resource: {resourceKey}</Alert>;
 
-  // 2. Описать поля и их типы для конвертации перед POST
+  // 2. Типы полей
   const schema = {
     sports:             { name: 'string', min_team_size: 'int', max_team_size: 'int', description: 'string' },
     countries:          { name: 'string' },
@@ -40,7 +39,7 @@ export default function ResourceView({ resourceKey, resources }) {
     'team-achievements':{ team_id: 'int', prize_id: 'int' },
   };
 
-  // 3. ПОЛЯ ДЛЯ ТАБЛИЦЫ И ФОРМЫ
+  // 3. Поля для таблицы/формы
   const fieldMeta = {
     sports:             { fields: ['id','name','min_team_size','max_team_size','description'], newFields: ['name','min_team_size','max_team_size','description'] },
     countries:          { fields: ['id','name'], newFields: ['name'] },
@@ -62,109 +61,156 @@ export default function ResourceView({ resourceKey, resources }) {
   };
   const { fields, newFields } = fieldMeta[resourceKey];
 
-  // 4. Хуки
-  const [items, setItems]       = useState([]);
-  const [formData, setFormData] = useState(
-    newFields.reduce((acc, f) => ({ ...acc, [f]: '' }), {})
-  );
-  const [loading, setLoading] = useState(true);
-  const [error, setError]     = useState(null);
+  // 4. FK → endpoint и label
+  const fkMap = {
+    country_id: 'countries',
+    sport_id: 'sports',
+    person_id: 'persons',
+    team_id: 'teams',
+    role_id: 'roles',
+    competition_id: 'competitions',
+    stage_id: 'stages',
+    match_id: 'matches',
+    prize_id: 'prizes',
+    location_id: 'locations',
+    currency_code: 'currencies',
+    level_id: 'competition-levels', // added mapping
+  };
+  const labelMap = {
+    countries: 'name',
+    sports: 'name',
+    persons: 'name',
+    teams: 'name',
+    roles: 'name',
+    competitions: 'name',
+    stages: 'name',
+    matches: 'match_time',
+    prizes: 'place_bracket',
+    locations: 'full_address',
+    currencies: 'name',
+    'competition-levels': 'name', // added label
+  };
 
-  // 5. Загрузка списка
+  // 5. Локальный стейт
+  const [items, setItems]           = useState([]);
+  const [formData, setFormData]     = useState(newFields.reduce((a,f)=>(a[f]='',a),{}));
+  const [foreignOptions, setForeign] = useState({});
+  const [loading, setLoading]       = useState(true);
+  const [error, setError]           = useState(null);
+
+  // 6. Генерация уникального placeholder
+  const getPlaceholder = field => {
+    const type = schema[resourceKey][field];
+    if (type === 'int')     return 'e.g. 123';
+    if (type === 'boolean') return 'true or false';
+    if (type === 'json')    return '{"key":"value"}';
+    return `Enter ${field.replace(/_/g,' ')}`;
+  };
+
+  // 7. Загрузка данных и опций
   useEffect(() => {
     setLoading(true);
+    setError(null);
+
     api.get(`/${resourceKey}`)
       .then(res => setItems(res.data.data ?? res.data))
       .catch(err => setError(err.message))
       .finally(() => setLoading(false));
 
-    // сброс формы
-    setFormData(newFields.reduce((acc, f) => ({ ...acc, [f]: '' }), {}));
+    newFields.forEach(f => {
+      const ep = fkMap[f];
+      if (!ep) return;
+      api.get(`/${ep}`)
+        .then(res => setForeign(prev => ({ ...prev, [f]: res.data.data ?? res.data })))
+        .catch(console.error);
+    });
+
+    setFormData(newFields.reduce((a,f)=>(a[f]='',a),{}));
   }, [resourceKey]);
 
-  // 6. Обработка изменений
-  const handleChange = f => e =>
-    setFormData(prev => ({ ...prev, [f]: e.target.value }));
-
-  // 7. Конвертация типов
-  const convert = (key, value) => {
-    const type = schema[resourceKey][key];
-    if (!type || type === 'string') return value;
-    if (type === 'int')       return parseInt(value, 10);
-    if (type === 'boolean')   return value === 'true';
-    if (type === 'json')      {
-      try { return JSON.parse(value); }
-      catch { return {}; }
+  // 8. Преобразование перед отправкой
+  const convert = (k, v) => {
+    const t = schema[resourceKey][k];
+    if (t === 'int')     return parseInt(v,10);
+    if (t === 'boolean') return v === 'true';
+    if (t === 'json') {
+      try { return JSON.parse(v); } catch { return {}; }
     }
-    return value;
+    return v;
   };
 
-  // 8. Отправка формы
+  // 9. Отправка POST
   const handleSubmit = e => {
     e.preventDefault();
-
-    // соберём полезную нагрузку с правильными типами (как раньше)
     const payload = {};
-    for (const f of newFields) {
-      payload[f] = convert(f, formData[f]);
-    }
+    newFields.forEach(f => (payload[f] = convert(f, formData[f])));
 
-    // отправляем POST и после успешного создания — рефрешим список
     api.post(`/${resourceKey}`, payload)
       .then(res => {
-        api.post(`/${resourceKey}`, payload)
-        .then(() => api.get(`/${resourceKey}`))        // после POST сразу GET
-        .then(res => {
-          const list = res.data.data ?? res.data;
-          setItems(list);
-          setFormData(newFields.reduce((acc, f) => ({ ...acc, [f]: '' }), {}));
-        })
-        .catch(err => {
-          console.error(err);
-          alert('Error: ' + err.message);
-        });
+        const created = res.data.data ?? res.data;
+        setItems(prev => [...prev, created]);
+        setFormData(newFields.reduce((a,f)=>(a[f]='',a),{}));
       })
-      .catch(err => {
-        console.error(err);
-        alert('Error: ' + err.message);
-      });
+      .catch(err => alert('Error: ' + err.message));
   };
 
-
-  // 9. Рендер
+  // 10. Рендер
   if (loading) return <div>Loading {cfgMeta.pluralLabel}…</div>;
   if (error)   return <Alert variant="danger">Error: {error}</Alert>;
 
   return (
     <>
       <h2>{cfgMeta.pluralLabel}</h2>
-
       <Form onSubmit={handleSubmit} className="mb-4">
         <Row className="g-3">
-          {newFields.map(f => (
-            <Col key={f} xs={12} sm={6} md={4} lg={3}>
-              <Form.Group controlId={`form-${f}`}>
-                <Form.Label>{f.replace(/_/g, ' ')}</Form.Label>
-                <Form.Control
-                  size="sm"
-                  type="text"
-                  value={formData[f]}
-                  onChange={handleChange(f)}
-                  placeholder={schema[resourceKey][f] === 'json' ? '{"..."}' : ''}
-                />
-              </Form.Group>
-            </Col>
-          ))}
+          {newFields.map(f => {
+            const opts = foreignOptions[f];
+            if (opts) {
+              const epMeta = findMeta(fkMap[f], resources);
+              return (
+                <Col key={f} xs={12} sm={6} md={4} lg={3}>
+                  <Form.Group controlId={`form-${f}`}>
+                    <Form.Label>{f.replace(/_/g,' ')}</Form.Label>
+                    <Form.Select
+                      size="sm"
+                      value={formData[f]}
+                      onChange={e => setFormData(prev => ({ ...prev, [f]: e.target.value }))}
+                    >
+                      <option value="">{`Select ${epMeta.singularLabel}`}</option>
+                      {opts.map(item => (
+                        <option key={item.id ?? item.code} value={item.id ?? item.code}>
+                          {`${item.id ?? item.code} – ${item[labelMap[fkMap[f]]]}`}
+                        </option>
+                      ))}
+                    </Form.Select>
+                  </Form.Group>
+                </Col>
+              );
+            }
+            return (
+              <Col key={f} xs={12} sm={6} md={4} lg={3}>
+                <Form.Group controlId={`form-${f}`}>
+                  <Form.Label>{f.replace(/_/g,' ')}</Form.Label>
+                  <Form.Control
+                    size="sm"
+                    type="text"
+                    value={formData[f]}
+                    onChange={e => setFormData(prev => ({ ...prev, [f]: e.target.value }))}
+                    placeholder={getPlaceholder(f)}
+                  />
+                </Form.Group>
+              </Col>
+            );
+          })}
         </Row>
         <Button type="submit" size="sm" className="mt-3">
           Add {cfgMeta.singularLabel}
         </Button>
       </Form>
-
-      <div style={{ overflowX: 'auto' }}>
+      <div style={{ overflowX:'auto' }}>
         <Table size="sm" striped bordered hover>
           <thead>
-            <tr>{fields.map(f => <th key={f}>{f.replace(/_/g, ' ')}</th>)}</tr>
+            <tr>{fields.map(f => <th key={f}>{f.replace(/_/g,' ')}</th>)}</tr>
           </thead>
           <tbody>
             {items.map(item => (
